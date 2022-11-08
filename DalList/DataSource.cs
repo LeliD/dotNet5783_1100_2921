@@ -97,13 +97,13 @@ internal static class DataSource
     private static void createAndInitOrderItems()
     {
        
-        for (var i =0; i< OrdersList.Count; i++)
+        foreach(Order r in OrdersList)
         {
             int idOfProduct1 = s_rand.Next(100000, 100010);
             OrderItemsList.Add(new OrderItem()
             {
                ID = Config.NextOrderItemNumber,
-               OrderID = OrdersList[i].Value.ID,
+               OrderID = r.ID,
                ProductID= idOfProduct1,
                Price= ProductsList.Find(x=>x?.ID== idOfProduct1).Value.Price,
                Amount= s_rand.Next(1,6)
@@ -116,7 +116,7 @@ internal static class DataSource
             OrderItemsList.Add(new OrderItem()
             {
                 ID = Config.NextOrderItemNumber,
-                OrderID = OrdersList[i].Value.ID,
+                OrderID = r.ID,
                 ProductID = idOfProduct2,
                 Price = ProductsList.Find(x => x?.ID == idOfProduct2).Value.Price,
                 Amount = s_rand.Next(1, 6)
