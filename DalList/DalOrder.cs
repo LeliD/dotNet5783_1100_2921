@@ -23,4 +23,25 @@ public class DalOrder
         }
         return order.Value;
     }
+    public void update(Order order)
+    {
+        if (!DataSource.OrdersList.Exists(x => x?.ID == order.ID))
+        {
+            throw new Exception("Order doesn't exist");
+        }
+        DataSource.OrdersList.RemoveAll(x => x?.ID == order.ID);
+        DataSource.OrdersList.Add(order);
+    }
+    public IEnumerable<Order?> GetAll()
+    {
+        return DataSource.OrdersList;
+    }
+    public void delete(int id)
+    {
+        if (!DataSource.OrdersList.Exists(x => x?.ID == id))
+        {
+            throw new Exception("Order doesn't exist");
+        }
+        DataSource.OrdersList.RemoveAll(x => x?.ID == id);
+    }
 }
