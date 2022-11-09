@@ -20,5 +20,5 @@ ProductID       =   {ProductID},
 Price           =   {Price},
 Amount in stock =   {Amount}
 ";
-
+ 
 }

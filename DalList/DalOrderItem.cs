@@ -42,4 +42,18 @@ public class DalOrderItem
         }
         DataSource.OrderItemsList.RemoveAll(x => x?.ID == id);
     }
+    public OrderItem GetBy2Identifiers(int productID, int orderID)
+    {
+        OrderItem? orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID);
+        if (orderItem == null)
+        {
+            throw new Exception("OrderItem doesn't exist");
+        }
+        return orderItem.Value;
+    }
+    public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)
+    {
+        return DataSource.OrderItemsList.FindAll(x => x?.ID == orderId);
+        
+    }
 }
