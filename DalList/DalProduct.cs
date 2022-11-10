@@ -14,7 +14,7 @@ public class DalProduct
     /// <exception cref="Exception"></exception>
     public int Add(Product product)
     {
-        if(DataSource.ProductsList.Exists(x=>x.Value.ID== product.ID))
+        if(DataSource.ProductsList.Exists(x=>x?.ID== product.ID))
           {
             throw new Exception("Product ID already exists");
           }
@@ -24,12 +24,9 @@ public class DalProduct
     }
     public Product GetById(int id)
     {
-        Product? product = DataSource.ProductsList.Find(x => x?.ID == id);
-        if (product == null)
-        {
-            throw new Exception("Product doesn't exist");
-        }
-        return product.Value;
+        Product product = DataSource.ProductsList.Find(x => x?.ID == id) ?? throw new Exception("Product doesn't exist");
+
+        return product;
     }
     public void update(Product product)
     {

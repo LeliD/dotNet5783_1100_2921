@@ -14,12 +14,8 @@ public class DalOrderItem
     }
     public OrderItem GetById(int id)
     {
-        OrderItem? orderItem = DataSource.OrderItemsList.Find(x => x?.ID == id);
-        if (orderItem == null)
-        {
-            throw new Exception("OrderItem doesn't exist");
-        }
-        return orderItem.Value;
+        OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ID == id)?? throw new Exception("OrderItem doesn't exist");
+        return orderItem;
     }
     public void update(OrderItem orderItem)
     {
@@ -44,16 +40,11 @@ public class DalOrderItem
     }
     public OrderItem GetBy2Identifiers(int productID, int orderID)
     {
-        OrderItem? orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID);
-        if (orderItem == null)
-        {
-            throw new Exception("OrderItem doesn't exist");
-        }
-        return orderItem.Value;
+        OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID)?? throw new Exception("OrderItem doesn't exist");
+        return orderItem;
     }
     public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)
     {
         return DataSource.OrderItemsList.FindAll(x => x?.ID == orderId);
-        
     }
 }

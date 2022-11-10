@@ -6,7 +6,7 @@ namespace Dal;
 public class DalOrder
 {
     /// <summary>
-    /// create
+    /// Adds an order to OrdersList
     /// </summary>
     public int Add(Order order)
     {
@@ -16,12 +16,8 @@ public class DalOrder
     }
     public Order GetById(int id)
     {
-        Order? order=DataSource.OrdersList.Find(x => x?.ID == id);
-        if (order == null)
-        {
-            throw new Exception("Order doesn't exist");
-        }
-        return order.Value;
+        Order order = DataSource.OrdersList.Find(x => x?.ID == id)?? throw new Exception("Order doesn't exist");
+        return order;
     }
     public void update(Order order)
     {
