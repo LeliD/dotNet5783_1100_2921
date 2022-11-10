@@ -25,7 +25,7 @@ f: Exit
             //    throw new Exception("Wrong input");
             //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
             int ID;
-            string name;
+            string? name;
             double price;
             Category c;
             int inStock;
@@ -38,6 +38,7 @@ f: Exit
                 {
                     case 'a':
                         Console.WriteLine("Enter ID of product");
+                        string s=Console.ReadLine();
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
@@ -70,6 +71,7 @@ f: Exit
                         break;
                     case 'b':
                         Console.WriteLine("Enter ID of product");
+                        string s2 = Console.ReadLine(); 
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
@@ -421,6 +423,7 @@ h: Exit
         DalProduct product = new DalProduct();
         string input;
         int choice;
+      
         do
         {
             Console.WriteLine("Press 1 for product, 2 for order, 3 for orderItem, 4 for exit");
