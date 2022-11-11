@@ -19,11 +19,6 @@ d: Update product by its ID
 e: Delete product
 f: Exit
 ");
-            choice = (char)Console.Read();
-            // bool check = int.TryParse(input, out choice);
-            //if (!check)
-            //    throw new Exception("Wrong input");
-            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
             int ID;
             string? name;
             double price;
@@ -32,13 +27,21 @@ f: Exit
             string input;
             bool check;
             Product p;
+            input = Console.ReadLine();
+            check = Char.TryParse(input, out choice);
+            if (!check)
+                throw new Exception("Wrong input");
+            // bool check = int.TryParse(input, out choice);
+
+            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
+
             try
             {
                 switch (choice)
                 {
                     case 'a':
                         Console.WriteLine("Enter ID of product");
-                        string s=Console.ReadLine();
+                        //string s=Console.ReadLine();
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
@@ -149,11 +152,6 @@ d: Update order by its ID
 e: Delete order
 f: Exit
 ");
-            choice = (char)Console.Read();
-            // bool check = int.TryParse(input, out choice);
-            //if (!check)
-            //    throw new Exception("Wrong input");
-            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
             int ID;
             string customerName;
             string customerEmail;
@@ -165,6 +163,15 @@ f: Exit
             string input;
             bool check;
             Order o;
+            input = Console.ReadLine();
+            check = Char.TryParse(input, out choice);
+            if (!check)
+                throw new Exception("Wrong input");
+            // bool check = int.TryParse(input, out choice);
+            //if (!check)
+            //    throw new Exception("Wrong input");
+            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
+      
             try
             {
                 switch (choice)
@@ -230,13 +237,15 @@ f: Exit
                         Console.WriteLine("Enter delivery date of customer");
                         input = Console.ReadLine();
                         check = DateTime.TryParse(input, out deliveryDate);
-
                         if (!check)
-                            d = null;
-                        else
-                            d = deliveryDate;
+                            throw new Exception("Wrong input");
 
-                        o = new Order() { ID = ID, CustomerName = customerName, CustomerAdress = customerAdress, CustomerEmail = customerEmail, OrderDate = DateTime.Now, ShipDate = null, DeliveryDate = d };
+                        //if (!check)
+                        //    d = null;
+                        //else
+                        //    d = deliveryDate;
+
+                        o = new Order() { ID = ID, CustomerName = customerName, CustomerAdress = customerAdress, CustomerEmail = customerEmail, OrderDate =order.GetById(ID).OrderDate, ShipDate = shipDate, DeliveryDate = deliveryDate };
                         order.update(o);
                         break;
                     case 'e':
@@ -274,11 +283,6 @@ f: Get order item by 2 identifiers
 g: Get items in order by its ID
 h: Exit
 ");
-            choice = (char)Console.Read();
-            // bool check = int.TryParse(input, out choice);
-            //if (!check)
-            //    throw new Exception("Wrong input");
-            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
             int ID;
             int orderID;
             int productID;
@@ -288,6 +292,15 @@ h: Exit
             bool check;
             OrderItem o;
             IEnumerable<OrderItem?> OrderItemsList;
+            input = Console.ReadLine();
+            check = Char.TryParse(input, out choice);
+            if (!check)
+                throw new Exception("Wrong input");
+            // bool check = int.TryParse(input, out choice);
+            //if (!check)
+            //    throw new Exception("Wrong input");
+            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
+     
             try
             {
                 switch (choice)
