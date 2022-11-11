@@ -6,19 +6,17 @@ namespace DalTest;
 
 public class Program
 {
-    public static void ProductsFunctions(ref DalProduct product)
+    public static void ProductsFunctions(DalProduct product)
     {
         char choice;
         do
         {
-            Console.WriteLine(@"
-a: Add product
+            Console.WriteLine(@"a: Add product
 b: Get product by ID
 c: Get products' list
 d: Update product by its ID
 e: Delete product
-f: Exit
-");
+f: Exit");
             int ID;
             string? name;
             double price;
@@ -74,7 +72,6 @@ f: Exit
                         break;
                     case 'b':
                         Console.WriteLine("Enter ID of product");
-                        string s2 = Console.ReadLine(); 
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
@@ -139,19 +136,17 @@ f: Exit
         while (choice != 'f');
 
     }
-    public static void OrdersFunctions(ref DalOrder order)
+    public static void OrdersFunctions(DalOrder order)
     {
         char choice;
         do
         {
-            Console.WriteLine(@"
-a: Add order
+            Console.WriteLine(@"a: Add order
 b: Get order by ID
 c: Get orders' list
 d: Update order by its ID
 e: Delete order
-f: Exit
-");
+f: Exit");
             int ID;
             string customerName;
             string customerEmail;
@@ -222,12 +217,6 @@ f: Exit
                         Console.WriteLine("Enter adress of customer");
                         customerAdress = Console.ReadLine();
 
-                        Console.WriteLine("Enter order date of customer");
-                        input = Console.ReadLine();
-                        check = DateTime.TryParse(input, out orderDate);
-                        if (!check)
-                            throw new Exception("Wrong input");
-
                         Console.WriteLine("Enter ship date of customer");
                         input = Console.ReadLine();
                         check = DateTime.TryParse(input, out shipDate);
@@ -268,21 +257,19 @@ f: Exit
         while (choice != 'f');
 
     }
-    public static void OrderItemsFunctions( ref DalOrderItem orderItem)
+    public static void OrderItemsFunctions(DalOrderItem orderItem)
     {
         char choice;
         do
         {
-            Console.WriteLine(@"
-a: Add order item
+            Console.WriteLine(@"a: Add order item
 b: Get order item by ID
 c: Get order items' list
 d: Update order item by its ID
 e: Delete order item
 f: Get order item by 2 identifiers
 g: Get items in order by its ID
-h: Exit
-");
+h: Exit");
             int ID;
             int orderID;
             int productID;
@@ -402,7 +389,7 @@ h: Exit
                         check = int.TryParse(input, out productID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        orderItem.GetBy2Identifiers(productID, orderID);
+                        Console.WriteLine(orderItem.GetBy2Identifiers(productID, orderID));
                         break;
                     case 'g':
                         Console.WriteLine("Enter ID of order");
@@ -449,13 +436,13 @@ h: Exit
             switch (choice)
             {
                 case 1:
-                    ProductsFunctions(ref product);
+                    ProductsFunctions(product);
                     break;
                 case 2:
-                    OrdersFunctions(ref order);
+                    OrdersFunctions(order);
                     break;
                 case 3:
-                    OrderItemsFunctions(ref orderItem);
+                    OrderItemsFunctions(orderItem);
                     break;
                 default:
                     break;

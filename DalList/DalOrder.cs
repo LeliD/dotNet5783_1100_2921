@@ -30,7 +30,8 @@ public class DalOrder
     }
     public IEnumerable<Order?> GetAll()
     {
-        return DataSource.OrdersList;
+        IEnumerable<Order?>list=DataSource.OrdersList;
+        return list;
     }
     public void delete(int id)
     {

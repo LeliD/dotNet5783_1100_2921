@@ -28,7 +28,8 @@ public class DalOrderItem
     }
     public IEnumerable<OrderItem?> GetAll()
     {
-        return DataSource.OrderItemsList;
+        IEnumerable<OrderItem?> list= DataSource.OrderItemsList;
+        return list;
     }
     public void delete (int id)
     {
@@ -45,6 +46,6 @@ public class DalOrderItem
     }
     public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)
     {
-        return DataSource.OrderItemsList.FindAll(x => x?.ID == orderId);
+        return DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
     }
 }

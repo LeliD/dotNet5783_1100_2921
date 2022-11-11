@@ -34,12 +34,15 @@ public class DalProduct
         {
             throw new Exception("Product doesn't exist");
         }
-        DataSource.OrdersList.RemoveAll(x => x?.ID == product.ID);
+        DataSource.ProductsList.RemoveAll(x => x?.ID == product.ID);
+       
         DataSource.ProductsList.Add(product);
     }
     public IEnumerable<Product?> GetAll()
     {
-        return DataSource.ProductsList;
+        IEnumerable<Product?> list = DataSource.ProductsList;
+        return list;
+      
     }
     public void delete(int id)
     {

@@ -14,11 +14,11 @@ public struct OrderItem
     public double Price { get; set; }
     public int Amount { get; set; }
     public override string ToString() => $@"
-ID              =   {ID},
-OrderID         =   {OrderID}, 
-ProductID       =   {ProductID},
-Price           =   {Price},
-Amount in stock =   {Amount}
+ID              =   {ID}
+OrderID         =   {OrderID} 
+ProductID       =   {ProductID}
+Price           =   {Price}
+Amount          =   {Amount}
 ";
  
 }
