@@ -6,6 +6,11 @@ namespace DalTest;
 
 public class Program
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="product">The function gets DalProduct variable which represents the list of products  </param>
+    /// <exception cref="Exception"></exception>
     public static void ProductsFunctions(DalProduct product)
     {
         char choice;
@@ -416,23 +421,27 @@ h: Exit");
         while (choice != 'h');
 
     }
+    /// <summary>
+    /// Enables the user to use functions of products, orders and orderItems 
+    /// </summary>
+    /// <param name="args"></param>
+    /// <exception cref="Exception"> Throw exception when the choice isn't one of the followings: 1,2,3,4 </exception>
     static void Main(string[] args)
     {
         DalOrder order = new DalOrder();
         DalOrderItem orderItem = new DalOrderItem();
         DalProduct product = new DalProduct();
         string input;
-        int choice;
-      
+        int choice = 0;
         do
         {
+            try 
+            { 
             Console.WriteLine("Press 1 for product, 2 for order, 3 for orderItem, 4 for exit");
             input = Console.ReadLine();
-          
             bool check = int.TryParse(input, out choice);
             if (!check)
                 throw new Exception("Wrong input");
-            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
             switch (choice)
             {
                 case 1:
@@ -447,10 +456,13 @@ h: Exit");
                 default:
                     break;
             }
-
+            }
+            catch (Exception e)  
+            {
+                Console.WriteLine(e);
+            }
         }
         while (choice != 4);
-        
     }
    
 }   
