@@ -7,11 +7,11 @@ namespace Dal;
 public class DalProduct
 {
     /// <summary>
-    /// create
+    /// Adds product to ProductsList
     /// </summary>
-    /// <param name="product"></param>
+    /// <param name="product is the object which being added "></param>
     /// <returns></returns>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="Exception">Throw exception if id of product already exists</exception>
     public int Add(Product product)
     {
         if(DataSource.ProductsList.Exists(x=>x?.ID== product.ID))
