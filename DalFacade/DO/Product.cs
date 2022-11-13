@@ -27,7 +27,7 @@ public struct Product
     /// </summary>
     public int InStock { get; set; }
     /// <summary>
-    /// 
+    /// Product's details
     /// </summary>
     /// <returns> returns String of Product representation</returns>
     public override string ToString() => $@"

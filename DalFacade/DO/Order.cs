@@ -6,7 +6,7 @@ namespace DO;
 public struct Order
 {
     /// <summary>
-    /// ID of order
+    /// Id of order
     /// </summary>
     public int ID { get; set; } 
     /// <summary>
