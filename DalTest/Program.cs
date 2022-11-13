@@ -7,13 +7,13 @@ namespace DalTest;
 public class Program
 {
     /// <summary>
-    /// 
+    /// Enables the user to use functions of products 
     /// </summary>
     /// <param name="product">The function gets DalProduct variable which represents the list of products  </param>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
     public static void ProductsFunctions(DalProduct product)
     {
-        char choice;
+        char choice;// the user's choice among the options a,b,c,d,e,f
         do
         {
             Console.WriteLine(@"a: Add product
@@ -22,26 +22,23 @@ c: Get products' list
 d: Update product by its ID
 e: Delete product
 f: Exit");
-            int ID;
+            int ID; 
             string? name;
             double price;
             Category c;
             int inStock;
-            string input;
-            bool check;
+            string input; //user's input
+            bool check;  //check if the input is correct
             Product p;
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
                 throw new Exception("Wrong input");
-            // bool check = int.TryParse(input, out choice);
-
-            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
-
             try
             {
                 switch (choice)
                 {
+                    
                     case 'a':
                         Console.WriteLine("Enter ID of product");
                         //string s=Console.ReadLine();
@@ -141,9 +138,14 @@ f: Exit");
         while (choice != 'f');
 
     }
+    /// <summary>
+    /// Enables the user to use functions of orders  
+    /// </summary>
+    /// <param name="order">The function gets DalOrder variable which represents the list of orders </param>
+    /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
     public static void OrdersFunctions(DalOrder order)
     {
-        char choice;
+        char choice;// the user's choice among the options a,b,c,d,e,f
         do
         {
             Console.WriteLine(@"a: Add order
@@ -160,19 +162,14 @@ f: Exit");
             DateTime shipDate;
             DateTime deliveryDate;
             DateTime? d;
-            string input;
-            bool check;
+            string input;//user's input
+            bool check;  //check if the input is correct
             Order o;
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
                 throw new Exception("Wrong input");
-            // bool check = int.TryParse(input, out choice);
-            //if (!check)
-            //    throw new Exception("Wrong input");
-            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
-      
-            try
+           try
             {
                 switch (choice)
                 {
@@ -262,9 +259,14 @@ f: Exit");
         while (choice != 'f');
 
     }
+    /// <summary>
+    /// Enables the user to use functions of orderItems 
+    /// </summary>
+    /// <param name="orderItem">The function gets DalOrderItem variable which represents the list of orderItems</param>
+    /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
     public static void OrderItemsFunctions(DalOrderItem orderItem)
     {
-        char choice;
+        char choice;// the user's choice among the options a,b,c,d,e,f,g,h
         do
         {
             Console.WriteLine(@"a: Add order item
@@ -280,19 +282,14 @@ h: Exit");
             int productID;
             double price;
             int amount;
-            string input;
-            bool check;
+            string input;//user's input
+            bool check;  //check if the input is correct
             OrderItem o;
             IEnumerable<OrderItem?> OrderItemsList;
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
                 throw new Exception("Wrong input");
-            // bool check = int.TryParse(input, out choice);
-            //if (!check)
-            //    throw new Exception("Wrong input");
-            //int ch=int.TryParse(input, out choice)? choice : throw new Exception("Wrong input");
-     
             try
             {
                 switch (choice)
