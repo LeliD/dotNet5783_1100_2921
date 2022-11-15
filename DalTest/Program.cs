@@ -3,7 +3,6 @@ using Dal;
 using DO;
 namespace DalTest;
 
-
 public class Program
 {
     /// <summary>
@@ -461,7 +460,6 @@ h: Exit");
         }
         while (choice != 4);
     }
-   
 }   
 
     
