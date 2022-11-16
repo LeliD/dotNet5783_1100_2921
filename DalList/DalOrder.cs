@@ -1,9 +1,10 @@
 ﻿
 using System.Runtime.CompilerServices;
+using DalApi;
 using DO;
 namespace Dal;
 
-public class DalOrder
+internal class DalOrder : IOrder
 {
     /// <summary>
     /// Adds an order to OrdersList
@@ -34,7 +35,7 @@ public class DalOrder
     /// </summary>
     /// <param name="orderis the object which being updated"></param>
     /// <exception cref="Exception">Throw exception if order doesn't exist</exception>
-    public void update(Order order)
+    public void Update(Order order)
     {
         if (!DataSource.OrdersList.Exists(x => x?.ID == order.ID))
         {
@@ -47,9 +48,9 @@ public class DalOrder
     /// Gets all the orders in the list
     /// </summary>
     /// <returns>return OrdersList</returns>
-    public IEnumerable<Order?> GetAll()
+    public IEnumerable<Order> GetAll()
     {
-        IEnumerable<Order?>list=DataSource.OrdersList;
+        IEnumerable<Order>list= (IEnumerable<Order>)DataSource.OrdersList;
         return list;
     }
     /// <summary>
@@ -57,7 +58,7 @@ public class DalOrder
     /// </summary>
     /// <param name="id of order to delete"></param>
     /// <exception cref="Exception">Throw exception if order doesn't exist</exception>
-    public void delete(int id)
+    public void Delete(int id)
     {
         if (!DataSource.OrdersList.Exists(x => x?.ID == id))
         {

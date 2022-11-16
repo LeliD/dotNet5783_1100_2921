@@ -1,10 +1,11 @@
 ﻿
-
+using System.Collections.Generic;
+using DalApi;
 using DO;
 
 namespace Dal;
 
-public class DalProduct
+internal class DalProduct : IProduct
 {
     /// <summary>
     /// Adds product to ProductsList
@@ -40,7 +41,7 @@ public class DalProduct
     /// <param name="product is the object which being updated"></param>
     /// <exception cref="Exception">Throw exception if product doesn't exist</exception>
 
-    public void update(Product product)
+    public void Update(Product product)
     {
         if (!DataSource.ProductsList.Exists(x => x?.ID == product.ID))
         {
@@ -54,9 +55,9 @@ public class DalProduct
     /// Gets all the products in the list
     /// </summary>
     /// <returns>return ProductsList</returns>
-    public IEnumerable<Product?> GetAll()
+    public IEnumerable<Product> GetAll()
     {
-        IEnumerable<Product?> list = DataSource.ProductsList;
+        IEnumerable<Product> list = (IEnumerable<Product>)DataSource.ProductsList;
         return list;
       
     }
@@ -65,7 +66,7 @@ public class DalProduct
     /// </summary>
     /// <param name="id of product to delete"></param>
     /// <exception cref="Exception">Throw exception if product doesn't exist</exception>
-    public void delete(int id)
+    public void Delete(int id)
     {
         if (!DataSource.ProductsList.Exists(x => x?.ID == id))
         {

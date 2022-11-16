@@ -1,10 +1,11 @@
 ﻿
-
+using System.Runtime.Serialization;
+using DalApi;
 using DO;
 
 namespace Dal;
 
-public class DalOrderItem
+internal class DalOrderItem : IOrderItem
 {
     /// <summary>
     ///  Adds order item to OrderItemsList
@@ -33,7 +34,7 @@ public class DalOrderItem
     /// </summary>
     /// <param name="orderItem is the object which being updated"></param>
     /// <exception cref="Exception">Throw exception if order item doesn't exist</exception>
-    public void update(OrderItem orderItem)
+    public void Update(OrderItem orderItem)
     {
         if (!DataSource.OrderItemsList.Exists(x => x?.ID == orderItem.ID))
         {
@@ -46,9 +47,9 @@ public class DalOrderItem
     /// Gets all the order items in the list
     /// </summary>
     /// <returns>return OrderItemsList</returns>
-    public IEnumerable<OrderItem?> GetAll()
+    public IEnumerable<OrderItem> GetAll()
     {
-        IEnumerable<OrderItem?> list= DataSource.OrderItemsList;
+        IEnumerable<OrderItem> list= (IEnumerable<OrderItem>)DataSource.OrderItemsList;
         return list;
     }
     /// <summary>
@@ -56,7 +57,7 @@ public class DalOrderItem
     /// </summary>
     /// <param name="id of order item to delete"></param>
     /// <exception cref="Exception">Throw exception if order item doesn't exist</exception>
-    public void delete (int id)
+    public void Delete (int id)
     {
         if (!DataSource.OrderItemsList.Exists(x => x?.ID == id))
         {
@@ -81,8 +82,8 @@ public class DalOrderItem
     /// </summary>
     /// <param name="orderId of order items "></param>
     /// <returns>return list of order items of the order</returns>
-    public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)
+    public IEnumerable<OrderItem> GetItemsInOrder(int orderId)
     {
-        return DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
+        return (IEnumerable<OrderItem>)DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
     }
 }

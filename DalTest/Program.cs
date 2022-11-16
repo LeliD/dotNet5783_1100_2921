@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using Dal;
+using DalApi;
 using DO;
 namespace DalTest;
 
@@ -10,7 +11,7 @@ public class Program
     /// </summary>
     /// <param name="product">The function gets DalProduct variable which represents the list of products  </param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
-    public static void ProductsFunctions(DalProduct product)
+    public static void ProductsFunctions(IDal dal)
     {
         char choice;// the user's choice among the options a,b,c,d,e,f
         do
@@ -21,7 +22,7 @@ c: Get products' list
 d: Update product by its ID
 e: Delete product
 f: Exit");
-            int ID; 
+            int ID;
             string? name;
             double price;
             Category c;
@@ -37,10 +38,9 @@ f: Exit");
             {
                 switch (choice)
                 {
-                    
+
                     case 'a':
                         Console.WriteLine("Enter ID of product");
-                        //string s=Console.ReadLine();
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
@@ -68,7 +68,7 @@ f: Exit");
                             throw new Exception("Wrong input");
 
                         p = new Product() { ID = ID, Name = name, Price = price, Category = c, InStock = inStock };
-                        product.Add(p);
+                        dal.Product.Add(p);
 
                         break;
                     case 'b':
@@ -77,10 +77,10 @@ f: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        Console.WriteLine(product.GetById(ID));
+                        Console.WriteLine(dal.Product.GetById(ID));
                         break;
                     case 'c':
-                        IEnumerable<Product?> ProductsList = product.GetAll();
+                        IEnumerable<Product> ProductsList = dal.Product.GetAll();
                         foreach (Product? x in ProductsList)
                         {
                             Console.WriteLine(x);
@@ -115,7 +115,7 @@ f: Exit");
                             throw new Exception("Wrong input");
 
                         p = new Product() { ID = ID, Name = name, Price = price, Category = c, InStock = inStock };
-                        product.update(p);
+                        dal.Product.Update(p);
                         break;
                     case 'e':
                         Console.WriteLine("Enter ID of product to delete");
@@ -123,7 +123,7 @@ f: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        product.delete(ID);
+                        dal.Product.Delete(ID);
                         break;
                     default:
                         break;
@@ -142,7 +142,7 @@ f: Exit");
     /// </summary>
     /// <param name="order">The function gets DalOrder variable which represents the list of orders </param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
-    public static void OrdersFunctions(DalOrder order)
+    public static void OrdersFunctions(IDal dal)
     {
         char choice;// the user's choice among the options a,b,c,d,e,f
         do
@@ -168,12 +168,12 @@ f: Exit");
             check = Char.TryParse(input, out choice);
             if (!check)
                 throw new Exception("Wrong input");
-           try
+            try
             {
                 switch (choice)
                 {
                     case 'a':
-                        
+
                         Console.WriteLine("Enter name of customer");
                         customerName = Console.ReadLine();
 
@@ -183,9 +183,9 @@ f: Exit");
                         Console.WriteLine("Enter adress of customer");
                         customerAdress = Console.ReadLine();
 
-                      
-                        o = new Order() { CustomerName = customerName, CustomerAdress=customerAdress,CustomerEmail= customerEmail ,OrderDate=DateTime.Now, ShipDate=null, DeliveryDate=null };
-                        order.Add(o);
+
+                        o = new Order() { CustomerName = customerName, CustomerAdress = customerAdress, CustomerEmail = customerEmail, OrderDate = DateTime.Now, ShipDate = null, DeliveryDate = null };
+                        dal.Order.Add(o);
                         break;
                     case 'b':
                         Console.WriteLine("Enter ID of order");
@@ -193,10 +193,10 @@ f: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        Console.WriteLine(order.GetById(ID));
+                        Console.WriteLine(dal.Order.GetById(ID));
                         break;
                     case 'c':
-                        IEnumerable<Order?> OrdersList = order.GetAll();
+                        IEnumerable<Order> OrdersList = dal.Order.GetAll();
                         foreach (Order? x in OrdersList)
                         {
                             Console.WriteLine(x);
@@ -230,13 +230,8 @@ f: Exit");
                         if (!check)
                             throw new Exception("Wrong input");
 
-                        //if (!check)
-                        //    d = null;
-                        //else
-                        //    d = deliveryDate;
-
-                        o = new Order() { ID = ID, CustomerName = customerName, CustomerAdress = customerAdress, CustomerEmail = customerEmail, OrderDate =order.GetById(ID).OrderDate, ShipDate = shipDate, DeliveryDate = deliveryDate };
-                        order.update(o);
+                        o = new Order() { ID = ID, CustomerName = customerName, CustomerAdress = customerAdress, CustomerEmail = customerEmail, OrderDate = dal.Order.GetById(ID).OrderDate, ShipDate = shipDate, DeliveryDate = deliveryDate };
+                        dal.Order.Update(o);
                         break;
                     case 'e':
                         Console.WriteLine("Enter ID of order to delete");
@@ -244,7 +239,7 @@ f: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        order.delete(ID);
+                        dal.Order.Delete(ID);
                         break;
                     default:
                         break;
@@ -263,7 +258,7 @@ f: Exit");
     /// </summary>
     /// <param name="orderItem">The function gets DalOrderItem variable which represents the list of orderItems</param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
-    public static void OrderItemsFunctions(DalOrderItem orderItem)
+    public static void OrderItemsFunctions(IDal dal)
     {
         char choice;// the user's choice among the options a,b,c,d,e,f,g,h
         do
@@ -284,7 +279,7 @@ h: Exit");
             string input;//user's input
             bool check;  //check if the input is correct
             OrderItem o;
-            IEnumerable<OrderItem?> OrderItemsList;
+            IEnumerable<OrderItem> OrderItemsList;
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
@@ -317,8 +312,8 @@ h: Exit");
                         check = int.TryParse(input, out amount);
                         if (!check)
                             throw new Exception("Wrong input");
-                        o = new OrderItem() {OrderID= orderID, ProductID= productID, Price= price, Amount=amount };
-                        orderItem.Add(o);
+                        o = new OrderItem() { OrderID = orderID, ProductID = productID, Price = price, Amount = amount };
+                        dal.OrderItem.Add(o);
                         break;
                     case 'b':
                         Console.WriteLine("Enter ID of order item");
@@ -326,10 +321,10 @@ h: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        Console.WriteLine(orderItem.GetById(ID));
+                        Console.WriteLine(dal.OrderItem.GetById(ID));
                         break;
                     case 'c':
-                        OrderItemsList = orderItem.GetAll();
+                        OrderItemsList = dal.OrderItem.GetAll();
                         foreach (OrderItem? x in OrderItemsList)
                         {
                             Console.WriteLine(x);
@@ -366,9 +361,9 @@ h: Exit");
                         if (!check)
                             throw new Exception("Wrong input");
 
-                        o = new OrderItem() { ID=ID, OrderID = orderID, ProductID = productID, Price = price, Amount = amount };
-                        orderItem.update(o);
-                        
+                        o = new OrderItem() { ID = ID, OrderID = orderID, ProductID = productID, Price = price, Amount = amount };
+                        dal.OrderItem.Update(o);
+
                         break;
                     case 'e':
                         Console.WriteLine("Enter ID of order item to delete");
@@ -376,7 +371,7 @@ h: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        orderItem.delete(ID);
+                        dal.OrderItem.Delete(ID);
                         break;
                     case 'f':
                         Console.WriteLine("Enter ID of order");
@@ -390,7 +385,7 @@ h: Exit");
                         check = int.TryParse(input, out productID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        Console.WriteLine(orderItem.GetBy2Identifiers(productID, orderID));
+                        Console.WriteLine(dal.OrderItem.GetBy2Identifiers(productID, orderID));
                         break;
                     case 'g':
                         Console.WriteLine("Enter ID of order");
@@ -399,7 +394,7 @@ h: Exit");
                         if (!check)
                             throw new Exception("Wrong input");
 
-                        OrderItemsList = orderItem.GetItemsInOrder(orderID);
+                        OrderItemsList = dal.OrderItem.GetItemsInOrder(orderID);
                         foreach (OrderItem? x in OrderItemsList)
                         {
                             Console.WriteLine(x);
@@ -424,42 +419,40 @@ h: Exit");
     /// <exception cref="Exception"> Throw exception when the choice isn't one of the followings: 1,2,3,4 </exception>
     static void Main(string[] args)
     {
-        DalOrder order = new DalOrder();
-        DalOrderItem orderItem = new DalOrderItem();
-        DalProduct product = new DalProduct();
+        IDal dal = new DalList();
         string input;
         int choice = 0;
         do
         {
-            try 
-            { 
-            Console.WriteLine("Press 1 for product, 2 for order, 3 for orderItem, 4 for exit");
-            input = Console.ReadLine();
-            bool check = int.TryParse(input, out choice);
-            if (!check)
-                throw new Exception("Wrong input");
-            switch (choice)
+            try
             {
-                case 1:
-                    ProductsFunctions(product);
-                    break;
-                case 2:
-                    OrdersFunctions(order);
-                    break;
-                case 3:
-                    OrderItemsFunctions(orderItem);
-                    break;
-                default:
-                    break;
+                Console.WriteLine("Press 1 for product, 2 for order, 3 for orderItem, 4 for exit");
+                input = Console.ReadLine();
+                bool check = int.TryParse(input, out choice);
+                if (!check)
+                    throw new Exception("Wrong input");
+                switch (choice)
+                {
+                    case 1:
+                        ProductsFunctions(dal);
+                        break;
+                    case 2:
+                        OrdersFunctions(dal);
+                        break;
+                    case 3:
+                        OrderItemsFunctions(dal);
+                        break;
+                    default:
+                        break;
+                }
             }
-            }
-            catch (Exception e)  
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
         }
         while (choice != 4);
     }
-}   
+}
 
-    
+
