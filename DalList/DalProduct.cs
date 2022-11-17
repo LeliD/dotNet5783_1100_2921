@@ -55,9 +55,11 @@ internal class DalProduct : IProduct
     /// Gets all the products in the list
     /// </summary>
     /// <returns>return ProductsList</returns>
-    public IEnumerable<Product> GetAll()
+    public IEnumerable<Product?> GetAll()
     {
-        IEnumerable<Product> list = (IEnumerable<Product>)DataSource.ProductsList;
+        List<Product?> list = new List<Product?>();
+        foreach (Product? item in DataSource.ProductsList)
+            list.Add(item);
         return list;
       
     }

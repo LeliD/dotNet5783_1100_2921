@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DO;
-namespace DalApi
+namespace DalApi;
+
+public interface ICrud<T> where T : struct
 {
-    public interface ICrud<T>
-    {
-        int Add (T item);
-        T GetById(int id);
-        void Update (T item); 
-        void Delete (int id);
-        IEnumerable<T> GetAll();
+
+    int Add (T item);
+    T GetById(int id);
+    void Update (T item); 
+    void Delete (int id);
+    IEnumerable<T?> GetAll();
 
 
-    }
 }

@@ -80,7 +80,7 @@ f: Exit");
                         Console.WriteLine(dal.Product.GetById(ID));
                         break;
                     case 'c':
-                        IEnumerable<Product> ProductsList = dal.Product.GetAll();
+                        IEnumerable<Product?> ProductsList = dal.Product.GetAll();
                         foreach (Product? x in ProductsList)
                         {
                             Console.WriteLine(x);
@@ -196,7 +196,7 @@ f: Exit");
                         Console.WriteLine(dal.Order.GetById(ID));
                         break;
                     case 'c':
-                        IEnumerable<Order> OrdersList = dal.Order.GetAll();
+                        IEnumerable<Order?> OrdersList = dal.Order.GetAll();
                         foreach (Order? x in OrdersList)
                         {
                             Console.WriteLine(x);
@@ -279,7 +279,7 @@ h: Exit");
             string input;//user's input
             bool check;  //check if the input is correct
             OrderItem o;
-            IEnumerable<OrderItem> OrderItemsList;
+            IEnumerable<OrderItem?> OrderItemsList;
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)

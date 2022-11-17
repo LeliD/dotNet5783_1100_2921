@@ -47,9 +47,11 @@ internal class DalOrderItem : IOrderItem
     /// Gets all the order items in the list
     /// </summary>
     /// <returns>return OrderItemsList</returns>
-    public IEnumerable<OrderItem> GetAll()
+    public IEnumerable<OrderItem?> GetAll()
     {
-        IEnumerable<OrderItem> list= (IEnumerable<OrderItem>)DataSource.OrderItemsList;
+        List<OrderItem?> list = new List<OrderItem?>();
+        foreach (OrderItem? item in DataSource.OrderItemsList)
+            list.Add(item);
         return list;
     }
     /// <summary>
@@ -82,8 +84,8 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="orderId of order items "></param>
     /// <returns>return list of order items of the order</returns>
-    public IEnumerable<OrderItem> GetItemsInOrder(int orderId)
+    public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)
     {
-        return (IEnumerable<OrderItem>)DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
+        return DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
     }
 }

@@ -48,9 +48,11 @@ internal class DalOrder : IOrder
     /// Gets all the orders in the list
     /// </summary>
     /// <returns>return OrdersList</returns>
-    public IEnumerable<Order> GetAll()
+    public IEnumerable<Order?> GetAll()
     {
-        IEnumerable<Order>list= (IEnumerable<Order>)DataSource.OrdersList;
+        List <Order?> list=new List<Order?>();
+        foreach (Order? item in DataSource.OrdersList)
+                list.Add(item);
         return list;
     }
     /// <summary>
@@ -66,4 +68,6 @@ internal class DalOrder : IOrder
         }
         DataSource.OrdersList.RemoveAll(x => x?.ID == id);
     }
+
+
 }
