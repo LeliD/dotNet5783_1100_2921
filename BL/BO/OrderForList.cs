@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BO
+namespace BO;
+
+public class OrderForList
 {
-    public class OrderForList
+    public int ID { get; set; }
+    public string? CustomerName { get; set; }  
+    public OrderStatus Status { get; set; } 
+    public int AmountOfItems { get; set; }
+    public override string ToString()
     {
+        return this.ToStringProperty();
     }
 }
