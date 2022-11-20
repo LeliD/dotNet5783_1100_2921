@@ -83,7 +83,7 @@ internal static class DataSource
     {
         string[] namesOfCustomers = new string[] { "Avi", "Beni", "Dan", "Ari", "Sari", "Shilat", "Leli", "Chaya", "Ester", "Gil" };//An array of namesOfCustomers
         string[] emailsOfCustomers = new string[] { "Avi@gmail.com", "Beni@gmail.com", "Dan@gmail.com", "Ari@gmail.com", "Sari@gmail.com", "Shilat@gmail.com", "Leli@gmail.com", "Chaya@gmail.com", "Ester@gmail.com", "Gil@gmail.com" };//An array of emailsOfCustomers
-        string[] adressesOfCustomers = new string[] { "Tel Aviv", "Bney Brack", "Ramat Gan", "Jerusalem", "Chaifa", "Ashdod", "Eilat", "Miron", "Ashkelon", "Givaat Shmuel" };//An array of adressesOfCustomers
+        string[] addressesOfCustomers = new string[] { "Tel Aviv", "Bney Brack", "Ramat Gan", "Jerusalem", "Chaifa", "Ashdod", "Eilat", "Miron", "Ashkelon", "Givaat Shmuel" };//An array of adressesOfCustomers
         for (int i = 0; i < 10; i++)// Initializing 10 orders with ShipDate and DeliveryDate
         {
             DateTime date = new DateTime(s_rand.Next(2021, 2023), s_rand.Next(1, 11), s_rand.Next(1, 30), s_rand.Next(0, 24), s_rand.Next(0, 60), s_rand.Next(0, 60));//Random calendar date from the last two years
@@ -95,7 +95,7 @@ internal static class DataSource
                 ID = Config.NextOrderNumber,
                 CustomerName = namesOfCustomers[i],
                 CustomerEmail = emailsOfCustomers[i],
-                CustomerAdress = adressesOfCustomers[i],
+                CustomerAddress = addressesOfCustomers[i],
                 OrderDate = date,
                 ShipDate = date + t1,
                 DeliveryDate = date + t1 + t2
@@ -111,7 +111,7 @@ internal static class DataSource
                 ID = Config.NextOrderNumber,
                 CustomerName = namesOfCustomers[i],
                 CustomerEmail = emailsOfCustomers[i],
-                CustomerAdress = adressesOfCustomers[i],
+                CustomerAddress = addressesOfCustomers[i],
                 OrderDate = date,
                 ShipDate = date+t,
                 DeliveryDate = null
@@ -127,7 +127,7 @@ internal static class DataSource
                 ID = Config.NextOrderNumber,
                 CustomerName = namesOfCustomers[i],
                 CustomerEmail = emailsOfCustomers[i],
-                CustomerAdress = adressesOfCustomers[i],
+                CustomerAddress = addressesOfCustomers[i],
                 OrderDate = date,
                 ShipDate = null,
                 DeliveryDate = null

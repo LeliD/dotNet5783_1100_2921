@@ -20,7 +20,7 @@ public struct Order
     /// <summary>
     /// Adress of customer
     /// </summary>
-    public string? CustomerAdress { get; set; }
+    public string? CustomerAddress { get; set; }
     /// <summary>
     /// Order date
     /// </summary>
@@ -37,13 +37,9 @@ public struct Order
     /// Order's details
     /// </summary>
     /// <returns> returns String of order representation </returns>
-    public override string ToString() => $@"
-ID             =   {ID}
-CustomerName   =   {CustomerName}
-CustomerEmail  =   {CustomerEmail}
-CustomerAdress =   {CustomerAdress}
-OrderDate      =   {OrderDate}
-ShipDate       =   {ShipDate}
-DeliveryDate   =   {DeliveryDate}
-";
+    public override string ToString()
+    {
+        return this.ToStringProperty();
+    }
+
 }

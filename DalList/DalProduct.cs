@@ -17,7 +17,7 @@ internal class DalProduct : IProduct
     {
         if(DataSource.ProductsList.Exists(x=>x?.ID== product.ID))
           {
-            throw new Exception("Product ID already exists");
+            throw new DalAlreadyExistsException("Product ID already exists");
           }
 
         DataSource.ProductsList.Add(product);
@@ -31,7 +31,7 @@ internal class DalProduct : IProduct
     /// <exception cref="Exception">Throw exception if id of product doesn't exists</exception>
     public Product GetById(int id)
     {
-        Product product = DataSource.ProductsList.Find(x => x?.ID == id) ?? throw new Exception("Product doesn't exist");
+        Product product = DataSource.ProductsList.Find(x => x?.ID == id) ?? throw new DalDoesNotExistException("Product doesn't exist");
 
         return product;
     }
@@ -45,7 +45,7 @@ internal class DalProduct : IProduct
     {
         if (!DataSource.ProductsList.Exists(x => x?.ID == product.ID))
         {
-            throw new Exception("Product doesn't exist");
+            throw new DalDoesNotExistException("Product doesn't exist");
         }
         DataSource.ProductsList.RemoveAll(x => x?.ID == product.ID);
        
@@ -72,7 +72,7 @@ internal class DalProduct : IProduct
     {
         if (!DataSource.ProductsList.Exists(x => x?.ID == id))
         {
-            throw new Exception("Product doesn't exist");
+            throw new DalDoesNotExistException("Product doesn't exist");
         }
         DataSource.ProductsList.RemoveAll(x => x?.ID == id);
     }

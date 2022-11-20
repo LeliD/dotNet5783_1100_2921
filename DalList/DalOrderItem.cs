@@ -26,7 +26,7 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception">Throw exception if id of order item doesn't exists</exception>
     public OrderItem GetById(int id)
     {
-        OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ID == id)?? throw new Exception("OrderItem doesn't exist");
+        OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ID == id)?? throw new DalDoesNotExistException("OrderItem doesn't exist");
         return orderItem;
     }
     /// <summary>
@@ -38,7 +38,7 @@ internal class DalOrderItem : IOrderItem
     {
         if (!DataSource.OrderItemsList.Exists(x => x?.ID == orderItem.ID))
         {
-            throw new Exception("OrderItem doesn't exist");
+            throw new DalDoesNotExistException("OrderItem doesn't exist");
         }
         DataSource.OrderItemsList.RemoveAll(x => x?.ID == orderItem.ID);
         DataSource.OrderItemsList.Add(orderItem);
@@ -63,7 +63,7 @@ internal class DalOrderItem : IOrderItem
     {
         if (!DataSource.OrderItemsList.Exists(x => x?.ID == id))
         {
-            throw new Exception("OrderItem doesn't exist");
+            throw new DalDoesNotExistException("OrderItem doesn't exist");
         }
         DataSource.OrderItemsList.RemoveAll(x => x?.ID == id);
     }
@@ -76,7 +76,7 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception">Throw exception if order item doesn't exist</exception>
     public OrderItem GetBy2Identifiers(int productID, int orderID)
     {
-        OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID)?? throw new Exception("OrderItem doesn't exist");
+        OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID)?? throw new DalDoesNotExistException("OrderItem doesn't exist");
         return orderItem;
     }
     /// <summary>

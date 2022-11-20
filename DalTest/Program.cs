@@ -156,7 +156,7 @@ f: Exit");
             int ID;
             string customerName;
             string customerEmail;
-            string customerAdress;
+            string customerAddress;
             DateTime orderDate;
             DateTime shipDate;
             DateTime deliveryDate;
@@ -181,10 +181,10 @@ f: Exit");
                         customerEmail = Console.ReadLine();
 
                         Console.WriteLine("Enter adress of customer");
-                        customerAdress = Console.ReadLine();
+                        customerAddress = Console.ReadLine();
 
 
-                        o = new Order() { CustomerName = customerName, CustomerAdress = customerAdress, CustomerEmail = customerEmail, OrderDate = DateTime.Now, ShipDate = null, DeliveryDate = null };
+                        o = new Order() { CustomerName = customerName, CustomerAddress = customerAddress, CustomerEmail = customerEmail, OrderDate = DateTime.Now, ShipDate = null, DeliveryDate = null };
                         dal.Order.Add(o);
                         break;
                     case 'b':
@@ -216,7 +216,7 @@ f: Exit");
                         customerEmail = Console.ReadLine();
 
                         Console.WriteLine("Enter adress of customer");
-                        customerAdress = Console.ReadLine();
+                        customerAddress = Console.ReadLine();
 
                         Console.WriteLine("Enter ship date of customer");
                         input = Console.ReadLine();
@@ -230,7 +230,7 @@ f: Exit");
                         if (!check)
                             throw new Exception("Wrong input");
 
-                        o = new Order() { ID = ID, CustomerName = customerName, CustomerAdress = customerAdress, CustomerEmail = customerEmail, OrderDate = dal.Order.GetById(ID).OrderDate, ShipDate = shipDate, DeliveryDate = deliveryDate };
+                        o = new Order() { ID = ID, CustomerName = customerName, CustomerAddress = customerAddress, CustomerEmail = customerEmail, OrderDate = dal.Order.GetById(ID).OrderDate, ShipDate = shipDate, DeliveryDate = deliveryDate };
                         dal.Order.Update(o);
                         break;
                     case 'e':
