@@ -138,7 +138,7 @@ f: Exit");
 
     }
     /// <summary>
-    /// Enables the user to use functions of orders  
+    /// Enables the user to use functions of orderss  
     /// </summary>
     /// <param name="order">The function gets DalOrder variable which represents the list of orders </param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
