@@ -14,5 +14,4 @@ public interface IBl
     public IProduct Product { get; internal set; }
     public ICart Cart { get; internal set; }
 
-
 }
