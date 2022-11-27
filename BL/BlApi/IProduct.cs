@@ -9,10 +9,11 @@ namespace BlApi;
 
 public interface IProduct
 {
-    IEnumerable<ProductForList?> GetListedProducts();
+    IEnumerable<ProductForList?> GetListedProductsForManager();
+    IEnumerable<ProductItem?> GetListedProductsForCustomer();
     Product ProductDetailsForManager(int productID);
-    ProductItem ProductDetailsForCustomer(int productID, Cart cart);//ghgjhgj
-    void AddProduct(Product product);
+    ProductItem ProductDetailsForCustomer(int productID);//ghgjhgj
+    void AddProduct(Product boProduct);
     void DeleteProduct(int productID);
-    void UpdateProduct(Product product);
+    void UpdateProduct(Product boProduct);
 }
