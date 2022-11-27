@@ -52,16 +52,19 @@ internal class DalProduct : IProduct
         DataSource.ProductsList.Add(product);
     }
     /// <summary>
-    /// Gets all the products in the list
+    /// Gets all the products in the list in case no function was transfered. Otherwize, returns the filter list. 
     /// </summary>
-    /// <returns>return ProductsList</returns>
-    public IEnumerable<Product?> GetAll()
+    /// <returns>return IEnumerable<Product?></returns>
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
     {
-        List<Product?> list = new List<Product?>();
-        foreach (Product? item in DataSource.ProductsList)
-            list.Add(item);
-        return list;
-      
+        if (filter != null)
+        {
+            return from item in DataSource.ProductsList
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.ProductsList
+               select item;
     }
     /// <summary>
     /// Deletes product from ProductsList

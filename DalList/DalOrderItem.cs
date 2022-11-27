@@ -44,15 +44,19 @@ internal class DalOrderItem : IOrderItem
         DataSource.OrderItemsList.Add(orderItem);
     }
     /// <summary>
-    /// Gets all the order items in the list
+    /// Gets all the orderItems in the list in case no function was transfered. Otherwize, returns the filter list. 
     /// </summary>
-    /// <returns>return OrderItemsList</returns>
-    public IEnumerable<OrderItem?> GetAll()
+    /// <returns>return IEnumerable<OrderItem?></returns>
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
-        List<OrderItem?> list = new List<OrderItem?>();
-        foreach (OrderItem? item in DataSource.OrderItemsList)
-            list.Add(item);
-        return list;
+        if (filter != null)
+        {
+            return from item in DataSource.OrderItemsList
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.OrderItemsList
+               select item;
     }
     /// <summary>
     /// Deletes order item from OrderItemsList
