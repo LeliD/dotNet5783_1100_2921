@@ -68,7 +68,7 @@ internal class Product : IProduct
     /// </summary>
     /// <param name="productID">The id of the product to get its details</param>
     /// <returns></returns>
-    public BO.ProductItem ProductDetailsForCustomer(int productID)//ghgjhgj
+    public BO.ProductItem ProductDetailsForCustomer(int productID,BO.Cart c)//ghgjhgj
     {
         DO.Product doProduct = dal.Product.GetById(productID);
         return new BO.ProductItem()
@@ -77,7 +77,8 @@ internal class Product : IProduct
             Name = doProduct.Name,
             Category = (BO.Category)doProduct.Category,
             Price = doProduct.Price,
-            InStock = doProduct.InStock > 0 ? true : false,
+            InStock = doProduct.InStock > 0,
+            Amount = c.Items.Where(x => x?.ProductID == productID).Count() != 0 ? 2 : 0
         };
     }
     /// <summary>

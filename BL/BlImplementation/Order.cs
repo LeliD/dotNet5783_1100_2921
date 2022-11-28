@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using BO;
 using DO;
 
 namespace BlImplementation;
@@ -19,27 +20,16 @@ internal class Order: IOrder
 
     public IEnumerable<BO.OrderForList?> GetOrdersForManager()
     {
-        IEnumerable<DO.Order?> doOrder = dal.Order.GetAll();
-        foreach(DO.Order item in doOrder)
-        {
-            dal.OrderItem.GetItemsInOrder(item.ID);
-
-        }
-        var v = from item in dal.Order.GetAll()
-                let a = dal.OrderItem.GetItemsInOrder((int)item?.ID)
+        var listOfOrders = from item in dal.Order.GetAll()
+                    //let a = dal.OrderItem.GetItemsInOrder((int)item?.ID)
                 select new BO.OrderForList()
                 {
-                    ID = (int)item?.ID,
+                    ID = item?.ID ?? throw new NullReferenceException("Missing ID"),
                     CustomerName = item?.CustomerName,
-                    if(item?.DeliveryDate!=null)
-                       {
-
-                       }
-
-
-
-              }
-
+                    Status = orderStatus(item),
+                    AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new NullReferenceException("Missing ID")).Sum(x => (int)x?.Amount)//x is OrderItem?
+                };
+        return listOfOrders;
 }
 
     public OrderTracking OrderTrack(int orderID)
@@ -60,5 +50,18 @@ internal class Order: IOrder
     public BO.Order UpdateShipDate(int orderID)
     {
         throw new NotImplementedException();
+    }
+    private BO.OrderStatus orderStatus(DO.Order? doOrder)
+    {
+        if (doOrder?.DeliveryDate == null && doOrder?.OrderDate == null && doOrder?.ShipDate == null)
+            return BO.OrderStatus.Initiated;
+        if (doOrder?.OrderDate != null && doOrder?.DeliveryDate == null && doOrder?.ShipDate == null)
+            return BO.OrderStatus.Ordered;
+        if (doOrder?.ShipDate != null && doOrder?.DeliveryDate == null)
+            return BO.OrderStatus.Shipped;
+        if (doOrder?.DeliveryDate != null)
+            return BO.OrderStatus.Delivered;
+       
+        return BO.OrderStatus.Initiated;
     }
 }

@@ -12,7 +12,7 @@ public interface IProduct
     public IEnumerable<ProductForList?> GetListedProductsForManager();
     public IEnumerable<ProductItem?> GetListedProductsForCustomer();
     public Product ProductDetailsForManager(int productID);
-    public ProductItem ProductDetailsForCustomer(int productID);//ghgjhgj
+    public ProductItem ProductDetailsForCustomer(int productID, Cart c);//ghgjhgj
     public void AddProduct(Product boProduct);
     public void DeleteProduct(int productID);
     public void UpdateProduct(Product boProduct);

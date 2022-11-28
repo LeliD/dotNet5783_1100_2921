@@ -74,7 +74,7 @@ h: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                        Console.WriteLine(bl.Product.ProductDetailsForCustomer(ID));
+                       Console.WriteLine(bl.Product.ProductDetailsForCustomer(ID));
                         break;
                     case 'e':
                         Console.WriteLine("Enter ID of product");
