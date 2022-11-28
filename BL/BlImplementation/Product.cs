@@ -17,7 +17,7 @@ internal class Product : IProduct
     /// </summary>
     /// <returns>BO.ProductForList?</returns>
     /// <exception cref="NullReferenceException"></exception>
-    IEnumerable<BO.ProductForList?> IProduct.GetListedProductsForManager()
+    public IEnumerable<BO.ProductForList?> GetListedProductsForManager()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductForList()
@@ -33,7 +33,7 @@ internal class Product : IProduct
     /// </summary>
     /// <returns>BO.ProductItem?</returns>
     /// <exception cref="NullReferenceException"></exception>
-    IEnumerable<BO.ProductItem?> IProduct.GetListedProductsForCustomer()
+    public IEnumerable<BO.ProductItem?> GetListedProductsForCustomer()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductItem()
@@ -51,7 +51,7 @@ internal class Product : IProduct
     /// </summary>
     /// <param name="productID">The id of the product to get its details</param>
     /// <returns>BO.Product</returns>
-    BO.Product IProduct.ProductDetailsForManager(int productID)
+    public BO.Product ProductDetailsForManager(int productID)
     {
         DO.Product doProduct = dal.Product.GetById(productID);
         return new BO.Product()
@@ -68,7 +68,7 @@ internal class Product : IProduct
     /// </summary>
     /// <param name="productID">The id of the product to get its details</param>
     /// <returns></returns>
-    BO.ProductItem IProduct.ProductDetailsForCustomer(int productID)//ghgjhgj
+    public BO.ProductItem ProductDetailsForCustomer(int productID)//ghgjhgj
     {
         DO.Product doProduct = dal.Product.GetById(productID);
         return new BO.ProductItem()
@@ -86,7 +86,7 @@ internal class Product : IProduct
     /// <param name="boProduct">The product to add</param>
     /// <exception cref="Exception"> Wrong details of boProduct or the product already exists</exception>
     /// 
-    void IProduct.AddProduct(BO.Product boProduct)
+     public void AddProduct(BO.Product boProduct)
     {
         if (boProduct.ID < 0)
             throw new Exception("Negative ID");
@@ -118,19 +118,11 @@ internal class Product : IProduct
     /// </summary>
     /// <param name="productID">The id of product to delete</param>
     /// <exception cref="Exception">In case the product appear in orders or doesn't exist at all </exception>
-    void IProduct.DeleteProduct(int productID)
+    public void DeleteProduct(int productID)
     {
-        IEnumerable<DO.Order?> doOrder = dal.Order.GetAll();
-        foreach (DO.Order item in doOrder) //item? or item   ??
-        {
-            IEnumerable<DO.OrderItem?> doOrderItems = dal.OrderItem.GetItemsInOrder(item.ID);
-            foreach (DO.OrderItem? orderItem in doOrderItems)
-            {
-                if (orderItem?.ProductID == productID)
-                    throw new Exception("Product exists in one or more orders");
-            }
+        if(dal.OrderItem.GetAll(x=>x?.ID== productID).Count()!=0)
+            throw new Exception("Product exists in one or more orders");
 
-        }
         try
         {
             dal.Product.Delete(productID);
@@ -146,7 +138,7 @@ internal class Product : IProduct
     /// </summary>
     /// <param name="boProduct">product to update</param>
     /// <exception cref="Exception">Throw exceptions either the details of product aren't correct or the product doesn't exist at all</exception>
-    void IProduct.UpdateProduct(BO.Product boProduct)
+    public void UpdateProduct(BO.Product boProduct)
     {
         if (boProduct.ID < 0)
             throw new Exception("Negative ID");

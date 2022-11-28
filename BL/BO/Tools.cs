@@ -13,7 +13,20 @@ static class Tools
     {
         string str = "";
         foreach (PropertyInfo item in t.GetType().GetProperties())
-            str += item.Name + ": " + item.GetValue(t, null) + "\n";
+        {
+            if (item.PropertyType == typeof(IEnumerable<>))
+            {
+
+            }
+                //foreach(var v in item.GetValue(t,null))
+                //{
+
+                //}
+            else
+
+                        str += item.Name + ": " + item.GetValue(t, null) + "\n";
+        }
+          
         return str;
     }
 }
