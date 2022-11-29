@@ -70,7 +70,18 @@ internal class Product : IProduct
     /// <returns></returns>
     public BO.ProductItem ProductDetailsForCustomer(int productID,BO.Cart c)//ghgjhgj
     {
-        DO.Product doProduct = dal.Product.GetById(productID);
+        DO.Product doProduct;
+        try 
+        {
+            doProduct = dal.Product.GetById(productID);
+
+        }
+        catch(DO.DalDoesNotExistException ex)
+        {
+            throw ex;
+        }
+
+
         return new BO.ProductItem()
         {
             ID = doProduct.ID,
@@ -78,7 +89,8 @@ internal class Product : IProduct
             Category = (BO.Category)doProduct.Category,
             Price = doProduct.Price,
             InStock = doProduct.InStock > 0,
-            Amount = c.Items.Where(x => x?.ProductID == productID).Count() != 0 ? 2 : 0
+            //let a= c.Items.FirstOrDefault(x => x?.ProductID == productID)
+            Amount = c.Items.FirstOrDefault(x => x?.ProductID == productID).Amount
         };
     }
     /// <summary>
