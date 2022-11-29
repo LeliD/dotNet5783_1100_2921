@@ -80,8 +80,21 @@ internal class Product : IProduct
         {
             throw ex;
         }
-
-
+        int amount;
+        if(c.Items == null) 
+            amount=0;   
+        else
+        {
+            BO.OrderItem boProductItem = c.Items.FirstOrDefault(x => x?.ProductID == productID);
+            if(boProductItem == null)
+            {
+                amount = 0;
+            }
+            else
+                amount = boProductItem.Amount;
+        }
+        //IEnumerable<BO.OrderItem> items = c.Items?? throw new Exception("Missing items in cart");
+         
         return new BO.ProductItem()
         {
             ID = doProduct.ID,
@@ -90,7 +103,7 @@ internal class Product : IProduct
             Price = doProduct.Price,
             InStock = doProduct.InStock > 0,
             //let a= c.Items.FirstOrDefault(x => x?.ProductID == productID)
-            Amount = c.Items.FirstOrDefault(x => x?.ProductID == productID).Amount
+            Amount = amount//boProductItem!=null? boProductItem.Amount:0//c.Items.FirstOrDefault(x => x?.ProductID == productID).Amount
         };
     }
     /// <summary>

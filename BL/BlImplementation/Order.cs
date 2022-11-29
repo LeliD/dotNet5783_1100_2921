@@ -27,10 +27,10 @@ internal class Order: IOrder
                     ID = item?.ID ?? throw new NullReferenceException("Missing ID"),
                     CustomerName = item?.CustomerName,
                     Status = orderStatus(item),
-                    AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new NullReferenceException("Missing ID")).Sum(x => (int)x?.Amount)//x is OrderItem?
+                    AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new NullReferenceException("Missing ID")).Count()//x is OrderItem?
                 };
         return listOfOrders;
-}
+    }
 
     public OrderTracking OrderTrack(int orderID)
     {
