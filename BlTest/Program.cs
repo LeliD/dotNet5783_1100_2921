@@ -12,13 +12,14 @@ namespace BlTest;
 public class Program
 {
     /// <summary>
-    /// Enables the user to use functions of products 
+    /// Enables the user to use functions of products
     /// </summary>
-    /// <param name="product">The function gets DalProduct variable which represents the list of products  </param>
+    /// <param name="bl">The function gets bl variable</param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
+
     public static void ProductsFunctions(IBl bl)
     {
-        char choice;// the user's choice among the options a,b,c,d,e,f
+        char choice;// the user's choice among the options a,b,c,d,e,f,g,h
         do
         {
             Console.WriteLine(@"a: Get list of products for manager
@@ -37,6 +38,8 @@ h: Exit");
             string input; //user's input
             bool check;  //check if the input is correct
             Product p;
+            Cart cart = new Cart() { CustomerName = "", CustomerEmail = "", CustomerAddress = "", TotalPrice = 0, Items = new List<OrderItem>() };
+
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
@@ -74,7 +77,7 @@ h: Exit");
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
-                       Console.WriteLine(bl.Product.ProductDetailsForCustomer(ID));
+                       Console.WriteLine(bl.Product.ProductDetailsForCustomer(ID,cart));
                         break;
                     case 'e':
                         Console.WriteLine("Enter ID of product");
@@ -160,121 +163,95 @@ h: Exit");
 
     }
     /// <summary>
-    /// Enables the user to use functions of orderss  
+    /// Enables the user to use functions of orders
     /// </summary>
-    /// <param name="order">The function gets DalOrder variable which represents the list of orders </param>
+    /// <param name="bl">The function gets bl variable</param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
     public static void OrdersFunctions(IBl bl)
     {
-//        char choice;// the user's choice among the options a,b,c,d,e,f
-//        do
-//        {
-//            Console.WriteLine(@"a: Add order
-//b: Get order by ID
-//c: Get orders' list
-//d: Update order by its ID
-//e: Delete order
-//f: Exit");
-//            int ID;
-//            string customerName;
-//            string customerEmail;
-//            string customerAddress;
-//            DateTime orderDate;
-//            DateTime shipDate;
-//            DateTime deliveryDate;
-//            DateTime? d;
-//            string input;//user's input
-//            bool check;  //check if the input is correct
-//            Order o;
-//            input = Console.ReadLine();
-//            check = Char.TryParse(input, out choice);
-//            if (!check)
-//                throw new Exception("Wrong input");
-//            try
-//            {
-//                switch (choice)
-//                {
-//                    case 'a':
+        char choice;// the user's choice among the options a,b,c,d,e,f,g
+        do
+        {
+            Console.WriteLine(@"a: Get list of orders for manager
+b: Get orders' details by its ID
+c: Update ship date of order
+d: Update delivery date of order
+e: Order tracking for manager
+f: Update order for manager
+g: Exit");
+            int ID;
+            string input;//user's input
+            bool check;  //check if the input is correct
+            input = Console.ReadLine();
+            check = Char.TryParse(input, out choice);
+            if (!check)
+                throw new Exception("Wrong input");
+            try
+            {
+                switch (choice)
+                {
+                    case 'a':
 
-//                        Console.WriteLine("Enter name of customer");
-//                        customerName = Console.ReadLine();
+                        foreach (var item in bl.Order.GetOrdersForManager())
+                        {
+                            Console.WriteLine(item);
+                        }
 
-//                        Console.WriteLine("Enter email of customer");
-//                        customerEmail = Console.ReadLine();
-
-//                        Console.WriteLine("Enter adress of customer");
-//                        customerAddress = Console.ReadLine();
-
-
-//                        o = new Order() { CustomerName = customerName, CustomerAddress = customerAddress, CustomerEmail = customerEmail, OrderDate = DateTime.Now, ShipDate = null, DeliveryDate = null };
-//                        dal.Order.Add(o);
-//                        break;
-//                    case 'b':
-//                        Console.WriteLine("Enter ID of order");
-//                        input = Console.ReadLine();
-//                        check = int.TryParse(input, out ID);
-//                        if (!check)
-//                            throw new Exception("Wrong input");
-//                        Console.WriteLine(dal.Order.GetById(ID));
-//                        break;
-//                    case 'c':
-//                        IEnumerable<Order?> OrdersList = dal.Order.GetAll();
-//                        foreach (Order? x in OrdersList)
-//                        {
-//                            Console.WriteLine(x);
-//                        }
-//                        break;
-//                    case 'd':
-//                        Console.WriteLine("Enter ID of order to update");
-//                        input = Console.ReadLine();
-//                        check = int.TryParse(input, out ID);
-//                        if (!check)
-//                            throw new Exception("Wrong input");
-
-//                        Console.WriteLine("Enter name of customer");
-//                        customerName = Console.ReadLine();
-
-//                        Console.WriteLine("Enter email of customer");
-//                        customerEmail = Console.ReadLine();
-
-//                        Console.WriteLine("Enter adress of customer");
-//                        customerAddress = Console.ReadLine();
-
-//                        Console.WriteLine("Enter ship date of customer");
-//                        input = Console.ReadLine();
-//                        check = DateTime.TryParse(input, out shipDate);
-//                        if (!check)
-//                            throw new Exception("Wrong input");
-
-//                        Console.WriteLine("Enter delivery date of customer");
-//                        input = Console.ReadLine();
-//                        check = DateTime.TryParse(input, out deliveryDate);
-//                        if (!check)
-//                            throw new Exception("Wrong input");
-
-//                        o = new Order() { ID = ID, CustomerName = customerName, CustomerAddress = customerAddress, CustomerEmail = customerEmail, OrderDate = dal.Order.GetById(ID).OrderDate, ShipDate = shipDate, DeliveryDate = deliveryDate };
-//                        dal.Order.Update(o);
-//                        break;
-//                    case 'e':
-//                        Console.WriteLine("Enter ID of order to delete");
-//                        input = Console.ReadLine();
-//                        check = int.TryParse(input, out ID);
-//                        if (!check)
-//                            throw new Exception("Wrong input");
-//                        dal.Order.Delete(ID);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//                Console.WriteLine(e);
-//            }
-//        }
-//        while (choice != 'f');
+                        break;
+                    case 'b':
+                        Console.WriteLine("Enter ID of order to get its details");
+                        input = Console.ReadLine();
+                        check = int.TryParse(input, out ID);
+                        if (!check)
+                            throw new Exception("Wrong input");
+                        Console.WriteLine(bl.Order.GetOrderByID(ID));
+                        break;
+                    case 'c':
+                        Console.WriteLine("Enter ID of order to update its ship date");
+                        input = Console.ReadLine();
+                        check = int.TryParse(input, out ID);
+                        if (!check)
+                            throw new Exception("Wrong input");
+                        Console.WriteLine(bl.Order.UpdateShipDate(ID));
+                        break;
+                    case 'd':
+                        Console.WriteLine("Enter ID of order to update its delivery date");
+                        input = Console.ReadLine();
+                        check = int.TryParse(input, out ID);
+                        if (!check)
+                            throw new Exception("Wrong input");
+                        Console.WriteLine(bl.Order.UpdateDeliveryDate(ID));
+                        break;
+                    case 'e':
+                        Console.WriteLine("Enter ID of order to track");
+                        input = Console.ReadLine();
+                        check = int.TryParse(input, out ID);
+                        if (!check)
+                            throw new Exception("Wrong input");
+                        Console.WriteLine(bl.Order.OrderTrack(ID));
+                        break;
+                    case 'f':
+                        Console.WriteLine("Enter ID of order to update");
+                        input = Console.ReadLine();
+                        check = int.TryParse(input, out ID);
+                        if (!check)
+                            throw new Exception("Wrong input");
+                        bl.Order.UpdateOrder(ID);//to print? void..
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        while (choice != 'g');
 
     }
+
+
     /// <summary>
     /// Enables the user to use functions of orderItems 
     /// </summary>

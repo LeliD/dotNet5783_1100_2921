@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using BlApi;
-using BO;
+//using BO;
 using DO;
 
 namespace BlImplementation;
@@ -69,9 +69,38 @@ internal class Order: IOrder
         return listOfOrders;
     }
 
-    public OrderTracking OrderTrack(int orderID)
+    public BO.OrderTracking OrderTrack(int orderID)
     {
-        throw new NotImplementedException();
+        DO.Order doOrder;
+        try
+        {
+            doOrder = dal.Order.GetById(orderID);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        List<Tuple<DateTime, string>>? tracking = new List<Tuple<DateTime, string>>();
+        if (doOrder.OrderDate != null)
+        {
+            tracking.Add(new Tuple<DateTime, string>(doOrder.OrderDate ?? throw new Exception("There is no order date"), "Ordered"));
+        }
+        if (doOrder.ShipDate != null)
+        {
+            tracking.Add(new Tuple<DateTime, string>(doOrder.ShipDate ?? throw new Exception("There is no ship date"),"Shipped"));
+        }
+        if (doOrder.DeliveryDate != null)
+        {
+            tracking.Add(new Tuple<DateTime, string>(doOrder.DeliveryDate ?? throw new Exception("There is no Delivery Date"), "Delivered"));
+        }
+
+        return new BO.OrderTracking()
+        {
+            ID = doOrder.ID,
+            Status = orderStatus(doOrder),
+            Tracking = tracking
+        };
+       
     }
 
     public BO.Order UpdateDeliveryDate(int orderID)
