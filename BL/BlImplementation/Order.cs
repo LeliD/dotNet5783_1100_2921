@@ -15,7 +15,18 @@ internal class Order: IOrder
 
     public BO.Order GetOrderByID(int orderID)
     {
-        throw new NotImplementedException();
+        DO.Order doOrder;
+        try
+        {
+            doOrder = dal.Order.GetById(orderID);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetItemsInOrder(orderID);
+        
+        //throw new NotImplementedException();
     }
 
     public IEnumerable<BO.OrderForList?> GetOrdersForManager()

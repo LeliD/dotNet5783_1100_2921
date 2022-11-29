@@ -74,7 +74,6 @@ internal class Product : IProduct
         try 
         {
             doProduct = dal.Product.GetById(productID);
-
         }
         catch(DO.DalDoesNotExistException ex)
         {
