@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using BlApi;
 using BO;
 using DO;
@@ -16,6 +18,8 @@ internal class Order: IOrder
     public BO.Order GetOrderByID(int orderID)
     {
         DO.Order doOrder;
+        if (orderID < 0)
+            throw new Exception("Wrong (Negative) ID");
         try
         {
             doOrder = dal.Order.GetById(orderID);
@@ -24,8 +28,30 @@ internal class Order: IOrder
         {
             throw ex;
         }
-        IEnumerable<DO.OrderItem?> orderItems = dal.OrderItem.GetItemsInOrder(orderID);
-        
+        IEnumerable<DO.OrderItem?> doOrderItems = dal.OrderItem.GetItemsInOrder(orderID);
+        var boOrderItems = from item in doOrderItems
+                select new BO.OrderItem()
+                {
+                    ID = item?.ID ?? throw new Exception("Missing ID"),
+                    Name = dal.Product.GetById(item?.ProductID ?? throw new Exception("Missing Product ID")).Name,
+                    ProductID = item?.ProductID ?? throw new Exception("Missing Product ID"),
+                    Price = item?.Price ?? throw new Exception("Missing Price"),
+                    Amount = item?.Amount ?? throw new Exception("Missing Price"),
+                    TotalPrice = (item?.Price ?? throw new Exception("Missing Price")) * (item?.Amount ?? throw new Exception("Missing Price"))
+                };
+        return new BO.Order()
+        {
+            ID = doOrder.ID,
+            CustomerName = doOrder.CustomerName,
+            CustomerEmail = doOrder.CustomerEmail,
+            CustomerAddress = doOrder.CustomerAddress,
+            Status = orderStatus(doOrder),
+            OrderDate = doOrder.OrderDate,
+            ShipDate = doOrder.ShipDate,
+            DeliveryDate = doOrder.DeliveryDate,
+            Items = boOrderItems,
+            TotalPrice = boOrderItems.Sum(x => x?.TotalPrice ?? throw new Exception("Missing Price"))
+        };
         //throw new NotImplementedException();
     }
 
@@ -50,7 +76,31 @@ internal class Order: IOrder
 
     public BO.Order UpdateDeliveryDate(int orderID)
     {
-        throw new NotImplementedException();
+        DO.Order doOrder;
+        try
+        {
+            doOrder = dal.Order.GetById(orderID);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        if (doOrder.ShipDate == null)
+            throw new Exception("ShipDateDoesn'tExist");
+
+        if (doOrder.DeliveryDate != null)
+            throw new Exception("DeliveryDateAlreadyExist");
+
+        doOrder.DeliveryDate = DateTime.Now;
+        try
+        {
+            return this.GetOrderByID(orderID);
+        }
+        catch (BO.DalDoesNotExistException ex)
+        {
+            throw ex;
+        }
+
     }
 
     public void UpdateOrder(int orderID)
@@ -60,7 +110,29 @@ internal class Order: IOrder
 
     public BO.Order UpdateShipDate(int orderID)
     {
-        throw new NotImplementedException();
+        DO.Order doOrder;
+        try
+        {
+            doOrder = dal.Order.GetById(orderID);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        if (doOrder.ShipDate != null)
+        {
+            throw new Exception("ShipDateAlreadyExist");
+        }
+        doOrder.ShipDate = DateTime.Now;
+        try
+        {
+            return this.GetOrderByID(orderID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
     }
     private BO.OrderStatus orderStatus(DO.Order? doOrder)
     {
