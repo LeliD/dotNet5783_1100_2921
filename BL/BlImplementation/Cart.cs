@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
@@ -33,7 +35,7 @@ internal class Cart : ICart
             //var v=(List<BO.OrderItem>)cart.Items.Add;
             cart.Items.ToList().Add(new BO.OrderItem()
             {
-                ID = cart.Items.Count() + 1,//??????????
+                //ID = cart.Items.Count() + 1,//??????????
                 Name = doProduct.Name,
                 ProductID = doProduct.ID,
                 Price = doProduct.Price,
@@ -54,7 +56,24 @@ internal class Cart : ICart
 
     public void MakeOrder(BO.Cart cart)
     {
-        DO.Order doOrder = new DO.Order()
+        if ((cart.CustomerAddress ?? throw new Exception("CustomerAddress is null")) == "")
+            throw new Exception("Unvalid CustomerName");
+        //if (cart.CustomerName == null || cart.CustomerName == "")
+        //    throw new Exception("Unvalid CustomerName");
+        if (cart.CustomerEmail == null || cart.CustomerEmail == "")
+            throw new Exception("Unvalid CustomerEmail");
+        if (!new EmailAddressAttribute().IsValid(cart.CustomerAddress ?? throw new Exception("CustomerAddress is null")))
+            throw new Exception("Unvalid CustomerAddress");
+        if (cart.Items == null)
+            throw new Exception("Unvalid Cart (No items)");
+        cart.Items.ToList().ForEach(x =>
+        {
+            DO.Product doProduct;
+            try { doProduct = dal.Product.GetById(x.ProductID); } catch (DO.DalDoesNotExistException ex) { throw ex; }//Check if product exist
+            if (x.Amount <= 0) throw new Exception("Unvalid Amount");//chech if demanded amount is a positive number
+            if(x.Amount>doProduct.InStock) throw new Exception("Out Of Stock");//chech if demanded amount is in stock
+        });
+        DO.Order doOrder = new DO.Order()//Create DO.Order
         {
             CustomerName = cart.CustomerName,
             CustomerEmail = cart.CustomerEmail,
@@ -64,7 +83,7 @@ internal class Cart : ICart
             DeliveryDate = null
         };
        
-        int orderId=dal.Order.Add(doOrder);
+        int orderId=dal.Order.Add(doOrder);//Add DO.Order
         var v = from  BO.OrderItem boOrderItem in cart.Items
                 select  new DO.OrderItem()
                 {
