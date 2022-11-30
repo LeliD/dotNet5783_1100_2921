@@ -56,20 +56,20 @@ internal class Cart : ICart
 
     public void MakeOrder(BO.Cart cart)
     {
-        if ((cart.CustomerAddress ?? throw new Exception("CustomerAddress is null")) == "")
+        if ((cart.CustomerName ?? throw new Exception("CustomerName is null")) == "")
             throw new Exception("Unvalid CustomerName");
         //if (cart.CustomerName == null || cart.CustomerName == "")
         //    throw new Exception("Unvalid CustomerName");
-        if (cart.CustomerEmail == null || cart.CustomerEmail == "")
-            throw new Exception("Unvalid CustomerEmail");
-        if (!new EmailAddressAttribute().IsValid(cart.CustomerAddress ?? throw new Exception("CustomerAddress is null")))
+        if (cart.CustomerAddress == null || cart.CustomerAddress == "")
             throw new Exception("Unvalid CustomerAddress");
+        if (!new EmailAddressAttribute().IsValid(cart.CustomerEmail ?? throw new Exception("CustomerEmail is null")))
+            throw new Exception("Unvalid CustomerEmail");
         if (cart.Items == null)
             throw new Exception("Unvalid Cart (No items)");
         cart.Items.ToList().ForEach(x =>
         {
             DO.Product doProduct;
-            try { doProduct = dal.Product.GetById(x.ProductID); } catch (DO.DalDoesNotExistException ex) { throw ex; }//Check if product exist
+            try { doProduct = dal.Product.GetById(x.ProductID); } catch (DO.DalDoesNotExistException ex) { throw ex; }//Check if products exist
             if (x.Amount <= 0) throw new Exception("Unvalid Amount");//chech if demanded amount is a positive number
             if(x.Amount>doProduct.InStock) throw new Exception("Out Of Stock");//chech if demanded amount is in stock
         });
@@ -84,7 +84,7 @@ internal class Cart : ICart
         };
        
         int orderId=dal.Order.Add(doOrder);//Add DO.Order
-        var v = from  BO.OrderItem boOrderItem in cart.Items
+        var doOrderItems = from  BO.OrderItem boOrderItem in cart.Items//v is list
                 select  new DO.OrderItem()
                 {
                     OrderID= orderId,
@@ -92,12 +92,8 @@ internal class Cart : ICart
                     Price = boOrderItem.Price,
                     Amount= boOrderItem.Amount,
                 };
-        v.ToList().ForEach(x => dal.OrderItem.Add(x));
-
-        v.ToList().ForEach(x => {DO.Product p=dal.Product.GetById(x.ProductID) ; p.InStock -= x.Amount; dal.Product.Update(p); });
-       
-           
-
+        doOrderItems.ToList().ForEach(x => dal.OrderItem.Add(x));//Add DO.orderItems of order to dal
+        doOrderItems.ToList().ForEach(x => {DO.Product p=dal.Product.GetById(x.ProductID) ; p.InStock -= x.Amount; dal.Product.Update(p); });//Update the InStock of products
     }
 
     public BO.Cart UpdateAmountOfProductInCart(BO.Cart cart, int productID, int newAmount)
