@@ -52,9 +52,33 @@ internal class Cart : ICart
         return cart;
     }
 
-    public void MakeOrder(BO.Cart cart, string CustomerName, string CustomerEmail, string CustomerAddress)
+    public void MakeOrder(BO.Cart cart)
     {
-        throw new NotImplementedException();
+        DO.Order doOrder = new DO.Order()
+        {
+            CustomerName = cart.CustomerName,
+            CustomerEmail = cart.CustomerEmail,
+            CustomerAddress = cart.CustomerAddress,
+            OrderDate = DateTime.Now,
+            ShipDate = null,
+            DeliveryDate = null
+        };
+       
+        int orderId=dal.Order.Add(doOrder);
+        var v = from  BO.OrderItem boOrderItem in cart.Items
+                select  new DO.OrderItem()
+                {
+                    OrderID= orderId,
+                    ProductID= boOrderItem.ProductID,
+                    Price = boOrderItem.Price,
+                    Amount= boOrderItem.Amount,
+                };
+        v.ToList().ForEach(x => dal.OrderItem.Add(x));
+
+        v.ToList().ForEach(x => {DO.Product p=dal.Product.GetById(x.ProductID) ; p.InStock -= x.Amount; dal.Product.Update(p); });
+       
+           
+
     }
 
     public BO.Cart UpdateAmountOfProductInCart(BO.Cart cart, int productID, int newAmount)
