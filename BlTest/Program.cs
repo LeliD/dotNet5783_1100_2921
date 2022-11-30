@@ -253,32 +253,24 @@ g: Exit");
 
 
     /// <summary>
-    /// Enables the user to use functions of orderItems 
+    /// Enables the user to use functions of cart
     /// </summary>
-    /// <param name="orderItem">The function gets DalOrderItem variable which represents the list of orderItems</param>
+    /// <param name="orderItem">The function gets bl variable </param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
     public static void CartFunctions(IBl bl)
     {
-        char choice;// the user's choice among the options a,b,c,d,e,f,g,h
+        char choice;// the user's choice among the options a,b,c,d
         do
         {
-            Console.WriteLine(@"a: Add order item
-b: Get order item by ID
-c: Get order items' list
-d: Update order item by its ID
-e: Delete order item
-f: Get order item by 2 identifiers
-g: Get items in order by its ID
-h: Exit");
+            Console.WriteLine(@"a: Add product to cart
+b: Update amount of product in cart
+c: Make order
+d: Exit");
             int ID;
-            int orderID;
-            int productID;
-            double price;
             int amount;
             string input;//user's input
             bool check;  //check if the input is correct
-            OrderItem o;
-            IEnumerable<OrderItem?> OrderItemsList;
+            Cart cart = new Cart() { CustomerName = "Tovi", CustomerEmail = "Tovi@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0, Items = new List<OrderItem>() };
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
@@ -288,117 +280,34 @@ h: Exit");
                 switch (choice)
                 {
                     case 'a':
-                        Console.WriteLine("Enter ID of order");
+                        Console.WriteLine("Enter ID of product to add to cart");
                         input = Console.ReadLine();
-                        check = int.TryParse(input, out orderID);
+                        check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
 
-                        Console.WriteLine("Enter ID of product");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out productID);
-                        if (!check)
-                            throw new Exception("Wrong input");
+                        Console.WriteLine(bl.Cart.AddProductToCart(cart,ID));
 
-                        Console.WriteLine("Enter price of order item");
-                        input = Console.ReadLine();
-                        check = double.TryParse(input, out price);
-                        if (!check)
-                            throw new Exception("Wrong input");
-
-                        Console.WriteLine("Enter amount of products in the order item");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out amount);
-                        if (!check)
-                            throw new Exception("Wrong input");
-                        o = new OrderItem() { OrderID = orderID, ProductID = productID, Price = price, Amount = amount };
-                        dal.OrderItem.Add(o);
                         break;
                     case 'b':
-                        Console.WriteLine("Enter ID of order item");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out ID);
-                        if (!check)
-                            throw new Exception("Wrong input");
-                        Console.WriteLine(dal.OrderItem.GetById(ID));
-                        break;
-                    case 'c':
-                        OrderItemsList = dal.OrderItem.GetAll();
-                        foreach (OrderItem? x in OrderItemsList)
-                        {
-                            Console.WriteLine(x);
-                        }
-                        break;
-                    case 'd':
-                        Console.WriteLine("Enter ID of order item to update");
+                        Console.WriteLine("Enter ID of product to update its amount");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
                             throw new Exception("Wrong input");
 
-                        Console.WriteLine("Enter ID of order");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out orderID);
-                        if (!check)
-                            throw new Exception("Wrong input");
-
-                        Console.WriteLine("Enter ID of product");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out productID);
-                        if (!check)
-                            throw new Exception("Wrong input");
-
-                        Console.WriteLine("Enter price of order item");
-                        input = Console.ReadLine();
-                        check = double.TryParse(input, out price);
-                        if (!check)
-                            throw new Exception("Wrong input");
-
-                        Console.WriteLine("Enter amount of products in the order item");
+                        Console.WriteLine("Enter amount of product to update in cart");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out amount);
                         if (!check)
                             throw new Exception("Wrong input");
 
-                        o = new OrderItem() { ID = ID, OrderID = orderID, ProductID = productID, Price = price, Amount = amount };
-                        dal.OrderItem.Update(o);
-
+                        Console.WriteLine(bl.Cart.UpdateAmountOfProductInCart(cart,ID,amount));
                         break;
-                    case 'e':
-                        Console.WriteLine("Enter ID of order item to delete");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out ID);
-                        if (!check)
-                            throw new Exception("Wrong input");
-                        dal.OrderItem.Delete(ID);
+                    case 'c':
+                        bl.Cart.MakeOrder(cart);
                         break;
-                    case 'f':
-                        Console.WriteLine("Enter ID of order");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out orderID);
-                        if (!check)
-                            throw new Exception("Wrong input");
-
-                        Console.WriteLine("Enter ID of product");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out productID);
-                        if (!check)
-                            throw new Exception("Wrong input");
-                        Console.WriteLine(dal.OrderItem.GetBy2Identifiers(productID, orderID));
-                        break;
-                    case 'g':
-                        Console.WriteLine("Enter ID of order");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out orderID);
-                        if (!check)
-                            throw new Exception("Wrong input");
-
-                        OrderItemsList = dal.OrderItem.GetItemsInOrder(orderID);
-                        foreach (OrderItem? x in OrderItemsList)
-                        {
-                            Console.WriteLine(x);
-                        }
-                        break;
+                    
                     default:
                         break;
                 }
@@ -408,7 +317,7 @@ h: Exit");
                 Console.WriteLine(e);
             }
         }
-        while (choice != 'h');
+        while (choice != 'd');
 
     }
     /// <summary>
