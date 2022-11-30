@@ -121,6 +121,7 @@ internal class Order: IOrder
             throw new Exception("DeliveryDateAlreadyExist");
 
         doOrder.DeliveryDate = DateTime.Now;
+        dal.Order.Update(doOrder);
         try
         {
             return this.GetOrderByID(orderID);
@@ -153,14 +154,16 @@ internal class Order: IOrder
             throw new Exception("ShipDateAlreadyExist");
         }
         doOrder.ShipDate = DateTime.Now;
-        try
-        {
-            return this.GetOrderByID(orderID);
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
+        dal.Order.Update(doOrder);
+        //try
+        //{
+        //    return this.GetOrderByID(orderID);
+        //}
+        //catch (Exception ex)
+        //{
+        //    throw ex;
+        //}
+        return this.GetOrderByID(orderID);
 
     }
     private BO.OrderStatus orderStatus(DO.Order? doOrder)

@@ -14,17 +14,23 @@ static class Tools
         string str = "";
         foreach (PropertyInfo item in t.GetType().GetProperties())
         {
-            if (item.PropertyType == typeof(IEnumerable<>))
+            str += item.Name + ": ";
+            //if (item.PropertyType == typeof(IEnumerable<>))
+            //{
+
+            //}
+            //foreach(var v in item.GetValue(t,null))
+            //{
+
+            //}
+            if (item.GetValue(t, null) is IEnumerable<object>)
             {
-
+                str += "\n";
+                str += String.Join("", (IEnumerable<object>)item.GetValue(t, null));
             }
-                //foreach(var v in item.GetValue(t,null))
-                //{
-
-                //}
             else
 
-                        str += item.Name + ": " + item.GetValue(t, null) + "\n";
+                str += item.GetValue(t, null) + "\n";
         }
           
         return str;
