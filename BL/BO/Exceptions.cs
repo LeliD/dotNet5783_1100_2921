@@ -17,9 +17,9 @@ public class BlWrongCategoryException : Exception
     public BlWrongCategoryException(string message) : base(message) { }
 }
 [Serializable]
-public class BlInCorrectDatasException : Exception
+public class BlInCorrectDataException : Exception
 {
-    public BlInCorrectDatasException(string message) : base(message) { }
+    public BlInCorrectDataException(string message) : base(message) { }
 }
 [Serializable]
 public class BlAlreadyExistEntityException : Exception
