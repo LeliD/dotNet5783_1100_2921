@@ -6,13 +6,36 @@ using System.Threading.Tasks;
 
 namespace BO;
 
-public class DalDoesNotExistException : Exception
+[Serializable]
+public class BlNullPropertyException : Exception
 {
-    public DalDoesNotExistException(string? message) : base(message) { }
+    public BlNullPropertyException(string message) : base(message) { }
 }
-
-public class DalAlreadyExistsException : Exception
+[Serializable]
+public class BlWrongCategoryException : Exception
 {
-    public DalAlreadyExistsException(string? message) : base(message) { }
+    public BlWrongCategoryException(string message) : base(message) { }
 }
+[Serializable]
+public class BlInCorrectDatasException : Exception
+{
+    public BlInCorrectDatasException(string message) : base(message) { }
+}
+[Serializable]
+public class BlAlreadyExistEntityException : Exception
+{
+    public BlAlreadyExistEntityException(string message,Exception innerException) : base(message, innerException) { }
 
+    public override string ToString()=>
+        base.ToString()+$"Entity already exists.";
+   
+}
+[Serializable]
+public class BlMissingEntityException : Exception
+{
+    public BlMissingEntityException(string message, Exception innerException) : base(message, innerException) { }
+
+    public override string ToString() =>
+        base.ToString() + $"Missing Entity.";
+
+}
