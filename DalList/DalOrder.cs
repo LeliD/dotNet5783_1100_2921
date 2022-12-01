@@ -27,7 +27,7 @@ internal class DalOrder : IOrder
 
     public Order GetById(int id)
     {
-        Order order = DataSource.OrdersList.Find(x => x?.ID == id)?? throw new DalDoesNotExistException("Order doesn't exist");
+        Order order = DataSource.OrdersList.Find(x => x?.ID == id)?? throw new DalMissingIdException(id, "Order");
         return order;
     }
     /// <summary>
@@ -39,7 +39,7 @@ internal class DalOrder : IOrder
     {
         if (!DataSource.OrdersList.Exists(x => x?.ID == order.ID))
         {
-            throw new DalDoesNotExistException("Order doesn't exist");
+            throw new DalMissingIdException(order.ID,"Order");
         }
         DataSource.OrdersList.RemoveAll(x => x?.ID == order.ID);
         DataSource.OrdersList.Add(order);
@@ -68,7 +68,7 @@ internal class DalOrder : IOrder
     {
         if (!DataSource.OrdersList.Exists(x => x?.ID == id))
         {
-            throw new DalDoesNotExistException("Order doesn't exist");
+            throw new DalMissingIdException(id, "Order");
         }
         DataSource.OrdersList.RemoveAll(x => x?.ID == id);
     }
