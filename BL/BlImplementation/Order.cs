@@ -14,7 +14,12 @@ namespace BlImplementation;
 internal class Order: IOrder
 {
     DalApi.IDal dal = new Dal.DalList();
-
+    /// <summary>
+    /// Returns the details of order by it's ID 
+    /// </summary>
+    /// <param name="orderID"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public BO.Order GetOrderByID(int orderID)
     {
         DO.Order doOrder;
@@ -33,7 +38,7 @@ internal class Order: IOrder
                 select new BO.OrderItem()
                 {
                     ID = item?.ID ?? throw new Exception("Missing ID"),
-                    Name = dal.Product.GetById(item?.ProductID ?? throw new Exception("Missing Product ID")).Name,
+                    Name = dal.Product.GetById(item?.ProductID ?? throw new Exception("Missing Product ID")).Name,//?try?fgfggggghghghghfhf
                     ProductID = item?.ProductID ?? throw new Exception("Missing Product ID"),
                     Price = item?.Price ?? throw new Exception("Missing Price"),
                     Amount = item?.Amount ?? throw new Exception("Missing Price"),

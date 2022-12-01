@@ -257,7 +257,7 @@ g: Exit");
     /// </summary>
     /// <param name="orderItem">The function gets bl variable </param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
-    public static void CartFunctions(IBl bl)
+    public static void CartFunctions(IBl bl, Cart cart)
     {
         char choice;// the user's choice among the options a,b,c,d
         do
@@ -270,7 +270,7 @@ d: Exit");
             int amount;
             string input;//user's input
             bool check;  //check if the input is correct
-            Cart cart = new Cart() { CustomerName = "Tovi", CustomerEmail = "Tovi@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0, Items = new List<OrderItem>() };
+            
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
@@ -330,6 +330,7 @@ d: Exit");
         IBl bl = new Bl();
         string input;
         int choice = 0;
+        Cart cart = new Cart() { CustomerName = "Tovi", CustomerEmail = "Tovi@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0, Items = new List<OrderItem>() };
         do
         {
             try
@@ -348,7 +349,7 @@ d: Exit");
                         OrdersFunctions(bl);
                         break;
                     case 3:
-                        CartFunctions(bl);
+                        CartFunctions(bl,cart);
                         break;
                     default:
                         break;

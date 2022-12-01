@@ -11,8 +11,17 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
+    /// <summary>
+    /// Dal variable
+    /// </summary>
     DalApi.IDal dal = new Dal.DalList();
-
+    /// <summary>
+    /// The function adds product to cart
+    /// </summary>
+    /// <param name="cart">purchase cart</param>
+    /// <param name="productID">ID of product to add to cart</param>
+    /// <returns></returns>
+    /// <exception cref="Exception">Throw exception if product to add doesn't exist or product isn't in Stock</exception>
     public BO.Cart AddProductToCart(BO.Cart cart, int productID)
     {
         DO.Product doProduct;
@@ -27,15 +36,14 @@ internal class Cart : ICart
 
         if (doProduct.InStock == 0) //If product isn't in Stock
             throw new Exception("Product isn't in stock");
-        if (cart.Items == null)
+        if (cart.Items == null)//If items isn't initialized
             cart.Items = new List<BO.OrderItem>();
-        BO.OrderItem orderItemInCart = cart.Items.FirstOrDefault(x => x.ProductID == productID);//The orderItem in cart
-        if (orderItemInCart == null)//product doesn't exist in Cart
+        BO.OrderItem orderItemInCart = cart.Items.FirstOrDefault(x => x.ProductID == productID);//BO.OrderItems in cart
+        if (orderItemInCart == null)//product still doesn't exist in cart
         {
-            //var v=(List<BO.OrderItem>)cart.Items.Add;
-            cart.Items.ToList().Add(new BO.OrderItem()
+            var orderItemsList = cart.Items.ToList();//Convert cart.Items to List
+            orderItemsList.Add(new BO.OrderItem()//Add new BO.OrderItem to cart 
             {
-                //ID = cart.Items.Count() + 1,//??????????
                 Name = doProduct.Name,
                 ProductID = doProduct.ID,
                 Price = doProduct.Price,
@@ -43,7 +51,8 @@ internal class Cart : ICart
                 TotalPrice = doProduct.Price,
 
             });
-            cart.TotalPrice += doProduct.Price;
+            cart.Items = orderItemsList;
+            cart.TotalPrice += doProduct.Price;//Calculate the TotalPrice of cart
         }
         else//product already exist in Cart
         {
@@ -53,7 +62,11 @@ internal class Cart : ICart
         }
         return cart;
     }
-
+    /// <summary>
+    /// The function closes an order by getting its cart and transfers  its data to dal
+    /// </summary>
+    /// <param name="cart">the cart of order to close</param>
+    /// <exception cref="Exception">Throw exceptions if items isn't initialized or if Product to update wasn't found</exception>
     public void MakeOrder(BO.Cart cart)
     {
         if ((cart.CustomerName ?? throw new Exception("CustomerName is null")) == "")
@@ -134,7 +147,10 @@ internal class Cart : ICart
         {
            if(newAmount == 0) //in case there is a need to delete the order item from cart
             {
-                cart.Items.ToList().Remove(boOrderItem);//remove the order item
+                var v = cart.Items.ToList();
+                v.Remove(boOrderItem);//remove the order item
+                cart.Items = v;
+                //cart.Items.ToList().Remove(boOrderItem);//remove the order item
                 cart.TotalPrice -= oldTotalPriceOfItem; //update total price of cart
                 return cart;
             }
