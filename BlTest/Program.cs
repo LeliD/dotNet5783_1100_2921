@@ -315,6 +315,7 @@ d: Exit");
                         break;
                     case 'c':
                         bl.Cart.MakeOrder(cart);
+                        cart=new Cart();
                         break;
                     
                     default:

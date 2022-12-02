@@ -35,6 +35,8 @@ public class BlAlreadyExistEntityException : Exception
 [Serializable]
 public class BlMissingEntityException : Exception
 {
+    public BlMissingEntityException(string message)
+        : base(message) { }
     public BlMissingEntityException(string message, Exception innerException) : base(message, innerException) { }
 
     public override string ToString() =>

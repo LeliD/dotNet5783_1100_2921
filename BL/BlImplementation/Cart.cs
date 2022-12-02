@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using BO;
 
 namespace BlImplementation;
 
@@ -29,9 +30,9 @@ internal class Cart : ICart
         {
             doProduct = dal.Product.GetById(productID);
         }
-        catch (DO.DalDoesNotExistException ex)
+        catch (DO.DalMissingIdException ex)
         {
-            throw ex;
+            throw new BO.BlMissingEntityException("product doen't exist", ex);
         }
 
         if (doProduct.InStock == 0) //If product isn't in Stock
@@ -69,20 +70,20 @@ internal class Cart : ICart
     /// <exception cref="Exception">Throw exceptions if items isn't initialized or if Product to update wasn't found</exception>
     public void MakeOrder(BO.Cart cart)
     {
-        if ((cart.CustomerName ?? throw new Exception("CustomerName is null")) == "")
-            throw new Exception("Unvalid CustomerName");
+        if ((cart.CustomerName ?? throw new BO.BlNullPropertyException("CustomerName is null")) == "")
+            throw new BO.BlDetailInvalidException("CustomerName","Unvalid CustomerName");
         //if (cart.CustomerName == null || cart.CustomerName == "")
         //    throw new Exception("Unvalid CustomerName");
         if (cart.CustomerAddress == null || cart.CustomerAddress == "")
-            throw new Exception("Unvalid CustomerAddress");
-        if (!new EmailAddressAttribute().IsValid(cart.CustomerEmail ?? throw new Exception("CustomerEmail is null")))
-            throw new Exception("Unvalid CustomerEmail");
+            throw new BO.BlDetailInvalidException("CustomerAdress","Unvalid CustomerAddress");
+        if (!new EmailAddressAttribute().IsValid(cart.CustomerEmail ?? throw new BO.BlNullPropertyException("CustomerEmail is null")))
+            throw new BO.BlDetailInvalidException("CustomerEmail", "Unvalid CustomerEmail");
         if (cart.Items == null)
-            throw new Exception("Unvalid Cart (No items)");
+            throw new BO.BlDetailInvalidException("cart","Unvalid Cart (No items)");
         cart.Items.ToList().ForEach(x =>
         {
             DO.Product doProduct;
-            try { doProduct = dal.Product.GetById(x.ProductID); } catch (DO.DalDoesNotExistException ex) { throw ex; }//Check if products exist
+            try { doProduct = dal.Product.GetById(x.ProductID); } catch (DO.DalMissingIdException ex) { throw new BO.BlMissingEntityException("product doen't exist", ex); }//Check if products exist
             if (x.Amount <= 0) throw new Exception("Unvalid Amount");//chech if demanded amount is a positive number
             if(x.Amount>doProduct.InStock) throw new Exception("Out Of Stock");//chech if demanded amount is in stock
         });
@@ -114,11 +115,11 @@ internal class Cart : ICart
         
         if(cart.Items==null)//if items isn't initialized
         {
-            throw new Exception("There is no items in cart to update");
+            throw new BlNullPropertyException("There is no items in cart to update since its null");
         }
         BO.OrderItem boOrderItem = cart.Items.FirstOrDefault(x => x?.ProductID == productID); //find the product to update its amount
         if(boOrderItem == null)//product wasn't found
-            throw new Exception("Product to update wasn't found");
+            throw new BO.BlMissingEntityException("Product to update wasn't found");
         if (boOrderItem.Amount== newAmount)//???? to throw?
         {
             throw new Exception("Same amount");
@@ -129,9 +130,9 @@ internal class Cart : ICart
         {
             doProduct = dal.Product.GetById(productID);//gets the product from dal to update its amount
         }
-        catch (DO.DalDoesNotExistException ex)
+        catch (DO.DalMissingIdException ex)
         {
-            throw ex;
+            throw new BO.BlMissingEntityException("product doen't exist", ex);
         }
 
         double oldTotalPriceOfItem = boOrderItem.TotalPrice;//the total price of order item before the change 
