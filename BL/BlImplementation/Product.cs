@@ -12,12 +12,15 @@ namespace BlImplementation;
 
 internal class Product : IProduct
 {
+    /// <summary>
+    /// Dal variable
+    /// </summary>
     DalApi.IDal dal = new Dal.DalList();
     /// <summary>
     /// The function brings the list of products from dal and returns it in form of BO.ProductForList? (For Manager)
     /// </summary>
     /// <returns>list of products in form of BO.ProductForList?</returns>
-    /// <exception cref="NullReferenceException">Throws exception if one of the products is null</exception>
+    /// <exception cref="BlNullPropertyException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductForList?> GetListedProductsForManager()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
@@ -29,22 +32,23 @@ internal class Product : IProduct
                    Price = doProduct?.Price ?? throw new BlNullPropertyException("Null Product")
                };
     }
+
     /// <summary>
     /// The function brings the list of products from dal and returns it in form of BO.ProductItem? (For Customer) 
     /// </summary>
     /// <returns>list of products in form of BO.ProductItem?</returns>
-    /// <exception cref="NullReferenceException">Throws exception if one of the products is null</exception>
+    /// <exception cref="BlNullPropertyException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductItem?> GetListedProductsForCustomer()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductItem()
                {
                    ID = doProduct?.ID ?? throw new BlNullPropertyException("Null Product"),
-                   Name = doProduct?.Name ?? throw new NullReferenceException("Null Product"),
-                   Category = (BO.Category?)doProduct?.Category ?? throw new NullReferenceException("Null Product"),
-                   Price = doProduct?.Price ?? throw new NullReferenceException("Null Product"),
-                   InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new NullReferenceException("Null Product"),
-                   Amount = doProduct?.InStock ?? throw new NullReferenceException("Null Product")
+                   Name = doProduct?.Name ?? throw new BlNullPropertyException("Null Product"),
+                   Category = (BO.Category?)doProduct?.Category ?? throw new BlNullPropertyException("Null Product"),
+                   Price = doProduct?.Price ?? throw new BlNullPropertyException("Null Product"),
+                   InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BlNullPropertyException("Null Product"),
+                   Amount = doProduct?.InStock ?? throw new BlNullPropertyException("Null Product")
                };
     }
     /// <summary>
@@ -52,6 +56,7 @@ internal class Product : IProduct
     /// </summary>
     /// <param name="productID">The ID of the product to get its details</param>
     /// <returns>BO.Product of the transferred ID </returns>
+    /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.GetById</exception>
     public BO.Product ProductDetailsForManager(int productID)
     {
         try
@@ -68,50 +73,48 @@ internal class Product : IProduct
         }
         catch (DO.DalMissingIdException ex)
         {
-            throw new BO.BlMissingEntityException("Product already exist", ex);
+            throw new BO.BlMissingEntityException("Product doesn't exist", ex);
         }
     }
     /// <summary>
     /// The function gets productID and customer's cart and returns the details of product in form of BO.ProductItem (For Customer)
     /// </summary>
     /// <param name="productID">The ID of the product to get its details</param>
+    /// <param name="c">Customer's cart</param>
     /// <returns></returns>
+    /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.GetById</exception>
     public BO.ProductItem ProductDetailsForCustomer(int productID,BO.Cart c)//ghgjhgj
     {
-        DO.Product doProduct;
-        try 
+      try 
         {
-            doProduct = dal.Product.GetById(productID);
-        }
-        catch(DO.DalDoesNotExistException ex)
-        {
-            throw ex;
-        }
-        int amount;
-        if(c.Items == null) 
-            amount=0;   
-        else
-        {
-            BO.OrderItem boProductItem = c.Items.FirstOrDefault(x => x?.ProductID == productID);
-            if(boProductItem == null)
-            {
+            DO.Product doProduct = dal.Product.GetById(productID);
+            int amount; // Amount of "doProduct" in "c"
+            if (c.Items == null)//If Items of cart isn't initialized
                 amount = 0;
-            }
             else
-                amount = boProductItem.Amount;
+            {
+                BO.OrderItem boProductItem = c.Items.FirstOrDefault(x => x?.ProductID == productID);//Finds the BO.OrderItem which includes "doProduct"
+                if (boProductItem == null)//If "doProduct" isn't in c
+                {
+                    amount = 0;
+                }
+                else //"doProduct" exist in c
+                    amount = boProductItem.Amount;
+            }
+            return new BO.ProductItem()
+            {
+                ID = doProduct.ID,
+                Name = doProduct.Name,
+                Category = (BO.Category)doProduct.Category,
+                Price = doProduct.Price,
+                InStock = doProduct.InStock > 0,
+                Amount = amount
+            };
         }
-        //IEnumerable<BO.OrderItem> items = c.Items?? throw new Exception("Missing items in cart");
-         
-        return new BO.ProductItem()
+        catch (DO.DalMissingIdException ex)
         {
-            ID = doProduct.ID,
-            Name = doProduct.Name,
-            Category = (BO.Category)doProduct.Category,
-            Price = doProduct.Price,
-            InStock = doProduct.InStock > 0,
-            //let a= c.Items.FirstOrDefault(x => x?.ProductID == productID)
-            Amount = amount//boProductItem!=null? boProductItem.Amount:0//c.Items.FirstOrDefault(x => x?.ProductID == productID).Amount
-        };
+            throw new BO.BlMissingEntityException("Product already exist", ex);
+        }
     }
     /// <summary>
     /// Adds product to dal
@@ -119,7 +122,12 @@ internal class Product : IProduct
     /// <param name="boProduct">The product to add</param>
     /// <exception cref="Exception"> Wrong details of boProduct or the product already exists</exception>
     /// 
-     public void AddProduct(BO.Product boProduct)
+    /// <summary>
+    /// Adds product to dal
+    /// </summary>
+    /// <param name="boProduct">The product to add</param>
+    /// <exception cref="Exception"></exception>
+    public void AddProduct(BO.Product boProduct)
     {
         if (boProduct.ID < 0)
             throw new Exception("Negative ID");
