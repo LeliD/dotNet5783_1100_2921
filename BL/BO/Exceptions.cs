@@ -17,9 +17,9 @@ public class BlWrongCategoryException : Exception
     public BlWrongCategoryException(string message) : base(message) { }
 }
 [Serializable]
-public class BlInCorrectDataException : Exception
+public class BlInCorrectDatesException : Exception
 {
-    public BlInCorrectDataException(string message) : base(message) { }
+    public BlInCorrectDatesException(string message) : base(message) { }
 }
 [Serializable]
 public class BlAlreadyExistEntityException : Exception
@@ -38,4 +38,17 @@ public class BlMissingEntityException : Exception
     public override string ToString() =>
         base.ToString() + $"Missing Entity.";
 
+}
+[Serializable]
+public class BlDetailInvalidException : Exception
+{
+    public string DetailName;
+    public BlDetailInvalidException(string name)
+        : base() { DetailName = name; }
+    public BlDetailInvalidException(string name, string massage)
+        : base(massage) { DetailName = name; }
+    public BlDetailInvalidException(string name, string massage, Exception innerException)
+        : base(massage, innerException) { DetailName = name; }
+    public override string ToString() =>
+        $"The field {DetailName} is invalid";
 }
