@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
 using BlApi;
@@ -43,7 +44,7 @@ h: Exit");
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
-                throw new Exception("Wrong input");
+                throw new FormatException("The value must be char");
             try
             {
                 switch (choice)
@@ -68,7 +69,7 @@ h: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
                         Console.WriteLine(bl.Product.ProductDetailsForManager(ID));
                         break;
                     case 'd':
@@ -76,15 +77,15 @@ h: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
-                       Console.WriteLine(bl.Product.ProductDetailsForCustomer(ID,cart));
+                            throw new FormatException("The value must be numeric");
+                        Console.WriteLine(bl.Product.ProductDetailsForCustomer(ID,cart));
                         break;
                     case 'e':
                         Console.WriteLine("Enter ID of product");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
 
                         Console.WriteLine("Enter name of product");
                         name = Console.ReadLine();
@@ -93,19 +94,19 @@ h: Exit");
                         input = Console.ReadLine();
                         check = double.TryParse(input, out price);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be double");
 
                         Console.WriteLine("Enter caterory of product");
                         input = Console.ReadLine();
                         check = Category.TryParse(input, out c);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be category");
 
                         Console.WriteLine("Enter stock of product");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out inStock);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
                         p = new Product() { ID = ID, Name = name, Price = price, Category = c, InStock = inStock };
                         bl.Product.AddProduct(p);
 
@@ -115,7 +116,7 @@ h: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
 
                         Console.WriteLine("Enter name of product");
                         name = Console.ReadLine();
@@ -124,19 +125,19 @@ h: Exit");
                         input = Console.ReadLine();
                         check = double.TryParse(input, out price);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be double");
 
                         Console.WriteLine("Enter caterory of product");
                         input = Console.ReadLine();
                         check = Category.TryParse(input, out c);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be category");
 
                         Console.WriteLine("Enter stock of product");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out inStock);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
 
                         p = new Product() { ID = ID, Name = name, Price = price, Category = c, InStock = inStock };
                         bl.Product.UpdateProduct(p);
@@ -146,13 +147,17 @@ h: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
                         bl.Product.DeleteProduct(ID);
                         break;
                   
                     default:
                         break;
                 }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e);
             }
             catch (Exception e)
             {
@@ -185,7 +190,7 @@ g: Exit");
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
-                throw new Exception("Wrong input");
+                throw new FormatException("The value must be char");
             try
             {
                 switch (choice)
@@ -203,7 +208,7 @@ g: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
                         Console.WriteLine(bl.Order.GetOrderByID(ID));
                         break;
                     case 'c':
@@ -211,7 +216,7 @@ g: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
                         Console.WriteLine(bl.Order.UpdateShipDate(ID));
                         break;
                     case 'd':
@@ -219,7 +224,7 @@ g: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
                         Console.WriteLine(bl.Order.UpdateDeliveryDate(ID));
                         break;
                     case 'e':
@@ -227,7 +232,7 @@ g: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
                         Console.WriteLine(bl.Order.OrderTrack(ID));
                         break;
                     case 'f':
@@ -235,12 +240,16 @@ g: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
-                        bl.Order.UpdateOrder(ID);//to print? void..
+                            throw new FormatException("The value must be numeric");
+                        bl.Order.UpdateOrder(ID);//to print? void..?????????????????////
                         break;
                     default:
                         break;
                 }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e);
             }
             catch (Exception e)
             {
@@ -257,7 +266,7 @@ g: Exit");
     /// </summary>
     /// <param name="orderItem">The function gets bl variable </param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
-    public static void CartFunctions(IBl bl, Cart cart)
+    public static void CartFunctions(IBl bl, ref Cart cart)
     {
         char choice;// the user's choice among the options a,b,c,d
         do
@@ -274,7 +283,7 @@ d: Exit");
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
-                throw new Exception("Wrong input");
+                throw new FormatException("The value must be char");
             try
             {
                 switch (choice)
@@ -284,7 +293,7 @@ d: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
 
                         Console.WriteLine(bl.Cart.AddProductToCart(cart,ID));
 
@@ -294,13 +303,13 @@ d: Exit");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
 
                         Console.WriteLine("Enter amount of product to update in cart");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out amount);
                         if (!check)
-                            throw new Exception("Wrong input");
+                            throw new FormatException("The value must be numeric");
 
                         Console.WriteLine(bl.Cart.UpdateAmountOfProductInCart(cart,ID,amount));
                         break;
@@ -311,6 +320,10 @@ d: Exit");
                     default:
                         break;
                 }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e);
             }
             catch (Exception e)
             {
@@ -339,7 +352,7 @@ d: Exit");
                 input = Console.ReadLine();
                 bool check = int.TryParse(input, out choice);
                 if (!check)
-                    throw new Exception("Wrong input");
+                    throw new FormatException("The value must be numeric");
                 switch (choice)
                 {
                     case 1:
@@ -349,11 +362,15 @@ d: Exit");
                         OrdersFunctions(bl);
                         break;
                     case 3:
-                        CartFunctions(bl,cart);
+                        CartFunctions(bl,ref cart);
                         break;
                     default:
                         break;
                 }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e);
             }
             catch (Exception e)
             {
