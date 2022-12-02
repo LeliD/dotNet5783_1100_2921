@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using BlApi;
+using BO;
 //using BO;
 using DO;
 
@@ -17,66 +18,80 @@ internal class Order: IOrder
     /// Dal variable
     /// </summary>
     DalApi.IDal dal = new Dal.DalList();
+
+
     /// <summary>
-    /// Returns the details of order by it's ID 
+    /// The function gets orderID and returns the details of order  by it's ID  in form of BO.order
+    /// </summary>
+    /// <param name="orderID">The ID of the order to get its details</param>
+    /// <returns>BO.order of the transferred ID</returns>
+    /// <exception cref="BlDetailInvalidException">Throws exception if orderID is negative</exception>
+    /// <exception cref="BlNullPropertyException">Throws exception if one of the orders is null</exception>
+    /// <exception cref="BO.BlMissingEntityException">Throws exception of the dal function GetById</exception>
+    public BO.Order GetOrderByID(int orderID)
+    {
+        try
+        {
+
+            if (orderID < 0) //if orderID is negative-invalid 
+                throw new BlDetailInvalidException("ID");
+            DO.Order doOrder = dal.Order.GetById(orderID); //gets the order from dal
+            IEnumerable<DO.OrderItem?> doOrderItems = dal.OrderItem.GetItemsInOrder(orderID);
+            var boOrderItems = from item in doOrderItems
+                               select new BO.OrderItem()
+                               {
+                                   ID = item?.ID ?? throw new BlNullPropertyException("Null order"),
+                                   Name = dal.Product.GetById(item?.ProductID ?? throw new BlNullPropertyException("Null order")).Name,//jjijiijjjjjjjjjjjj
+                                   ProductID = item?.ProductID ?? throw new BlNullPropertyException("Null order"),
+                                   Price = item?.Price ?? throw new BlNullPropertyException("Null order"),
+                                   Amount = item?.Amount ?? throw new BlNullPropertyException("Null order"),
+                                   TotalPrice = (item?.Price ?? throw new BlNullPropertyException("Null order")) * (item?.Amount ?? throw new BlNullPropertyException("Null order"))
+                               };
+            return new BO.Order()
+            {
+                ID = doOrder.ID,
+                CustomerName = doOrder.CustomerName,
+                CustomerEmail = doOrder.CustomerEmail,
+                CustomerAddress = doOrder.CustomerAddress,
+                Status = orderStatus(doOrder),
+                OrderDate = doOrder.OrderDate,
+                ShipDate = doOrder.ShipDate,
+                DeliveryDate = doOrder.DeliveryDate,
+                Items = boOrderItems,
+                TotalPrice = boOrderItems.Sum(x => x?.TotalPrice ?? throw new BlNullPropertyException("Null order"))
+            };
+        }
+        catch (DO.DalMissingIdException ex)
+        {
+            throw new BO.BlMissingEntityException("doen't exist", ex);
+        }
+
+     
+    }
+
+    /// <summary>
+    ///  The function brings the list of orders from dal and returns it in form of BO.OrderForList? (For Manager)
+    /// </summary>
+    /// <returns>list of products in form of BO.ProductForList?</returns>
+    /// <exception cref="BlNullPropertyException">Throws exception if one of the orders is null</exception>
+    public IEnumerable<BO.OrderForList?> GetOrdersForManager()
+    {
+        var listOfOrders = from item in dal.Order.GetAll()
+                           select new BO.OrderForList()
+                           {
+                               ID = item?.ID ?? throw new BlNullPropertyException("Null order"),
+                               CustomerName = item?.CustomerName,
+                               Status = orderStatus(item),
+                               AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BlNullPropertyException("Null order")).Count()//x is OrderItem?
+                           };
+        return listOfOrders;
+    }
+    /// <summary>
+    /// 
     /// </summary>
     /// <param name="orderID"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    public BO.Order GetOrderByID(int orderID)
-    {
-        DO.Order doOrder;
-        if (orderID < 0)
-            throw new Exception("Wrong (Negative) ID");
-        try
-        {
-            doOrder = dal.Order.GetById(orderID);
-        }
-        catch (DO.DalDoesNotExistException ex)
-        {
-            throw ex;
-        }
-        IEnumerable<DO.OrderItem?> doOrderItems = dal.OrderItem.GetItemsInOrder(orderID);
-        var boOrderItems = from item in doOrderItems
-                select new BO.OrderItem()
-                {
-                    ID = item?.ID ?? throw new Exception("Missing ID"),
-                    Name = dal.Product.GetById(item?.ProductID ?? throw new Exception("Missing Product ID")).Name,//?try?fgfggggghghghghfhf
-                    ProductID = item?.ProductID ?? throw new Exception("Missing Product ID"),
-                    Price = item?.Price ?? throw new Exception("Missing Price"),
-                    Amount = item?.Amount ?? throw new Exception("Missing Price"),
-                    TotalPrice = (item?.Price ?? throw new Exception("Missing Price")) * (item?.Amount ?? throw new Exception("Missing Price"))
-                };
-        return new BO.Order()
-        {
-            ID = doOrder.ID,
-            CustomerName = doOrder.CustomerName,
-            CustomerEmail = doOrder.CustomerEmail,
-            CustomerAddress = doOrder.CustomerAddress,
-            Status = orderStatus(doOrder),
-            OrderDate = doOrder.OrderDate,
-            ShipDate = doOrder.ShipDate,
-            DeliveryDate = doOrder.DeliveryDate,
-            Items = boOrderItems,
-            TotalPrice = boOrderItems.Sum(x => x?.TotalPrice ?? throw new Exception("Missing Price"))
-        };
-        //throw new NotImplementedException();
-    }
-
-    public IEnumerable<BO.OrderForList?> GetOrdersForManager()
-    {
-        var listOfOrders = from item in dal.Order.GetAll()
-                    //let a = dal.OrderItem.GetItemsInOrder((int)item?.ID)
-                select new BO.OrderForList()
-                {
-                    ID = item?.ID ?? throw new NullReferenceException("Missing ID"),
-                    CustomerName = item?.CustomerName,
-                    Status = orderStatus(item),
-                    AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new NullReferenceException("Missing ID")).Count()//x is OrderItem?
-                };
-        return listOfOrders;
-    }
-
     public BO.OrderTracking OrderTrack(int orderID)
     {
         DO.Order doOrder;
@@ -84,18 +99,18 @@ internal class Order: IOrder
         {
             doOrder = dal.Order.GetById(orderID);
         }
-        catch (DO.DalDoesNotExistException ex)
+        catch (DO.DalMissingIdException ex)
         {
-            throw ex;
+            throw new BO.BlMissingEntityException("doen't exist", ex);
         }
         List<Tuple<DateTime, string>>? tracking = new List<Tuple<DateTime, string>>();
         if (doOrder.OrderDate != null)
         {
-            tracking.Add(new Tuple<DateTime, string>(doOrder.OrderDate ?? throw new Exception("There is no order date"), "Ordered"));
+            tracking.Add(new Tuple<DateTime, string>(doOrder.OrderDate ?? throw new BlInCorrectDatesException("order date is null"), "Ordered"));
         }
         if (doOrder.ShipDate != null)
         {
-            tracking.Add(new Tuple<DateTime, string>(doOrder.ShipDate ?? throw new Exception("There is no ship date"),"Shipped"));
+            tracking.Add(new Tuple<DateTime, string>(doOrder.ShipDate ?? throw new BlNullPropertyException("There is no ship date"),"Shipped"));
         }
         if (doOrder.DeliveryDate != null)
         {
@@ -113,30 +128,25 @@ internal class Order: IOrder
 
     public BO.Order UpdateDeliveryDate(int orderID)
     {
-        DO.Order doOrder;
         try
         {
-            doOrder = dal.Order.GetById(orderID);
-        }
-        catch (DO.DalDoesNotExistException ex)
-        {
-            throw ex;
-        }
-        if (doOrder.ShipDate == null)
-            throw new Exception("ShipDateDoesn'tExist");
+            DO.Order doOrder = dal.Order.GetById(orderID);
 
-        if (doOrder.DeliveryDate != null)
-            throw new Exception("DeliveryDateAlreadyExist");
+            if (doOrder.ShipDate == null)
+                throw new BlInCorrectDatesException("ShipDate Doesn't Exist");
 
-        doOrder.DeliveryDate = DateTime.Now;
-        dal.Order.Update(doOrder);
-        try
-        {
+            if (doOrder.DeliveryDate != null)
+                throw new BlInCorrectDatesException("DeliveryDate Already Exist");
+
+            doOrder.DeliveryDate = DateTime.Now;
+            dal.Order.Update(doOrder);
+
             return this.GetOrderByID(orderID);
+
         }
-        catch (BO.DalDoesNotExistException ex)
+        catch (DO.DalMissingIdException ex)
         {
-            throw ex;
+            throw new BO.BlMissingEntityException("doen't exist", ex);
         }
 
     }
@@ -174,6 +184,11 @@ internal class Order: IOrder
         return this.GetOrderByID(orderID);
 
     }
+    /// <summary>
+    /// The function returns the status of its order
+    /// </summary>
+    /// <param name="doOrder">The order to get its sataus</param>
+    /// <returns>BO.OrderStatus</returns>
     private BO.OrderStatus orderStatus(DO.Order? doOrder)
     {
         if (doOrder?.DeliveryDate == null && doOrder?.OrderDate == null && doOrder?.ShipDate == null)
