@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
-using BO;
+
 
 namespace BlImplementation;
 
@@ -26,10 +26,10 @@ internal class Product : IProduct
         return from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductForList()
                {
-                   ID = doProduct?.ID ?? throw new BlNullPropertyException("Null Product"),
-                   Name = doProduct?.Name ?? throw new BlNullPropertyException("Null Product"),
-                   Category = (BO.Category?)doProduct?.Category ?? throw new BlNullPropertyException("Null Product"),
-                   Price = doProduct?.Price ?? throw new BlNullPropertyException("Null Product")
+                   ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
+                   Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
+                   Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
+                   Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product")
                };
     }
 
@@ -43,12 +43,12 @@ internal class Product : IProduct
         return from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductItem()
                {
-                   ID = doProduct?.ID ?? throw new BlNullPropertyException("Null Product"),
-                   Name = doProduct?.Name ?? throw new BlNullPropertyException("Null Product"),
-                   Category = (BO.Category?)doProduct?.Category ?? throw new BlNullPropertyException("Null Product"),
-                   Price = doProduct?.Price ?? throw new BlNullPropertyException("Null Product"),
-                   InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BlNullPropertyException("Null Product"),
-                   Amount = doProduct?.InStock ?? throw new BlNullPropertyException("Null Product")
+                   ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
+                   Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
+                   Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
+                   Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
+                   InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
+                   Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product")
                };
     }
     /// <summary>
@@ -113,31 +113,25 @@ internal class Product : IProduct
         }
         catch (DO.DalMissingIdException ex)
         {
-            throw new BO.BlMissingEntityException("Product already exist", ex);
+            throw new BO.BlMissingEntityException("Product doesn't exist", ex);
         }
     }
     /// <summary>
     /// Adds product to dal
     /// </summary>
     /// <param name="boProduct">The product to add</param>
-    /// <exception cref="Exception"> Wrong details of boProduct or the product already exists</exception>
-    /// 
-    /// <summary>
-    /// Adds product to dal
-    /// </summary>
-    /// <param name="boProduct">The product to add</param>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="BO.BlDetailInvalidException">Wrong details of boProduct</exception>
+    /// <exception cref="BO.BlAlreadyExistEntityException">Catches and Throws exception of DO.Add in case the product to add already exists</exception>
     public void AddProduct(BO.Product boProduct)
     {
         if (boProduct.ID < 0)
-            throw new Exception("Negative ID");
-        if(boProduct.Name == "")//??nul
-            throw new Exception("Missing Name");
-        if (boProduct.Price <=0)
-            throw new Exception("Negative price");
-        if(boProduct.InStock<0)
-            throw new Exception("Negative amount in stock");
-
+            throw new BO.BlDetailInvalidException("ID", "Negative ID");
+        if (boProduct == null || boProduct.Name == "")
+            throw new BO.BlDetailInvalidException("ID", "Name is empty");
+        if (boProduct.Price <= 0)
+            throw new BO.BlDetailInvalidException("Price", "Negative Price");
+        if (boProduct.InStock < 0)
+            throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
         try
         {
             dal.Product.Add(new DO.Product()
@@ -149,47 +143,47 @@ internal class Product : IProduct
                 InStock = boProduct.InStock
             });
         }
-        catch(DO.DalAlreadyExistsException ex)
+        catch(DO.DalAlreadyExistIdException ex)
         {
-            throw ex;
+            throw new BO.BlAlreadyExistEntityException("Product already exist", ex);
         }
     }
     /// <summary>
     /// Delete Product from dal by its ID if it doesn't appear in orders. Otherwize, throws exceptions.
     /// </summary>
-    /// <param name="productID">The id of product to delete</param>
-    /// <exception cref="Exception">In case the product appear in orders or doesn't exist at all </exception>
+    /// <param name="productID">The product to delete</param>
+    /// <exception cref="BO.BlAlreadyExistEntityException">Throws if orders of this product exist</exception>
+    /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.Add in case the product to delete is missing</exception>
     public void DeleteProduct(int productID)
     {
-        if(dal.OrderItem.GetAll(x=>x?.ID== productID).Count()!=0)
-            throw new Exception("Product exists in one or more orders");
-
+        if (dal.OrderItem.GetAll(x => x?.ID == productID).Count() != 0)
+            throw new BO.BlAlreadyExistEntityException("Product exists in one or more orders");
         try
         {
             dal.Product.Delete(productID);
         }
-        catch (DO.DalDoesNotExistException ex)
+        catch (DO.DalMissingIdException ex)
         {
-            throw ex;
+            throw new BO.BlMissingEntityException("Product doesn't exist", ex);
         }
-
     }
     /// <summary>
-    /// Update product in dal by getting BO.Product
+    /// Updates product in dal by getting BO.Product
     /// </summary>
     /// <param name="boProduct">product to update</param>
-    /// <exception cref="Exception">Throw exceptions either the details of product aren't correct or the product doesn't exist at all</exception>
+    /// <exception cref="BO.BlDetailInvalidException">Wrong details of boProduct</exception>
+    /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.Update in case the product to update is missing</exception>
     public void UpdateProduct(BO.Product boProduct)
     {
+        
         if (boProduct.ID < 0)
-            throw new Exception("Negative ID");
-        if (boProduct.Name == "")//??nul
-            throw new Exception("Missing Name");
+            throw new BO.BlDetailInvalidException("ID", "Negative ID");
+        if (boProduct == null || boProduct.Name == "")
+            throw new BO.BlDetailInvalidException("ID", "Name is empty");
         if (boProduct.Price <= 0)
-            throw new Exception("Negative price");
+            throw new BO.BlDetailInvalidException("Price", "Negative Price");
         if (boProduct.InStock < 0)
-            throw new Exception("Negative amount in stock");
-
+            throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
         try
         {
             dal.Product.Update(new DO.Product()
@@ -201,9 +195,9 @@ internal class Product : IProduct
                 InStock = boProduct.InStock
             });
         }
-        catch (DO.DalDoesNotExistException ex)
+        catch (DO.DalMissingIdException ex)
         {
-            throw ex;
+            throw new BO.BlMissingEntityException("Product doesn't exist", ex);
         }
     }
 }

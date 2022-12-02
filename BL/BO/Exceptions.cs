@@ -25,6 +25,8 @@ public class BlInCorrectDatesException : Exception
 public class BlAlreadyExistEntityException : Exception
 {
     public BlAlreadyExistEntityException(string message,Exception innerException) : base(message, innerException) { }
+    public BlAlreadyExistEntityException(string message)
+        : base(message) { }
 
     public override string ToString()=>
         base.ToString()+$"Entity already exists.";
