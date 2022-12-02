@@ -74,7 +74,7 @@ internal class DalOrderItem : IOrderItem
     /// <param name="orderID of order item"></param>
     /// <returns>returns order item</returns>
     /// <exception cref="Exception">Throw exception if order item doesn't exist</exception>
-    public OrderItem GetBy2Identifiers(int productID, int orderID)//לשאולללללללללל
+    public OrderItem GetBy2Identifiers(int productID, int orderID)//לשאולללללללללל לגבי זריקת חריגה נכונה
     {
         OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID)?? throw new DalMissingIdException(orderID, "OrderItem");
         return orderItem;
@@ -84,7 +84,7 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="orderId of order items "></param>
     /// <returns>return list of order items of the order</returns>
-    public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)//לשאוללללל
+    public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)//לשאוללללל לגבי אם מספר הזמנה לא נמצא
     {
         return DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
     }

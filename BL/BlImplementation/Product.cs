@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using BO;
 
 namespace BlImplementation;
 
@@ -13,60 +14,67 @@ internal class Product : IProduct
 {
     DalApi.IDal dal = new Dal.DalList();
     /// <summary>
-    /// The function returns the list of profucts for ProductForList
+    /// The function brings the list of products from dal and returns it in form of BO.ProductForList? (For Manager)
     /// </summary>
-    /// <returns>BO.ProductForList?</returns>
-    /// <exception cref="NullReferenceException"></exception>
+    /// <returns>list of products in form of BO.ProductForList?</returns>
+    /// <exception cref="NullReferenceException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductForList?> GetListedProductsForManager()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductForList()
                {
-                   ID = doProduct?.ID ?? throw new NullReferenceException("Missing ID"),
-                   Name = doProduct?.Name ?? throw new NullReferenceException("Missing Name"),
-                   Category = (BO.Category?)doProduct?.Category ?? throw new NullReferenceException("Missing Category"),
-                   Price = doProduct?.Price ?? 0
+                   ID = doProduct?.ID ?? throw new BlNullPropertyException("Null Product"),
+                   Name = doProduct?.Name ?? throw new BlNullPropertyException("Null Product"),
+                   Category = (BO.Category?)doProduct?.Category ?? throw new BlNullPropertyException("Null Product"),
+                   Price = doProduct?.Price ?? throw new BlNullPropertyException("Null Product")
                };
     }
     /// <summary>
-    /// The function returns the list of profucts for ProductItem
+    /// The function brings the list of products from dal and returns it in form of BO.ProductItem? (For Customer) 
     /// </summary>
-    /// <returns>BO.ProductItem?</returns>
-    /// <exception cref="NullReferenceException"></exception>
+    /// <returns>list of products in form of BO.ProductItem?</returns>
+    /// <exception cref="NullReferenceException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductItem?> GetListedProductsForCustomer()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductItem()
                {
-                   ID = doProduct?.ID ?? throw new NullReferenceException("Missing ID"),
-                   Name = doProduct?.Name ?? throw new NullReferenceException("Missing Name"),
-                   Category = (BO.Category?)doProduct?.Category ?? throw new NullReferenceException("Missing Category"),
-                   Price = doProduct?.Price ?? 0,
-                   InStock = doProduct?.InStock > 0 ? true : false,
-                   Amount = doProduct?.InStock ?? throw new NullReferenceException("Missing InStock")
+                   ID = doProduct?.ID ?? throw new BlNullPropertyException("Null Product"),
+                   Name = doProduct?.Name ?? throw new NullReferenceException("Null Product"),
+                   Category = (BO.Category?)doProduct?.Category ?? throw new NullReferenceException("Null Product"),
+                   Price = doProduct?.Price ?? throw new NullReferenceException("Null Product"),
+                   InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new NullReferenceException("Null Product"),
+                   Amount = doProduct?.InStock ?? throw new NullReferenceException("Null Product")
                };
     }
     /// <summary>
-    /// Returns the details of product by it's ID for manager
+    /// The function gets productID and returns the details of product in form of BO.Product (For Manager)
     /// </summary>
-    /// <param name="productID">The id of the product to get its details</param>
-    /// <returns>BO.Product</returns>
+    /// <param name="productID">The ID of the product to get its details</param>
+    /// <returns>BO.Product of the transferred ID </returns>
     public BO.Product ProductDetailsForManager(int productID)
     {
-        DO.Product doProduct = dal.Product.GetById(productID);
-        return new BO.Product()
+        try
         {
-            ID = doProduct.ID,
-            Name = doProduct.Name,
-            Category = (BO.Category)doProduct.Category,
-            Price = doProduct.Price,
-            InStock = doProduct.InStock
-        };
+            DO.Product doProduct = dal.Product.GetById(productID);
+            return new BO.Product()
+            {
+                ID = doProduct.ID,
+                Name = doProduct.Name,
+                Category = (BO.Category)doProduct.Category,
+                Price = doProduct.Price,
+                InStock = doProduct.InStock
+            };
+        }
+        catch (DO.DalMissingIdException ex)
+        {
+            throw new BO.BlMissingEntityException("Product already exist", ex);
+        }
     }
     /// <summary>
-    /// Returns the details of product by it's ID for customer
+    /// The function gets productID and customer's cart and returns the details of product in form of BO.ProductItem (For Customer)
     /// </summary>
-    /// <param name="productID">The id of the product to get its details</param>
+    /// <param name="productID">The ID of the product to get its details</param>
     /// <returns></returns>
     public BO.ProductItem ProductDetailsForCustomer(int productID,BO.Cart c)//ghgjhgj
     {
