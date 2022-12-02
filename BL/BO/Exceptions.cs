@@ -56,3 +56,16 @@ public class BlDetailInvalidException : Exception
     public override string ToString() =>
         $"The field {DetailName} is invalid";
 }
+[Serializable]
+public class BlOutOfStockException : Exception
+{
+    public int ProductID;
+    public string ProductName;
+    public BlOutOfStockException(int id, string name)
+        : base() { ProductID = id; ProductName = name; }
+    public BlOutOfStockException(int id, string name, string massage)
+        : base(massage) { ProductID = id; ProductName = name; }
+    
+    public override string ToString() =>
+        $"ProductName: {ProductName} ProductID:{ProductID}, is out of stock.";
+}
