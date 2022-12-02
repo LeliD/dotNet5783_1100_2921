@@ -13,6 +13,9 @@ namespace BlImplementation;
 
 internal class Order: IOrder
 {
+    /// <summary>
+    /// Dal variable
+    /// </summary>
     DalApi.IDal dal = new Dal.DalList();
     /// <summary>
     /// Returns the details of order by it's ID 
