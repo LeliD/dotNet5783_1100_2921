@@ -67,5 +67,5 @@ public class BlOutOfStockException : Exception
         : base(massage) { ProductID = id; ProductName = name; }
     
     public override string ToString() =>
-        $"ProductName: {ProductName} ProductID:{ProductID}, is out of stock.";
+        $"Product Name: {ProductName} ID: {ProductID}, is out of stock.";
 }

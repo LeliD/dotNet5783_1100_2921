@@ -18,7 +18,7 @@ public class Program
     /// <param name="bl">The function gets bl variable</param>
     /// <exception cref="Exception">Throw exception if there is a wrong input</exception>
 
-    public static void ProductsFunctions(IBl bl)
+    public static void ProductsFunctions(IBl bl, ref Cart cart)
     {
         char choice;// the user's choice among the options a,b,c,d,e,f,g,h
         do
@@ -39,7 +39,7 @@ h: Exit");
             string input; //user's input
             bool check;  //check if the input is correct
             Product p;
-            Cart cart = new Cart() { CustomerName = "", CustomerEmail = "", CustomerAddress = "", TotalPrice = 0, Items = new List<OrderItem>() };
+            //Cart cart = new Cart() { CustomerName = "", CustomerEmail = "", CustomerAddress = "", TotalPrice = 0, Items = new List<OrderItem>() };
 
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
@@ -259,8 +259,6 @@ g: Exit");
         while (choice != 'g');
 
     }
-
-
     /// <summary>
     /// Enables the user to use functions of cart
     /// </summary>
@@ -338,13 +336,13 @@ d: Exit");
     /// Enables the user to use functions of products, orders and orderItems 
     /// </summary>
     /// <param name="args"></param>
-    /// <exception cref="Exception"> Throw exception when the choice isn't one of the followings: 1,2,3,4 </exception>
+    /// <exception cref="Exception"> Throw exception when the user's choice isn't one of the followings: 1,2,3,4 </exception>
     static void Main(string[] args)
     {
         IBl bl = new Bl();
         string input;
         int choice = 0;
-        Cart cart = new Cart() { CustomerName = "Tovi", CustomerEmail = "Tovi@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0, Items = new List<OrderItem>() };
+        Cart cart = new Cart() { CustomerName = "Tovi", CustomerEmail = "Tovi@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0};
         do
         {
             try
@@ -357,7 +355,7 @@ d: Exit");
                 switch (choice)
                 {
                     case 1:
-                        ProductsFunctions(bl);
+                        ProductsFunctions(bl, ref cart);
                         break;
                     case 2:
                         OrdersFunctions(bl);
