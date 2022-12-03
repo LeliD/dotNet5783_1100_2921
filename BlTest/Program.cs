@@ -39,8 +39,6 @@ h: Exit");
             string input; //user's input
             bool check;  //check if the input is correct
             Product p;
-            //Cart cart = new Cart() { CustomerName = "", CustomerEmail = "", CustomerAddress = "", TotalPrice = 0, Items = new List<OrderItem>() };
-
             input = Console.ReadLine();
             check = Char.TryParse(input, out choice);
             if (!check)
