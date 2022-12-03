@@ -143,7 +143,7 @@ h: Exit");
                         bl.Product.UpdateProduct(p);
                         break;
                     case 'g':
-                        Console.WriteLine("Enter ID of product to get its details (for manager)");
+                        Console.WriteLine("Enter ID of product to delete");
                         input = Console.ReadLine();
                         check = int.TryParse(input, out ID);
                         if (!check)
@@ -196,7 +196,6 @@ g: Exit");
                 switch (choice)
                 {
                     case 'a':
-
                         foreach (var item in bl.Order.GetOrdersForManager())
                         {
                             Console.WriteLine(item);
@@ -342,7 +341,7 @@ d: Exit");
         IBl bl = new Bl();
         string input;
         int choice = 0;
-        Cart cart = new Cart() { CustomerName = "Tovi", CustomerEmail = "Tovi@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0};
+        Cart cart = new Cart() { CustomerName = "Shilat", CustomerEmail = "Shilat@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0};
         do
         {
             try

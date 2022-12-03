@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO;
 [Serializable]
-public class DalMissingIdException : Exception 
+public class DalMissingIdException : Exception
 {
     public int EntityID;
     public string EntityName;
@@ -16,8 +16,10 @@ public class DalMissingIdException : Exception
         : base(message) { EntityID = id; EntityName = name; }
     public DalMissingIdException(int id, string name, string message, Exception innerException)
         : base(message, innerException) { EntityID = id; EntityName = name; }
-    public override string ToString() =>
-        $"Id: {EntityID} of type {EntityName}, doesn't exist.";
+    public override string ToString()=> {
+        if(EntityID==-1)
+            return 
+        $"Id: {EntityID} of type {EntityName}, doesn't exist.";}
 }
 [Serializable]
 public class DalAlreadyExistIdException : Exception

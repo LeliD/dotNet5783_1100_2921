@@ -33,7 +33,7 @@ internal class Cart : ICart
         }
         catch (DO.DalMissingIdException ex)
         {
-            throw new BO.BlMissingEntityException("product doen't exist", ex);
+            throw new BO.BlMissingEntityException("Product doesn't exist", ex);
         }
 
         if (doProduct.InStock == 0) //If product is out of Stock
@@ -143,7 +143,7 @@ internal class Cart : ICart
         }
         catch (DO.DalMissingIdException ex)
         {
-            throw new BO.BlMissingEntityException("product doen't exist", ex);
+            throw new BO.BlMissingEntityException("Product doesn't exist", ex);
         }
 
         double oldTotalPriceOfItem = boOrderItem.TotalPrice;//the total price of order item before the change 

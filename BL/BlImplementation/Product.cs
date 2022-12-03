@@ -132,6 +132,9 @@ internal class Product : IProduct
             throw new BO.BlDetailInvalidException("Price", "Negative Price");
         if (boProduct.InStock < 0)
             throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
+        if (boProduct.Category != BO.Category.A & boProduct.Category != BO.Category.B & boProduct.Category != BO.Category.C & boProduct.Category != BO.Category.D)
+            throw new BO.BlWrongCategoryException("Wrong Category");
+
         try
         {
             dal.Product.Add(new DO.Product()
@@ -156,7 +159,7 @@ internal class Product : IProduct
     /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.Add in case the product to delete is missing</exception>
     public void DeleteProduct(int productID)
     {
-        if (dal.OrderItem.GetAll(x => x?.ID == productID).Count() != 0)
+        if (dal.OrderItem.GetAll(x => x?.ProductID == productID).Count() != 0)
             throw new BO.BlAlreadyExistEntityException("Product exists in one or more orders");
         try
         {
@@ -184,6 +187,8 @@ internal class Product : IProduct
             throw new BO.BlDetailInvalidException("Price", "Negative Price");
         if (boProduct.InStock < 0)
             throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
+        if (boProduct.Category != BO.Category.A & boProduct.Category != BO.Category.B & boProduct.Category != BO.Category.C & boProduct.Category != BO.Category.D)
+            throw new BO.BlWrongCategoryException("Wrong Category");
         try
         {
             dal.Product.Update(new DO.Product()

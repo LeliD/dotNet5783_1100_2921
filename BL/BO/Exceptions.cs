@@ -57,6 +57,7 @@ public class BlDetailInvalidException : Exception
         $"The field {DetailName} is invalid";
 }
 [Serializable]
+
 public class BlOutOfStockException : Exception
 {
     public int ProductID;
