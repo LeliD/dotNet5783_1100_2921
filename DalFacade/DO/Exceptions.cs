@@ -16,10 +16,12 @@ public class DalMissingIdException : Exception
         : base(message) { EntityID = id; EntityName = name; }
     public DalMissingIdException(int id, string name, string message, Exception innerException)
         : base(message, innerException) { EntityID = id; EntityName = name; }
-    public override string ToString()=> {
-        if(EntityID==-1)
-            return 
-        $"Id: {EntityID} of type {EntityName}, doesn't exist.";}
+    public override string ToString()
+    {
+        if (EntityID == -1)
+            return "ID of product doesn't exist in the order";
+        return $"Id: {EntityID} of type {EntityName}, doesn't exist.";
+    }
 }
 [Serializable]
 public class DalAlreadyExistIdException : Exception
