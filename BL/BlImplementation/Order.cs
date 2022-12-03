@@ -79,7 +79,8 @@ internal class Order: IOrder
                                ID = item?.ID ?? throw new BO.BlNullPropertyException("Null order"),
                                CustomerName = item?.CustomerName,
                                Status = orderStatus(item),
-                               AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Count()
+                               AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Count(),
+                               TotalPrice= (double)dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Sum(x=>x?.Price * x?.Amount)
                            };
         return listOfOrders;
     }
