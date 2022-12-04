@@ -153,6 +153,26 @@ h: Exit");
                         break;
                 }
             }
+            catch (BO.BlNullPropertyException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlMissingEntityException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlWrongCategoryException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlAlreadyExistEntityException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlDetailInvalidException e)
+            {
+                Console.WriteLine(e);
+            }
             catch (FormatException e)
             {
                 Console.WriteLine(e);
@@ -244,6 +264,22 @@ g: Exit");
                         break;
                 }
             }
+            catch (BO.BlInCorrectDatesException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlMissingEntityException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlNullPropertyException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlDetailInvalidException e)
+            {
+                Console.WriteLine(e);
+            }
             catch (FormatException e)
             {
                 Console.WriteLine(e);
@@ -310,12 +346,28 @@ d: Exit");
                         break;
                     case 'c':
                         bl.Cart.MakeOrder(cart);
-                        cart=new Cart();
+                        cart=new Cart() { CustomerName = "Shilat", CustomerEmail = "Shilat@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0 };
                         break;
                     
                     default:
                         break;
                 }
+            }
+            catch (BO.BlNullPropertyException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlDetailInvalidException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlMissingEntityException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (BO.BlOutOfStockException e)
+            {
+                Console.WriteLine(e);
             }
             catch (FormatException e)
             {

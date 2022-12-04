@@ -20,7 +20,7 @@ internal class Product : IProduct
     /// The function brings the list of products from dal and returns it in form of BO.ProductForList? (For Manager)
     /// </summary>
     /// <returns>list of products in form of BO.ProductForList?</returns>
-    /// <exception cref="BlNullPropertyException">Throws exception if one of the products is null</exception>
+    /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductForList?> GetListedProductsForManager()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
@@ -37,7 +37,7 @@ internal class Product : IProduct
     /// The function brings the list of products from dal and returns it in form of BO.ProductItem? (For Customer) 
     /// </summary>
     /// <returns>list of products in form of BO.ProductItem?</returns>
-    /// <exception cref="BlNullPropertyException">Throws exception if one of the products is null</exception>
+    /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductItem?> GetListedProductsForCustomer()
     {
         return from DO.Product? doProduct in dal.Product.GetAll()
@@ -122,6 +122,8 @@ internal class Product : IProduct
     /// <param name="boProduct">The product to add</param>
     /// <exception cref="BO.BlDetailInvalidException">Wrong details of boProduct</exception>
     /// <exception cref="BO.BlAlreadyExistEntityException">Catches and Throws exception of DO.Add in case the product to add already exists</exception>
+    /// <exception cref ="BO.BlWrongCategoryException" >Throws exception if categiry isn't correct</ exception >
+
     public void AddProduct(BO.Product boProduct)
     {
         if (boProduct.ID < 0)

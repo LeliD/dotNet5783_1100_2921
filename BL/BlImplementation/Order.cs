@@ -22,8 +22,8 @@ internal class Order: IOrder
     /// </summary>
     /// <param name="orderID">The ID of the order to get its details</param>
     /// <returns>BO.order of the transferred ID</returns>
-    /// <exception cref="BlDetailInvalidException">Throws exception if orderID is negative</exception>
-    /// <exception cref="BlNullPropertyException">Throws exception if one of the orders is null</exception>
+    /// <exception cref="BO.BlDetailInvalidException">Throws exception if orderID is negative</exception>
+    /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the orders is null</exception>
     /// <exception cref="BO.BlMissingEntityException">Throws exception of the dal function GetById</exception>
     public BO.Order GetOrderByID(int orderID)
     {
@@ -80,7 +80,7 @@ internal class Order: IOrder
                                CustomerName = item?.CustomerName,
                                Status = orderStatus(item),
                                AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Count(),
-                               TotalPrice= (double)dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Sum(x=>x?.Price * x?.Amount)
+                               TotalPrice= dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Sum(x=>x?.Price * x?.Amount)?? throw new BO.BlNullPropertyException("Null Price")
                            };
         return listOfOrders;
     }
