@@ -67,14 +67,33 @@ internal static class DataSource
     /// </summary>
     private static void createAndInitProducts()
     {
-        
-        string[] namesOfProducts = new string[] {"aa","bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj" };//An array of products' names
-      
-        for (int i = 0; i < 9; i++)
+        //Arrays of products' names
+        string[] kitchenProducts = new string[] {"SCREW TOP GLASS JAR","WOODEN SUGAR BOWL", "MARBLE CUTTING BOARD","COPPER AND BRASS POT WITH LID","SET OF ACACIA WOOD KITCHEN UTENSILS"};//An array of products' names
+        string[] bathroomProducts = new string[] { "COTTON BATHROBE WITH HOOD", "HIGH QUALITY COTTON TOWEL", "FOLDABLE LAUNDRY BASKET" };//An array of products' names
+        string[] livingRoomProducts = new string[] { "SQUARE RATTAN BASKET", "VINTAGE RUG","SMALL STOOL" };//An array of products' names
+        string[] bedRoomProducts = new string[] { "WOOL BLANKET", "CHENILLE BLANKET", "LINEN CURTAIN", "COTTON TERRY CUSHION COVER", "COTTON PERCALE DUVET COVER" };//An array of products' names
+        string[] kidsProducts = new string[] { "BUNNY SOFT TOY","TRIPLE SHELF" ,"BEAR WOODEN CHAIR" };//An array of products' names
+        for (int i = 0; i < 5; i++) //kitchenProducts
         {
-            ProductsList.Add(new Product() { ID = 100000 + i , Category= (Category)(s_rand.Next(4)), InStock= s_rand.Next(1,50), Price= s_rand.Next(200) , Name= namesOfProducts[i] }) ;
+            ProductsList.Add(new Product() { ID = 100000 + i , Category= Category.KITCHEN, InStock= s_rand.Next(1,50), Price= s_rand.Next(100,200) , Name= kitchenProducts[i] }) ;
         }
-        ProductsList.Add(new Product() { ID = 100000 + 9, Category = (Category)(s_rand.Next(4)), InStock = 0, Price = s_rand.Next(200), Name = namesOfProducts[9] });//The tenth product is initialized in 0 in "InStock" property
+        for (int i = 0; i < 3; i++) //bathroomProducts
+        {
+            ProductsList.Add(new Product() { ID = 100005 + i, Category = Category.BATHROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = bathroomProducts[i] });
+        }
+        for (int i = 0; i < 3; i++) //livingRoomProducts
+        {
+            ProductsList.Add(new Product() { ID = 100008 + i, Category = Category.LIVING_ROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = livingRoomProducts[i] });
+        }
+        for (int i = 0; i < 5; i++)//bedRoomProducts
+        {
+            ProductsList.Add(new Product() { ID = 100011 + i, Category = Category.BEDROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = bedRoomProducts[i] });
+        }
+        for (int i = 0; i < 2; i++)//kidsProducts
+        {
+            ProductsList.Add(new Product() { ID = 100016 + i, Category = Category.KIDS, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = kidsProducts[i] });
+        }
+        ProductsList.Add(new Product() { ID = 100018, Category = Category.KIDS, InStock = 0, Price = s_rand.Next(200), Name = kidsProducts[2] });//The last product is initialized in 0 in "InStock" property
     }
     /// <summary>
     /// Initializing OrdersList in 20 orders
