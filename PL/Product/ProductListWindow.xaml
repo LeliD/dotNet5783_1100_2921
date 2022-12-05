@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="CategorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <ComboBox Name="CategorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CategorySelector_SelectionChanged" />
             <Label Content="Category :" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
         </Grid>
         <ListView x:Name="ProductListView" VerticalAlignment="Stretch" Width="auto" HorizontalAlignment="Stretch" Height="auto"  Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">

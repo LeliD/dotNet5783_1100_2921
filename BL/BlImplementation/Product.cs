@@ -21,9 +21,20 @@ internal class Product : IProduct
     /// </summary>
     /// <returns>list of products in form of BO.ProductForList?</returns>
     /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
-    public IEnumerable<BO.ProductForList?> GetListedProductsForManager()
+    public IEnumerable<BO.ProductForList?> GetListedProductsForManager(Func<DO.Product?, bool>? filter = null)
     {
-        return from DO.Product? doProduct in dal.Product.GetAll()
+       if(filter == null)
+        {
+            return from DO.Product? doProduct in dal.Product.GetAll()
+                   select new BO.ProductForList()
+                   {
+                       ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
+                       Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
+                       Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
+                       Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product")
+                   };
+        }
+        return from DO.Product? doProduct in dal.Product.GetAll(filter)
                select new BO.ProductForList()
                {
                    ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
