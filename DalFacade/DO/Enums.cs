@@ -5,10 +5,11 @@ namespace DO;
 /// Enum for category of products
 /// </summary>
 public enum Category 
-{ 
-    A,
-    B,
-    C,
-    D
+{
+    KITCHEN,
+    BATHROOM,
+    LIVING_ROOM,
+    BEDROOM,
+    KIDS
 }
 

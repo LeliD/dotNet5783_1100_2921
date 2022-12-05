@@ -8,10 +8,11 @@ namespace BO;
 
 public enum Category
 {
-    A,
-    B,
-    C,
-    D
+    KITCHEN,
+    BATHROOM,
+    LIVING_ROOM,
+    BEDROOM,
+    KIDS
 }
 public enum OrderStatus
 {

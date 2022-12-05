@@ -134,7 +134,7 @@ internal class Product : IProduct
             throw new BO.BlDetailInvalidException("Price", "Negative Price");
         if (boProduct.InStock < 0)
             throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
-        if (boProduct.Category != BO.Category.A & boProduct.Category != BO.Category.B & boProduct.Category != BO.Category.C & boProduct.Category != BO.Category.D)
+        if (boProduct.Category != BO.Category.BATHROOM && boProduct.Category != BO.Category.BEDROOM && boProduct.Category != BO.Category.LIVING_ROOM && boProduct.Category != BO.Category.KITCHEN && boProduct.Category != BO.Category.KIDS)
             throw new BO.BlWrongCategoryException("Wrong Category");
 
         try
@@ -189,7 +189,7 @@ internal class Product : IProduct
             throw new BO.BlDetailInvalidException("Price", "Negative Price");
         if (boProduct.InStock < 0)
             throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
-        if (boProduct.Category != BO.Category.A & boProduct.Category != BO.Category.B & boProduct.Category != BO.Category.C & boProduct.Category != BO.Category.D)
+        if (boProduct.Category != BO.Category.BATHROOM && boProduct.Category != BO.Category.BEDROOM && boProduct.Category != BO.Category.LIVING_ROOM && boProduct.Category != BO.Category.KITCHEN && boProduct.Category != BO.Category.KIDS)
             throw new BO.BlWrongCategoryException("Wrong Category");
         try
         {
