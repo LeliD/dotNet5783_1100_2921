@@ -23,7 +23,8 @@
                 </Label.Foreground>
             </Label>
         </Grid>
-        <ListView x:Name="ProductListView" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Width="auto" Height="auto" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="ProductListView" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Width="auto" Height="auto" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" >
+            
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

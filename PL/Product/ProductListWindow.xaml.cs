@@ -41,5 +41,7 @@ namespace PL.Product
             ProductWindow pw = new ProductWindow();
             pw.Show();
         }
+
+      
     }
 }

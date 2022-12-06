@@ -33,27 +33,35 @@ namespace PL.Product
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
             bool check;
-            int id,i;
+            int id, i;
             BO.Category c;
             double p;
             check = int.TryParse(tbId.Text, out id);
             if (!check)
-                MessageBox.Show("The value must be int");
-            check = BO.Category.TryParse(CategorySelector.Text, out c);
+            {
+                MessageBox.Show("The field id must be int");
+                return;
+            }
+            BO.Category.TryParse(CategorySelector.Text, out c);
+          
+            check = double.TryParse(tbPrice.Text, out p);
             if (!check)
-                MessageBox.Show("The value must be category");
-            check = double.TryParse(tbPrice.Text, out p); 
-            if (!check)
-                MessageBox.Show("The value must be double");
+            {
+                MessageBox.Show("The field price must be double");
+                return;
+            }
             check = int.TryParse(tbInStock.Text, out i);
             if (!check)
-                MessageBox.Show("The value must be int");
+            {
+                MessageBox.Show("The field InStock must be int");
+                return;
+            }
             try
             {
                 bl.Product.AddProduct(new BO.Product()
                 {
                     ID = id,
-                    Category = c,
+                    Category=c,
                     Name = tbName.Text,
                     Price=p,
                     InStock=i
