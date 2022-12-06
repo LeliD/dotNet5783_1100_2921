@@ -44,8 +44,10 @@ namespace PL.Product
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.Product p = (ProductListView)sender;
+            //BO.Product p = (ProductListView)sender;
             ProductWindow pw = new ProductWindow();
+            BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;
+            tbId.Text=
             pw.Show();
         }
     }
