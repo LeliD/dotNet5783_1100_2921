@@ -32,18 +32,55 @@ namespace PL.Product
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            int id;
             bool check;
+            int id,i;
+            BO.Category c;
+            double p;
             check = int.TryParse(tbId.Text, out id);
             if (!check)
                 MessageBox.Show("The value must be int");
-            Category c;
-            check = Category.TryParse(CategorySelector.Text, out c);
+            check = BO.Category.TryParse(CategorySelector.Text, out c);
+            if (!check)
+                MessageBox.Show("The value must be category");
+            check = double.TryParse(tbPrice.Text, out p); 
+            if (!check)
+                MessageBox.Show("The value must be double");
+            check = int.TryParse(tbInStock.Text, out i);
             if (!check)
                 MessageBox.Show("The value must be int");
-            bl.Product.AddProduct(new BO.Product() { ID= id,Category= (Convert)CategorySelector.Text, Name= tbName.Text,
+            try
+            {
+                bl.Product.AddProduct(new BO.Product()
+                {
+                    ID = id,
+                    Category = c,
+                    Name = tbName.Text,
+                    Price=p,
+                    InStock=i
+                  
+                    //Price = double.Parse(tbPrice.Text),
+                    //InStock = int.Parse(tbInStock.Text)
 
-            });
+                });
+            }
+            catch (BO.BlAlreadyExistEntityException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.BlDetailInvalidException ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
+            catch(BO.BlWrongCategoryException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
             
         }
     }

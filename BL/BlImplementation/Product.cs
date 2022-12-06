@@ -132,7 +132,7 @@ internal class Product : IProduct
         if (boProduct == null || boProduct.Name == "")
             throw new BO.BlDetailInvalidException("ID", "Name is empty");
         if (boProduct.Price <= 0)
-            throw new BO.BlDetailInvalidException("Price", "Negative Price");
+            throw new BO.BlDetailInvalidException("Price", "wrong Price");
         if (boProduct.InStock < 0)
             throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
         if (boProduct.Category != BO.Category.BATHROOM && boProduct.Category != BO.Category.BEDROOM && boProduct.Category != BO.Category.LIVING_ROOM && boProduct.Category != BO.Category.KITCHEN && boProduct.Category != BO.Category.KIDS)
