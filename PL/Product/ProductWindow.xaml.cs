@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BlImplementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,7 @@ namespace PL.Product
     /// </summary>
     public partial class ProductWindow : Window
     {
+        IBl bl = new Bl();
         public ProductWindow()
         {
             InitializeComponent();

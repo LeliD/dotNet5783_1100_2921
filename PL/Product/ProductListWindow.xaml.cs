@@ -35,5 +35,12 @@ namespace PL.Product
             ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(x=> (BO.Category)((x?.Category)??throw new BO.BlNullPropertyException("Null Category"))==category);
            
         }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+            ProductWindow pw = new ProductWindow();
+            pw.Show();
+        }
     }
 }

@@ -17,23 +17,13 @@ internal class Product : IProduct
     /// </summary>
     DalApi.IDal dal = new Dal.DalList();
     /// <summary>
-    /// The function brings the list of products from dal and returns it in form of BO.ProductForList? (For Manager)
+    /// The function brings the list of products from dal and returns it filtered in form of BO.ProductForList? (For Manager)
     /// </summary>
-    /// <returns>list of products in form of BO.ProductForList?</returns>
+    /// <param name="filter">The function in which to filter the products</param>
+    /// <returns>Filtered list of products in form of BO.ProductForList?</returns>
     /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductForList?> GetListedProductsForManager(Func<DO.Product?, bool>? filter = null)
     {
-       if(filter == null)
-        {
-            return from DO.Product? doProduct in dal.Product.GetAll()
-                   select new BO.ProductForList()
-                   {
-                       ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
-                       Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
-                       Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
-                       Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product")
-                   };
-        }
         return from DO.Product? doProduct in dal.Product.GetAll(filter)
                select new BO.ProductForList()
                {

@@ -14,20 +14,31 @@
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
         VerticalAlignment="Stretch" Width="auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="23*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="101*"/>
+                <ColumnDefinition Width="299*"/>
+                <ColumnDefinition Width="400*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="CategorySelector" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="CategorySelector_SelectionChanged" />
-            <Label Content="Category :" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <ComboBox Name="CategorySelector" Grid.Column="2" SelectionChanged="CategorySelector_SelectionChanged" Grid.RowSpan="2" />
+            <Label Content="Category :" Grid.Column="0" Background="#FFF1E5D2" FontFamily="Segoe UI Black" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Label.Foreground>
+                    <SolidColorBrush Color="#FFA36F1C"/>
+                </Label.Foreground>
+            </Label>
         </Grid>
-        <ListView x:Name="ProductListView" VerticalAlignment="Stretch" Width="auto" HorizontalAlignment="Stretch" Height="auto"  Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="ProductListView" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Width="auto" Height="auto" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="btnAddProduct_Click"/>
+
     </Grid>
 </Window>
 

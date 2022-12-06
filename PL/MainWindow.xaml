@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="BtnProduftList" Content="ProduftList" HorizontalAlignment="Left" Margin="400,153,0,0" VerticalAlignment="Top" Click="BtnProduftList_Click"/>
+        <Button x:Name="BtnProduftList" Content="List Of Products" HorizontalAlignment="Left" Margin="567,332,0,0" VerticalAlignment="Top" Click="BtnProduftList_Click" FontFamily="Segoe UI Black" Height="64" Width="173" FontSize="20" Background="#FF94B4DF" BorderBrush="#FF2868E0" Foreground="Black"/>
 
     </Grid>
 </Window>
