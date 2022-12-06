@@ -16,24 +16,25 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BlImplementation;
 
-namespace PL
+namespace PL;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    IBl bl = new Bl();
+    public MainWindow()
     {
-        IBl bl = new Bl();
-        public MainWindow()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-        }
+    }
 
-        private void BtnProduftList_Click(object sender, RoutedEventArgs e)
-        {
-            ProductListWindow plw = new ProductListWindow();    
-            plw.Show(); 
-        }
+    
+
+    private void BtnProduftList_Click(object sender, RoutedEventArgs e)
+    {
+        ProductListWindow plw = new ProductListWindow();    
+        plw.Show(); 
     }
 }

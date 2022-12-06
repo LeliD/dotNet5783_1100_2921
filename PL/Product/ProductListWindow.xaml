@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="299*"/>
                 <ColumnDefinition Width="400*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="CategorySelector" Grid.Column="2" SelectionChanged="CategorySelector_SelectionChanged" Grid.RowSpan="2" />
+            <ComboBox x:Name="CategorySelector" Grid.Column="2" SelectionChanged="CategorySelector_SelectionChanged" Grid.RowSpan="2" />
             <Label Content="Category :" Grid.Column="0" Background="#FFF1E5D2" FontFamily="Segoe UI Black" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label.Foreground>
                     <SolidColorBrush Color="#FFA36F1C"/>

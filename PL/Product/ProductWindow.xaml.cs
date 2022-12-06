@@ -25,6 +25,7 @@ namespace PL.Product
         public ProductWindow()
         {
             InitializeComponent();
+
         }
     }
 }
