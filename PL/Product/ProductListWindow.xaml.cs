@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BlApi;
+using BlImplementation;
 
 namespace PL.Product
 {
@@ -19,9 +21,25 @@ namespace PL.Product
     /// </summary>
     public partial class ProductListWindow : Window
     {
+        IBl bl = new Bl();
         public ProductListWindow()
         {
             InitializeComponent();
+            ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(); ;
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+        }
+
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BO.Category category = (BO.Category)CategorySelector.SelectedItem;
+            ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)((x?.Category) ?? throw new BO.BlNullPropertyException("Null Category")) == category);
+        }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+            ProductWindow pw = new ProductWindow();
+            pw.Show();
         }
     }
 }
