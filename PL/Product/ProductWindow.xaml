@@ -14,9 +14,9 @@
         <Label x:Name="lblName" Content="Name: " HorizontalAlignment="Left" Margin="153,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.005,-0.146"/>
         <Label x:Name="lblPrice" Content="Price: " HorizontalAlignment="Left" Margin="153,263,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblInStock" Content="InStock: " HorizontalAlignment="Left" Margin="152,315,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="281,203,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="283,268,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbInStock" HorizontalAlignment="Left" Margin="285,319,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="281,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="283,268,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbInStock" HorizontalAlignment="Left" Margin="285,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
