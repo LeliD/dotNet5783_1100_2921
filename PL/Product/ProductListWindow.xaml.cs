@@ -42,6 +42,11 @@ namespace PL.Product
             pw.Show();
         }
 
-      
+        private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.Product p = (ProductListView)sender;
+            ProductWindow pw = new ProductWindow();
+            pw.Show();
+        }
     }
 }
