@@ -18,7 +18,7 @@
         <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="283,268,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbInStock" HorizontalAlignment="Left" Margin="285,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnAddProduct" Content="Add" HorizontalAlignment="Left" Margin="672,376,0,0" VerticalAlignment="Top" Click="btnAddProduct_Click"/>
-        <Button x:Name="btnUpdateProduct" Content="Update" HorizontalAlignment="Left" Margin="140,376,0,0" VerticalAlignment="Top" Click="UpdateProduct_Click"/>
+        <Button x:Name="btnUpdateProduct" Content="Update" HorizontalAlignment="Left" Margin="620,376,0,0" VerticalAlignment="Top" Click="UpdateProduct_Click"/>
 
     </Grid>
 </Window>

@@ -26,13 +26,23 @@ namespace PL.Product
         {
             InitializeComponent();
             ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(); ;
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            CategorySelector.Items.Add(BO.Category.BATHROOM);
+            CategorySelector.Items.Add(BO.Category.KITCHEN);
+            CategorySelector.Items.Add(BO.Category.BEDROOM);
+            CategorySelector.Items.Add(BO.Category.LIVING_ROOM);
+            CategorySelector.Items.Add(BO.Category.KIDS);
+            CategorySelector.Items.Add("None");
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BO.Category category = (BO.Category)CategorySelector.SelectedItem;
+            if(CategorySelector.SelectedItem == "None")
+                return;
+            else
+                BO.Category category = (BO.Category)CategorySelector.SelectedItem;
             ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)((x?.Category) ?? throw new BO.BlNullPropertyException("Null Category")) == category);
+            //CategorySelector.Items.Remove(CategorySelector.SelectedItem);
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)

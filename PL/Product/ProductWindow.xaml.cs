@@ -29,7 +29,7 @@ namespace PL.Product
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             btnUpdateProduct.Visibility = Visibility.Hidden;
-
+            
         }
         public ProductWindow(BO.ProductForList p)
         {
