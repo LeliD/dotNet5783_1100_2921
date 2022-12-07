@@ -31,16 +31,18 @@ namespace PL.Product
             btnUpdateProduct.Visibility = Visibility.Hidden;
             
         }
-        public ProductWindow(BO.ProductForList p)
+      
+        public ProductWindow(int id)
         {
-            
+
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            BO.Product p = bl.Product.ProductDetailsForManager(id);
             tbId.Text = p.ID.ToString();
             CategorySelector.SelectedItem = p.Category;
             tbName.Text = p.Name;
             tbPrice.Text = p.Price.ToString();
-            tbInStock.Text = bl.Product.ProductDetailsForManager(p.ID).InStock.ToString();
+            tbInStock.Text = p.InStock.ToString();
             tbId.IsEnabled = false;
             btnAddProduct.Visibility = Visibility.Hidden;
         }
@@ -84,6 +86,8 @@ namespace PL.Product
                     //InStock = int.Parse(tbInStock.Text)
 
                 });
+                MessageBox.Show("New Product was added successfully");
+
             }
             catch (BO.BlAlreadyExistEntityException ex)
             {
@@ -142,6 +146,7 @@ namespace PL.Product
                     //InStock = int.Parse(tbInStock.Text)
 
                 });
+                MessageBox.Show("The Product was added successfully");
             }
             catch (BO.BlMissingEntityException ex)
             {

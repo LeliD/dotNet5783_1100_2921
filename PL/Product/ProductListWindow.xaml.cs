@@ -37,15 +37,18 @@ namespace PL.Product
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CategorySelector.SelectedItem=="None")
+            if (CategorySelector.SelectedItem == "None")//?????????????
                 ProductListView.ItemsSource = bl.Product.GetListedProductsForManager();
             else
             {
                 BO.Category category = (BO.Category)CategorySelector.SelectedItem;
                 ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)((x?.Category) ?? throw new BO.BlNullPropertyException("Null Category")) == category);
             }
-               
-            CategorySelector.Items.Remove(CategorySelector.SelectedItem);
+
+
+            //ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)((x?.Category) ?? throw new BO.BlNullPropertyException("Null Category")) == category);
+            //CategorySelector.Items.Remove(CategorySelector.SelectedItem);
+            //return;
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
@@ -60,7 +63,7 @@ namespace PL.Product
             //BO.Product p = (ProductListView)sender;
             
             BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;
-            ProductWindow pw = new ProductWindow(p);
+            ProductWindow pw = new ProductWindow(p.ID);
             pw.Show();
         }
     }
