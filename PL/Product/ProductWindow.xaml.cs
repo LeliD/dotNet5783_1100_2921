@@ -28,17 +28,21 @@ namespace PL.Product
         {
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            btnUpdateProduct.Visibility = Visibility.Hidden;
+
         }
         public ProductWindow(BO.ProductForList p)
         {
             
             InitializeComponent();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             tbId.Text = p.ID.ToString();
             CategorySelector.SelectedItem = p.Category;
             tbName.Text = p.Name;
             tbPrice.Text = p.Price.ToString();
             tbInStock.Text = bl.Product.ProductDetailsForManager(p.ID).InStock.ToString();
-               
+            tbId.IsEnabled = false;
+            btnAddProduct.Visibility = Visibility.Hidden;
         }
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
@@ -100,6 +104,63 @@ namespace PL.Product
             }
            
             
+        }
+
+        private void UpdateProduct_Click(object sender, RoutedEventArgs e)
+        {
+            bool check;
+            int  id,i;
+            BO.Category c;
+            double p;
+            int.TryParse(tbId.Text, out id);
+          
+            BO.Category.TryParse(CategorySelector.Text, out c);
+
+            check = double.TryParse(tbPrice.Text, out p);
+            if (!check)
+            {
+                MessageBox.Show("The field price must be double");
+                return;
+            }
+            check = int.TryParse(tbInStock.Text, out i);
+            if (!check)
+            {
+                MessageBox.Show("The field InStock must be int");
+                return;
+            }
+            try
+            {
+                bl.Product.UpdateProduct(new BO.Product()
+                {
+                    ID=id,
+                    Category = c,
+                    Name = tbName.Text,
+                    Price = p,
+                    InStock = i
+
+                    //Price = double.Parse(tbPrice.Text),
+                    //InStock = int.Parse(tbInStock.Text)
+
+                });
+            }
+            catch (BO.BlMissingEntityException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.BlDetailInvalidException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.BlWrongCategoryException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }
