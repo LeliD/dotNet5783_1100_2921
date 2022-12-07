@@ -29,7 +29,17 @@ namespace PL.Product
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
         }
-
+        public ProductWindow(BO.ProductForList p)
+        {
+            
+            InitializeComponent();
+            tbId.Text = p.ID.ToString();
+            CategorySelector.SelectedItem = p.Category;
+            tbName.Text = p.Name;
+            tbPrice.Text = p.Price.ToString();
+            tbInStock.Text = bl.Product.ProductDetailsForManager(p.ID).InStock.ToString();
+               
+        }
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
             bool check;
