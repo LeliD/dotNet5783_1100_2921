@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using BlApi;
 using BlImplementation;
 using BO;
+using DO;
 
 namespace PL.Product
 {
@@ -46,32 +47,83 @@ namespace PL.Product
             tbId.IsEnabled = false;
             btnAddProduct.Visibility = Visibility.Hidden;
         }
+
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
             bool check;
-            int id, i;
-            BO.Category c;
-            double p;
-            check = int.TryParse(tbId.Text, out id);
-            if (!check)
+            int id=0, i=0;
+            BO.Category c=BO.Category.BATHROOM;
+            double p = 0;
+            bool isDataCorrect = true;
+            if (CategorySelector.Text == "")
             {
-                MessageBox.Show("The field id must be int","LogicError",MessageBoxButton.OK,MessageBoxImage.Error);
-                return;
+                lblMissingCategory.Content = "Missing Category";
+                isDataCorrect = false;
             }
-            BO.Category.TryParse(CategorySelector.Text, out c);
-          
-            check = double.TryParse(tbPrice.Text, out p);
-            if (!check)
+            else
+                BO.Category.TryParse(CategorySelector.Text, out c);
+            lblWrongId.Visibility = Visibility.Visible;
+            lblWrongPrice.Visibility = Visibility.Visible;
+            lblWrongInStock.Visibility = Visibility.Visible;
+            lblWrongName.Visibility = Visibility.Visible;
+            lblMissingCategory.Visibility = Visibility.Visible;
+            if (tbId.Text=="")
             {
-                MessageBox.Show("The field price must be double", "LogicError", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                tbId.BorderBrush = Brushes.Red;
+                lblWrongId.Content = "Missing Id";
+                isDataCorrect = false;
             }
-            check = int.TryParse(tbInStock.Text, out i);
-            if (!check)
+            else
             {
-                MessageBox.Show("The field InStock must be int", "LogicError", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                check = int.TryParse(tbId.Text, out id);
+                if (!check)
+                {
+                    //MessageBox.Show("The field id must be int","LogicError",MessageBoxButton.OK,MessageBoxImage.Error);
+                    tbId.BorderBrush = Brushes.Red;
+                    lblWrongId.Content = "Wrong Id";
+                    isDataCorrect = false;
+                }
             }
+            if (tbPrice.Text == "")
+            {
+                tbPrice.BorderBrush = Brushes.Red;
+                lblWrongPrice.Content = "Missing Price";
+                isDataCorrect = false;
+            }
+            else
+            {
+                check = double.TryParse(tbPrice.Text, out p);
+                if (!check)
+                {
+                    tbPrice.BorderBrush = Brushes.Red;
+                    lblWrongPrice.Content = "Wrong Price";
+                    isDataCorrect = false;
+                }
+            }
+            if (tbInStock.Text == "")
+            {
+                tbInStock.BorderBrush = Brushes.Red;
+                lblWrongInStock.Content = "Missing InStock";
+                isDataCorrect = false;
+            }
+            else
+            {
+                check = int.TryParse(tbInStock.Text, out i);
+                if (!check)
+                {
+                    tbInStock.BorderBrush = Brushes.Red;
+                    lblWrongInStock.Content = "Wrong InStock";
+                    isDataCorrect = false;
+                }
+            }
+            if(tbName.Text=="")
+            {
+                tbName.BorderBrush = Brushes.Red;
+                lblWrongName.Content = "Missing Name";
+                isDataCorrect = false;
+            }
+            if (!isDataCorrect)
+                return;
             try
             {
                 bl.Product.AddProduct(new BO.Product()
@@ -166,6 +218,45 @@ namespace PL.Product
 
         }
 
-     
+        private void tbId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbId.BorderBrush == Brushes.Red)
+            {
+                tbId.BorderBrush = Brushes.DimGray;
+                lblWrongId.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void tbName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbName.BorderBrush == Brushes.Red)
+            {
+                tbName.BorderBrush = Brushes.DimGray;
+                lblWrongName.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void tbPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbPrice.BorderBrush == Brushes.Red)
+            {
+                tbPrice.BorderBrush = Brushes.DimGray;
+                lblWrongPrice.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void tbInStock_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbInStock.BorderBrush == Brushes.Red)
+            {
+                tbInStock.BorderBrush = Brushes.DimGray;
+                lblWrongInStock.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblMissingCategory.Visibility = Visibility.Hidden;
+        }
     }
 }
