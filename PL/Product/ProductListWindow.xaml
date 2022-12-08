@@ -40,7 +40,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="578,5,0,5" Padding="5" Click="btnAddProduct_Click" Background="#FFBD6565" FontFamily="Gill Sans Ultra Bold" Foreground="#FFFFD3D3" Width="184"/>
+        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="676,5,0,5" Padding="5" Click="btnAddProduct_Click" Background="#FFF9EAE4" FontWeight="Bold" FontFamily="Cooper Black" BorderBrush="#FFA86A68" Foreground="#FFA86A68" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
