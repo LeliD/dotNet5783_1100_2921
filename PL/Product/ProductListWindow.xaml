@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Product"
         mc:Ignorable="d"
-          Title="ProductListWindow" Height="640" Width="800">
-    <Grid Name="MainGrid">
+          Title="ProductListWindow" Height="640" Width="800" Background="#FFFFF8EE">
+    <Grid Name="MainGrid" Background="#FFFCEFEC">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-        VerticalAlignment="Stretch" Width="auto">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="2" Margin="0,0,0,544" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="23*"/>
@@ -21,23 +24,31 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="101*"/>
                 <ColumnDefinition Width="299*"/>
-                <ColumnDefinition Width="400*"/>
+                <ColumnDefinition Width="174*"/>
+                <ColumnDefinition Width="226*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="CategorySelector" Grid.Column="2" SelectionChanged="CategorySelector_SelectionChanged" Grid.RowSpan="2" />
-            <Label Content="Category :" Grid.Column="0" Background="#FFF1E5D2" FontFamily="Segoe UI Black" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ComboBox x:Name="CategorySelector" Grid.Column="2" SelectionChanged="CategorySelector_SelectionChanged" Grid.RowSpan="2" BorderBrush="#FFE98E8E" Grid.ColumnSpan="2" >
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFFCEFEC"/>
+                        <GradientStop Color="#FFDFA571" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+            <Label Content="Category :" Grid.Column="0" Background="#FFFCEFEC" FontFamily="Segoe UI Black" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label.Foreground>
-                    <SolidColorBrush Color="#FFA36F1C"/>
+                    <SolidColorBrush Color="#FFA86A68"/>
                 </Label.Foreground>
             </Label>
         </Grid>
-        <ListView x:Name="ProductListView" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Width="auto" Height="auto" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProductListView_MouseDoubleClick" >
+        <ListView x:Name="ProductListView" Width="auto" Height="auto" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProductListView_MouseDoubleClick" Background="#FFFCEFEC" Foreground="#FFA86A68" FontFamily="Guttman Drogolin" FontSize="14" FontStyle="Italic" BorderBrush="#FFFCEFEC" Grid.ColumnSpan="2" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="btnAddProduct_Click"/>
+        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="676,5,0,5" Padding="5" Click="btnAddProduct_Click" Background="#FFF9EAE4" FontWeight="Bold" FontFamily="Cooper Black" BorderBrush="#FFA86A68" Foreground="#FFA86A68" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

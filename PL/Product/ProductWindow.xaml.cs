@@ -55,7 +55,7 @@ namespace PL.Product
             check = int.TryParse(tbId.Text, out id);
             if (!check)
             {
-                MessageBox.Show("The field id must be int");
+                MessageBox.Show("The field id must be int", "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             BO.Category.TryParse(CategorySelector.Text, out c);
@@ -63,13 +63,13 @@ namespace PL.Product
             check = double.TryParse(tbPrice.Text, out p);
             if (!check)
             {
-                MessageBox.Show("The field price must be double");
+                MessageBox.Show("The field price must be double", "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             check = int.TryParse(tbInStock.Text, out i);
             if (!check)
             {
-                MessageBox.Show("The field InStock must be int");
+                MessageBox.Show("The field InStock must be int", "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             try
@@ -86,25 +86,26 @@ namespace PL.Product
                     //InStock = int.Parse(tbInStock.Text)
 
                 });
-                MessageBox.Show("New Product was added successfully");
+                MessageBox.Show("New Product was added successfully", "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
 
             }
             catch (BO.BlAlreadyExistEntityException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.BlDetailInvalidException ex)
             {
-               MessageBox.Show(ex.Message);
+               MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch(BO.BlWrongCategoryException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
            
             
@@ -123,13 +124,13 @@ namespace PL.Product
             check = double.TryParse(tbPrice.Text, out p);
             if (!check)
             {
-                MessageBox.Show("The field price must be double");
+                MessageBox.Show("The field price must be double", "Logic Error", MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
             check = int.TryParse(tbInStock.Text, out i);
             if (!check)
             {
-                MessageBox.Show("The field InStock must be int");
+                MessageBox.Show("The field InStock must be int", "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             try
@@ -146,24 +147,25 @@ namespace PL.Product
                     //InStock = int.Parse(tbInStock.Text)
 
                 });
-                MessageBox.Show("The Product was added successfully");
+                MessageBox.Show("The Product was updated successfully", "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
             }
             catch (BO.BlMissingEntityException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.BlDetailInvalidException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.BlWrongCategoryException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Logic Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

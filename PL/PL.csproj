@@ -13,7 +13,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="zarahome.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="zarahome.png" />
   </ItemGroup>
 
 </Project>
