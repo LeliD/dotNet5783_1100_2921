@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="400*"/>
             </Grid.ColumnDefinitions >
             <ComboBox x:Name="CategorySelector" Grid.Column="2" SelectionChanged="CategorySelector_SelectionChanged" Grid.RowSpan="2" />
-            <Label Content="Category :" Grid.Column="0" Background="#FFFCEFEC" FontFamily="Gill Sans Ultra Bold" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Label Content="Category :" Grid.Column="0" Background="#FFFCEFEC" FontFamily="Segoe UI Black" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label.Foreground>
                     <SolidColorBrush Color="#FFA86A68"/>
                 </Label.Foreground>
