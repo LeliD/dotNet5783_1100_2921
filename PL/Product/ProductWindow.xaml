@@ -7,8 +7,8 @@
         mc:Ignorable="d"
          Title="ProductWindow" Height="450" Width="800">
     <Grid Background="#FFFCEFEC">
-        <TextBox x:Name="tbId" HorizontalAlignment="Left" Margin="280,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="28" Background="#FFFFF4F4"/>
-        <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="280,142,0,0" VerticalAlignment="Top" Width="120" Height="22" BorderBrush="#FF9B0101" Foreground="#FFAE5151">
+        <TextBox x:Name="tbId" HorizontalAlignment="Left" Margin="280,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="30" Background="#FFFFF4F4"/>
+        <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="280,142,0,0" VerticalAlignment="Top" Width="150" Height="30" BorderBrush="#FF9B0101" Foreground="#FFAE5151">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0,1">
                     <GradientStop Color="#FFF0F0F0"/>
@@ -21,11 +21,11 @@
         <Label x:Name="lblName" Content="Name: " HorizontalAlignment="Left" Margin="150,203,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.005,-0.146" FontFamily="Gill Sans Ultra Bold" Foreground="#FFA86A68" FontSize="16"/>
         <Label x:Name="lblPrice" Content="Price: " HorizontalAlignment="Left" Margin="150,263,0,0" VerticalAlignment="Top" Foreground="#FFA86A68" FontFamily="Gill Sans Ultra Bold" FontSize="16"/>
         <Label x:Name="lblInStock" Content="InStock: " HorizontalAlignment="Left" Margin="150,315,0,0" VerticalAlignment="Top" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="280,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Height="30" Background="#FFFFF4F4"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="280,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="23" Background="#FFFFF4F4"/>
-        <TextBox x:Name="tbInStock" HorizontalAlignment="Left" Margin="280,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="30" Background="#FFFFF4F4"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="280,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Height="30" Background="#FFFFF4F4"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="280,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="30" Background="#FFFFF4F4"/>
+        <TextBox x:Name="tbInStock" HorizontalAlignment="Left" Margin="280,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="30" Background="#FFFFF4F4"/>
         <Button x:Name="btnAddProduct" Content="Add" HorizontalAlignment="Left" Margin="677,345,0,0" VerticalAlignment="Top" Click="btnAddProduct_Click" FontFamily="Gill Sans Ultra Bold" FontSize="20" Height="48" Width="80" Background="#FFFADFDF" BorderBrush="#FFFA8989" Foreground="#FFA86A68"/>
-        <Button x:Name="btnUpdateProduct" Content="Update" HorizontalAlignment="Left" Margin="610,345,0,0" VerticalAlignment="Top" Click="UpdateProduct_Click" Foreground="#FFA86A68" FontFamily="Gill Sans Ultra Bold" BorderBrush="#FFFA8989" Height="48" Width="95" FontSize="20" Background="#FFFADFDF"/>
+        <Button x:Name="btnUpdateProduct" Content="Update" HorizontalAlignment="Left" Margin="610,345,0,0" VerticalAlignment="Top" Click="btnUpdateProduct_Click" Foreground="#FFA86A68" FontFamily="Gill Sans Ultra Bold" BorderBrush="#FFFA8989" Height="48" Width="95" FontSize="20" Background="#FFFADFDF"/>
 
     </Grid>
 </Window>

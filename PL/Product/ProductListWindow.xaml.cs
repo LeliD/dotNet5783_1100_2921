@@ -63,5 +63,7 @@ namespace PL.Product
             ProductWindow pw = new ProductWindow(p.ID);
             pw.Show();
         }
+
+      
     }
 }

@@ -33,14 +33,14 @@
                 </Label.Foreground>
             </Label>
         </Grid>
-        <ListView x:Name="ProductListView" Width="auto" Height="auto" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFFCEFEC" Grid.ColumnSpan="2" Margin="0,43,0,0" Grid.RowSpan="2" FontFamily="Guttman-CourMir" FontSize="18" FontStyle="Italic" Foreground="#FFBD6565">
+        <ListView x:Name="ProductListView" Width="auto" Height="auto" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFFCEFEC" Grid.ColumnSpan="2" Margin="0,43,0,0" Grid.RowSpan="2" FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" Foreground="#FFBD6565" MouseDoubleClick="ProductListView_MouseDoubleClick" BorderBrush="#FFFCEFEC" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Left" Margin="676,5,0,5" Padding="5" Click="btnAddProduct_Click" Background="#FFF9EAE4" FontWeight="Bold" FontFamily="Cooper Black" BorderBrush="#FFA86A68" Foreground="#FFA86A68" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="btnAddProduct_Click" Background="#FFF9EAE4" FontWeight="Bold" FontFamily="Cooper Black" BorderBrush="#FFA86A68" Foreground="#FFA86A68" Width="147" FontSize="14"/>
 
     </Grid>
 </Window>

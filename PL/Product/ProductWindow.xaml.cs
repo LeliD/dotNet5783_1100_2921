@@ -107,7 +107,7 @@ namespace PL.Product
             
         }
 
-        private void UpdateProduct_Click(object sender, RoutedEventArgs e)
+        private void btnUpdateProduct_Click(object sender, RoutedEventArgs e)
         {
             bool check;
             int  id,i;
@@ -165,5 +165,7 @@ namespace PL.Product
             }
 
         }
+
+     
     }
 }
