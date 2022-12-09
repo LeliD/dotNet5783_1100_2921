@@ -29,7 +29,7 @@ namespace PL.Product
         {
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            btnUpdateProduct.Visibility = Visibility.Hidden;
+            btnAdd_UpdateProduct.Content = "Add";
             
         }
       
@@ -45,22 +45,16 @@ namespace PL.Product
             tbPrice.Text = p.Price.ToString();
             tbInStock.Text = p.InStock.ToString();
             tbId.IsEnabled = false;
-            btnAddProduct.Visibility = Visibility.Hidden;
+            btnAdd_UpdateProduct.Content = "Update";
         }
 
-        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_UpdateProduct_Click(object sender, RoutedEventArgs e)
         {
             bool check;
             int id=0, i=0;
             BO.Category c=BO.Category.BATHROOM;
             double p = 0;
             bool isDataCorrect = true;
-            //if (CategorySelector.DataContext=="")
-            //{
-            //    lblMissingCategory.Content = "Missing Category";
-            //    isDataCorrect = false;
-            //}
-            //else
             BO.Category.TryParse(CategorySelector.Text, out c);
             lblWrongId.Visibility = Visibility.Visible;
             lblWrongPrice.Visibility = Visibility.Visible;
@@ -124,99 +118,141 @@ namespace PL.Product
             }
             if (!isDataCorrect)
                 return;
-            try
+            if (btnAdd_UpdateProduct.Content == "Add")
             {
-                bl.Product.AddProduct(new BO.Product()
+                try
                 {
-                    ID = id,
-                    Category=c,
-                    Name = tbName.Text,
-                    Price=p,
-                    InStock=i
-                  
-                });
-                MessageBox.Show("New Product was added successfully");
-                Close();
+                    bl.Product.AddProduct(new BO.Product()
+                    {
+                        ID = id,
+                        Category = c,
+                        Name = tbName.Text,
+                        Price = p,
+                        InStock = i
+
+                    });
+                    MessageBox.Show("New Product was added successfully");
+                    Close();
+                }
+                catch (BO.BlAlreadyExistEntityException ex)
+                {
+                    MessageBox.Show(ex.Message, "AlreadyExistEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (BO.BlDetailInvalidException ex)
+                {
+                    MessageBox.Show(ex.Message, "DetailInvalidException", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (BO.BlWrongCategoryException ex)
+                {
+                    MessageBox.Show(ex.Message, "WrongCategoryException", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
             }
-            catch (BO.BlAlreadyExistEntityException ex)
+            else
+                 if (btnAdd_UpdateProduct.Content == "Update")
             {
-                MessageBox.Show(ex.Message, "AlreadyExistEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    bl.Product.UpdateProduct(new BO.Product()
+                    {
+                        ID = id,
+                        Category = c,
+                        Name = tbName.Text,
+                        Price = p,
+                        InStock = i
+
+                        //Price = double.Parse(tbPrice.Text),
+                        //InStock = int.Parse(tbInStock.Text)
+
+                    });
+                    MessageBox.Show("The Product was added successfully");
+                    Close();
+                }
+                catch (BO.BlMissingEntityException ex)
+                {
+                    MessageBox.Show(ex.Message, "MissingEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (BO.BlDetailInvalidException ex)
+                {
+                    MessageBox.Show(ex.Message, "DetailInvalidException", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (BO.BlWrongCategoryException ex)
+                {
+                    MessageBox.Show(ex.Message, "WrongCategoryException", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch (BO.BlDetailInvalidException ex)
-            {
-               MessageBox.Show(ex.Message, "DetailInvalidException", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch(BO.BlWrongCategoryException ex)
-            {
-                MessageBox.Show(ex.Message, "WrongCategoryException", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-           
-            
+
+
         }
 
-        private void btnUpdateProduct_Click(object sender, RoutedEventArgs e)
-        {
-            bool check;
-            int  id,i;
-            BO.Category c;
-            double p;
-            int.TryParse(tbId.Text, out id);
-          
-            BO.Category.TryParse(CategorySelector.Text, out c);
+        //private void btnUpdateProduct_Click(object sender, RoutedEventArgs e)
+        //{
+        //    bool check;
+        //    int id, i;
+        //    BO.Category c;
+        //    double p;
+        //    int.TryParse(tbId.Text, out id);
 
-            check = double.TryParse(tbPrice.Text, out p);
-            if (!check)
-            {
-                MessageBox.Show("The field price must be double", "LogicError", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            check = int.TryParse(tbInStock.Text, out i);
-            if (!check)
-            {
-                MessageBox.Show("The field InStock must be int", "LogicError", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            try
-            {
-                bl.Product.UpdateProduct(new BO.Product()
-                {
-                    ID=id,
-                    Category = c,
-                    Name = tbName.Text,
-                    Price = p,
-                    InStock = i
+        //    BO.Category.TryParse(CategorySelector.Text, out c);
 
-                    //Price = double.Parse(tbPrice.Text),
-                    //InStock = int.Parse(tbInStock.Text)
+        //    check = double.TryParse(tbPrice.Text, out p);
+        //    if (!check)
+        //    {
+        //        MessageBox.Show("The field price must be double", "LogicError", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return;
+        //    }
+        //    check = int.TryParse(tbInStock.Text, out i);
+        //    if (!check)
+        //    {
+        //        MessageBox.Show("The field InStock must be int", "LogicError", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return;
+        //    }
+        //    try
+        //    {
+        //        bl.Product.UpdateProduct(new BO.Product()
+        //        {
+        //            ID = id,
+        //            Category = c,
+        //            Name = tbName.Text,
+        //            Price = p,
+        //            InStock = i
 
-                });
-                MessageBox.Show("The Product was added successfully");
-                Close();
-            }
-            catch (BO.BlMissingEntityException ex)
-            {
-                MessageBox.Show(ex.Message, "MissingEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (BO.BlDetailInvalidException ex)
-            {
-                MessageBox.Show(ex.Message, "DetailInvalidException", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (BO.BlWrongCategoryException ex)
-            {
-                MessageBox.Show(ex.Message, "WrongCategoryException", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+        //            Price = double.Parse(tbPrice.Text),
+        //            InStock = int.Parse(tbInStock.Text)
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+        //        });
+        //        MessageBox.Show("The Product was added successfully");
+        //        Close();
+        //    }
+        //    catch (BO.BlMissingEntityException ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "MissingEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    catch (BO.BlDetailInvalidException ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "DetailInvalidException", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    catch (BO.BlWrongCategoryException ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "WrongCategoryException", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
 
-        }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+
+        //}
 
         private void tbId_TextChanged(object sender, TextChangedEventArgs e)
         {
