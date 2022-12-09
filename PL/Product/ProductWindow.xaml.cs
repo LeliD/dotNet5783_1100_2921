@@ -56,10 +56,15 @@ namespace PL.Product
             double p = 0;
             bool isDataCorrect = true;
             BO.Category.TryParse(CategorySelector.Text, out c);
+            lblWrongId.Content = "";
             lblWrongId.Visibility = Visibility.Visible;
+            lblWrongPrice.Content = "";
             lblWrongPrice.Visibility = Visibility.Visible;
+            lblWrongInStock.Content = "";
             lblWrongInStock.Visibility = Visibility.Visible;
+            lblWrongName.Content = "";
             lblWrongName.Visibility = Visibility.Visible;
+            lblMissingCategory.Content = "";
             lblMissingCategory.Visibility = Visibility.Visible;
             if (tbId.Text=="")
             {
