@@ -37,7 +37,7 @@ namespace PL.Product
             CategorySelector.Items.Add(BO.Category.BEDROOM);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.LIVING_ROOM);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.KIDS);//Add cateroty to comboBox
-            CategorySelector.Items.Add("None");//Add cateroty to comboBox
+            CategorySelector.Items.Add("All");//Add cateroty to comboBox
         }
         /// <summary>
         /// 
@@ -47,7 +47,7 @@ namespace PL.Product
         /// <exception cref="BO.BlNullPropertyException"></exception>
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CategorySelector.SelectedItem == "None")
+            if (CategorySelector.SelectedItem == "All")
                 ProductListView.ItemsSource = bl.Product.GetListedProductsForManager();
             else
             {
