@@ -39,7 +39,12 @@ namespace PL.Product
             CategorySelector.Items.Add(BO.Category.KIDS);//Add cateroty to comboBox
             CategorySelector.Items.Add("None");//Add cateroty to comboBox
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="BO.BlNullPropertyException"></exception>
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CategorySelector.SelectedItem == "None")
@@ -52,18 +57,26 @@ namespace PL.Product
 
             
         }
-
+        /// <summary>
+        /// Click event.The function open the window of adding new product 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
 
-            ProductWindow pw = new ProductWindow();
+            ProductWindow pw = new ProductWindow();//create new ProductWindow
             pw.Show();
         }
-
+        /// <summary>
+        /// Click event. The function open the window of updating new product 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;
-            ProductWindow pw = new ProductWindow(p.ID);
+            BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;//the product that was selected
+            ProductWindow pw = new ProductWindow(p.ID);//create new ProductWindow of the selected product
             pw.Show();
         }
 
