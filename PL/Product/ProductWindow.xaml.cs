@@ -55,11 +55,11 @@ namespace PL.Product
             BO.Category c=BO.Category.BATHROOM;
             double p = 0;
             bool isDataCorrect = true;
-            if (CategorySelector.Text == "")
-            {
-                lblMissingCategory.Content = "Missing Category";
-                isDataCorrect = false;
-            }
+            //if (CategorySelector.DataContext=="")
+            //{
+            //    lblMissingCategory.Content = "Missing Category";
+            //    isDataCorrect = false;
+            //}
             else
                 BO.Category.TryParse(CategorySelector.Text, out c);
             lblWrongId.Visibility = Visibility.Visible;
