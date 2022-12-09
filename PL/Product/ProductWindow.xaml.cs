@@ -60,8 +60,8 @@ namespace PL.Product
             //    lblMissingCategory.Content = "Missing Category";
             //    isDataCorrect = false;
             //}
-            else
-                BO.Category.TryParse(CategorySelector.Text, out c);
+            //else
+            BO.Category.TryParse(CategorySelector.Text, out c);
             lblWrongId.Visibility = Visibility.Visible;
             lblWrongPrice.Visibility = Visibility.Visible;
             lblWrongInStock.Visibility = Visibility.Visible;
