@@ -21,7 +21,6 @@ namespace PL.Product
 {
     /// <summary>
     /// Interaction logic for ProductWindow.xaml
-    /// Build an instance of ProductWindow 
     /// </summary>
 
     public partial class ProductWindow : Window
@@ -30,6 +29,10 @@ namespace PL.Product
         /// bl is an instance of IBl
         /// </summary>
         IBl bl = new Bl();
+
+        /// <summary>
+        /// Building an instance of ProductWindow 
+        /// </summary>
         public ProductWindow()
         {
             InitializeComponent();
@@ -38,7 +41,7 @@ namespace PL.Product
 
         }
         /// <summary>
-        /// 
+        /// Building an instance of ProductWindow 
         /// </summary>
         /// <param name="id">Id of product to initialize the ProductWindow</param>
         public ProductWindow(int id)

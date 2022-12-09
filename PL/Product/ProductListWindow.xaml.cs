@@ -21,18 +21,23 @@ namespace PL.Product
     /// </summary>
     public partial class ProductListWindow : Window
     {
+        /// <summary>
+        /// bl is an instance of IBl
+        /// </summary>
         IBl bl = new Bl();
+        /// <summary>
+        ///Build an instance of ProductListWindow
+        /// </summary>
         public ProductListWindow()
         {
             InitializeComponent();
-            ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(); ;
-            //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            CategorySelector.Items.Add(BO.Category.BATHROOM);
-            CategorySelector.Items.Add(BO.Category.KITCHEN);
-            CategorySelector.Items.Add(BO.Category.BEDROOM);
-            CategorySelector.Items.Add(BO.Category.LIVING_ROOM);
-            CategorySelector.Items.Add(BO.Category.KIDS);
-            CategorySelector.Items.Add("None");
+            ProductListView.ItemsSource = bl.Product.GetListedProductsForManager();//Initialization of listView in list of products for manager
+            CategorySelector.Items.Add(BO.Category.BATHROOM);//Add cateroty to comboBox
+            CategorySelector.Items.Add(BO.Category.KITCHEN);//Add cateroty to comboBox
+            CategorySelector.Items.Add(BO.Category.BEDROOM);//Add cateroty to comboBox
+            CategorySelector.Items.Add(BO.Category.LIVING_ROOM);//Add cateroty to comboBox
+            CategorySelector.Items.Add(BO.Category.KIDS);//Add cateroty to comboBox
+            CategorySelector.Items.Add("None");//Add cateroty to comboBox
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -57,8 +62,6 @@ namespace PL.Product
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //BO.Product p = (ProductListView)sender;
-            
             BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;
             ProductWindow pw = new ProductWindow(p.ID);
             pw.Show();

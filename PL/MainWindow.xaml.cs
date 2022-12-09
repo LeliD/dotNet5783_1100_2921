@@ -20,21 +20,29 @@ namespace PL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// Build an instance of MainWindow
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        ///bl is an instance of IBl
+        /// </summary>
         IBl bl = new Bl();
+       
         public MainWindow()
         {
             InitializeComponent();
 
         }
 
-
-
+        /// <summary>
+        /// button of list of products
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnProduftList_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow plw = new ProductListWindow();
+            ProductListWindow plw = new ProductListWindow();//create new ProductListWindow
             plw.Show();
         }
     }
