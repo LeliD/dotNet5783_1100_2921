@@ -213,9 +213,14 @@ namespace PL.Product
             }
         }
 
-       
-        
 
+
+        /// <summary>
+        /// TextChanged event of tbId textBow
+        /// The function turns off the tbId.BorderBrush and makes its suitable label hidden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbId_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbId.BorderBrush == Brushes.Red)
@@ -224,7 +229,12 @@ namespace PL.Product
                 lblWrongId.Visibility = Visibility.Hidden;
             }
         }
-
+        /// <summary>
+        /// TextChanged event of tbName textBow 
+        /// The function turns off the tbName.BorderBrush and makes its suitable label hidden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbName_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbName.BorderBrush == Brushes.Red)
@@ -233,7 +243,12 @@ namespace PL.Product
                 lblWrongName.Visibility = Visibility.Hidden;
             }
         }
-
+        /// <summary>
+        /// TextChanged event of tbPrice textBow 
+        /// The function turns off the tbPrice.BorderBrush and makes its suitable label hidden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbPrice.BorderBrush == Brushes.Red)
@@ -242,7 +257,12 @@ namespace PL.Product
                 lblWrongPrice.Visibility = Visibility.Hidden;
             }
         }
-
+        /// <summary>
+        /// TextChanged event of tbPrice tbInStock 
+        /// The function turns off the tbInStock.BorderBrush and makes its suitable label hidden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbInStock_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbInStock.BorderBrush == Brushes.Red)
@@ -251,10 +271,15 @@ namespace PL.Product
                 lblWrongInStock.Visibility = Visibility.Hidden;
             }
         }
-
+        /// <summary>
+        /// SelectionChanged event of CategorySelector
+        /// The function makes lblMissingCategory label hidden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lblMissingCategory.Visibility = Visibility.Hidden;
+            lblMissingCategory.Visibility = Visibility.Hidden; 
         }
     }
 }
