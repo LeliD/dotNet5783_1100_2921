@@ -20,7 +20,6 @@ namespace PL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// Build an instance of MainWindow
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -36,7 +35,7 @@ namespace PL
         }
 
         /// <summary>
-        /// button of list of products
+        /// Click event. The function button of openning the window's list of products
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
