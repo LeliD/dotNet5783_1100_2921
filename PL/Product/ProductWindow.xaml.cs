@@ -12,8 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlApi;
-using BlImplementation;
+
 using BO;
 using DO;
 
@@ -28,7 +27,7 @@ namespace PL.Product
         /// <summary>
         /// bl is an instance of IBl
         /// </summary>
-        IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
 
         /// <summary>
         /// Building an instance of ProductWindow 

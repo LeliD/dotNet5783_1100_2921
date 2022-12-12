@@ -388,7 +388,10 @@ d: Exit");
     /// <exception cref="Exception"> Throw exception when the user's choice isn't one of the followings: 1,2,3,4 </exception>
     static void Main(string[] args)
     {
-        IBl bl = new Bl();
+        //IBl bl = new Bl();
+       
+        BlApi.IBl? bl = BlApi.Factory.Get();
+
         string input;
         int choice = 0;
         Cart cart = new Cart() { CustomerName = "Shilat", CustomerEmail = "Shilat@gmail.com", CustomerAddress = "Chaifa", TotalPrice = 0};

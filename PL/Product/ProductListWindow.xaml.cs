@@ -11,8 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlApi;
-using BlImplementation;
+
+
 
 namespace PL.Product
 {
@@ -24,7 +24,7 @@ namespace PL.Product
         /// <summary>
         /// bl is an instance of IBl
         /// </summary>
-        IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
         /// <summary>
         ///Build an instance of ProductListWindow
         /// </summary>

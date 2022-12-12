@@ -458,7 +458,8 @@ h: Exit");
     /// <exception cref="Exception"> Throw exception when the choice isn't one of the followings: 1,2,3,4 </exception>
     static void Main(string[] args)
     {
-        IDal dal = new DalList();
+        // IDal dal = new DalList();
+        DalApi.IDal? dal = DalApi.Factory.Get();
         string input;
         int choice = 0;
         do
