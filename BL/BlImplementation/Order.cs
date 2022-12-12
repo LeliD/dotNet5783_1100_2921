@@ -14,9 +14,7 @@ internal class Order: IOrder
     /// <summary>
     /// Dal variable
     /// </summary>
-    DalApi.IDal dal = new Dal.DalList();
-
-
+    DalApi.IDal? dal = DalApi.Factory.Get();
     /// <summary>
     /// The function gets orderID and returns the details of order  by it's ID  in form of BO.order
     /// </summary>

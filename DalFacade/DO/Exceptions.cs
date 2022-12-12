@@ -37,3 +37,10 @@ public class DalAlreadyExistIdException : Exception
     public override string ToString() => 
         $"Id: {EntityID} of type {EntityName}, already exists.";
 }
+
+[Serializable]
+public class DalConfigException : Exception
+{
+    public DalConfigException(string msg) : base(msg) { }
+    public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
+}

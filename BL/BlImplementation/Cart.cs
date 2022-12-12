@@ -15,7 +15,7 @@ internal class Cart : ICart
     /// <summary>
     /// Dal variable
     /// </summary>
-    DalApi.IDal dal = new Dal.DalList();
+    DalApi.IDal? dal = DalApi.Factory.Get();
     /// <summary>
     /// The function adds product to cart
     /// </summary>
