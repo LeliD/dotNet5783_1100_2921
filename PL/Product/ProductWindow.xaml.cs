@@ -72,15 +72,15 @@ namespace PL.Product
             double p = 0;
             bool isDataCorrect = true; //A variable for data check
             BO.Category.TryParse(CategorySelector.Text, out c);
-            lblWrongId.Content = ""; //Initializes the content of lblWrongId to be empty
+            //lblWrongId.Content = ""; //Initializes the content of lblWrongId to be empty
             lblWrongId.Visibility = Visibility.Visible;
-            lblWrongPrice.Content = ""; //Initializes the content of lblWrongPrice to be empty
+            //lblWrongPrice.Content = ""; //Initializes the content of lblWrongPrice to be empty
             lblWrongPrice.Visibility = Visibility.Visible;
-            lblWrongInStock.Content = ""; //Initializes the content of lblWrongInStock to be empty
+            //lblWrongInStock.Content = ""; //Initializes the content of lblWrongInStock to be empty
             lblWrongInStock.Visibility = Visibility.Visible;
-            lblWrongName.Content = ""; //Initializes the content of lblWrongName to be empty
+            //lblWrongName.Content = ""; //Initializes the content of lblWrongName to be empty
             lblWrongName.Visibility = Visibility.Visible;
-            lblMissingCategory.Content = ""; //Initializes the content of lblMissingCategory to be empty
+            //lblMissingCategory.Content = ""; //Initializes the content of lblMissingCategory to be empty
             lblMissingCategory.Visibility = Visibility.Visible;
             if (tbId.Text=="") //If tbId is empty
             {
@@ -107,7 +107,7 @@ namespace PL.Product
             else   //If tbPrice isn't empty
             {
                 check = double.TryParse(tbPrice.Text, out p);
-                if (!check)
+                if (!check || p < 0)
                 {
                     tbPrice.BorderBrush = Brushes.Red;
                     lblWrongPrice.Content = "Wrong Price";
@@ -123,7 +123,7 @@ namespace PL.Product
             else //If InStock isn't empty
             {
                 check = int.TryParse(tbInStock.Text, out i);
-                if (!check)
+                if (!check || i < 0)
                 {
                     tbInStock.BorderBrush = Brushes.Red;
                     lblWrongInStock.Content = "Wrong InStock";
@@ -226,6 +226,7 @@ namespace PL.Product
             if (tbId.BorderBrush == Brushes.Red)
             {
                 tbId.BorderBrush = Brushes.DimGray;
+                lblWrongId.Content = "";
                 lblWrongId.Visibility = Visibility.Hidden;
             }
         }
@@ -240,6 +241,7 @@ namespace PL.Product
             if (tbName.BorderBrush == Brushes.Red)
             {
                 tbName.BorderBrush = Brushes.DimGray;
+                lblWrongName.Content = "";
                 lblWrongName.Visibility = Visibility.Hidden;
             }
         }
@@ -254,6 +256,7 @@ namespace PL.Product
             if (tbPrice.BorderBrush == Brushes.Red)
             {
                 tbPrice.BorderBrush = Brushes.DimGray;
+                lblWrongPrice.Content = "";
                 lblWrongPrice.Visibility = Visibility.Hidden;
             }
         }
@@ -268,6 +271,7 @@ namespace PL.Product
             if (tbInStock.BorderBrush == Brushes.Red)
             {
                 tbInStock.BorderBrush = Brushes.DimGray;
+                lblWrongInStock.Content = "";
                 lblWrongInStock.Visibility = Visibility.Hidden;
             }
         }
@@ -279,6 +283,7 @@ namespace PL.Product
         /// <param name="e"></param>
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            lblMissingCategory.Content = "";
             lblMissingCategory.Visibility = Visibility.Hidden; 
         }
     }
