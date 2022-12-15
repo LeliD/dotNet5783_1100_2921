@@ -15,7 +15,7 @@ internal class Product : IProduct
     /// <summary>
     /// Dal variable
     /// </summary>
-    DalApi.IDal? dal = DalApi.Factory.Get();
+    DalApi.IDal dal = DalApi.Factory.Get();
     /// <summary>
     /// The function brings the list of products from dal and returns it filtered in form of BO.ProductForList? (For Manager)
     /// </summary>

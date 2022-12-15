@@ -24,7 +24,7 @@ namespace PL.Product
         /// <summary>
         /// bl is an instance of IBl
         /// </summary>
-        BlApi.IBl? bl = BlApi.Factory.Get();
+        BlApi.IBl bl = BlApi.Factory.Get();
         /// <summary>
         ///Build an instance of ProductListWindow
         /// </summary>

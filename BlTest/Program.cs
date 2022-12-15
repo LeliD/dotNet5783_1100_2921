@@ -390,7 +390,7 @@ d: Exit");
     {
         //IBl bl = new Bl();
        
-        BlApi.IBl? bl = BlApi.Factory.Get();
+        BlApi.IBl bl = BlApi.Factory.Get();
 
         string input;
         int choice = 0;

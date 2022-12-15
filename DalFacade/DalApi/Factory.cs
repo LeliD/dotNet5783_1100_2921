@@ -11,7 +11,7 @@ using static DalApi.DalConfig;
 
 public static class Factory
 {
-    public static IDal? Get()
+    public static IDal Get()
     {
         string dalType = s_dalName
             ?? throw new DalConfigException($"DAL name is not extracted from the configuration");

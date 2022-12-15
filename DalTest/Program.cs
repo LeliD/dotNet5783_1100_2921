@@ -459,7 +459,7 @@ h: Exit");
     static void Main(string[] args)
     {
         // IDal dal = new DalList();
-        DalApi.IDal? dal = DalApi.Factory.Get();
+        DalApi.IDal dal = DalApi.Factory.Get();
         string input;
         int choice = 0;
         do
