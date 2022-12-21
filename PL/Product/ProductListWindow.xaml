@@ -16,7 +16,7 @@
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="2">
+        <Grid Name="UpGrid" Height="auto" HorizontalAlignment="Stretch" Grid.Row="0" Width="auto" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="23*"/>
@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="400*"/>
             </Grid.ColumnDefinitions >
             <ComboBox x:Name="CategorySelector" Grid.Column="2" SelectionChanged="CategorySelector_SelectionChanged" Grid.RowSpan="2" />
-            <Label Content="Category :" Grid.Column="0" Background="#FFFCEFEC" FontFamily="Segoe UI Black" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Label Content="Category :" Grid.Column="0" Background="#FFFCEFEC" FontFamily="Segoe UI Black" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="43" VerticalAlignment="Top">
                 <Label.Foreground>
                     <SolidColorBrush Color="#FFA86A68"/>
                 </Label.Foreground>

@@ -7,29 +7,54 @@
         mc:Ignorable="d"
          Title="ProductWindow" Height="450" Width="800">
     <Grid Background="#FFFCEFEC">
-        <TextBox x:Name="tbId" HorizontalAlignment="Left" Margin="280,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="30" Background="#FFFFF4F4" TextChanged="tbId_TextChanged"/>
-        <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="280,134,0,0" VerticalAlignment="Top" Width="150" Height="30" BorderBrush="#FF9B0101" Foreground="#FFAE5151" SelectionChanged="CategorySelector_SelectionChanged">
-            <ComboBox.Background>
-                <LinearGradientBrush EndPoint="0,1">
-                    <GradientStop Color="#FFF0F0F0"/>
-                    <GradientStop Color="#FFFFF2F2" Offset="1"/>
-                </LinearGradientBrush>
-            </ComboBox.Background>
-        </ComboBox>
-        <Label x:Name="lblId" Content="Id:" HorizontalAlignment="Left" Margin="150,60,0,0" VerticalAlignment="Top" Height="28" Width="83" FontFamily="Gill Sans Ultra Bold" Foreground="#FFA86A68" FontSize="16"/>
-        <Label x:Name="lblCategory" Content="Category: " HorizontalAlignment="Left" Margin="150,129,0,0" VerticalAlignment="Top" Height="44" Width="111" FontFamily="Gill Sans Ultra Bold" FontSize="16" Foreground="#FFA86A68"/>
-        <Label x:Name="lblName" Content="Name: " HorizontalAlignment="Left" Margin="153,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.005,-0.146" FontFamily="Gill Sans Ultra Bold" Foreground="#FFA86A68" FontSize="16"/>
-        <Label x:Name="lblPrice" Content="Price: " HorizontalAlignment="Left" Margin="150,263,0,0" VerticalAlignment="Top" Foreground="#FFA86A68" FontFamily="Gill Sans Ultra Bold" FontSize="16"/>
-        <Label x:Name="lblInStock" Content="InStock: " HorizontalAlignment="Left" Margin="150,339,0,0" VerticalAlignment="Top" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="280,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="30" Background="#FFFFF4F4" TextChanged="tbName_TextChanged"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="280,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="30" Background="#FFFFF4F4" TextChanged="tbPrice_TextChanged"/>
-        <TextBox x:Name="tbInStock" HorizontalAlignment="Left" Margin="280,339,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Height="30" Background="#FFFFF4F4" TextChanged="tbInStock_TextChanged"/>
-        <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Left" Margin="633,345,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontFamily="Gill Sans Ultra Bold" FontSize="20" Height="48" Width="133" Background="#FFFADFDF" BorderBrush="#FFFA8989" Foreground="#FFA86A68"/>
-        <Label x:Name="lblWrongId" Content="" HorizontalAlignment="Left" Margin="280,95,0,0" VerticalAlignment="Top" Height="30" Width="150" Foreground="#FFD42D2D"/>
-        <Label x:Name="lblWrongInStock" Content="" HorizontalAlignment="Left" Margin="280,378,0,0" VerticalAlignment="Top" Height="31" Width="150" Foreground="#FFD42D2D"/>
-        <Label x:Name="lblWrongName" Content="" HorizontalAlignment="Left" Margin="280,231,0,0" VerticalAlignment="Top" Height="26" Width="150" Foreground="#FFD42D2D"/>
-        <Label x:Name="lblWrongPrice" Content="" HorizontalAlignment="Left" Margin="280,298,0,0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
-        <Label x:Name="lblMissingCategory" Content="" HorizontalAlignment="Left" Margin="280,164,0,0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+
+        <Grid x:Name="ProductGrid" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="89,0,0,0" Height="324" Width="280">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
+            <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label x:Name="lblWrongId" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+
+            <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label x:Name="lblWrongName" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+
+
+
+            <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
+            <ComboBox x:Name="categoryComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="NaN"  Margin="3,-20,0,0" Grid.Row="2" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label x:Name="lblMissingCategory" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+
+
+            <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3,0,0,3" Grid.Row="3" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold" />
+            <TextBox x:Name="priceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label x:Name="lblWrongPrice" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+
+
+            <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
+            <TextBox x:Name="inStockTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label x:Name="lblWrongInStock" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="4" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+
+
+
+        </Grid>
+
 
     </Grid>
 </Window>

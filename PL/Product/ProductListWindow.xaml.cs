@@ -55,7 +55,6 @@ namespace PL.Product
                 ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)((x?.Category) ?? throw new BO.BlNullPropertyException("Null Category")) == category);
             }
 
-            
         }
         /// <summary>
         /// Click event.The function open the window of adding new product 

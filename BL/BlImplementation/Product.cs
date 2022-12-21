@@ -22,17 +22,27 @@ internal class Product : IProduct
     /// <param name="filter">The function in which to filter the products</param>
     /// <returns>Filtered list of products in form of BO.ProductForList?</returns>
     /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
-    public IEnumerable<BO.ProductForList?> GetListedProductsForManager(Func<DO.Product?, bool>? filter = null)
+    public IEnumerable<BO.ProductForList?> GetListedProductsForManager(Func<BO.ProductForList?, bool>? filter = null)
     {
-        return from DO.Product? doProduct in dal.Product.GetAll(filter)
-               select new BO.ProductForList()
-               {
-                   ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
-                   Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
-                   Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
-                   Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product")
-               };
+        var x = from DO.Product? doProduct in dal.Product.GetAll()
+                select new BO.ProductForList()
+                {
+                    ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
+                    Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
+                    Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
+                    Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product")
+                };
+
+        if (filter == null)
+            return x;
+
+        return from productForList in x
+               where filter(productForList)
+               select productForList;
+              
+        
     }
+    
 
     /// <summary>
     /// The function brings the list of products from dal and returns it in form of BO.ProductItem? (For Customer) 

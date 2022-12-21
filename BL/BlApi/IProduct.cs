@@ -9,7 +9,7 @@ namespace BlApi;
 
 public interface IProduct
 {
-    public IEnumerable<ProductForList?> GetListedProductsForManager(Func<DO.Product?, bool>? filter = null);
+    public IEnumerable<ProductForList?> GetListedProductsForManager(Func<BO.ProductForList?, bool>? filter = null);
     public IEnumerable<ProductItem?> GetListedProductsForCustomer();
     public Product ProductDetailsForManager(int productID);
     public ProductItem ProductDetailsForCustomer(int productID, Cart c);//ghgjhgj
