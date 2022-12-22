@@ -23,12 +23,12 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbId" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label x:Name="lblWrongId" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <TextBox x:Name="tbId" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbId_TextChanged"/>
+            <Label x:Name="lblWrongId" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
             <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label x:Name="lblWrongName" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbName_TextChanged"/>
+            <Label x:Name="lblWrongName" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
 
 
@@ -40,17 +40,17 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label x:Name="lblMissingCategory" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <Label x:Name="lblMissingCategory" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
 
             <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3,0,0,3" Grid.Row="3" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold" />
-            <TextBox x:Name="tbPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label x:Name="lblWrongPrice" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <TextBox x:Name="tbPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbPrice_TextChanged"/>
+            <Label x:Name="lblWrongPrice" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
 
             <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label x:Name="lblWrongInStock" Grid.Column="1" Content="Label" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="4" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <TextBox x:Name="tbInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbInStock_TextChanged"/>
+            <Label x:Name="lblWrongInStock" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="4" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
 
 
