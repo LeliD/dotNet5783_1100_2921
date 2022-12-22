@@ -29,6 +29,20 @@ namespace PL.Product
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
 
+
+
+        public BO.Product? boProduct
+        {
+            get { return (BO.Product?)GetValue(boProductProperty); }
+            set { SetValue(boProductProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for boProduct.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty boProductProperty =
+            DependencyProperty.Register("boProduct", typeof(BO.Product), typeof(ProductWindow), new PropertyMetadata(null));
+
+
+
         /// <summary>
         /// Building an instance of ProductWindow 
         /// </summary>
@@ -37,7 +51,7 @@ namespace PL.Product
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             btnAdd_UpdateProduct.Content = "Add";//Content of the botton is "Add" for adding a product
-
+            boProduct=new BO.Product();
         }
         /// <summary>
         /// Building an instance of ProductWindow 
@@ -46,16 +60,18 @@ namespace PL.Product
         public ProductWindow(int id)
         {
 
-            InitializeComponent();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            BO.Product p = bl.Product.ProductDetailsForManager(id);//Getting the product by its id
-            tbId.Text = p.ID.ToString();
-            CategorySelector.SelectedItem = p.Category;
-            tbName.Text = p.Name;
-            tbPrice.Text = p.Price.ToString();
-            tbInStock.Text = p.InStock.ToString();
-            tbId.IsEnabled = false; //Id isn't allowed to be changed
-            btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
+          InitializeComponent();
+          CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+          boProduct=bl.Product.ProductDetailsForManager(id);
+
+            //    BO.Product p = bl.Product.ProductDetailsForManager(id);//Getting the product by its id
+            //    tbId.Text = p.ID.ToString();
+            //    CategorySelector.SelectedItem = p.Category;
+            //    tbName.Text = p.Name;
+            //    tbPrice.Text = p.Price.ToString();
+            //    tbInStock.Text = p.InStock.ToString();
+           tbId.IsEnabled = false; //Id isn't allowed to be changed
+           btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
         }
         /// <summary>
         /// Click event. The function adds or updates product according to the window's openning
@@ -142,16 +158,8 @@ namespace PL.Product
             {
                 try
                 {
-                    bl.Product.AddProduct(new BO.Product()
-                    {
-                        ID = id,
-                        Category = c,
-                        Name = tbName.Text,
-                        Price = p,
-                        InStock = i
-
-                    });
-                    MessageBox.Show("New Product was added successfully");
+                    bl.Product.AddProduct(boProduct!);
+                    MessageBox.Show("New Product was added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
                 catch (BO.BlAlreadyExistEntityException ex)
@@ -179,16 +187,8 @@ namespace PL.Product
                 {
                     try
                     {
-                        bl.Product.UpdateProduct(new BO.Product()
-                        {
-                            ID = id,
-                            Category = c,
-                            Name = tbName.Text,
-                            Price = p,
-                            InStock = i
-
-                        });
-                        MessageBox.Show("The Product was added successfully");
+                        bl.Product.UpdateProduct(boProduct!);
+                        MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                         Close();
                     }
                     catch (BO.BlMissingEntityException ex)
