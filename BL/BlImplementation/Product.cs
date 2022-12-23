@@ -141,7 +141,7 @@ internal class Product : IProduct
             throw new BO.BlDetailInvalidException("ID", "Negative ID");
         if (boProduct.Name == null || boProduct.Name == "")
             throw new BO.BlDetailInvalidException("ID", "Name is empty");
-        if (boProduct.Price <= 0)
+        if (boProduct.Price < 0)
             throw new BO.BlDetailInvalidException("Price", "wrong Price");
         if (boProduct.InStock < 0)
             throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");
@@ -196,7 +196,7 @@ internal class Product : IProduct
             throw new BO.BlDetailInvalidException("ID", "Negative ID");
         if (boProduct.Name == null || boProduct.Name == "")
             throw new BO.BlDetailInvalidException("ID", "Name is empty");
-        if (boProduct.Price <= 0)
+        if (boProduct.Price < 0)
             throw new BO.BlDetailInvalidException("Price", "Negative Price");
         if (boProduct.InStock < 0)
             throw new BO.BlDetailInvalidException("InStock", "Negative Amount in Stock");

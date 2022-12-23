@@ -31,13 +31,14 @@ namespace PL.Product
         public ProductListWindow()
         {
             InitializeComponent();
-            ProductListView.ItemsSource = bl.Product.GetListedProductsForManager();//Initialization of listView in list of products for manager
+           // ProductListView.ItemsSource = bl.Product.GetListedProductsForManager();//Initialization of listView in list of products for manager
             CategorySelector.Items.Add(BO.Category.BATHROOM);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.KITCHEN);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.BEDROOM);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.LIVING_ROOM);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.KIDS);//Add cateroty to comboBox
             CategorySelector.Items.Add("All");//Add cateroty to comboBox
+            CategorySelector.SelectedItem = "All";
         }
         /// <summary>
         /// 
@@ -47,13 +48,7 @@ namespace PL.Product
         /// <exception cref="BO.BlNullPropertyException"></exception>
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CategorySelector.SelectedItem == "All")
-                ProductListView.ItemsSource = bl.Product.GetListedProductsForManager();
-            else
-            {
-                BO.Category category = (BO.Category)CategorySelector.SelectedItem;
-                ProductListView.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)((x?.Category) ?? throw new BO.BlNullPropertyException("Null Category")) == category);
-            }
+            ShowListOfProducts();
 
         }
         /// <summary>
@@ -65,20 +60,46 @@ namespace PL.Product
         {
 
             ProductWindow pw = new ProductWindow();//create new ProductWindow
-            pw.Show();
+            pw.ShowDialog();
         }
         /// <summary>
         /// Click event. The function open the window of updating new product 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;//the product that was selected
+        //    ProductWindow pw = new ProductWindow(p.ID);//create new ProductWindow of the selected product
+        //    pw.Show();
+        //}
+
+        private void productForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;//the product that was selected
-            ProductWindow pw = new ProductWindow(p.ID);//create new ProductWindow of the selected product
-            pw.Show();
+            BO.ProductForList? productForList = productForListDataGrid.SelectedItem as BO.ProductForList;
+            if(productForList != null)
+            {
+                ProductWindow pw = new ProductWindow(productForList.ID);//create new ProductWindow of the selected product
+                pw.ShowDialog();
+            }
         }
 
-      
+        private void ShowListOfProducts()
+        {
+            BO.Category? category = CategorySelector.SelectedItem as BO.Category?;
+            if (category==null)
+            {
+                productForListDataGrid.ItemsSource=bl.Product.GetListedProductsForManager();
+            }
+            else
+            {
+                productForListDataGrid.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)(x?.Category)! == category);
+            }
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            ShowListOfProducts();
+        }
     }
 }
