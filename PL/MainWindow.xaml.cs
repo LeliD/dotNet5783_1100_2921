@@ -40,8 +40,8 @@ namespace PL
         /// <param name="e"></param>
         private void BtnProduftList_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow plw = new ProductListWindow();//create new ProductListWindow
-            plw.Show();
+            AdminWindow plw = new AdminWindow();//create new ProductListWindow
+            plw.ShowDialog();
         }
     }
 }
