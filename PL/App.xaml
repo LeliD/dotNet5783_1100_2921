@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFD8BCB2" />
+            <Setter Property="BorderBrush" Value="#FF934326" />
+            <Setter Property="Foreground" Value="#FF6B6866" />
+         <Setter Property="FontWeight" Value="Bold" />
+         <Setter Property="FontFamily" Value="Segoe UI Black" />
+        </Style>
     </Application.Resources>
 </Application>

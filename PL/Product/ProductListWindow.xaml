@@ -42,7 +42,7 @@
                 <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="160"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="btnAddProduct_Click" Background="#FFF9EAE4" FontWeight="Bold" FontFamily="Cooper Black" BorderBrush="#FFA86A68" Foreground="#FFA86A68" Width="147" FontSize="14"/>
+        <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="btnAddProduct_Click"  Width="147" FontSize="14"/>
 
     </Grid>
 </Window>
