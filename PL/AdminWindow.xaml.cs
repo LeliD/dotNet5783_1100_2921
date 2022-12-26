@@ -1,4 +1,5 @@
-﻿using PL.Product;
+﻿using PL.Order;
+using PL.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,16 @@ namespace PL
             InitializeComponent();
         }
 
-        private void BtnProduftList_Click(object sender, RoutedEventArgs e)
+        private void BtnProductList_Click(object sender, RoutedEventArgs e)
         {
             ProductListWindow plw = new ProductListWindow();//create new ProductListWindow
-            plw.Show();
+            plw.ShowDialog();
+        }
+
+        private void BtnOrderList_Click(object sender, RoutedEventArgs e)
+        {
+            OrderListWindow ow = new OrderListWindow();//create new ProductListWindow
+            ow.ShowDialog();
         }
     }
 }
