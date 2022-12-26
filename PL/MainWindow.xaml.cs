@@ -9,10 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using PL.Order;
 using PL.Product;
 
 namespace PL
@@ -42,6 +43,18 @@ namespace PL
         {
             AdminWindow plw = new AdminWindow();//create new ProductListWindow
             plw.ShowDialog();
+        }
+
+        private void btnTracking_Click(object sender, RoutedEventArgs e)
+        {
+            int id;
+            bool check = int.TryParse(tbIDOrderTrack.Text, out id);
+            if(check)
+            {
+                OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
+                otw.ShowDialog();
+            }
+            
         }
     }
 }

@@ -1,0 +1,38 @@
+﻿<Window x:Class="PL.Order.OrderTrackingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Order"
+        mc:Ignorable="d"
+        DataContext="{Binding boOrderTracking, RelativeSource={RelativeSource Self} }"
+        Title="OrderTrackingWindow" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="orderTrackingGrid" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="221,139,0,0" Height="191" Width="305">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="iDTextBox" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="statusTextBox" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <DataGrid x:Name="trackingDataGrid"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking, Mode=TwoWay}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,82,-102,-117" Grid.Row="1" Grid.ColumnSpan="2" >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn x:Name="item1Column" Header="Date" IsReadOnly="True" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker IsEnabled="False" SelectedDate="{Binding Item1, Mode=OneWay}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn x:Name="item2Column" Binding="{Binding Item2}" Header="Status" IsReadOnly="True" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
