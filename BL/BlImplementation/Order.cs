@@ -72,12 +72,13 @@ internal class Order: IOrder
     public IEnumerable<BO.OrderForList?> GetOrdersForManager()
     {
         var listOfOrders = from item in dal.Order.GetAll()
+                           let orderItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order"))
                            select new BO.OrderForList()
                            {
                                ID = item?.ID ?? throw new BO.BlNullPropertyException("Null order"),
                                CustomerName = item?.CustomerName,
                                Status = orderStatus(item),
-                               AmountOfItems = dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Count(),
+                               AmountOfItems = orderItems.Count(),
                                TotalPrice= dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Sum(x=>x?.Price * x?.Amount)?? throw new BO.BlNullPropertyException("Null Price")
                            };
         return listOfOrders;

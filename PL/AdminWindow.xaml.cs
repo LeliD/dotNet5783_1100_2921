@@ -36,8 +36,8 @@ namespace PL
 
         private void BtnOrderList_Click(object sender, RoutedEventArgs e)
         {
-            OrderListWindow ow = new OrderListWindow();//create new ProductListWindow
-            ow.ShowDialog();
+            OrderListWindow olw = new OrderListWindow();//create new ProductListWindow
+            olw.ShowDialog();
         }
     }
 }

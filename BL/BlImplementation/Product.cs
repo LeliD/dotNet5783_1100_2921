@@ -25,6 +25,7 @@ internal class Product : IProduct
     public IEnumerable<BO.ProductForList?> GetListedProductsForManager(Func<BO.ProductForList?, bool>? filter = null)
     {
         var x = from DO.Product? doProduct in dal.Product.GetAll()
+                orderby doProduct?.Category, doProduct ?.ID
                 select new BO.ProductForList()
                 {
                     ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),

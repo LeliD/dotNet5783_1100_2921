@@ -44,11 +44,15 @@ namespace PL.Order
             InitializeComponent();
             //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             boOrder = bl.Order.GetOrderByID(id);
+            orderItemDataGrid.ItemsSource = boOrder.Items;
 
-
-            //tbId.IsEnabled = false; //Id isn't allowed to be changed
+            //tbID.IsEnabled = false; //Id isn't allowed to be changed
             //btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
         }
 
+        private void btnUpdateOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
