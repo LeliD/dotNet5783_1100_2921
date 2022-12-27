@@ -52,7 +52,7 @@
             <Label x:Name="lblTotalPrice" Grid.Column="0" Content="Total Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
             <TextBox x:Name="tbTotalPrice" IsEnabled = "false" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="8" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <DataGrid x:Name="orderItemDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="423,101,46,168">
+        <DataGrid x:Name="orderItemDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,63,69,206">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
@@ -63,6 +63,7 @@
                 <DataGridTextColumn x:Name="totalPriceColumn1" Binding="{Binding TotalPrice}" Header="Total Price" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnUpdateOrder" Content="Update" HorizontalAlignment="Left" Margin="625,349,0,0" VerticalAlignment="Top" Height="40" Width="87" Click="btnUpdateOrder_Click"/>
+        <Button x:Name="btnUpdateShipDateOrder" Content="Update Ship date" HorizontalAlignment="Left" Margin="296,258,0,0" VerticalAlignment="Top" Height="25" Width="132" Click="btnUpdateShipDateOrder_Click"/>
+        <Button x:Name="btnUpdateDeliveryDateOrder" Content="Update delivery date" HorizontalAlignment="Left" Margin="296,288,0,0" VerticalAlignment="Top" Width="132" Height="26" Click="btnUpdateDeliveryDateOrder_Click"/>
     </Grid>
 </Window>

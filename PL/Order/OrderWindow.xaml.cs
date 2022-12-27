@@ -45,14 +45,36 @@ namespace PL.Order
             //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             boOrder = bl.Order.GetOrderByID(id);
             orderItemDataGrid.ItemsSource = boOrder.Items;
-
+            if(boOrder.ShipDate == null)
+                btnUpdateDeliveryDateOrder.Visibility=Visibility.Hidden;
+            else
+            {
+                btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
+                if (boOrder.DeliveryDate!=null)
+                    btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
+            }
+                
             //tbID.IsEnabled = false; //Id isn't allowed to be changed
             //btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
         }
 
-        private void btnUpdateOrder_Click(object sender, RoutedEventArgs e)
+        private void btnUpdateShipDateOrder_Click(object sender, RoutedEventArgs e)
         {
+            if(boOrder != null)
+            {
+                boOrder = bl.Order.UpdateShipDate(boOrder.ID);
+            }
+            btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
+            btnUpdateDeliveryDateOrder.Visibility = Visibility.Visible;
+        }
 
+        private void btnUpdateDeliveryDateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (boOrder != null)
+            {
+                boOrder = bl.Order.UpdateDeliveryDate(boOrder.ID);
+            }
+            btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
         }
     }
 }

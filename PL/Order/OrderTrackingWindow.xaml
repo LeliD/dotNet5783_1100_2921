@@ -8,7 +8,7 @@
         DataContext="{Binding boOrderTracking, RelativeSource={RelativeSource Self} }"
         Title="OrderTrackingWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="orderTrackingGrid" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="221,139,0,0" Height="191" Width="305">
+        <Grid x:Name="orderTrackingGrid" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="221,139,0,0" Height="154" Width="305">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -16,12 +16,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="iDTextBox" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="statusTextBox" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <DataGrid x:Name="trackingDataGrid"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking, Mode=TwoWay}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,82,-102,-117" Grid.Row="1" Grid.ColumnSpan="2" >
+            <Label Grid.Column="0" Content="Tracking:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <DataGrid x:Name="trackingDataGrid"  AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding Tracking, Mode=TwoWay}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,10,-102,-45" Grid.Row="2" Grid.Column="1" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="item1Column" Header="Date" IsReadOnly="True" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
