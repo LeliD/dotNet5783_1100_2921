@@ -36,5 +36,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        <Button x:Name="btnOrderDetails" Content="Order Details" HorizontalAlignment="Left" Margin="616,360,0,0" VerticalAlignment="Top" Height="33" Width="103" Click="btnOrderDetails_Click"/>
     </Grid>
 </Window>

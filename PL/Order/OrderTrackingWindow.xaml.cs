@@ -43,6 +43,9 @@ namespace PL.Order
             boOrderTracking=bl.Order.OrderTrack(id);
         }
 
-        
+        private void btnOrderDetails_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
