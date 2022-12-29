@@ -19,7 +19,7 @@ using PL.Product;
 
 namespace PL
 {
-
+    enum Mode {Editing,Display}
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

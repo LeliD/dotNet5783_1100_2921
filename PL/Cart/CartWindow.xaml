@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Cart"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="CartWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--<Border Grid.Row= "0" Width="100" Height="50" CornerRadius="5" Margin="30,50,30,84">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="1"/>
+                    </Border.Effect>
+                    <Border.Background>
+                        <ImageBrush ImageSource="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />
+                    </Border.Background>
+                </Border>-->
+        <Image Grid.Row= "0" Height="60" Width="180" HorizontalAlignment="Center" Source="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />
+        <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="5,0,0,0" FontSize="17" />
+        <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
+    </Grid>
     </Grid>
 </Window>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Product"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         DataContext="{Binding boProduct, RelativeSource={RelativeSource Self} }"
         Title="ProductWindow" Height="450" Width="800">
     <Grid Background="#FFFCEFEC">

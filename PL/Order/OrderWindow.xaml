@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         DataContext="{Binding boOrder, RelativeSource={RelativeSource Self} }"
         Title="OrderWindow" Height="450" Width="800">
     <Grid>

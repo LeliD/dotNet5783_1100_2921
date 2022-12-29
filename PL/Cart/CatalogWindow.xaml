@@ -5,54 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Cart"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         DataContext="{Binding RelativeSource={RelativeSource Self} }"
         Title="CatalogWindow" Height="450" Width="800">
-
+    <Window.Resources>
+        <DataTemplate x:Key="ProductItemTemplate" DataType="local:ProductItem">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row= "0" Width="100" Height="40" CornerRadius="5" Margin="30,50,30,84">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="1"/>
+                    </Border.Effect>
+                    <Border.Background>
+                        <ImageBrush ImageSource="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />
+                    </Border.Background>
+                </Border>
+                <!--<Image Grid.Row= "0" Height="60" Width="180" HorizontalAlignment="Center" Source="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />-->
+                <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="5,0,0,0" FontSize="17" />
+                <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="170"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.RowSpan="2">
+        </Grid.ColumnDefinitions>-->
+        <!--<Grid Grid.RowSpan="2">
             <Image Source="/Cart/zara-home.png" Margin="10,-9,10,378"/>
             <Button x:Name="btnCart" Content="Cart" HorizontalAlignment="Left" Margin="59,356,0,0" VerticalAlignment="Top" Height="24" Width="55"/>
-        </Grid>
-        <ScrollViewer Grid.Row="1" Background="#FFF1F1F1" Grid.Column="1">
-            <StackPanel>
-                <TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>
-                <StackPanel Margin="20 0">
-                    <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Margin="10" Width="110" Height="160">
-                                    <StackPanel>
-                                        <Border Width="100" Height="100" CornerRadius="5" Margin="5">
-                                            <Border.Effect>
-                                                <DropShadowEffect ShadowDepth="1"/>
-                                            </Border.Effect>
-                                            <Border.Background>
-                                                <ImageBrush ImageSource="C:\Users\lelid\source\repos\LeliD\dotNet5783_1100_2921\PL\Cart\zara-home.png" />
-                                                <!--{Binding Image}"-->
-                                            </Border.Background>
-                                        </Border>
-                                        <TextBlock Margin="5" Text="{Binding Price, StringFormat={}{0:C}}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
-                                        <TextBlock Margin="5 0" Text="{Binding Name}" FontSize="15"/>
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </StackPanel>
-            </StackPanel>
+        </Grid>-->
+
+
+        <ScrollViewer Background="#FFF1F1F1" Margin="0,1,0,0" Grid.Row="1"  Grid.Column="1" >
+            <!--<TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>-->
+
+            <ListView x:Name="listViewProducts" ItemsSource="{Binding}" ItemTemplate="{StaticResource ProductItemTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  HorizontalContentAlignment="Stretch">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ListView>
         </ScrollViewer>
+        <Image HorizontalAlignment="Left" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" Width="261" Source="/Cart/zara-home.png"/>
+        <Button HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="50" Width="71" Foreground="#FFF6F0EC" BorderBrush="#FFF7F0ED">
+            <Button.Background>
+                <ImageBrush ImageSource="/Cart/home.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

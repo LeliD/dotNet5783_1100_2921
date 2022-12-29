@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="OrderListWindow" Height="450" Width="800" Activated="Window_Activated">
     <Grid>
         <DataGrid x:Name="orderForListDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="61,98,159,52" MouseDoubleClick="orderForListDataGrid_MouseDoubleClick" >

@@ -21,14 +21,14 @@ namespace PL.Product
     /// <summary>
     /// Interaction logic for ProductWindow.xaml
     /// </summary>
-
+    enum Mode {ADD,UPDATE}
     public partial class ProductWindow : Window
     {
         /// <summary>
         /// bl is an instance of IBl
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
-
+        Mode mode;
 
 
         public BO.Product? boProduct
@@ -51,13 +51,14 @@ namespace PL.Product
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             btnAdd_UpdateProduct.Content = "Add";//Content of the botton is "Add" for adding a product
+            mode = Mode.ADD;
             boProduct=new BO.Product();
         }
         /// <summary>
         /// Building an instance of ProductWindow 
         /// </summary>
         /// <param name="id">Id of product to initialize the ProductWindow</param>
-        public ProductWindow(int id)
+        public ProductWindow(int id,PL.Mode generalMode)
         {
 
           InitializeComponent();
@@ -72,6 +73,7 @@ namespace PL.Product
             //    tbInStock.Text = p.InStock.ToString();
            tbId.IsEnabled = false; //Id isn't allowed to be changed
            btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
+           mode = Mode.UPDATE;
         }
         /// <summary>
         /// Click event. The function adds or updates product according to the window's openning
@@ -154,7 +156,7 @@ namespace PL.Product
             if (!isDataCorrect)//If one of the arguments is wrong
                 return;
             //The all arguments are correct:
-            if (btnAdd_UpdateProduct.Content == "Add") //In case there is a need to add a product
+            if (mode== Mode.ADD) //In case there is a need to add a product
             {
                 try
                 {
@@ -183,7 +185,7 @@ namespace PL.Product
             }
             else
             {
-                if (btnAdd_UpdateProduct.Content == "Update") //In case there is a need to update a product
+                if (mode==Mode.UPDATE) //In case there is a need to update a product
                 {
                     try
                     {

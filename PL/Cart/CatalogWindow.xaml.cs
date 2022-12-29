@@ -23,11 +23,12 @@ namespace PL.Cart
         BlApi.IBl bl = BlApi.Factory.Get();
 
         private ObservableCollection<BO.ProductItem?> productItems;
-        public CatalogWindow()
+        public CatalogWindow(BO.Cart cart)
         {
             InitializeComponent();
             productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
-            ListViewProducts.ItemsSource = productItems;
+            listViewProducts.ItemsSource = productItems;
         }
+
     }
 }

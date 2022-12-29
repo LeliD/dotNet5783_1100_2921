@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
         <Button x:Name="BtnOrderList" Content="List Of Orders" HorizontalAlignment="Left" Margin="89,332,0,0" Height="64" Width="173" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
