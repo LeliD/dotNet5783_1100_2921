@@ -19,8 +19,9 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.RowSpan="2">
             <Image Source="/Cart/zara-home.png" Margin="10,-9,10,378"/>
+            <Button x:Name="btnCart" Content="Cart" HorizontalAlignment="Left" Margin="59,356,0,0" VerticalAlignment="Top" Height="24" Width="55"/>
         </Grid>
-        <ScrollViewer Grid.Row="1" Background="#FFF1F1F1" Grid.ColumnSpan="2">
+        <ScrollViewer Grid.Row="1" Background="#FFF1F1F1" Grid.Column="1">
             <StackPanel>
                 <TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>
                 <StackPanel Margin="20 0">

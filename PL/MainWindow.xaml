@@ -11,7 +11,8 @@
         <Image HorizontalAlignment="Left" Height="153" Margin="54,86,0,0" VerticalAlignment="Top" Width="562" Source="/zarahome.png"/>
         <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Center" Margin="0,332,0,0" VerticalAlignment="Top" Height="64" Width="160" FontSize="20" Click="btnTracking_Click"/>
         <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="85,332,0,0" VerticalAlignment="Top" Height="64" Width="146" FontSize="20" Click="btnNewOrder_Click"/>
-        <TextBox x:Name="tbIDOrderTrack"  HorizontalAlignment="Left" Margin="320,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown"/>
+        <TextBox x:Name="tbIDOrderTrack"  HorizontalAlignment="Left" Margin="335,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown"/>
+        <Label x:Name="lblTracking" Content="Enter number of order" HorizontalAlignment="Left" Margin="331,278,0,0" VerticalAlignment="Top" Width="124"/>
 
     </Grid>
 </Window>
