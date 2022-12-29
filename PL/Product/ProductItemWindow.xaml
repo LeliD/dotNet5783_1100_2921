@@ -25,15 +25,15 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbId" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+            <TextBox x:Name="tbId" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
 
             <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" SelectionBrush="#FFFCEFEC" />
+            <TextBox x:Name="tbName" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" SelectionBrush="#FFFCEFEC" />
 
 
 
             <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <ComboBox x:Name="CategorySelector" Grid.Column="1"  SelectedItem="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="NaN"  Margin="3,-20,0,0" Grid.Row="2" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="CategorySelector" Grid.Column="1"  IsEnabled="False" SelectedItem="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="NaN"  Margin="3,-20,0,0" Grid.Row="2" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -43,14 +43,14 @@
 
 
             <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3,0,0,3" Grid.Row="3" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold" />
-            <TextBox x:Name="tbPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+            <TextBox x:Name="tbPrice" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
 
 
             <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <CheckBox x:Name="tbInStock" Grid.Column="1" HorizontalAlignment="Left" Height="20" Grid.Row="4" IsChecked="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="17" Margin="67,0,0,0" />
+            <CheckBox x:Name="tbInStock" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Height="20" Grid.Row="4" IsChecked="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="17" Margin="3,24,0,0" />
 
             <Label Grid.Column="0" Content="Amount: " HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbAmount" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="5" Text="{Binding Amount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+            <TextBox x:Name="tbAmount" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="5" Text="{Binding Amount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
 
 
         </Grid>

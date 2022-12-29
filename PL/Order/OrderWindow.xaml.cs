@@ -39,20 +39,26 @@ namespace PL.Order
             InitializeComponent();
         }
 
-        public OrderWindow(int id)
+        public OrderWindow(int id, GeneralMode mode )
         {
 
             InitializeComponent();
             //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             boOrder = bl.Order.GetOrderByID(id);
             orderItemDataGrid.ItemsSource = boOrder.Items;
-            if(boOrder.ShipDate == null)
-                btnUpdateDeliveryDateOrder.Visibility=Visibility.Hidden;
+            if (mode == PL.GeneralMode.Editing)
+                if (boOrder.ShipDate == null)
+                    btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
+                else
+                {
+                    btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
+                    if (boOrder.DeliveryDate != null)
+                        btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
+                }
             else
             {
                 btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
-                if (boOrder.DeliveryDate!=null)
-                    btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
+                btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
             }
                 
             //tbID.IsEnabled = false; //Id isn't allowed to be changed

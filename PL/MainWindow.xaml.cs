@@ -19,7 +19,7 @@ using PL.Product;
 
 namespace PL
 {
-    enum Mode {Editing,Display}
+    public enum GeneralMode {Editing,Display}
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -86,7 +86,8 @@ namespace PL
 
         private void btnNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            CatalogWindow cw = new CatalogWindow();//create new ProductListWindow
+            BO.Cart cart=new BO.Cart(); 
+            CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
             cw.ShowDialog();
         }
     }

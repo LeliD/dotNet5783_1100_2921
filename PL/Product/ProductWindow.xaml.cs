@@ -58,7 +58,7 @@ namespace PL.Product
         /// Building an instance of ProductWindow 
         /// </summary>
         /// <param name="id">Id of product to initialize the ProductWindow</param>
-        public ProductWindow(int id,PL.Mode generalMode)
+        public ProductWindow(int id)
         {
 
           InitializeComponent();

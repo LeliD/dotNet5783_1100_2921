@@ -45,7 +45,14 @@ namespace PL.Order
 
         private void btnOrderDetails_Click(object sender, RoutedEventArgs e)
         {
-
+            if(boOrderTracking!=null)
+            {
+                OrderWindow ow = new OrderWindow(boOrderTracking.ID, GeneralMode.Display);//create new ProductListWindow
+                ow.ShowDialog();
+            }
+           
         }
+
+       
     }
 }

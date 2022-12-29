@@ -39,6 +39,7 @@ namespace PL.Product
         public ProductItemWindow(int id,BO.Cart cart)
         {
             InitializeComponent();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             boProductItem = bl.Product.ProductDetailsForCustomer(id,cart);
         }
     }

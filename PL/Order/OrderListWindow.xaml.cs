@@ -41,7 +41,7 @@ namespace PL.Order
             BO.OrderForList? orderForList = orderForListDataGrid.SelectedItem as BO.OrderForList;
             if (orderForList != null)
             {
-                OrderWindow ow = new OrderWindow(orderForList.ID);//create new OrderWindow of the selected order
+                OrderWindow ow = new OrderWindow(orderForList.ID,PL.GeneralMode.Editing);//create new OrderWindow of the selected order
                 ow.ShowDialog();
             }
         }
