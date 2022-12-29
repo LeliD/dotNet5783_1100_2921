@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Cart\zara-home.png" />
     <None Remove="zarahome.png" />
   </ItemGroup>
 
@@ -21,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Cart\zara-home.png" />
     <Resource Include="zarahome.png" />
   </ItemGroup>
 

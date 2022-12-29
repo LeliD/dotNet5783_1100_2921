@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -75,6 +76,16 @@ namespace PL.Order
                 boOrder = bl.Order.UpdateDeliveryDate(boOrder.ID);
             }
             btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
+        }
+
+        private void orderItemDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.OrderItem? orderItem = orderItemDataGrid.SelectedItem as BO.OrderItem;
+            if (orderItem != null)
+            {
+                ProductWindow pw = new ProductWindow(orderItem.ProductID);//create new ProductWindow of the selected product
+                pw.ShowDialog();
+            }
         }
     }
 }

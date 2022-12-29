@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PL.Cart;
 using PL.Order;
 using PL.Product;
 
@@ -81,6 +82,12 @@ namespace PL
                             //forbid letters and signs (#,$, %, ...)
             e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
             return;
+        }
+
+        private void btnNewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogWindow cw = new CatalogWindow();//create new ProductListWindow
+            cw.ShowDialog();
         }
     }
 }
