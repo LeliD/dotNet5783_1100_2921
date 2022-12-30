@@ -74,10 +74,7 @@ namespace PL.Product
         //    pw.Show();
         //}
 
-        private void productForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
+      
         
         private void ShowListOfProducts()
         {
