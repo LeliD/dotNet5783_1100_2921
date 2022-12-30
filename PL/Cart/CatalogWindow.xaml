@@ -29,8 +29,7 @@
                 <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
             </Grid>
         </DataTemplate>
-    </Window.Resources>
-
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -58,5 +57,10 @@
             </ListView>
         </ScrollViewer>
         <Image HorizontalAlignment="Left" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" Width="261" Source="/Cart/zara-home.png"/>
+        <!--<Button HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="50" Width="71" Foreground="#FFF6F0EC" BorderBrush="#FFF7F0ED">
+            <Button.Background>
+                <ImageBrush ImageSource="/Cart/home.png"/>
+            </Button.Background>
+        </Button>-->
     </Grid>
 </Window>
