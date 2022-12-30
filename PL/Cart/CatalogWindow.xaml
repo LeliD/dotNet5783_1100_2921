@@ -21,7 +21,7 @@
                         <DropShadowEffect ShadowDepth="1"/>
                     </Border.Effect>
                     <Border.Background>
-                        <ImageBrush ImageSource="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />
+                        <ImageBrush ImageSource="/Cart/zara-home.png"/>
                     </Border.Background>
                 </Border>
                 <!--<Image Grid.Row= "0" Height="60" Width="180" HorizontalAlignment="Center" Source="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />-->
@@ -29,7 +29,8 @@
                 <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
             </Grid>
         </DataTemplate>
-    </Window.Resources>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
