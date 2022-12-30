@@ -29,7 +29,8 @@
                 <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
             </Grid>
         </DataTemplate>
-    </Window.Resources>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
