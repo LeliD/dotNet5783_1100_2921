@@ -53,6 +53,7 @@ namespace PL.Product
             btnAdd_UpdateProduct.Content = "Add";//Content of the botton is "Add" for adding a product
             mode = Mode.ADD;
             boProduct=new BO.Product();
+            btnRemove.Visibility = Visibility.Hidden;
         }
         /// <summary>
         /// Building an instance of ProductWindow 
@@ -64,7 +65,7 @@ namespace PL.Product
           InitializeComponent();
           CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
           boProduct=bl.Product.ProductDetailsForManager(id);
-
+          btnRemove.Visibility = Visibility.Visible;
             //    BO.Product p = bl.Product.ProductDetailsForManager(id);//Getting the product by its id
             //    tbId.Text = p.ID.ToString();
             //    CategorySelector.SelectedItem = p.Category;
@@ -286,6 +287,25 @@ namespace PL.Product
         {
             lblMissingCategory.Content = "";
             lblMissingCategory.Visibility = Visibility.Hidden; 
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the product?", "ProductRemove",MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if(result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    bl.Product.DeleteProduct(boProduct!.ID);
+                    Close();
+                }
+                catch (BO.BlAlreadyExistEntityException ex)
+                {
+                    MessageBox.Show(ex.Message, "AlreadyExistEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+           
+            
         }
     }
 }

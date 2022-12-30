@@ -40,10 +40,12 @@
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="100"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="370"/>
                 <DataGridTextColumn x:Name="categoryColumn" Binding="{Binding Category}" Header="Category" Width="160"/>
-                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="160"/>
+                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Price" Width="85"/>
+                <DataGridTemplateColumn Header="More">                    <DataGridTemplateColumn.CellTemplate>                        <DataTemplate>                            <Button x:Name="btnDetails" Content="..." FontWeight="Bold" Click="btnDetails_Click"/>                        </DataTemplate>                    </DataGridTemplateColumn.CellTemplate>                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="btnAddProduct_Click"  Width="147" FontSize="14"/>
-
+        
     </Grid>
 </Window>

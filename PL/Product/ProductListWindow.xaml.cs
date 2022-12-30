@@ -76,14 +76,9 @@ namespace PL.Product
 
         private void productForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductForList? productForList = productForListDataGrid.SelectedItem as BO.ProductForList;
-            if(productForList != null)
-            {
-                ProductWindow pw = new ProductWindow(productForList.ID);//create new ProductWindow of the selected product
-                pw.ShowDialog();
-            }
+            
         }
-
+        
         private void ShowListOfProducts()
         {
             BO.Category? category = CategorySelector.SelectedItem as BO.Category?;
@@ -100,6 +95,16 @@ namespace PL.Product
         private void Window_Activated(object sender, EventArgs e)
         {
             ShowListOfProducts();
+        }
+
+        private void btnDetails_Click(object sender, RoutedEventArgs e)
+        {
+            BO.ProductForList? productForList = productForListDataGrid.SelectedItem as BO.ProductForList;
+            if (productForList != null)
+            {
+                ProductWindow pw = new ProductWindow(productForList.ID);//create new ProductWindow of the selected product
+                pw.ShowDialog();
+            }
         }
     }
 }

@@ -58,5 +58,6 @@
         </Grid>
 
         <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Left" Margin="633,345,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="48" Width="133"/>
+        <Button x:Name="btnRemove" Content="Remove product" HorizontalAlignment="Left" Margin="479,345,0,0" VerticalAlignment="Top" Height="48" Width="111" Click="btnRemove_Click"/>
     </Grid>
 </Window>
