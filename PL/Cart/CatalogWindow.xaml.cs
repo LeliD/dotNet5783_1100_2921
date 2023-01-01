@@ -26,6 +26,15 @@ namespace PL.Cart
 
         //private ObservableCollection<BO.ProductItem?> productItems;
         private BO.Cart MyCart { get; set; }
+        //public BO.Cart MyCart
+        //{
+        //    get { return (BO.Cart)GetValue(cartProperty); }
+        //    set { SetValue(cartProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty cartProperty =
+        //    DependencyProperty.Register("cart", typeof(BO.Cart), typeof(ProductItemWindow), new PropertyMetadata(null));
         public CatalogWindow(BO.Cart cart)
         {
             InitializeComponent();
@@ -42,6 +51,14 @@ namespace PL.Cart
                 ProductItemWindow pw = new ProductItemWindow(productItem.ID,MyCart);//create new ProductWindow of the selected product
                 pw.ShowDialog();
             }
+        }
+
+        private void btnGoToCart_Click(object sender, RoutedEventArgs e)
+        {
+           
+                CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
+                cw.ShowDialog();
+           
         }
     }
 }

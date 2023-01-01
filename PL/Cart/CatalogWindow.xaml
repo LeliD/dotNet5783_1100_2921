@@ -58,6 +58,7 @@
             </ListView>
         </ScrollViewer>
         <Image HorizontalAlignment="Left" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" Width="261" Source="/Cart/zara-home.png"/>
+        <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="587,0,0,0" VerticalAlignment="Center" Height="40" Width="83" Click="btnGoToCart_Click"/>
         <!--<Button HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="50" Width="71" Foreground="#FFF6F0EC" BorderBrush="#FFF7F0ED">
             <Button.Background>
                 <ImageBrush ImageSource="/Cart/home.png"/>

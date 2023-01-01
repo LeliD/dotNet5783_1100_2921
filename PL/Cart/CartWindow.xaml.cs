@@ -19,9 +19,18 @@ namespace PL.Cart
     /// </summary>
     public partial class CartWindow : Window
     {
-        public CartWindow()
+        public CartWindow(BO.Cart cart)
         {
             InitializeComponent();
+            lvCart.ItemsSource=cart.Items;
+        }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
         }
     }
 }

@@ -21,6 +21,19 @@ namespace PL.Product
     {
 
         BlApi.IBl bl = BlApi.Factory.Get();
+
+        private BO.Cart MyCart { get; set; }
+        //public BO.Cart MyCart
+        //{
+        //    get { return (BO.Cart)GetValue(cartProperty); }
+        //    set { SetValue(cartProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty cartProperty =
+        //    DependencyProperty.Register("cart", typeof(BO.Cart), typeof(ProductItemWindow), new PropertyMetadata(null));
+
+
         public BO.ProductItem? boProductItem
         {
             get { return (BO.ProductItem)GetValue(boProductItemProperty); }
@@ -41,6 +54,13 @@ namespace PL.Product
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             boProductItem = bl.Product.ProductDetailsForCustomer(id,cart);
+            MyCart = cart;
+        }
+
+        private void btnAddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            if (boProductItem != null)
+                bl.Cart.AddProductToCart(MyCart, boProductItem.ID);
         }
     }
 }

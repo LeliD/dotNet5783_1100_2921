@@ -54,6 +54,7 @@
 
 
         </Grid>
+        <Button x:Name="btnAddToCart" Content="Add to cart" HorizontalAlignment="Left" Margin="629,352,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click"/>
 
     </Grid>
 </Window>
