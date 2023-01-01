@@ -49,14 +49,16 @@ namespace PL
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)
         {
-            int id;
-            bool check = int.TryParse(tbIDOrderTrack.Text, out id);
-            if(check)
-            {
-                OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
-                otw.ShowDialog();
-            }
-            
+            tbIDOrderTrack.Visibility=Visibility.Visible;
+            lblTracking.Visibility = Visibility.Visible;
+            //int id;
+            //bool check = int.TryParse(tbIDOrderTrack.Text, out id);
+            //if(check)
+            //{
+            //    OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
+            //    otw.ShowDialog();
+            //}
+
         }
 
         private void tbIDOrderTrack_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -89,6 +91,26 @@ namespace PL
             BO.Cart cart=new BO.Cart(); 
             CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
             cw.ShowDialog();
+        }
+
+        private void tbIDOrderTrack_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                int id;
+                bool check = int.TryParse(tbIDOrderTrack.Text, out id);
+                if (check)
+                {
+                    OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
+                    otw.ShowDialog();
+                }
+            }
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            tbIDOrderTrack.Visibility = Visibility.Hidden;
+            lblTracking.Visibility = Visibility.Hidden;
         }
     }
 }
