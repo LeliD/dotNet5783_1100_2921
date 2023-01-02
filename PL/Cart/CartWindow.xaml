@@ -82,19 +82,19 @@
                 <ListView x:Name="lvCart"  HorizontalContentAlignment="Stretch" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource OrderItemTemplate}" />
             </ScrollViewer>
             <Grid Grid.Row="2" Margin="80 15 150 15">
-                <Button Style="{StaticResource buttonBack}">
+                <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Click="btnBack_Click">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Images/left.png" Width="20"/>
-                        <TextBlock Text="Back to Shop" VerticalAlignment="Center" Margin="15 0 0 0"/>
+                        <!--<Image Source="/Images/left.png" Width="20"/>-->
+                        <TextBlock Text="← Back to Shop" VerticalAlignment="Center" Margin="15 0 0 0"/>
                     </StackPanel>
                 </Button>
 
-                <StackPanel DataContext="{Binding myCart}" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <StackPanel DataContext="{Binding MyCart}" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="Subtotal :" FontSize="16"/>
-                    <TextBlock Text="{Binding TotalPrice}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0"/>
+                    <TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 100 0" Width="100"/>
                 </StackPanel>
             </Grid>
-            <TextBlock HorizontalAlignment="Left" Margin="447,31,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+            <!--<TextBlock HorizontalAlignment="Left" Margin="264,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center"/>-->
 
 
         </Grid>

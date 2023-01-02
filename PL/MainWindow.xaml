@@ -14,6 +14,8 @@
         <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="85,332,0,0" VerticalAlignment="Top" Height="64" Width="146" FontSize="20" Click="btnNewOrder_Click"/>
         <TextBox x:Name="tbIDOrderTrack"  Visibility="Hidden" HorizontalAlignment="Left" Margin="335,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown" KeyDown="tbIDOrderTrack_KeyDown"/>
         <Label x:Name="lblTracking" Content="Enter number of order" Visibility="Hidden" HorizontalAlignment="Left" Margin="331,278,0,0" VerticalAlignment="Top" Width="149"/>
+        <Button x:Name="btSignIn" Content="Sign in" HorizontalAlignment="Left" Margin="697,199,0,0" VerticalAlignment="Top" Click="btSignIn_Click"/>
+        <Button x:Name="btnLogIn" Content="Button" HorizontalAlignment="Left" Margin="697,110,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

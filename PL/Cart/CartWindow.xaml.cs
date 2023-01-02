@@ -23,12 +23,25 @@ namespace PL.Cart
     public partial class CartWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        private BO.Cart myCart = new BO.Cart();
+
+
+        public BO.Cart? MyCart
+        {
+            get { return (BO.Cart)GetValue(cartProperty); }
+            set { SetValue(cartProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty cartProperty =
+            DependencyProperty.Register("cart", typeof(BO.Cart), typeof(CartWindow), new PropertyMetadata(null));
+
+
+        //private BO.Cart myCart = new BO.Cart();
         public CartWindow(BO.Cart cart)
         {
+            MyCart = cart;
             InitializeComponent();
             lvCart.ItemsSource=cart.Items;
-            myCart=cart;    
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -42,25 +55,32 @@ namespace PL.Cart
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             BO.OrderItem orderItem=(BO.OrderItem)((Button)sender).DataContext;
-            myCart=bl.Cart.UpdateAmountOfProductInCart(myCart, orderItem.ProductID, orderItem.Amount + 1);
+            MyCart=bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount + 1);
             lvCart.Items.Refresh();
+            tbTotalPrice.Text = MyCart.TotalPrice.ToString();
         }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;
-            myCart = bl.Cart.UpdateAmountOfProductInCart(myCart, orderItem.ProductID, orderItem.Amount - 1);
+            MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount - 1);
             lvCart.Items.Refresh();
-            lvCart.ItemsSource = myCart.Items;
+            lvCart.ItemsSource = MyCart.Items;
+            tbTotalPrice.Text = MyCart.TotalPrice.ToString();
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;
-            myCart = bl.Cart.UpdateAmountOfProductInCart(myCart, orderItem.ProductID, 0);
+            MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, 0);
             lvCart.Items.Refresh();
-            lvCart.ItemsSource = myCart.Items;
+            lvCart.ItemsSource = MyCart.Items;
         }
-     
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogWindow cw = new CatalogWindow(MyCart);//create new ProductListWindow
+            cw.ShowDialog();
+        }
     }
 }

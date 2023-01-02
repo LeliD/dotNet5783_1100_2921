@@ -19,6 +19,12 @@ internal static class DataSource
     /// </summary>
     internal static List<OrderItem?> OrderItemsList { get; } = new List<OrderItem?>();
     /// <summary>
+    /// UsersList
+    /// </summary>
+    internal static List<User?> UsersList { get; } = new List<User?>();
+
+
+    /// <summary>
     /// s_rand for random values
     /// </summary>
     private static readonly Random s_rand = new();
@@ -61,6 +67,7 @@ internal static class DataSource
         createAndInitProducts();
         createAndInitOrders();
         createAndInitOrderItems();
+        createAndInitUsers();
     }
     /// <summary>
     /// Initializing ProductsList in 10 products
@@ -94,6 +101,16 @@ internal static class DataSource
             ProductsList.Add(new Product() { ID = 100016 + i, Category = Category.KIDS, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = kidsProducts[i] });
         }
         ProductsList.Add(new Product() { ID = 100018, Category = Category.KIDS, InStock = 0, Price = s_rand.Next(200), Name = kidsProducts[2] });//The last product is initialized in 0 in "InStock" property
+    }
+    /// <summary>
+    /// Initializing UsersList
+    /// </summary>
+    private static void createAndInitUsers()
+    {
+        User user1=new User() { Name= "Beni" ,UserName= "Beni" ,UserAddress= "Tel Aviv" ,UserEmail= "Beni@gmail.com" ,Passcode= "1234" ,AdminAccess=true};
+        User user2 = new User() { Name = "Dan", UserName = "Dan", UserAddress = "Ramat Gan", UserEmail = "Dan@gmail.com", Passcode = "1111", AdminAccess = false };
+        UsersList.Add(user1);
+        UsersList.Add(user2);
     }
     /// <summary>
     /// Initializing OrdersList in 20 orders

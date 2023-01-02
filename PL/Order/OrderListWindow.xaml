@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         Title="OrderListWindow" Height="450" Width="800" Activated="Window_Activated">
     <Grid>
-        <DataGrid x:Name="orderForListDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="61,98,159,52" MouseDoubleClick="orderForListDataGrid_MouseDoubleClick" >
+        <DataGrid x:Name="orderForListDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="110,54,110,96" MouseDoubleClick="orderForListDataGrid_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="50"/>
                 <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="SizeToHeader"/>
@@ -17,5 +17,6 @@
                 <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btnBack" Content="🔙" HorizontalAlignment="Left" Margin="40,365,0,0" VerticalAlignment="Top" Height="41" Width="64" Click="btnBack_Click"/>
     </Grid>
 </Window>

@@ -46,6 +46,10 @@ namespace PL.Order
             }
         }
 
-       
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            AdminWindow plw = new AdminWindow();//create new ProductListWindow
+            plw.ShowDialog();
+        }
     }
 }

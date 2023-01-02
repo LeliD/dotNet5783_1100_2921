@@ -1,0 +1,30 @@
+﻿<Window x:Class="PL.LogInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="LogInWindow" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="logIngrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180,259,0,0" Height="69" Width="220">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Content="User Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="tbUserName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="" VerticalAlignment="Center" Width="120"/>
+
+            <Label Grid.Column="0" Content="Passcode:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <PasswordBox x:Name="pbPasscode" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
+
+        </Grid>
+        <Button x:Name="btnLogIn" Content="Button" HorizontalAlignment="Left" Margin="290,384,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
+
+    </Grid>
+</Window>

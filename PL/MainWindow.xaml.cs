@@ -43,8 +43,8 @@ namespace PL
         /// <param name="e"></param>
         private void BtnProduftList_Click(object sender, RoutedEventArgs e)
         {
-            AdminWindow plw = new AdminWindow();//create new ProductListWindow
-            plw.ShowDialog();
+            AdminWindow aw = new AdminWindow();//create new ProductListWindow
+            aw.ShowDialog();
         }
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)
@@ -111,6 +111,12 @@ namespace PL
         {
             tbIDOrderTrack.Visibility = Visibility.Hidden;
             lblTracking.Visibility = Visibility.Hidden;
+        }
+
+        private void btSignIn_Click(object sender, RoutedEventArgs e)
+        {
+            SignInWindow plw = new SignInWindow();//create new ProductListWindow
+            plw.ShowDialog();
         }
     }
 }

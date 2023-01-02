@@ -15,4 +15,5 @@ internal class Bl : IBl
     public IOrder Order { get; } = new Order();
     public IProduct Product { get; } = new Product();
     public ICart Cart { get; } =  new Cart();
+    public IUser User { get; } = new User();
 }

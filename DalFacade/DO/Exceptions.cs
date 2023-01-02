@@ -37,7 +37,24 @@ public class DalAlreadyExistIdException : Exception
     public override string ToString() => 
         $"Id: {EntityID} of type {EntityName}, already exists.";
 }
-
+[Serializable]
+public class DalAlreadyExistUserNameException : Exception
+{
+    public string EntityName;
+    public DalAlreadyExistUserNameException(string name, string message)
+     : base(message) { EntityName = name; }
+    public override string ToString() =>
+       $"{EntityName} already exists.";
+}
+[Serializable]
+public class DalMissingUserNameException : Exception
+{
+    public string EntityName;
+    public DalMissingUserNameException(string name, string message)
+     : base(message) { EntityName = name; }
+    public override string ToString() =>
+       $"{EntityName} dousn't exist.";
+}
 [Serializable]
 public class DalConfigException : Exception
 {

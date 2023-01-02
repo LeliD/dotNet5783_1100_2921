@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Product"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-         DataContext="{Binding boProductItem, RelativeSource={RelativeSource Self} }"
+        DataContext="{Binding boProductItem, RelativeSource={RelativeSource Self} }"
         Title="ProductItemWindow" Height="450" Width="800">
     <Grid Background="#FFFCEFEC">
 

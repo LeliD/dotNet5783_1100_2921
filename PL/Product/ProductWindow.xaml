@@ -59,5 +59,9 @@
 
         <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Left" Margin="633,345,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="48" Width="133"/>
         <Button x:Name="btnRemove" Content="Remove product" HorizontalAlignment="Left" Margin="479,345,0,0" VerticalAlignment="Top" Height="48" Width="111" Click="btnRemove_Click"/>
+        <Button x:Name="btnHome" VerticalAlignment="Top"  Margin="671,50,80,0" Click="btnHome_Click" Height="39" >
+            <Image Source="../Images/HOME.png"  />
+            <!--<Image Source="../Images/HOME.png"/>-->
+        </Button>
     </Grid>
 </Window>

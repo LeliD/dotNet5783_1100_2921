@@ -11,6 +11,6 @@ namespace DalApi
         IProduct Product { get; }
         IOrderItem OrderItem { get; }
         IOrder Order { get; }
-
+        IUser User { get; }
     }
 }
