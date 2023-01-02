@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self} }"
         WindowStartupLocation="CenterScreen"
-        Title="CartWindow" Height="450" Width="800">
+        Title="CartWindow" Height="600" Width="800">
     <Window.Resources>
         <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
 
@@ -36,18 +36,18 @@
                 <TextBlock Grid.Column="3" Text="{Binding Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
                 <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource buttonCounter}" Content="➕">
+                    <Button x:Name="btnPlus" Style="{StaticResource buttonCounter}" Content="➕" Click="btnPlus_Click">
                         <!--<Image Source="../Images/add.png" />-->
                     </Button>
 
-                    <Button Style="{StaticResource buttonCounter}" Content="➖" Margin="0 5 0 0">
+                    <Button x:Name="btnMinus" Style="{StaticResource buttonCounter}" Content="➖" Margin="0 5 0 0" Click="btnMinus_Click">
                         <!--<Image Source="../Images/low.png"/>-->
                     </Button>
                 </StackPanel>
 
                 <TextBlock Grid.Column="5" Text="{Binding Path=TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
-                <Button Style="{StaticResource buttonDelete}" Content="❌" Grid.Column="6">
+                <Button x:Name="btnRemove" Style="{StaticResource buttonDelete}" Content="❌" Grid.Column="6" Click="btnRemove_Click">
                     <!--<Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>-->
                 </Button>
             </Grid>
@@ -61,14 +61,8 @@
         </Grid.RowDefinitions>
 
         <!--TitleBar-->
-        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Background="#444444" Panel.ZIndex="1" FlowDirection="RightToLeft" MouseDown="StackPanel_MouseDown">
-            <Button Style="{StaticResource buttonClose}">
-                <Image Width="20" Source="/Images/close.png" Margin="2 0 0 0"/>
-            </Button>
-            <Button Style="{StaticResource buttonMini}" Margin="5 0 0 0">
-                <Image Width="17" Source="/Images/mini.png" VerticalAlignment="Bottom"/>
-            </Button>
-        </StackPanel>
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Background="#444444" Panel.ZIndex="1" FlowDirection="RightToLeft"/>
+
 
         <!--Products Section-->
         <Grid Background="#ECF0F1" Grid.Row="1">
@@ -79,7 +73,7 @@
             </Grid.RowDefinitions>
 
             <!--Title-->
-            <StackPanel Orientation="Horizontal" Margin="0 40 0 30">
+            <StackPanel Orientation="Horizontal" Margin="0 25 0 25">
                 <TextBlock Text="Sz" FontSize="28" FontWeight="SemiBold" FontFamily="Trebuchet MS" VerticalAlignment="Center" Margin="50 0 0 0"/>
                 <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
                 <TextBlock Text="Your Shopping Cart" FontSize="26" VerticalAlignment="Center"/>
@@ -87,6 +81,20 @@
             <ScrollViewer Grid.Row="1">
                 <ListView x:Name="lvCart"  HorizontalContentAlignment="Stretch" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource OrderItemTemplate}" />
             </ScrollViewer>
+            <Grid Grid.Row="2" Margin="80 15 150 15">
+                <Button Style="{StaticResource buttonBack}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/left.png" Width="20"/>
+                        <TextBlock Text="Back to Shop" VerticalAlignment="Center" Margin="15 0 0 0"/>
+                    </StackPanel>
+                </Button>
+
+                <StackPanel DataContext="{Binding myCart}" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="Subtotal :" FontSize="16"/>
+                    <TextBlock Text="{Binding TotalPrice}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0"/>
+                </StackPanel>
+            </Grid>
+            <TextBlock HorizontalAlignment="Left" Margin="447,31,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
 
         </Grid>
