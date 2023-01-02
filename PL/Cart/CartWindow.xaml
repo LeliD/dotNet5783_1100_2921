@@ -8,14 +8,14 @@
         DataContext="{Binding RelativeSource={RelativeSource Self} }"
         WindowStartupLocation="CenterScreen"
         Title="CartWindow" Height="450" Width="800">
-        <Window.Resources>
+    <Window.Resources>
         <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
 
-            <Grid Background="#E5E9EA" Margin="85,151,0,177" HorizontalAlignment="Left" Width="564">
+            <Grid Background="#E5E9EA" Margin="0,0,0,0" HorizontalAlignment="Left"  >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="27"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="110"/>
@@ -28,12 +28,12 @@
                     </Ellipse.Fill>
                 </Ellipse>
 
-                <TextBlock Grid.Column="1" Text="{Binding Path=Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Text="{Binding Path=ProductID}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
+                <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Text="{Binding ProductID}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
 
-                <TextBlock Grid.Column="2" Text="{Binding Path=Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+                <TextBlock Grid.Column="2" Text="{Binding Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
-                <TextBlock Grid.Column="3" Text="{Binding Path=Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+                <TextBlock Grid.Column="3" Text="{Binding Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
                 <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Button Style="{StaticResource buttonCounter}">
@@ -55,7 +55,7 @@
     </Window.Resources>
 
     <Grid>
-     <Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -84,13 +84,10 @@
                 <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
                 <TextBlock Text="Your Shopping Cart" FontSize="26" VerticalAlignment="Center"/>
             </StackPanel>
-            <ListView x:Name="lvCart" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource OrderItemTemplate}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <ScrollViewer Grid.Row="1">
+                <ListView x:Name="lvCart"  HorizontalContentAlignment="Stretch" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource OrderItemTemplate}" />
+            </ScrollViewer>
+
 
         </Grid>
     </Grid>

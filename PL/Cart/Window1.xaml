@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
-        <Grid Background="#E5E9EA" Margin="85,151,0,177" HorizontalAlignment="Left" Width="564">
+        <Grid Background="#E5E9EA" Margin="85,151,0,180" HorizontalAlignment="Left" Width="670">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="27"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="27"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
             <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
@@ -43,7 +43,7 @@
 
             <TextBlock Grid.Column="5" Text="{Binding Path=TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
-            <Button Style="{StaticResource buttonDelete}" Grid.Column="6">
+            <Button Style="{StaticResource buttonDelete}" Grid.Column="6" Margin="10,0,40,0">
                 <Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>
             </Button>
         </Grid>
