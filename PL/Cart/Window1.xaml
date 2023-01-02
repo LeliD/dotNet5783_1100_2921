@@ -1,0 +1,51 @@
+﻿<Window x:Class="PL.Cart.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Cart"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid>
+        <Grid Background="#E5E9EA" Margin="85,151,0,177" HorizontalAlignment="Left" Width="564">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="27"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/Cart/zara-home.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <TextBlock Grid.Column="1" Text="{Binding Path=Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="{Binding Path=ProductID}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
+
+            <TextBlock Grid.Column="2" Text="{Binding Path=Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+            <TextBlock Grid.Column="3" Text="{Binding Path=Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+            <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Button Style="{StaticResource buttonCounter}">
+                    <Image Source="../Images/add.png"/>
+                </Button>
+
+                <Button Style="{StaticResource buttonCounter}" Margin="0 5 0 0">
+                    <Image Source="../Images/low.png"/>
+                </Button>
+            </StackPanel>
+
+            <TextBlock Grid.Column="5" Text="{Binding Path=TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+
+            <Button Style="{StaticResource buttonDelete}" Grid.Column="6">
+                <Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

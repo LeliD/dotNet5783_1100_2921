@@ -10,7 +10,8 @@
         Title="CartWindow" Height="450" Width="800">
         <Window.Resources>
         <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
-            <Grid Background="#E5E9EA" Margin="0 15 0 0" HorizontalAlignment="Center">
+
+            <Grid Background="#E5E9EA" Margin="85,151,0,177" HorizontalAlignment="Left" Width="564">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="150"/>
@@ -51,7 +52,8 @@
                 </Button>
             </Grid>
         </DataTemplate>
-    </Window.Resources>
+    </Window.Resources>
+
     <Grid>
      <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
