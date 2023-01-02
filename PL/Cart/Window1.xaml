@@ -32,12 +32,12 @@
             <TextBlock Grid.Column="3" Text="{Binding Path=Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
             <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <Button Style="{StaticResource buttonCounter}">
-                    <Image Source="../Images/add.png"/>
+                <Button Style="{StaticResource buttonCounter}" Content="➕" Width="25" Height="25">
+                    <!--<Image Source="../Images/add.png"/>-->
                 </Button>
 
                 <Button Style="{StaticResource buttonCounter}" Margin="0 5 0 0">
-                    <Image Source="../Images/low.png"/>
+                    <Image Source="../Images/low.png" />
                 </Button>
             </StackPanel>
 

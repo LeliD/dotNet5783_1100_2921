@@ -11,11 +11,11 @@
     <Window.Resources>
         <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
 
-            <Grid Background="#E5E9EA" Margin="0,0,0,0" HorizontalAlignment="Left"  >
+            <Grid Background="#FFFCEFEC" Margin="0,0,0,0" HorizontalAlignment="Left"  >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="27"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="110"/>
@@ -36,19 +36,19 @@
                 <TextBlock Grid.Column="3" Text="{Binding Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
                 <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource buttonCounter}">
-                        <Image Source="../Images/add.png"/>
+                    <Button Style="{StaticResource buttonCounter}" Content="➕">
+                        <!--<Image Source="../Images/add.png" />-->
                     </Button>
 
-                    <Button Style="{StaticResource buttonCounter}" Margin="0 5 0 0">
-                        <Image Source="../Images/low.png"/>
+                    <Button Style="{StaticResource buttonCounter}" Content="➖" Margin="0 5 0 0">
+                        <!--<Image Source="../Images/low.png"/>-->
                     </Button>
                 </StackPanel>
 
                 <TextBlock Grid.Column="5" Text="{Binding Path=TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
-                <Button Style="{StaticResource buttonDelete}" Grid.Column="6">
-                    <Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>
+                <Button Style="{StaticResource buttonDelete}" Content="❌" Grid.Column="6">
+                    <!--<Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>-->
                 </Button>
             </Grid>
         </DataTemplate>
