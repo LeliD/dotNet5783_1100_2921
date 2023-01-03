@@ -24,7 +24,7 @@
             <PasswordBox x:Name="pbPasscode" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
 
         </Grid>
-        <Button x:Name="btnLogIn" Content="Button" HorizontalAlignment="Left" Margin="290,384,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
+        <Button x:Name="btnLogIn" Content="Button" HorizontalAlignment="Left" Margin="290,384,0,0" VerticalAlignment="Top" Click="btnLogIn_Click"/>
 
     </Grid>
 </Window>

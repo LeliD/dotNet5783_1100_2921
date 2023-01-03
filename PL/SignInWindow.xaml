@@ -7,35 +7,36 @@
         mc:Ignorable="d"
         Title="SignInWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="signIngrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,105,0,0">
+        <Grid x:Name="signIngrid" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="274,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="0" Text="" VerticalAlignment="Center" Width="120"/>
 
-            <Label Grid.Column="0" Content="User Email:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="userEmailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="User Email:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="tbUserEmail" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120"/>
 
-            <Label Grid.Column="0" Content="User Address:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="userAddressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="2" Text="" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="User Address:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="tbUserAddress" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="2" Text="" VerticalAlignment="Center" Width="120"/>
 
-            <Label Grid.Column="0" Content="User Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="User Name:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="tbUserName" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="3" Text="" VerticalAlignment="Center" Width="120"/>
 
-            <Label Grid.Column="0" Content="Passcode:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="passcodePasswordBox1" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120"/>
+            <Label Grid.Column="0" Content="Passcode:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <PasswordBox x:Name="tbPasscode"  Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120"/>
 
 
         </Grid>
+        <Button x:Name="btnSignIn" Content="Sign in" HorizontalAlignment="Left" Margin="662,326,0,0" VerticalAlignment="Top" Click="btnSignIn_Click"/>
     </Grid>
 </Window>

@@ -25,7 +25,7 @@ namespace PL
         {
             InitializeComponent();
         }
-        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
             try
             {

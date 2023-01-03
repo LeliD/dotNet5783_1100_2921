@@ -53,7 +53,7 @@ public class DalMissingUserNameException : Exception
     public DalMissingUserNameException(string name, string message)
      : base(message) { EntityName = name; }
     public override string ToString() =>
-       $"{EntityName} dousn't exist.";
+       $"{EntityName} doesn't exist.";
 }
 [Serializable]
 public class DalConfigException : Exception

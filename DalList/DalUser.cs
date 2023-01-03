@@ -12,19 +12,27 @@ namespace Dal;
 internal class DalUser : IUser
 {
 
-   
+    /// <summary>
+    /// Gets User by its userName
+    /// </summary>
+    /// <param name="userName"></param>
+    /// <returns>DO.User of the userName</returns>
+    /// <exception cref="DO.DalMissingUserNameException">If userName isn't found</exception>
     public DO.User GetById(string userName)//returns a user by its username
     {
-        DO.User user = DataSource.UsersList.Find(x => x?.UserName == userName) ?? throw new DO.DalMissingUserNameException(userName, "This user name does not exist");
+        DO.User user = DataSource.UsersList.Find(x => x?.UserName == userName) ?? throw new DO.DalMissingUserNameException(userName, "User name does not exist");
         return user;
     }
+    /// <summary>
+    /// Adds user to the system by its userName
+    /// </summary>
+    /// <param name="user"></param>
+    /// <exception cref="DO.DalAlreadyExistUserNameException"></exception>
     public void Add(DO.User user)
     {
         if (DataSource.UsersList.Exists(x => x?.UserName == user.UserName))
-            throw new DO.DalAlreadyExistUserNameException(user.UserName, $"the username: {user.UserName} is already exist");
+            throw new DO.DalAlreadyExistUserNameException(user.UserName!, $"Username: {user.UserName} already exist");
         DataSource.UsersList.Add(user);
-        return;
-       
     }
    
 }
