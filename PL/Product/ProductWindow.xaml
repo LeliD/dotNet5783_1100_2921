@@ -61,9 +61,11 @@
         <Button x:Name="btnRemove" Content="Remove product" HorizontalAlignment="Left" Margin="479,345,0,0" VerticalAlignment="Top" Height="48" Width="111" Click="btnRemove_Click"/>
         <Button x:Name="btnHome" VerticalAlignment="Top"  Margin="671,50,80,0" Click="btnHome_Click" Height="39" >
             <Image Source="../Images/HOME.png"  />
-            <!--<Image Source="../Images/HOME.png"/>--> 
+            <!--<Image Source="../Images/HOME.png"/>-->
         </Button>
-        <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="100" Margin="590,159,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="btnAddImage" Content="Button" HorizontalAlignment="Left" Margin="518,120,0,0" VerticalAlignment="Top" Click="btnAddImage_Click"/>
+        <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="130" Margin="471,123,0,0" VerticalAlignment="Top" Width="123"/>
+        <Button x:Name="btnAddImage" Content="Change picture" HorizontalAlignment="Left" Margin="479,274,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="30" Width="111"/>
+        <TextBox x:Name="tbpath"  HorizontalAlignment="Left" Height="NaN" Margin="131,380,0,0" Text="{Binding ImageRelativeName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" TextChanged="tbId_TextChanged"/>
+        <Label x:Name="lblWghrongId" Content="nk" HorizontalAlignment="Left" Margin="24,369,0,0" Grid.Row="0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
     </Grid>
 </Window>

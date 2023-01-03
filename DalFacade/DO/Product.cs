@@ -30,6 +30,8 @@ public struct Product
     /// Product's details
     /// </summary>
     /// <returns> returns String of Product representation</returns>
+    public string? ImageRelativeName { get; set; }
+    
     public override string ToString()
     {
         return this.ToStringProperty();

@@ -32,7 +32,8 @@ internal class Product : IProduct
                     Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
                     Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
                     Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
-                    ImageRelativeName = @"\Images\IMG" + doProduct?.ID + ".png" //jpg?
+                    ImageRelativeName = doProduct?.ImageRelativeName
+                    //ImageRelativeName = @"\Images\IMG" + doProduct?.ID + ".png" //jpg?
                 };
 
         if (filter == null)
@@ -62,7 +63,8 @@ internal class Product : IProduct
                    Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
                    InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
                    Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product"),
-                   ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
+                   ImageRelativeName = doProduct?.ImageRelativeName
+                   //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
 
                };
     }
@@ -84,7 +86,8 @@ internal class Product : IProduct
                 Category = (BO.Category)doProduct.Category,
                 Price = doProduct.Price,
                 InStock = doProduct.InStock,
-                ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
+                ImageRelativeName = doProduct.ImageRelativeName
+                //ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
 
             };
         }
@@ -126,7 +129,8 @@ internal class Product : IProduct
                 Price = doProduct.Price,
                 InStock = doProduct.InStock > 0,
                 Amount = amount,
-                ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
+                ImageRelativeName=doProduct.ImageRelativeName
+                //ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
 
             };
         }
@@ -164,7 +168,8 @@ internal class Product : IProduct
                 Name = boProduct.Name,
                 Price = boProduct.Price,
                 Category = (DO.Category)boProduct.Category,
-                InStock = boProduct.InStock
+                InStock = boProduct.InStock,
+                ImageRelativeName = boProduct.ImageRelativeName
             });
         }
         catch(DO.DalAlreadyExistIdException ex)
@@ -218,7 +223,8 @@ internal class Product : IProduct
                 Name = boProduct.Name,
                 Price = boProduct.Price,
                 Category = (DO.Category)boProduct.Category,
-                InStock = boProduct.InStock
+                InStock = boProduct.InStock,
+                ImageRelativeName=boProduct.ImageRelativeName
             });
         }
         catch (DO.DalMissingIdException ex)

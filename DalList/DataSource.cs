@@ -1,5 +1,6 @@
 ﻿
 using System.Diagnostics;
+using DalApi;
 using DO;
 
 namespace Dal;
@@ -74,6 +75,7 @@ internal static class DataSource
     /// </summary>
     private static void createAndInitProducts()
     {
+        int id;
         //Arrays of products' names
         string[] kitchenProducts = new string[] {"SCREW TOP GLASS JAR","WOODEN SUGAR BOWL", "MARBLE BOARD","COPPER AND BRASS POT WITH LID","SET OF ACACIA WOOD KITCHEN UTENSILS"};//An array of products' names
         string[] bathroomProducts = new string[] { "COTTON BATHROBE WITH HOOD", "HIGH QUALITY COTTON TOWEL", "FOLDABLE LAUNDRY BASKET" };//An array of products' names
@@ -82,25 +84,30 @@ internal static class DataSource
         string[] kidsProducts = new string[] { "BUNNY SOFT TOY", "RED BANWOOD TRICYCLE", "BEAR WOODEN CHAIR" };//An array of products' names
         for (int i = 0; i < 5; i++) //kitchenProducts
         {
-            ProductsList.Add(new Product() { ID = 100000 + i , Category= Category.KITCHEN, InStock= s_rand.Next(1,50), Price= s_rand.Next(100,200) , Name= kitchenProducts[i] }) ;
+            id = 100000 + i;
+            ProductsList.Add(new Product() { ID = id, Category= Category.KITCHEN, InStock= s_rand.Next(1,50), Price= s_rand.Next(100,200) , Name= kitchenProducts[i], ImageRelativeName=@"\Images\IMG" + id + ".png" }) ;
         }
         for (int i = 0; i < 3; i++) //bathroomProducts
         {
-            ProductsList.Add(new Product() { ID = 100005 + i, Category = Category.BATHROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = bathroomProducts[i] });
+            id = 100005 + i;
+            ProductsList.Add(new Product() { ID = id, Category = Category.BATHROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = bathroomProducts[i], ImageRelativeName = @"\Images\IMG" + id + ".png" });
         }
         for (int i = 0; i < 3; i++) //livingRoomProducts
         {
-            ProductsList.Add(new Product() { ID = 100008 + i, Category = Category.LIVING_ROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = livingRoomProducts[i] });
+            id = 100008 + i;
+            ProductsList.Add(new Product() { ID = id, Category = Category.LIVING_ROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = livingRoomProducts[i], ImageRelativeName = @"\Images\IMG" + id + ".png" });
         }
         for (int i = 0; i < 5; i++)//bedRoomProducts
         {
-            ProductsList.Add(new Product() { ID = 100011 + i, Category = Category.BEDROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = bedRoomProducts[i] });
+            id = 100011 + i;
+            ProductsList.Add(new Product() { ID = id, Category = Category.BEDROOM, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = bedRoomProducts[i], ImageRelativeName = @"\Images\IMG" + id + ".png" });
         }
         for (int i = 0; i < 2; i++)//kidsProducts
         {
-            ProductsList.Add(new Product() { ID = 100016 + i, Category = Category.KIDS, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = kidsProducts[i] });
+            id = 100016 + i;
+            ProductsList.Add(new Product() { ID = id, Category = Category.KIDS, InStock = s_rand.Next(1, 50), Price = s_rand.Next(100, 200), Name = kidsProducts[i], ImageRelativeName = @"\Images\IMG" + id + ".png" });
         }
-        ProductsList.Add(new Product() { ID = 100018, Category = Category.KIDS, InStock = 0, Price = s_rand.Next(200), Name = kidsProducts[2] });//The last product is initialized in 0 in "InStock" property
+        ProductsList.Add(new Product() { ID = 100018, Category = Category.KIDS, InStock = 0, Price = s_rand.Next(200), Name = kidsProducts[2] , ImageRelativeName = @"\Images\IMG" + 100018 + ".png" });//The last product is initialized in 0 in "InStock" property
     }
     /// <summary>
     /// Initializing UsersList

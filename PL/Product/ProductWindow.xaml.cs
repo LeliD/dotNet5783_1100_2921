@@ -51,6 +51,7 @@ namespace PL.Product
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             btnAdd_UpdateProduct.Content = "Add";//Content of the botton is "Add" for adding a product
+            btnAddImage.Content = "Add picture";
             mode = Mode.ADD;
             boProduct=new BO.Product();
             btnRemove.Visibility = Visibility.Hidden;
@@ -161,6 +162,7 @@ namespace PL.Product
             {
                 try
                 {
+                    boProduct!.ImageRelativeName = tbpath.Text;
                     bl.Product.AddProduct(boProduct!);
                     MessageBox.Show("New Product was added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
@@ -190,6 +192,7 @@ namespace PL.Product
                 {
                     try
                     {
+                        boProduct!.ImageRelativeName = tbpath.Text;
                         bl.Product.UpdateProduct(boProduct!);
                         MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                         Close();
@@ -323,11 +326,9 @@ namespace PL.Product
             {
                 NewImage.Source = new BitmapImage(new Uri(o.FileName));
             }
+            tbpath.Text=o.FileName.Substring(54);
         }
 
-        private void btnAddImage_Click_1(object sender, RoutedEventArgs e)
-        {
-            
-        }
+      
     }
 }
