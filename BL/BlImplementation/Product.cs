@@ -31,7 +31,8 @@ internal class Product : IProduct
                     ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
                     Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
                     Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
-                    Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product")
+                    Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
+                    ImageRelativeName = @"\Images\IMG" + doProduct?.ID + ".png" //jpg?
                 };
 
         if (filter == null)
@@ -60,7 +61,9 @@ internal class Product : IProduct
                    Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
                    Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
                    InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
-                   Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product")
+                   Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product"),
+                   ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
+
                };
     }
     /// <summary>
@@ -80,7 +83,9 @@ internal class Product : IProduct
                 Name = doProduct.Name,
                 Category = (BO.Category)doProduct.Category,
                 Price = doProduct.Price,
-                InStock = doProduct.InStock
+                InStock = doProduct.InStock,
+                ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
+
             };
         }
         catch (DO.DalMissingIdException ex)
@@ -120,7 +125,9 @@ internal class Product : IProduct
                 Category = (BO.Category)doProduct.Category,
                 Price = doProduct.Price,
                 InStock = doProduct.InStock > 0,
-                Amount = amount
+                Amount = amount,
+                ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
+
             };
         }
         catch (DO.DalMissingIdException ex)
