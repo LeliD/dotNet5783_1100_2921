@@ -63,7 +63,7 @@
             <Image Source="../Images/HOME.png"  />
             <!--<Image Source="../Images/HOME.png"/>--> 
         </Button>
-        <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap}}" HorizontalAlignment="Left" Height="100" Margin="590,159,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="btnAddImage" Content="Button" HorizontalAlignment="Left" Margin="518,120,0,0" VerticalAlignment="Top" Click="btnAddImage_Click_1"/>
+        <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="100" Margin="590,159,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="btnAddImage" Content="Button" HorizontalAlignment="Left" Margin="518,120,0,0" VerticalAlignment="Top" Click="btnAddImage_Click"/>
     </Grid>
 </Window>

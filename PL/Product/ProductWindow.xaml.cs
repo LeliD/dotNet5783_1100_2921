@@ -316,16 +316,18 @@ namespace PL.Product
 
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
-           
-        }
-
-        private void btnAddImage_Click_1(object sender, RoutedEventArgs e)
-        {
             OpenFileDialog o = new OpenFileDialog();
+            o.Filter = "Image files|*.png;*.jpg";
+            o.FilterIndex = 1;
             if (o.ShowDialog()!.Value)
             {
                 NewImage.Source = new BitmapImage(new Uri(o.FileName));
             }
+        }
+
+        private void btnAddImage_Click_1(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
