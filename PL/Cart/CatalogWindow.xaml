@@ -61,8 +61,15 @@
         <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="587,0,0,0" VerticalAlignment="Center" Height="40" Width="83" Click="btnGoToCart_Click"/>
         <!--<Button HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="50" Width="71" Foreground="#FFF6F0EC" BorderBrush="#FFF7F0ED">
             <Button.Background>
-                <ImageBrush ImageSource="/Cart/home.png"/>
+                <ImageBrush ImageSource="../Images/HOME.png"/>
             </Button.Background>
         </Button>-->
+        <Button x:Name="btnHome" HorizontalAlignment="Left" Margin="729,0,0,0" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click" >
+            <Image Source="/Cart/HOME.png" Height="30" Width="36"/>
+        </Button>
+        <!--<Button Name="btn5" Width="50" Height="30" Click="OnClick5">
+            <Image Source="../Images/HOME.png"></Image>
+        </Button>-->
+
     </Grid>
 </Window>

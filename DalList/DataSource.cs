@@ -79,7 +79,7 @@ internal static class DataSource
         string[] bathroomProducts = new string[] { "COTTON BATHROBE WITH HOOD", "HIGH QUALITY COTTON TOWEL", "FOLDABLE LAUNDRY BASKET" };//An array of products' names
         string[] livingRoomProducts = new string[] { "SQUARE RATTAN BASKET", "VINTAGE RUG","SMALL STOOL" };//An array of products' names
         string[] bedRoomProducts = new string[] { "WOOL BLANKET", "CHENILLE BLANKET", "LINEN CURTAIN", "COTTON TERRY CUSHION COVER", "COTTON PERCALE DUVET COVER" };//An array of products' names
-        string[] kidsProducts = new string[] { "BUNNY SOFT TOY","TRIPLE SHELF" ,"BEAR WOODEN CHAIR" };//An array of products' names
+        string[] kidsProducts = new string[] { "BUNNY SOFT TOY", "RED BANWOOD TRICYCLE", "BEAR WOODEN CHAIR" };//An array of products' names
         for (int i = 0; i < 5; i++) //kitchenProducts
         {
             ProductsList.Add(new Product() { ID = 100000 + i , Category= Category.KITCHEN, InStock= s_rand.Next(1,50), Price= s_rand.Next(100,200) , Name= kitchenProducts[i] }) ;

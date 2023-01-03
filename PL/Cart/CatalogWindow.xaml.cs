@@ -58,5 +58,17 @@ namespace PL.Cart
            CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
            cw.ShowDialog();
         }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow plw = new MainWindow();//create new ProductListWindow
+            plw.ShowDialog();
+        }
+
+        //private void OnClick5(object sender, RoutedEventArgs e)
+        //{
+        //    CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
+        //    cw.ShowDialog();
+        //}
     }
 }

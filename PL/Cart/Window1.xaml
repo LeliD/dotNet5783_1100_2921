@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
+        
         <Grid Background="#E5E9EA" Margin="85,151,0,180" HorizontalAlignment="Left" Width="670">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
@@ -46,6 +47,17 @@
             <Button Style="{StaticResource buttonDelete}" Grid.Column="6" Margin="10,0,40,0">
                 <Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>
             </Button>
-        </Grid>
+           </Grid>
+        <WebBrowser/>
+
+        <Image Width="200" 
+Source="C:\Documents and Settings\All Users\Documents\My Pictures\Sample Pictures\Water Lilies.jpg"/>
+
+        <Image Width="200">
+            <Image.Source>
+             <BitmapImage DecodePixelWidth="200"  
+             UriSource="C:\Users\lelid\Desktop\Images" />
+            </Image.Source>
+        </Image>
     </Grid>
 </Window>

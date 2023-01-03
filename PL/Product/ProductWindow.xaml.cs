@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using BO;
-
+using Microsoft.Win32;
 
 namespace PL.Product
 {
@@ -312,6 +312,20 @@ namespace PL.Product
         {
             MainWindow plw = new MainWindow();//create new ProductListWindow
             plw.ShowDialog();
+        }
+
+        private void btnAddImage_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void btnAddImage_Click_1(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            if (o.ShowDialog()!.Value)
+            {
+                NewImage.Source = new BitmapImage(new Uri(o.FileName));
+            }
         }
     }
 }
