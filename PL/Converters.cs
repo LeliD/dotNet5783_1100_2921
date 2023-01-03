@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace PL
 {
-    class ConvertImagePathToBitmap : IValueConverter
+    public class ConvertImagePathToBitmap : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -23,7 +23,7 @@ namespace PL
             }
             catch(Exception ex)
             {
-                string ImageRelativeName = (string)value;//jkjhjggnghhhhhhhh
+                string ImageRelativeName = @"\Images\IMG.png";//jkjhjggnghhhhhhhh
                 string currentDir = Environment.CurrentDirectory[..^4];
                 string imageFullName = currentDir + ImageRelativeName;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
