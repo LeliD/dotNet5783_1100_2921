@@ -118,5 +118,11 @@ namespace PL
             SignInWindow plw = new SignInWindow();//create new ProductListWindow
             plw.ShowDialog();
         }
+
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            LogInWindow plw = new LogInWindow();//create new ProductListWindow
+            plw.ShowDialog();
+        }
     }
 }
