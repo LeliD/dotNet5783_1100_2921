@@ -36,11 +36,10 @@ namespace PL
                 {
                     AdminWindow aw = new AdminWindow();//create new ProductListWindow
                     aw.ShowDialog();
-
                 }
                 else
                 {
-                    BO.Cart cart = new BO.Cart();
+                    BO.Cart cart = new BO.Cart() { CustomerAddress=user.UserAddress, CustomerEmail=user.UserEmail, CustomerName=user.Name , Items= new List<BO.OrderItem>() };
                     CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
                     cw.ShowDialog();
                 }

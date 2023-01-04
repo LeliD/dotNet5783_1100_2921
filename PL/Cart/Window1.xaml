@@ -60,4 +60,18 @@ Source="C:\Documents and Settings\All Users\Documents\My Pictures\Sample Picture
             </Image.Source>
         </Image>
     </Grid>
+    <!--<Grid Grid.Row="2" Margin="40 15 200 15">
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Click="btnBack_Click">
+            <StackPanel Orientation="Horizontal">
+                --><!--<Image Source="/Images/left.png" Width="20"/>--><!--
+                <TextBlock Text="← Back to Shop" VerticalAlignment="Center" Margin="15 0 0 0"/>
+            </StackPanel>
+        </Button>
+
+        <StackPanel DataContext="{Binding MyCart}" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBlock Text="Subtotal :" FontSize="16"/>
+            <TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0" Width="100"/>
+        </StackPanel>
+    </Grid>-->
+    <!--<Button Content="Make an Order" HorizontalAlignment="Left" Margin="656,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="35" Width="112"/>-->
 </Window>

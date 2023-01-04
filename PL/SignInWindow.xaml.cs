@@ -1,6 +1,7 @@
 ﻿using PL.Cart;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -47,7 +48,7 @@ namespace PL
             {
                 var mail = new MailAddress(userEmail);
                 isValidEmail = mail.Host.Contains(".");
-                if(!isValidEmail)
+                if (!isValidEmail)
                 {
                     wrongInput += "UserEmail is invalid\n";
                     tbUserEmail.BorderBrush = Brushes.Red;
@@ -64,6 +65,7 @@ namespace PL
                 tbUserEmail.BorderBrush = Brushes.Red;
                 //MessageBox.Show("Username is Missing", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
            
             if (userAddress == "")
             {
@@ -93,6 +95,9 @@ namespace PL
                 BO.User user = new BO.User() { Name = name,UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = false };
                 bl.User.Add(user);
                 MessageBox.Show("Signing in has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
+                BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() };
+                CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
+                cw.ShowDialog();
             }
             catch (BO.BlAlreadyExistEntityException ex)
             {

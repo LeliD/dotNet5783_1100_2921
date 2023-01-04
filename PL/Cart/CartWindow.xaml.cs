@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace PL.Cart
         BlApi.IBl bl = BlApi.Factory.Get();
 
 
-        public BO.Cart? MyCart
+        public BO.Cart MyCart//הורדתי סימן שאלה
         {
             get { return (BO.Cart)GetValue(cartProperty); }
             set { SetValue(cartProperty, value); }
@@ -41,46 +42,96 @@ namespace PL.Cart
         {
             MyCart = cart;
             InitializeComponent();
-            lvCart.ItemsSource=cart.Items;
-        }
-
-        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
+            if (cart.Items == null || cart.Items.Count() == 0)
             {
-                this.DragMove();
+                tbEmptyCart.Visibility = Visibility.Visible;
+                btnMakeAnOrder.Visibility = Visibility.Hidden;
             }
+            lvCart.ItemsSource=cart.Items;
         }
 
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
-            BO.OrderItem orderItem=(BO.OrderItem)((Button)sender).DataContext;
-            MyCart=bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount + 1);
-            lvCart.Items.Refresh();
-            tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+            try
+            {
+                BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;//get the current orderItem
+                BO.Product boProduct = bl.Product.ProductDetailsForManager(orderItem.ProductID);//get the product to add to the cart
+                if (boProduct.InStock < orderItem.Amount + 1)
+                {
+                    Button? btnPlus = sender as Button;
+                    if (btnPlus != null)
+                        btnPlus.IsEnabled = false;
+                    return;
+                }
+                MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount + 1);
+                lvCart.Items.Refresh();
+                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
-            BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;
-            MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount - 1);
-            lvCart.Items.Refresh();
-            lvCart.ItemsSource = MyCart.Items;
-            tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+            try
+            {
+                BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;
+                MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount - 1);
+                lvCart.Items.Refresh();
+                lvCart.ItemsSource = MyCart.Items;//in removing there is a need to reload the itemsSource since the product my be removed
+                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;
-            MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, 0);
-            lvCart.Items.Refresh();
-            lvCart.ItemsSource = MyCart.Items;
+            try
+            {
+                BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;
+                MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, 0);
+                lvCart.Items.Refresh();
+                lvCart.ItemsSource = MyCart.Items;
+                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+            Close();
             CatalogWindow cw = new CatalogWindow(MyCart);//create new ProductListWindow
             cw.ShowDialog();
+        }
+
+        private void btnMakeAnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.Cart.MakeOrder(MyCart);
+                MessageBox.Show("Your purchase was ended successfully!\n Thanks for buying at our store", "👍", MessageBoxButton.OK, MessageBoxImage.Information);
+                MyCart.Items=new List<BO.OrderItem>();
+                MyCart.TotalPrice=0;    
+                tbEmptyCart.Visibility = Visibility.Visible;
+                btnMakeAnOrder.Visibility = Visibility.Hidden;
+                lvCart.Items.Refresh();
+                lvCart.ItemsSource = MyCart.Items;
+                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+            }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

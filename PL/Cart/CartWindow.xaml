@@ -40,7 +40,7 @@
                         <!--<Image Source="../Images/add.png" />-->
                     </Button>
 
-                    <Button x:Name="btnMinus" Style="{StaticResource buttonCounter}" Content="➖" Margin="0 5 0 0" Click="btnMinus_Click">
+                    <Button x:Name="btnMinus" Style="{StaticResource buttonCounter}" Content="➖" Margin="0 5 0 0" Click="btnMinus_Click" >
                         <!--<Image Source="../Images/low.png"/>-->
                     </Button>
                 </StackPanel>
@@ -77,11 +77,13 @@
                 <TextBlock Text="Sz" FontSize="28" FontWeight="SemiBold" FontFamily="Trebuchet MS" VerticalAlignment="Center" Margin="50 0 0 0"/>
                 <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
                 <TextBlock Text="Your Shopping Cart" FontSize="26" VerticalAlignment="Center"/>
+                <TextBlock x:Name="tbEmptyCart" Visibility="Hidden" Text="Your Cart Is Empty" FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="280 0 0 0" Foreground="#FFE63737" FontWeight="Bold"/>
+
             </StackPanel>
             <ScrollViewer Grid.Row="1">
                 <ListView x:Name="lvCart"  HorizontalContentAlignment="Stretch" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource OrderItemTemplate}" />
             </ScrollViewer>
-            <Grid Grid.Row="2" Margin="80 15 150 15">
+            <Grid Grid.Row="2" Margin="0 15 0 15">
                 <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Click="btnBack_Click">
                     <StackPanel Orientation="Horizontal">
                         <!--<Image Source="/Images/left.png" Width="20"/>-->
@@ -89,11 +91,14 @@
                     </StackPanel>
                 </Button>
 
-                <StackPanel DataContext="{Binding MyCart}" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <StackPanel DataContext="{Binding MyCart}" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="Subtotal :" FontSize="16"/>
-                    <TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 100 0" Width="100"/>
+                    <TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0" Width="100"/>
                 </StackPanel>
+                <Button x:Name="btnMakeAnOrder" Content="Make an Order" HorizontalAlignment="Right" Margin="656,0,10,0" Grid.Row="2" VerticalAlignment="Center" Height="35" Width="112" Click="btnMakeAnOrder_Click"/>
             </Grid>
+            <!--<Button Content="Make an Order" HorizontalAlignment="Left" Margin="656,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="35" Width="112"/>-->
+
             <!--<TextBlock HorizontalAlignment="Left" Margin="264,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center"/>-->
 
 

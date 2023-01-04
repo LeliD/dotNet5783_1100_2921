@@ -59,6 +59,8 @@ internal class Cart : ICart
         }
         else//product already exist in Cart
         {
+            if (orderItemInCart.Amount + 1 > doProduct.InStock)
+                throw new BO.BlOutOfStockException(doProduct.ID, doProduct.Name!, "Product is out of Stock");
             orderItemInCart.Amount++;//Increase amount in 1
             orderItemInCart.TotalPrice += orderItemInCart.Price;//Update totalPrice of OrderItem
             cart.TotalPrice += orderItemInCart.Price;
@@ -81,8 +83,8 @@ internal class Cart : ICart
             throw new BO.BlDetailInvalidException("CustomerAdress","Unvalid CustomerAddress");
         if (!new EmailAddressAttribute().IsValid(cart.CustomerEmail ?? throw new BO.BlNullPropertyException("CustomerEmail is null")))
             throw new BO.BlDetailInvalidException("CustomerEmail", "Unvalid CustomerEmail");
-        if (cart.Items == null)
-            throw new BO.BlDetailInvalidException("cart","Unvalid Cart (No items)");
+        if (cart.Items == null || cart.Items.Count() == 0)
+            throw new BO.BlDetailInvalidException("cart", "Unvalid Cart (No items)");
         cart.Items.ToList().ForEach(x =>
         {
             DO.Product doProduct;
