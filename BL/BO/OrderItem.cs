@@ -14,6 +14,7 @@ public class OrderItem
     public double Price { get; set; }
     public int Amount { get; set; }
     public double TotalPrice { get; set; }
+    public string? ImageRelativeName { get; set; }
     public override string ToString()
     {
         return this.ToStringProperty();

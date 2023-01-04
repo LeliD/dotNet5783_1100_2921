@@ -51,6 +51,7 @@ internal class Cart : ICart
                 Price = doProduct.Price,
                 Amount = 1,
                 TotalPrice = doProduct.Price,
+                ImageRelativeName = doProduct.ImageRelativeName,
 
             });
             cart.Items = orderItemsList;

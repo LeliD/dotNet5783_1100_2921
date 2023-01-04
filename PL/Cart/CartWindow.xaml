@@ -24,7 +24,7 @@
 
                 <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="/Cart/zara-home.png"/>
+                        <ImageBrush ImageSource="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }"/>
                     </Ellipse.Fill>
                 </Ellipse>
 
