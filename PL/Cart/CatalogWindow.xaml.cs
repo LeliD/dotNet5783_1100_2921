@@ -57,7 +57,7 @@ namespace PL.Cart
         private void btnGoToCart_Click(object sender, RoutedEventArgs e)
         {
            CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
-          // Close(); 
+           Close(); 
            cw.ShowDialog();
         }
 

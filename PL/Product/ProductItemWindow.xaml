@@ -54,12 +54,18 @@
 
 
         </Grid>
-        <Button x:Name="btnAddToCart" Content="Add to cart" HorizontalAlignment="Left" Margin="467,342,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click" IsEnabled="{Binding InStock,Mode=OneWay}"/>
-        <Image x:Name="ImImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="100" Margin="590,159,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="602,274,0,108" Width="173" Click="btnBack_Click">
+        <Button x:Name="btnAddToCart" Content="Add to cart" HorizontalAlignment="Left" Margin="631,343,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click" IsEnabled="{Binding InStock,Mode=OneWay}" Height="52" FontSize="15" Width="104"/>
+        <Image x:Name="ImImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="218" Margin="373,91,0,0" VerticalAlignment="Top" Width="228" />
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="602,18,0,364" Width="173" Click="btnBack_Click">
             <StackPanel Orientation="Horizontal">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
                 <TextBlock Text="← Back to Shop" VerticalAlignment="Center" Margin="15 0 0 0"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnCart" Style="{StaticResource buttonBack}" Margin="602,47,0,335" Width="173" Click="btnCart_Click">
+            <StackPanel Orientation="Horizontal">
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                <TextBlock Text="Go to Cart →" VerticalAlignment="Center" Margin="15 0 0 0"/>
             </StackPanel>
         </Button>
     </Grid>

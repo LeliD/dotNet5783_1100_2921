@@ -129,9 +129,9 @@ internal static class DataSource
         string[] addressesOfCustomers = new string[] { "Tel Aviv", "Bney Brack", "Ramat Gan", "Jerusalem", "Chaifa", "Ashdod", "Eilat", "Miron", "Ashkelon", "Givaat Shmuel" };//An array of adressesOfCustomers
         for (int i = 0; i < 10; i++)// Initializing 10 orders with ShipDate and DeliveryDate
         {
-            DateTime date = new DateTime(s_rand.Next(2021, 2023), s_rand.Next(1, 11), s_rand.Next(1, 30), s_rand.Next(0, 24), s_rand.Next(0, 60), s_rand.Next(0, 60));//Random calendar date from the last two years
-            TimeSpan t1 = new TimeSpan(s_rand.Next(0, 7), s_rand.Next(0, 24), s_rand.Next(0, 60), s_rand.Next(0, 58));//Random date between 0-8 days
-            TimeSpan t2 = new TimeSpan(s_rand.Next(0, 7), s_rand.Next(0, 24), s_rand.Next(0, 58), s_rand.Next(0, 60));//Random date between 0-8 days
+            DateTime date = new DateTime(s_rand.Next(2021, 2023), s_rand.Next(1, 11), s_rand.Next(1, 29), s_rand.Next(0, 24), s_rand.Next(0, 59), s_rand.Next(0, 59));//Random calendar date from the last two years
+            TimeSpan t1 = new TimeSpan(s_rand.Next(0, 7), s_rand.Next(0, 23), s_rand.Next(0, 59), s_rand.Next(0, 59));//Random date between 0-8 days
+            TimeSpan t2 = new TimeSpan(s_rand.Next(0, 7), s_rand.Next(0, 23), s_rand.Next(0, 59), s_rand.Next(0, 59));//Random date between 0-8 days
 
             OrdersList.Add(new Order()
             {
@@ -147,8 +147,8 @@ internal static class DataSource
         }
         for (int i = 0; i < 6; i++)// Initializing 6 orders with ShipDate but not in DeliveryDate
         {
-            DateTime date = new DateTime(s_rand.Next(2021, 2023), s_rand.Next(1, 11), s_rand.Next(1, 30), s_rand.Next(0, 24), s_rand.Next(0, 60), s_rand.Next(0, 60));//Random calendar date from the last two years
-            TimeSpan t = new TimeSpan(s_rand.Next(0, 8), s_rand.Next(0, 24), s_rand.Next(0, 60), s_rand.Next(0, 60));//Random date between 0-8 days
+            DateTime date = new DateTime(s_rand.Next(2021, 2023), s_rand.Next(1, 11), s_rand.Next(1, 29), s_rand.Next(0, 23), s_rand.Next(0, 59), s_rand.Next(0, 59));//Random calendar date from the last two years
+            TimeSpan t = new TimeSpan(s_rand.Next(0, 7), s_rand.Next(0, 23), s_rand.Next(0, 59), s_rand.Next(0, 59));//Random date between 0-8 days
             OrdersList.Add(new Order()
             {
                 ID = Config.NextOrderNumber,
@@ -164,7 +164,7 @@ internal static class DataSource
         }
         for (int i = 0; i < 4; i++)// Initializing 4 orders without ShipDate and DeliveryDate
         {
-            DateTime date = new DateTime(s_rand.Next(2021, 2023), s_rand.Next(1, 11), s_rand.Next(1, 30), s_rand.Next(0, 24), s_rand.Next(0, 60), s_rand.Next(0, 60));//Random calendar date from the last two years
+            DateTime date = new DateTime(s_rand.Next(2021, 2023), s_rand.Next(1, 11), s_rand.Next(1, 29), s_rand.Next(0, 23), s_rand.Next(0, 59), s_rand.Next(0, 59));//Random calendar date from the last two years
             OrdersList.Add(new Order()
             {
                 ID = Config.NextOrderNumber,
