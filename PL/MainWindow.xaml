@@ -11,12 +11,12 @@
         <!--<Button x:Name="BtnProduftList" Content="Admin" HorizontalAlignment="Left" Margin="567,332,0,0" VerticalAlignment="Top" Click="BtnProduftList_Click" Height="64" Width="173" FontSize="20" />-->
         <Image HorizontalAlignment="Left" Height="153" Margin="125,87,0,0" VerticalAlignment="Top" Width="562" Source="/zarahome.png"/>
         <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="618,286,0,0" VerticalAlignment="Top" Height="50" Width="129" FontSize="20" Click="btnTracking_Click"/>
-        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="31,284,0,0" VerticalAlignment="Top" Height="50" Width="127" FontSize="20" Click="btnNewOrder_Click"/>
+        <!--<Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="31,284,0,0" VerticalAlignment="Top" Height="50" Width="127" FontSize="20" Click="btnNewOrder_Click"/>-->
 
         <TextBox x:Name="tbIDOrderTrack"  Visibility="Visible" HorizontalAlignment="Left" Margin="618,387,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown" KeyDown="tbIDOrderTrack_KeyDown" Height="17"/>
         <Label x:Name="lblTracking" Content="Enter number of order&#10;and press enter" Visibility="Visible" HorizontalAlignment="Left" Margin="618,344,0,0" VerticalAlignment="Top" Width="144" Height="43"/>
-        <Button x:Name="btSignUp" Content="Sign up" HorizontalAlignment="Left" Margin="11,50,0,0" VerticalAlignment="Top" Click="btSignUp_Click" Height="36" Width="87"/>
-        <Button x:Name="btnLogIn" Content="Log in" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="35" Width="88" Click="btnLogIn_Click"/>
+        <Button x:Name="btSignUp" Content="Sign up" HorizontalAlignment="Left" Margin="53,286,0,0" VerticalAlignment="Top" Click="btSignUp_Click" Height="50" Width="129" FontSize="20"/>
+        <Button x:Name="btnLogIn" Content="Log in" HorizontalAlignment="Center" Margin="0,286,0,0" VerticalAlignment="Top" Height="50" Width="128" FontSize="20" Click="btnLogIn_Click"/>
 
     </Grid>
 </Window>

@@ -57,20 +57,17 @@
 
         </Grid>
 
-        <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="48" Width="132"/>
-        <Button x:Name="btnRemove" Content="Remove product" HorizontalAlignment="Left" Margin="479,345,0,0" VerticalAlignment="Top" Height="48" Width="111" Click="btnRemove_Click"/>
-        <Button x:Name="btnHome" VerticalAlignment="Top"  Margin="671,50,80,0" Click="btnHome_Click" Height="39" >
-            <Image Source="../Images/HOME.png"  />
-            <!--<Image Source="../Images/HOME.png"/>-->
+        <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Left" Margin="663,340,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="46" Width="110"/>
+        <Button x:Name="btnRemove" Content="Remove product" HorizontalAlignment="Left" Margin="663,280,0,0" VerticalAlignment="Top" Height="46" Click="btnRemove_Click" FontSize="13" Width="110"/>
+        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
+            <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
-        <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="130" Margin="471,123,0,0" VerticalAlignment="Top" Width="123"/>
-        <Button x:Name="btnAddImage" Content="Change picture" HorizontalAlignment="Left" Margin="374,274,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="30" Width="111"/>
-        <TextBox x:Name="tbpath"  HorizontalAlignment="Left" Height="NaN" Margin="131,380,0,0" Text="{Binding ImageRelativeName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" TextChanged="tbId_TextChanged"/>
-        <Label x:Name="lblWghrongId" Content="nk" HorizontalAlignment="Left" Margin="24,369,0,0" Grid.Row="0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
-        <Button x:Name="btnBackToProductsList" Style="{StaticResource buttonBack}" Margin="547,261,0,121" Width="173" Click="btnBackToProductsList_Click" >
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="← Back To List Of Products"/>
+        <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="193" Margin="369,106,0,0" VerticalAlignment="Top" Width="183"/>
+        <Button x:Name="btnAddImage" Content="Change picture" HorizontalAlignment="Left" Margin="385,320,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="39" Width="130"/>
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="460,29,0,353" Width="239" Click="btnBackToProductsList_Click">
+            <StackPanel Orientation="Horizontal" Width="215">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
+                <TextBlock Text="← Back To List Of Products" VerticalAlignment="Center" Margin="15 0 0 0" Width="201"/>
             </StackPanel>
         </Button>
     </Grid>

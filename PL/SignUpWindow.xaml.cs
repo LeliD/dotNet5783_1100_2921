@@ -112,8 +112,9 @@ namespace PL
                     bl.User.Add(user);
                     MessageBox.Show("Signing up has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
                     AdminWindow aw= new AdminWindow();
+                    Close(); 
                     aw.ShowDialog();
-                    Close();
+                    
                 }
 
             }

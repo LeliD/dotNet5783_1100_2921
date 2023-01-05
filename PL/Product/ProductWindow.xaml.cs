@@ -223,7 +223,7 @@ namespace PL.Product
 
                         bl.Product.UpdateProduct(boProduct!);
                         MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        //Close();
+                        Close();
                     }
                     catch (BO.BlMissingEntityException ex)
                     {
@@ -366,9 +366,9 @@ namespace PL.Product
 
         private void btnBackToProductsList_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow productListWindow = new ProductListWindow();  
+            ProductListWindow productListWindow = new ProductListWindow();
+            Close(); 
             productListWindow.ShowDialog();
-            Close();
         }
 
         private void tbId_PreviewKeyDown(object sender, KeyEventArgs e)

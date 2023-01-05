@@ -92,13 +92,13 @@ namespace PL
             return;
         }
 
-        private void btnNewOrder_Click(object sender, RoutedEventArgs e)
-        {
-            BO.Cart cart=new BO.Cart(); 
-            CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
-            Close(); 
-            cw.ShowDialog();
-        }
+        //private void btnNewOrder_Click(object sender, RoutedEventArgs e)
+        //{
+        //    BO.Cart cart=new BO.Cart(); 
+        //    CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
+        //    Close(); 
+        //    cw.ShowDialog();
+        //}
 
         private void tbIDOrderTrack_KeyDown(object sender, KeyEventArgs e)
         {

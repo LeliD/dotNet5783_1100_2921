@@ -8,6 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Title="OrderListWindow" Height="450" Width="800" Activated="Window_Activated">
     <Grid>
+        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
+            <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Button>
         <DataGrid x:Name="orderForListDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="110,54,110,96" MouseDoubleClick="orderForListDataGrid_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="50"/>
@@ -17,6 +20,12 @@
                 <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnBack" Content="🔙" HorizontalAlignment="Left" Margin="40,365,0,0" VerticalAlignment="Top" Height="41" Width="64" Click="btnBack_Click"/>
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="10,362,0,20" Width="104" Click="btnBack_Click">
+            <StackPanel Orientation="Horizontal">
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                <TextBlock Text="← Back"/>
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

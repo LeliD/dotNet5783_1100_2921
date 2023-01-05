@@ -28,16 +28,12 @@ internal class DalUser : IUser
     /// </summary>
     /// <param name="user"></param>
     /// <exception cref="DO.DalAlreadyExistUserNameException"></exception>
-    public void Add(DO.User user)
+    public int Add(DO.User user)
     {
         if (DataSource.UsersList.Exists(x => x?.UserName == user.UserName))
             throw new DO.DalAlreadyExistUserNameException(user.UserName!, $"Username: {user.UserName} already exist");
         DataSource.UsersList.Add(user);
-    }
-
-    int ICrud<User>.Add(User item)
-    {
-        throw new NotImplementedException();
+        return 0;
     }
 
     public User GetById(int id)

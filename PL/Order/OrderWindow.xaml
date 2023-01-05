@@ -66,10 +66,10 @@
         </DataGrid>
         <Button x:Name="btnUpdateShipDateOrder" Content="Update Ship date" HorizontalAlignment="Left" Margin="296,258,0,0" VerticalAlignment="Top" Height="25" Width="132" Click="btnUpdateShipDateOrder_Click"/>
         <Button x:Name="btnUpdateDeliveryDateOrder" Content="Update delivery date" HorizontalAlignment="Left" Margin="296,288,0,0" VerticalAlignment="Top" Width="132" Height="26" Click="btnUpdateDeliveryDateOrder_Click"/>
-        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="464,57,0,343" Width="139" Click="btnBack_Click">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="602,18,0,364" Width="173" Click="btnBack_Click">
+            <StackPanel Orientation="Horizontal">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
-                <TextBlock Text="← Back" VerticalAlignment="Center" Margin="15 0 0 0" Width="73"/>
+                <TextBlock Text="← Back " VerticalAlignment="Center" Margin="15 0 0 0"/>
             </StackPanel>
         </Button>
     </Grid>
