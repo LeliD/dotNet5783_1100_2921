@@ -8,6 +8,6 @@ namespace BlApi;
 
 public interface IUser
 {
-    public BO.User GetById(string userName);
+    public BO.User GetByUserName(string userName);
     public void Add(BO.User user);
 }

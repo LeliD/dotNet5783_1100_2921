@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace DalApi
 {
-    public interface IUser 
+    public interface IUser :ICrud<User>
     {
-        public DO.User GetById(string userName);
-        public void Add(DO.User user);
+        public User GetByUserName(string userName);
     }
 }

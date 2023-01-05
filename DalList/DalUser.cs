@@ -18,9 +18,9 @@ internal class DalUser : IUser
     /// <param name="userName"></param>
     /// <returns>DO.User of the userName</returns>
     /// <exception cref="DO.DalMissingUserNameException">If userName isn't found</exception>
-    public DO.User GetById(string userName)//returns a user by its username
+    public User GetByUserName(string userName)//returns a user by its username
     {
-        DO.User user = DataSource.UsersList.Find(x => x?.UserName == userName) ?? throw new DO.DalMissingUserNameException(userName, "User name does not exist");
+        User user = DataSource.UsersList.Find(x => x?.UserName == userName) ?? throw new DO.DalMissingUserNameException(userName, "User name does not exist");
         return user;
     }
     /// <summary>
@@ -34,5 +34,29 @@ internal class DalUser : IUser
             throw new DO.DalAlreadyExistUserNameException(user.UserName!, $"Username: {user.UserName} already exist");
         DataSource.UsersList.Add(user);
     }
-   
+
+    int ICrud<User>.Add(User item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public User GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Update(User item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<User?> GetAll(Func<User?, bool>? filter = null)
+    {
+        throw new NotImplementedException();
+    }
 }

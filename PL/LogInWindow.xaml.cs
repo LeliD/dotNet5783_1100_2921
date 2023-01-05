@@ -31,7 +31,7 @@ namespace PL
             {
                 string userName = tbUserName.Text;
                 string passcode = pbPasscode.Password;
-                BO.User user = bl.User.GetById(userName);
+                BO.User user = bl.User.GetByUserName(userName);
                 if (user.AdminAccess)
                 {
                     AdminWindow aw = new AdminWindow();//create new ProductListWindow

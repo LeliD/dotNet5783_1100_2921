@@ -59,13 +59,13 @@ internal class User : IUser
     /// <returns></returns>
     /// <exception cref="BO.BlNullPropertyException">If userName is null</exception>
     /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.GetById</exception>
-    public BO.User GetById(string userName)
+    public BO.User GetByUserName(string userName)
     {
         if (userName == null)
             throw new BO.BlNullPropertyException("UserName is empty");
         try
         {
-            DO.User doUser = dal.User.GetById(userName);
+            DO.User doUser = dal.User.GetByUserName(userName);
             return new BO.User()
             {
                 Name = doUser.Name,
