@@ -35,7 +35,12 @@ namespace PL
             InitializeComponent();
             //Call to WindowActivitate event
         }
-
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            tbIDOrderTrack.Visibility = Visibility.Hidden;
+            lblTracking.Visibility = Visibility.Hidden;
+            tbIDOrderTrack.Text = "";
+        }
         /// <summary>
         /// Click event. The function button of openning the window's list of products
         /// </summary>
@@ -122,12 +127,6 @@ namespace PL
                 else
                     MessageBox.Show("Only Numbers allowed", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            tbIDOrderTrack.Visibility = Visibility.Hidden;
-            lblTracking.Visibility = Visibility.Hidden;
         }
 
         private void btSignUp_Click(object sender, RoutedEventArgs e)

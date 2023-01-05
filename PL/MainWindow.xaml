@@ -9,14 +9,14 @@
         Title="MainWindow" Height="450" Width="800" Activated="Window_Activated">
     <Grid Background="#FFFCEFEC">
         <!--<Button x:Name="BtnProduftList" Content="Admin" HorizontalAlignment="Left" Margin="567,332,0,0" VerticalAlignment="Top" Click="BtnProduftList_Click" Height="64" Width="173" FontSize="20" />-->
-        <Image HorizontalAlignment="Left" Height="153" Margin="54,86,0,0" VerticalAlignment="Top" Width="562" Source="/zarahome.png"/>
-        <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Center" Margin="0,332,0,0" VerticalAlignment="Top" Height="64" Width="160" FontSize="20" Click="btnTracking_Click"/>
-        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="85,332,0,0" VerticalAlignment="Top" Height="64" Width="146" FontSize="20" Click="btnNewOrder_Click"/>
-        
-        <TextBox x:Name="tbIDOrderTrack"  Visibility="Hidden" HorizontalAlignment="Left" Margin="335,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown" KeyDown="tbIDOrderTrack_KeyDown"/>
-        <Label x:Name="lblTracking" Content="Enter number of order" Visibility="Hidden" HorizontalAlignment="Left" Margin="331,278,0,0" VerticalAlignment="Top" Width="149"/>
-        <Button x:Name="btSignUp" Content="Sign up" HorizontalAlignment="Left" Margin="460,271,0,0" VerticalAlignment="Top" Click="btSignUp_Click" Height="40" Width="87"/>
-        <Button x:Name="btnLogIn" Content="Log in" HorizontalAlignment="Left" Margin="243,276,0,0" VerticalAlignment="Top" Height="35" Width="88" Click="btnLogIn_Click"/>
+        <Image HorizontalAlignment="Left" Height="153" Margin="125,87,0,0" VerticalAlignment="Top" Width="562" Source="/zarahome.png"/>
+        <Button x:Name="btnTracking" Content="Track" HorizontalAlignment="Left" Margin="618,286,0,0" VerticalAlignment="Top" Height="50" Width="129" FontSize="20" Click="btnTracking_Click"/>
+        <Button x:Name="btnNewOrder" Content="New Order" HorizontalAlignment="Left" Margin="31,284,0,0" VerticalAlignment="Top" Height="50" Width="127" FontSize="20" Click="btnNewOrder_Click"/>
+
+        <TextBox x:Name="tbIDOrderTrack"  Visibility="Visible" HorizontalAlignment="Left" Margin="625,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown" KeyDown="tbIDOrderTrack_KeyDown"/>
+        <Label x:Name="lblTracking" Content="Enter number of order" Visibility="Visible" HorizontalAlignment="Left" Margin="620,338,0,0" VerticalAlignment="Top" Width="134"/>
+        <Button x:Name="btSignUp" Content="Sign up" HorizontalAlignment="Left" Margin="691,20,0,0" VerticalAlignment="Top" Click="btSignUp_Click" Height="40" Width="87"/>
+        <Button x:Name="btnLogIn" Content="Log in" HorizontalAlignment="Left" Margin="31,22,0,0" VerticalAlignment="Top" Height="35" Width="88" Click="btnLogIn_Click"/>
 
     </Grid>
 </Window>
