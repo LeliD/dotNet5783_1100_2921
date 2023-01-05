@@ -49,6 +49,7 @@ namespace PL.Cart
             if (productItem != null)
             {
                 ProductItemWindow pw = new ProductItemWindow(productItem.ID,MyCart);//create new ProductWindow of the selected product
+                Close(); 
                 pw.ShowDialog();
             }
         }
@@ -56,12 +57,14 @@ namespace PL.Cart
         private void btnGoToCart_Click(object sender, RoutedEventArgs e)
         {
            CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
+          // Close(); 
            cw.ShowDialog();
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow plw = new MainWindow();//create new ProductListWindow
+            Close(); 
             plw.ShowDialog();
         }
 

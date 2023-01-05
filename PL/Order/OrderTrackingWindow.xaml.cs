@@ -48,6 +48,7 @@ namespace PL.Order
             if(boOrderTracking!=null)
             {
                 OrderWindow ow = new OrderWindow(boOrderTracking.ID, GeneralMode.Display);//create new ProductListWindow
+                Close(); 
                 ow.ShowDialog();
             }
            

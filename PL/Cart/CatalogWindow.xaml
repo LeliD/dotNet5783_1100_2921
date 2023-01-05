@@ -16,7 +16,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row= "0" Width="100" Height="40" CornerRadius="5" Margin="30,50,30,84">
+                <Border Grid.Row= "0" Width="130" Height="120" CornerRadius="5" Margin="15,15,15,15">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="1"/>
                     </Border.Effect>
@@ -25,7 +25,7 @@
                     </Border.Background>
                 </Border>
                 <!--<Image Grid.Row= "0" Height="60" Width="180" HorizontalAlignment="Center" Source="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />-->
-                <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="5,0,0,0" FontSize="17" />
+                <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="10" Height="auto" Width="auto"/>
                 <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
             </Grid>
         </DataTemplate>
@@ -58,7 +58,7 @@
             </ListView>
         </ScrollViewer>
         <Image HorizontalAlignment="Left" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" Width="261" Source="/Cart/zara-home.png"/>
-        <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="587,0,0,0" VerticalAlignment="Center" Height="40" Width="83" Click="btnGoToCart_Click"/>
+        <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="587,10,0,0" Width="83" Click="btnGoToCart_Click" Height="40" VerticalAlignment="Top"/>
         <!--<Button HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="50" Width="71" Foreground="#FFF6F0EC" BorderBrush="#FFF7F0ED">
             <Button.Background>
                 <ImageBrush ImageSource="../Images/HOME.png"/>

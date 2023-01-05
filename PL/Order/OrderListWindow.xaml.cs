@@ -42,6 +42,7 @@ namespace PL.Order
             if (orderForList != null)
             {
                 OrderWindow ow = new OrderWindow(orderForList.ID,PL.GeneralMode.Editing);//create new OrderWindow of the selected order
+                Close(); 
                 ow.ShowDialog();
             }
         }
@@ -49,6 +50,7 @@ namespace PL.Order
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             AdminWindow plw = new AdminWindow();//create new ProductListWindow
+            Close(); 
             plw.ShowDialog();
         }
     }
