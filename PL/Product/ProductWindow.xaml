@@ -57,7 +57,7 @@
 
         </Grid>
 
-        <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Left" Margin="633,345,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="48" Width="133"/>
+        <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="48" Width="132"/>
         <Button x:Name="btnRemove" Content="Remove product" HorizontalAlignment="Left" Margin="479,345,0,0" VerticalAlignment="Top" Height="48" Width="111" Click="btnRemove_Click"/>
         <Button x:Name="btnHome" VerticalAlignment="Top"  Margin="671,50,80,0" Click="btnHome_Click" Height="39" >
             <Image Source="../Images/HOME.png"  />
@@ -67,5 +67,6 @@
         <Button x:Name="btnAddImage" Content="Change picture" HorizontalAlignment="Left" Margin="479,274,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="30" Width="111"/>
         <TextBox x:Name="tbpath"  HorizontalAlignment="Left" Height="NaN" Margin="131,380,0,0" Text="{Binding ImageRelativeName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" TextChanged="tbId_TextChanged"/>
         <Label x:Name="lblWghrongId" Content="nk" HorizontalAlignment="Left" Margin="24,369,0,0" Grid.Row="0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+       
     </Grid>
 </Window>
