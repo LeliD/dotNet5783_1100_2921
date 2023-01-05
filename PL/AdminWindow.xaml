@@ -10,6 +10,9 @@
     <Grid>
         <Button x:Name="BtnOrderList" Content="List Of Orders" HorizontalAlignment="Left" Margin="89,332,0,0" Height="64" Width="173" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
         <Button x:Name="BtnProductList" Content="List Of Products" HorizontalAlignment="Left" Margin="567,332,0,0" VerticalAlignment="Top" Click="BtnProductList_Click" FontFamily="Segoe UI Black" Height="64" Width="173" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866"/>
-
+        <Button x:Name="BtnAddManager" Content="Add Admin Access" HorizontalAlignment="Left" Margin="326,332,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" Height="64" Width="195" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866" Click="BtnAddManager_Click"/>
+        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
+            <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Button>
     </Grid>
 </Window>
