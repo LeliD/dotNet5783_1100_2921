@@ -54,8 +54,13 @@
 
 
         </Grid>
-        <Button x:Name="btnAddToCart" Content="Add to cart" HorizontalAlignment="Left" Margin="629,352,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click"/>
+        <Button x:Name="btnAddToCart" Content="Add to cart" HorizontalAlignment="Left" Margin="467,342,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click"/>
         <Image x:Name="ImImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="100" Margin="590,159,0,0" VerticalAlignment="Top" Width="100"/>
-
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="602,274,0,108" Width="173" Click="btnBack_Click">
+            <StackPanel Orientation="Horizontal">
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                <TextBlock Text="← Back to Shop" VerticalAlignment="Center" Margin="15 0 0 0"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

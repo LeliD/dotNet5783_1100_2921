@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using PL.Cart;
 namespace PL.Product
 {
     /// <summary>
@@ -61,6 +61,13 @@ namespace PL.Product
         {
             if (boProductItem != null)
                 bl.Cart.AddProductToCart(MyCart, boProductItem.ID);
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogWindow cw = new CatalogWindow(MyCart);
+            cw.ShowDialog();
+            Close();
         }
     }
 }
