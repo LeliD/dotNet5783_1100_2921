@@ -333,6 +333,11 @@ namespace PL.Product
             tbpath.Text=o.FileName.Substring(54);
         }
 
-    
+        private void btnBackToProductsList_Click(object sender, RoutedEventArgs e)
+        {
+            ProductListWindow productListWindow = new ProductListWindow();  
+            productListWindow.ShowDialog();
+            Close();
+        }
     }
 }
