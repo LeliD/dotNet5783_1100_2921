@@ -68,10 +68,6 @@ namespace PL.Cart
             plw.ShowDialog();
         }
 
-        //private void OnClick5(object sender, RoutedEventArgs e)
-        //{
-        //    CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
-        //    cw.ShowDialog();
-        //}
+      
     }
 }

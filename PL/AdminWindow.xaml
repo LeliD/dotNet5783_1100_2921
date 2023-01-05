@@ -8,8 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="BtnOrderList" Content="List Of Orders" HorizontalAlignment="Left" Margin="89,332,0,0" Height="64" Width="173" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
-        <Button x:Name="BtnProductList" Content="List Of Products" HorizontalAlignment="Left" Margin="567,332,0,0" VerticalAlignment="Top" Click="BtnProductList_Click" FontFamily="Segoe UI Black" Height="64" Width="173" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866"/>
+        <Button x:Name="BtnOrderList" Content="List Of Orders" HorizontalAlignment="Left" Margin="89,332,0,0" Height="64" Width="170" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
+        <Button x:Name="BtnProductList" Content="List Of Products" HorizontalAlignment="Left" Margin="567,332,0,0" VerticalAlignment="Top" Click="BtnProductList_Click" FontFamily="Segoe UI Black" Height="64" Width="170" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866"/>
+        <Button x:Name="btnAddManager" Content="Add manager" HorizontalAlignment="Left" Margin="327,332,0,0" VerticalAlignment="Top" Height="64" Width="170" FontSize="20" Click="btnAddManager_Click"/>
 
     </Grid>
 </Window>

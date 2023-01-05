@@ -41,5 +41,10 @@ namespace PL
             Close(); 
             olw.ShowDialog();
         }
+
+        private void btnAddManager_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
