@@ -101,7 +101,7 @@ namespace PL.Product
             if (productForList != null)
             {
                 ProductWindow pw = new ProductWindow(productForList.ID);//create new ProductWindow of the selected product
-                Close(); 
+                //Close(); 
                 pw.ShowDialog();
             }
         }

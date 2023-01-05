@@ -214,8 +214,8 @@ namespace PL.Product
                         }
                         //boProduct!.ImageRelativeName = tbpath.Text;
 
-                        boProduct!.ImageRelativeName = tbpath.Text;
-                        boProduct.Price = 0;
+                       // boProduct!.ImageRelativeName = tbpath.Text;
+                        //boProduct.Price = 0;
 
 
                         bl.Product.UpdateProduct(boProduct!);
