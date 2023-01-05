@@ -60,7 +60,7 @@ namespace PL.Product
         {
 
             ProductWindow pw = new ProductWindow();//create new ProductWindow
-            Close(); 
+            //Close(); 
             pw.ShowDialog();
         }
         /// <summary>

@@ -16,6 +16,7 @@ using PL;
 using BO;
 using Microsoft.Win32;
 using System.IO;
+using System.Net.Security;
 namespace PL.Product
 {
     /// <summary>
@@ -163,16 +164,21 @@ namespace PL.Product
                 try
                 {
 
-                    if(boProduct.ImageRelativeName!=null)
+                    if (boProduct!.ImageRelativeName != null)
                     {
                         string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                        File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                        FileInfo file= new FileInfo(@"\Images\" + imageName);
+                        if(file.Exists.Equals(true))
+                          {
+                            File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                          }
                         boProduct.ImageRelativeName = @"\Images\" + imageName;
-
                     }
+
+
                     //boProduct!.ImageRelativeName = tbpath.Text;
 
-                    boProduct!.ImageRelativeName = tbpath.Text;
+                    //boProduct!.ImageRelativeName = tbpath.Text;
 
 
                     bl.Product.AddProduct(boProduct!);
@@ -204,23 +210,20 @@ namespace PL.Product
                 {
                     try
                     {
-
                         if (boProduct!.ImageRelativeName != null)
                         {
                             string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                            //File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
-                            boProduct.ImageRelativeName = @"\Images" + imageName;
-
+                            FileInfo file = new FileInfo(@"\Images\" + imageName);
+                            if (file.Exists.Equals(true))
+                            {
+                                File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                            }
+                            boProduct.ImageRelativeName = @"\Images\" + imageName;
                         }
-                        //boProduct!.ImageRelativeName = tbpath.Text;
-
-                       // boProduct!.ImageRelativeName = tbpath.Text;
-                        //boProduct.Price = 0;
-
 
                         bl.Product.UpdateProduct(boProduct!);
                         MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Close();
+                        //Close();
                     }
                     catch (BO.BlMissingEntityException ex)
                     {
@@ -346,13 +349,18 @@ namespace PL.Product
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog o = new OpenFileDialog();
-            o.Filter = "Image files|*.png;*.jpg";
-            o.FilterIndex = 1;
-            if (o.ShowDialog()!.Value)
+            //o.Filter = "Image files|*.png;*.jpg";
+            //o.FilterIndex = 1;
+            //if (o.ShowDialog()!.Value)
+            //{
+            //    NewImage.Source = new BitmapImage(new Uri(o.FileName));
+            //}
+            //tbpath.Text=o.FileName.Substring(54);
+            if(o.ShowDialog()==true)
             {
                 NewImage.Source = new BitmapImage(new Uri(o.FileName));
+                boProduct.ImageRelativeName= o.FileName;    
             }
-            //tbpath.Text=o.FileName.Substring(54);
            
         }
 

@@ -129,7 +129,7 @@ internal class Product : IProduct
                 Price = doProduct.Price,
                 InStock = doProduct.InStock > 0,
                 Amount = amount,
-                ImageRelativeName=doProduct.ImageRelativeName
+                ImageRelativeName=doProduct.ImageRelativeName ?? @"\Images\IMG.png"
                 //ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
 
             };
@@ -169,7 +169,7 @@ internal class Product : IProduct
                 Price = boProduct.Price,
                 Category = (DO.Category)boProduct.Category,
                 InStock = boProduct.InStock,
-                ImageRelativeName = boProduct.ImageRelativeName
+                ImageRelativeName = boProduct.ImageRelativeName ?? @"\Images\IMG.png"
             });
         }
         catch(DO.DalAlreadyExistIdException ex)
@@ -224,7 +224,7 @@ internal class Product : IProduct
                 Price = boProduct.Price,
                 Category = (DO.Category)boProduct.Category,
                 InStock = boProduct.InStock,
-                ImageRelativeName=boProduct.ImageRelativeName
+                ImageRelativeName=boProduct.ImageRelativeName ?? @"\Images\IMG.png"
             });
         }
         catch (DO.DalMissingIdException ex)

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-
+using System.IO;
 namespace PL
 {
     public class ConvertImagePathToBitmap : IValueConverter
@@ -15,9 +15,9 @@ namespace PL
         {
             try
             {
-                string ImageRelativeName = (string)value;
+                string imageRelativeName = (string)value;
                 string currentDir = Environment.CurrentDirectory[..^4];
-                string imageFullName = currentDir + ImageRelativeName;
+                string imageFullName = currentDir + imageRelativeName;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
                 return bitmapImage;
             }
@@ -33,8 +33,13 @@ namespace PL
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string ImageRelativeName=(string)value;
-            return ImageRelativeName;
+            throw new NotImplementedException();
         }
+
+        //public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        //{
+        //    string ImageRelativeName=(string)value;
+        //    return ImageRelativeName;
+        //}
     }
 }
