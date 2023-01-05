@@ -163,6 +163,7 @@ namespace PL.Product
                 try
                 {
                     boProduct!.ImageRelativeName = tbpath.Text;
+
                     bl.Product.AddProduct(boProduct!);
                     MessageBox.Show("New Product was added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
@@ -193,6 +194,8 @@ namespace PL.Product
                     try
                     {
                         boProduct!.ImageRelativeName = tbpath.Text;
+                        boProduct.Price = 0;
+
                         bl.Product.UpdateProduct(boProduct!);
                         MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                         Close();
