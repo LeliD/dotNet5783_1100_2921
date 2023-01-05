@@ -67,6 +67,7 @@
         <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="729,0,10,0" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
             <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
+        <Label x:Name="lblWelcome" Content="Welcome " HorizontalAlignment="Left" Margin="415,0,0,0" VerticalAlignment="Center"/>
         <!--<Button Name="btn5" Width="50" Height="30" Click="OnClick5">
             <Image Source="../Images/HOME.png"></Image>
         </Button>-->
