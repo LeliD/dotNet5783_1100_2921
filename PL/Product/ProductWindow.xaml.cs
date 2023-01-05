@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using PL;
 using BO;
 using Microsoft.Win32;
-
+using System.IO;
 namespace PL.Product
 {
     /// <summary>
@@ -162,8 +162,14 @@ namespace PL.Product
             {
                 try
                 {
-                    boProduct!.ImageRelativeName = tbpath.Text;
+                    if(boProduct.ImageRelativeName!=null)
+                    {
+                        string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
+                        File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                        boProduct.ImageRelativeName = @"\Images\" + imageName;
 
+                    }
+                    //boProduct!.ImageRelativeName = tbpath.Text;
                     bl.Product.AddProduct(boProduct!);
                     MessageBox.Show("New Product was added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
@@ -193,9 +199,14 @@ namespace PL.Product
                 {
                     try
                     {
-                        boProduct!.ImageRelativeName = tbpath.Text;
-                        boProduct.Price = 0;
+                        if (boProduct.ImageRelativeName != null)
+                        {
+                            string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
+                            File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                            boProduct.ImageRelativeName = @"\Images\" + imageName;
 
+                        }
+                        //boProduct!.ImageRelativeName = tbpath.Text;
                         bl.Product.UpdateProduct(boProduct!);
                         MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                         Close();
@@ -330,7 +341,8 @@ namespace PL.Product
             {
                 NewImage.Source = new BitmapImage(new Uri(o.FileName));
             }
-            tbpath.Text=o.FileName.Substring(54);
+            //tbpath.Text=o.FileName.Substring(54);
+           
         }
 
         private void btnBackToProductsList_Click(object sender, RoutedEventArgs e)

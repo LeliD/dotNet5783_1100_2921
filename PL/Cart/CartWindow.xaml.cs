@@ -116,10 +116,11 @@ namespace PL.Cart
 
         private void btnMakeAnOrder_Click(object sender, RoutedEventArgs e)
         {
+            int orderId; 
             try
             {
-                bl.Cart.MakeOrder(MyCart);
-                MessageBox.Show("Your purchase was ended successfully!\n Thanks for buying at our store", "👍", MessageBoxButton.OK, MessageBoxImage.Information);
+                orderId=bl.Cart.MakeOrder(MyCart);
+                MessageBox.Show("Your purchase was ended successfully!\n Thanks for buying at our store\n Your order id for tracking is:"+ orderId, "👍", MessageBoxButton.OK, MessageBoxImage.Information);
                 MyCart.Items=new List<BO.OrderItem>();
                 MyCart.TotalPrice=0;    
                 tbEmptyCart.Visibility = Visibility.Visible;
