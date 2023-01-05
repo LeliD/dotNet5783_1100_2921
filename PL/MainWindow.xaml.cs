@@ -33,7 +33,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-
+            //Call to WindowActivitate event
         }
 
         /// <summary>
@@ -41,12 +41,12 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnProduftList_Click(object sender, RoutedEventArgs e)
-        {
-            AdminWindow aw = new AdminWindow();//create new ProductListWindow
-            Close();
-            aw.ShowDialog();
-        }
+        //private void BtnProduftList_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AdminWindow aw = new AdminWindow();//create new ProductListWindow
+        //    Close();
+        //    aw.ShowDialog();
+        //}
 
         private void btnTracking_Click(object sender, RoutedEventArgs e)
         {
@@ -64,7 +64,7 @@ namespace PL
 
         private void tbIDOrderTrack_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            TextBox text = sender as TextBox;
+            TextBox? text = sender as TextBox;
             if (text == null) return;
             if (e == null) return;
             //allow get out of the text box
@@ -103,10 +103,24 @@ namespace PL
                 bool check = int.TryParse(tbIDOrderTrack.Text, out id);
                 if (check)
                 {
-                    OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
-                    Close();
-                    otw.ShowDialog();
+                    try
+                    {
+                      OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
+                      Close();
+                      otw.ShowDialog();
+                    }
+                    catch(BO.BlMissingEntityException ex)
+                    {
+                        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                 }
+                else
+                    MessageBox.Show("Only Numbers allowed", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -118,7 +132,7 @@ namespace PL
 
         private void btSignUp_Click(object sender, RoutedEventArgs e)
         {
-            SignUpWindow plw = new SignUpWindow();//create new ProductListWindow
+            SignUpWindow plw = new SignUpWindow(AdminAccess.No);//create new ProductListWindow
             Close(); 
             plw.ShowDialog();
         }

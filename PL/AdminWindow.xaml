@@ -8,8 +8,11 @@
         WindowStartupLocation="CenterScreen"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="BtnOrderList" Content="List Of Orders" HorizontalAlignment="Left" Margin="89,332,0,0" Height="64" Width="173" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
-        <Button x:Name="BtnProductList" Content="List Of Products" HorizontalAlignment="Left" Margin="567,332,0,0" VerticalAlignment="Top" Click="BtnProductList_Click" FontFamily="Segoe UI Black" Height="64" Width="173" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866"/>
-
+        <Button x:Name="BtnOrderList" Content="List Of Orders" HorizontalAlignment="Left" Margin="51,332,0,0" Height="64" Width="173" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
+        <Button x:Name="BtnProductList" Content="List Of Products" HorizontalAlignment="Left" Margin="597,332,0,0" VerticalAlignment="Top" Click="BtnProductList_Click" FontFamily="Segoe UI Black" Height="64" Width="173" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866"/>
+        <Button x:Name="BtnAddManager" Content="Add Admin Access" HorizontalAlignment="Left" Margin="321,332,0,0" VerticalAlignment="Top"  FontFamily="Segoe UI Black" Height="64" Width="188" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866" Click="BtnAddManager_Click"/>
+        <Button x:Name="btnHome" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="41" Width="40"  Background="#FFFAF6F4" Margin="730,31,0,0" Click="btnHome_Click" >
+            <Image Source="/Cart/HOME.png" Height="41" Width="40"/>
+        </Button>
     </Grid>
 </Window>

@@ -41,5 +41,18 @@ namespace PL
             Close(); 
             olw.ShowDialog();
         }
+
+        private void BtnAddManager_Click(object sender, RoutedEventArgs e)
+        {
+            SignUpWindow signUpWindow = new SignUpWindow(AdminAccess.Yes); 
+            signUpWindow.ShowDialog();
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow plw = new MainWindow();//create new ProductListWindow
+            plw.ShowDialog();
+            Close();
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Cart"
         mc:Ignorable="d"
-        DataContext="{Binding RelativeSource={RelativeSource Self} }"
+        DataContext="{Binding MyCart ,RelativeSource={RelativeSource Self} }"
         WindowStartupLocation="CenterScreen"
         Title="CartWindow" Height="600" Width="800">
     <Window.Resources>
@@ -78,11 +78,12 @@
                 <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
                 <TextBlock Text="Your Shopping Cart" FontSize="26" VerticalAlignment="Center"/>
                 <TextBlock x:Name="tbEmptyCart" Visibility="Hidden" Text="Your Cart Is Empty" FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="280 0 0 0" Foreground="#FFE63737" FontWeight="Bold"/>
-
             </StackPanel>
+            
             <ScrollViewer Grid.Row="1">
-                <ListView x:Name="lvCart"  HorizontalContentAlignment="Stretch" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource OrderItemTemplate}" />
+                <ListView x:Name="lvCart"  HorizontalContentAlignment="Stretch" Grid.Row="1" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource OrderItemTemplate}" />
             </ScrollViewer>
+            
             <Grid Grid.Row="2" Margin="0 15 0 15">
                 <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Click="btnBack_Click">
                     <StackPanel Orientation="Horizontal">
@@ -91,7 +92,7 @@
                     </StackPanel>
                 </Button>
 
-                <StackPanel DataContext="{Binding MyCart}" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="Subtotal :" FontSize="16"/>
                     <TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0" Width="100"/>
                 </StackPanel>

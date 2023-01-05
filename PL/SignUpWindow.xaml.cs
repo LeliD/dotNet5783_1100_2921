@@ -21,12 +21,15 @@ namespace PL
     /// <summary>
     /// Interaction logic for SignUpWindow.xaml
     /// </summary>
+    public enum AdminAccess { Yes, No }
     public partial class SignUpWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        public SignUpWindow()
+        AdminAccess adminAccess;
+        public SignUpWindow(AdminAccess adA)
         {
             InitializeComponent();
+            adminAccess=adA;    
         }
 
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
@@ -50,13 +53,13 @@ namespace PL
                 isValidEmail = mail.Host.Contains(".");
                 if (!isValidEmail)
                 {
-                    wrongInput += "UserEmail is invalid\n";
+                    //wrongInput += "UserEmail is invalid\n";
                     tbUserEmail.BorderBrush = Brushes.Red;
                 }
             }
             catch (Exception)
             {
-                wrongInput += "UserEmail is invalid\n";
+                //wrongInput += "UserEmail is invalid\n";
                 tbUserEmail.BorderBrush = Brushes.Red;
             }
             if (userEmail == "")
@@ -92,12 +95,27 @@ namespace PL
             }
             try
             {
-                BO.User user = new BO.User() { Name = name,UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = false };
-                bl.User.Add(user);
-                MessageBox.Show("Signing up has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
-                BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() };
-                CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
-                cw.ShowDialog();
+                BO.User user;
+                if (adminAccess == AdminAccess.No)
+                {
+                    user = new BO.User() { Name = name, UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = false };
+                    bl.User.Add(user);
+                    MessageBox.Show("Signing up has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() };
+                    CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
+                    cw.ShowDialog();
+                }
+                else
+                {
+                    user = new BO.User() { Name = name, UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = true };
+                    bl.User.Add(user);
+                    MessageBox.Show("Signing up has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AdminWindow aw= new AdminWindow();
+                    aw.ShowDialog();
+                    Close();
+                }
+
             }
             catch (BO.BlAlreadyExistEntityException ex)
             {

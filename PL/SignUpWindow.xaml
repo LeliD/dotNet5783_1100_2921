@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="SignUpWindow" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="13*"/>
             <ColumnDefinition Width="147*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="297*"/>
             <RowDefinition Height="137*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="signUpgrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,55,0,0" Grid.RowSpan="2" Grid.Column="1">
+        </Grid.RowDefinitions>-->
+        <Grid x:Name="signUpgrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="275,21,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -45,6 +46,6 @@
 
 
         </Grid>
-        <Button x:Name="btnSignUp" Content="Sign up" HorizontalAlignment="Left" Margin="597,29,0,0" VerticalAlignment="Top" Click="btnSignUp_Click" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="btnSignUp" Content="Sign up" HorizontalAlignment="Left" Margin="330,346,0,0" VerticalAlignment="Top" Click="btnSignUp_Click" Height="34" Width="104"/>
     </Grid>
 </Window>

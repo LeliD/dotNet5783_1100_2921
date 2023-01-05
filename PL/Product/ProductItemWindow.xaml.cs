@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BO;
 using PL.Cart;
 namespace PL.Product
 {
@@ -54,13 +55,29 @@ namespace PL.Product
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             boProductItem = bl.Product.ProductDetailsForCustomer(id,cart);
+            
             MyCart = cart;
         }
 
         private void btnAddToCart_Click(object sender, RoutedEventArgs e)
         {
-            if (boProductItem != null)
-                bl.Cart.AddProductToCart(MyCart, boProductItem.ID);
+            try
+            {
+                MyCart = bl.Cart.AddProductToCart(MyCart, boProductItem!.ID);
+                boProductItem = bl.Product.ProductDetailsForCustomer(boProductItem.ID, MyCart);// חייב להביא אותו שוב בשביל שדה כמות שיתעדכן
+                if (!boProductItem.InStock)
+                {
+                    btnAddToCart.IsEnabled = false;
+                }
+            }
+            catch (BO.BlOutOfStockException)
+            {
+                btnAddToCart.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

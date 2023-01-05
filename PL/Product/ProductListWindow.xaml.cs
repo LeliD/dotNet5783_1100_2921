@@ -49,7 +49,6 @@ namespace PL.Product
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowListOfProducts();
-
         }
         /// <summary>
         /// Click event.The function open the window of adding new product 
@@ -104,6 +103,13 @@ namespace PL.Product
                 //Close(); 
                 pw.ShowDialog();
             }
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow plw = new MainWindow();//create new ProductListWindow
+            Close();
+            plw.ShowDialog();
         }
     }
 }

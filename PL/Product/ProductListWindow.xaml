@@ -52,6 +52,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAddProduct" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="btnAddProduct_Click"  Width="147" FontSize="14"/>
-        
+        <Button x:Name="btnHome" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click"  >
+            <Image Source="/Cart/HOME.png" Height="30" Width="36"/>
+        </Button>
     </Grid>
 </Window>

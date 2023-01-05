@@ -47,7 +47,7 @@ namespace PL.Cart
                 tbEmptyCart.Visibility = Visibility.Visible;
                 btnMakeAnOrder.Visibility = Visibility.Hidden;
             }
-            lvCart.ItemsSource=cart.Items;
+            //lvCart.ItemsSource=cart.Items;
         }
 
         private void btnPlus_Click(object sender, RoutedEventArgs e)
@@ -81,8 +81,13 @@ namespace PL.Cart
                 BO.OrderItem orderItem = (BO.OrderItem)((Button)sender).DataContext;
                 MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount - 1);
                 lvCart.Items.Refresh();
-                lvCart.ItemsSource = MyCart.Items;//in removing there is a need to reload the itemsSource since the product my be removed
+                lvCart.ItemsSource = MyCart.Items;//in removing there is a need to reload the itemsSource since the product may be removed
                 tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+                if (MyCart.Items != null && MyCart.Items.Count() == 0)
+                {
+                    tbEmptyCart.Visibility = Visibility.Visible;
+                    btnMakeAnOrder.Visibility = Visibility.Hidden;
+                }
             }
             catch(Exception ex)
             {
@@ -99,6 +104,11 @@ namespace PL.Cart
                 lvCart.Items.Refresh();
                 lvCart.ItemsSource = MyCart.Items;
                 tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+                if (MyCart.Items != null && MyCart.Items.Count() == 0)
+                {
+                    tbEmptyCart.Visibility = Visibility.Visible;
+                    btnMakeAnOrder.Visibility = Visibility.Hidden;
+                }
             }
             catch (Exception ex)
             {
