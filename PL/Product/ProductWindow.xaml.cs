@@ -162,6 +162,7 @@ namespace PL.Product
             {
                 try
                 {
+
                     if(boProduct.ImageRelativeName!=null)
                     {
                         string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
@@ -170,6 +171,10 @@ namespace PL.Product
 
                     }
                     //boProduct!.ImageRelativeName = tbpath.Text;
+
+                    boProduct!.ImageRelativeName = tbpath.Text;
+
+
                     bl.Product.AddProduct(boProduct!);
                     MessageBox.Show("New Product was added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
@@ -199,14 +204,20 @@ namespace PL.Product
                 {
                     try
                     {
-                        if (boProduct.ImageRelativeName != null)
+
+                        if (boProduct!.ImageRelativeName != null)
                         {
                             string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                            File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
-                            boProduct.ImageRelativeName = @"\Images\" + imageName;
+                            //File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                            boProduct.ImageRelativeName = @"\Images" + imageName;
 
                         }
                         //boProduct!.ImageRelativeName = tbpath.Text;
+
+                        boProduct!.ImageRelativeName = tbpath.Text;
+                        boProduct.Price = 0;
+
+
                         bl.Product.UpdateProduct(boProduct!);
                         MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                         Close();
