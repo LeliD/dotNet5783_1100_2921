@@ -1,4 +1,5 @@
-﻿using PL.Product;
+﻿using BO;
+using PL.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace PL.Order
     public partial class OrderWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
+        GeneralMode generalMode;
         public BO.Order? boOrder
         {
             get { return (BO.Order?)GetValue(boOrderProperty); }
@@ -43,10 +45,11 @@ namespace PL.Order
         {
 
             InitializeComponent();
+            generalMode = mode;
             //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             boOrder = bl.Order.GetOrderByID(id);
-            orderItemDataGrid.ItemsSource = boOrder.Items;
-            if (mode == PL.GeneralMode.Editing)
+            //orderItemDataGrid.ItemsSource = boOrder.Items;
+            if (generalMode == PL.GeneralMode.Editing)
                 if (boOrder.ShipDate == null)
                     btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
                 else
@@ -92,6 +95,26 @@ namespace PL.Order
                 ProductWindow pw = new ProductWindow(orderItem.ProductID);//create new ProductWindow of the selected product
                 Close(); 
                 pw.ShowDialog();
+            }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if(generalMode== PL.GeneralMode.Editing)
+            {
+                OrderListWindow ol=new OrderListWindow();
+                Close();    
+                ol.ShowDialog();    
+            }
+            else 
+            {
+                if(boOrder != null)
+                {
+                    OrderTrackingWindow ot = new OrderTrackingWindow(boOrder.ID);
+                    Close();
+                    ot.ShowDialog();
+                }
+             
             }
         }
     }
