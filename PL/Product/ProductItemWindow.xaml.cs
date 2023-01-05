@@ -86,5 +86,12 @@ namespace PL.Product
             cw.ShowDialog();
             Close();
         }
+
+        private void btnCart_Click(object sender, RoutedEventArgs e)
+        {
+            CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
+            Close();
+            cw.ShowDialog();
+        }
     }
 }
