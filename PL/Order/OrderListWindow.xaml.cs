@@ -52,7 +52,6 @@ namespace PL.Order
             AdminWindow plw = new AdminWindow();//create new ProductListWindow
             plw.ShowDialog();
             Close(); 
-           
         }
     }
 }

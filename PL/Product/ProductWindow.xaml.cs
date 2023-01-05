@@ -356,6 +356,11 @@ namespace PL.Product
            
         }
 
-    
+        private void btnBackToProductsList_Click(object sender, RoutedEventArgs e)
+        {
+            ProductListWindow productListWindow = new ProductListWindow();  
+            productListWindow.ShowDialog();
+            Close();
+        }
     }
 }
