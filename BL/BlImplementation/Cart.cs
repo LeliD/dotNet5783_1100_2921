@@ -75,7 +75,7 @@ internal class Cart : ICart
     /// <exception cref="BO.BlDetailInvalidException">Throw exceptions if details of cart are invalid</exception>
     /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.GetById in case cart's products don't exist</exception>
     /// <exception cref="BO.BlOutOfStockException">Throws exception if demanded amount of product to add to the cart is out of stock</exception>
-    public void MakeOrder(BO.Cart cart)
+    public int MakeOrder(BO.Cart cart)
     {
         if ((cart.CustomerName ?? throw new BO.BlNullPropertyException("CustomerName is null")) == "")
             throw new BO.BlDetailInvalidException("CustomerName","Unvalid CustomerName");
@@ -113,6 +113,7 @@ internal class Cart : ICart
                 };
         doOrderItems.ToList().ForEach(x => dal.OrderItem.Add(x));//Add DO.orderItems of order to dal
         doOrderItems.ToList().ForEach(x => {DO.Product p=dal.Product.GetById(x.ProductID) ; p.InStock -= x.Amount; dal.Product.Update(p); });//Update the InStock of products
+        return orderId;
     }
     /// <summary>
     /// The function updates amount of product in cart

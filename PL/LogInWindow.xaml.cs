@@ -35,12 +35,14 @@ namespace PL
                 if (user.AdminAccess)
                 {
                     AdminWindow aw = new AdminWindow();//create new ProductListWindow
+                    Close(); 
                     aw.ShowDialog();
                 }
                 else
                 {
                     BO.Cart cart = new BO.Cart() { CustomerAddress=user.UserAddress, CustomerEmail=user.UserEmail, CustomerName=user.Name , Items= new List<BO.OrderItem>() };
                     CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
+                    Close(); 
                     cw.ShowDialog();
                 }
 

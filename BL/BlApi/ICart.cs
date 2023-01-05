@@ -11,7 +11,7 @@ public interface ICart
 {
     Cart AddProductToCart(Cart cart, int productID);
     Cart UpdateAmountOfProductInCart(Cart cart, int productID, int newAmount);
-    void MakeOrder(Cart cart);
+    int MakeOrder(Cart cart);
 
 
 }

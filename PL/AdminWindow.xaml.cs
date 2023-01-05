@@ -31,12 +31,14 @@ namespace PL
         private void BtnProductList_Click(object sender, RoutedEventArgs e)
         {
             ProductListWindow plw = new ProductListWindow();//create new ProductListWindow
+            Close(); 
             plw.ShowDialog();
         }
 
         private void BtnOrderList_Click(object sender, RoutedEventArgs e)
         {
             OrderListWindow olw = new OrderListWindow();//create new ProductListWindow
+            Close(); 
             olw.ShowDialog();
         }
     }

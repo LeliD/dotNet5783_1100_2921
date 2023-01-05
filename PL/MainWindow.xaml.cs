@@ -44,6 +44,7 @@ namespace PL
         private void BtnProduftList_Click(object sender, RoutedEventArgs e)
         {
             AdminWindow aw = new AdminWindow();//create new ProductListWindow
+            Close();
             aw.ShowDialog();
         }
 
@@ -90,6 +91,7 @@ namespace PL
         {
             BO.Cart cart=new BO.Cart(); 
             CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
+            Close(); 
             cw.ShowDialog();
         }
 
@@ -102,6 +104,7 @@ namespace PL
                 if (check)
                 {
                     OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
+                    Close();
                     otw.ShowDialog();
                 }
             }
@@ -113,15 +116,17 @@ namespace PL
             lblTracking.Visibility = Visibility.Hidden;
         }
 
-        private void btSignIn_Click(object sender, RoutedEventArgs e)
+        private void btSignUp_Click(object sender, RoutedEventArgs e)
         {
-            SignInWindow plw = new SignInWindow();//create new ProductListWindow
+            SignUpWindow plw = new SignUpWindow();//create new ProductListWindow
+            Close(); 
             plw.ShowDialog();
         }
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
             LogInWindow plw = new LogInWindow();//create new ProductListWindow
+            Close(); 
             plw.ShowDialog();
         }
     }

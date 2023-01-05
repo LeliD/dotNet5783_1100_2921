@@ -108,8 +108,9 @@ namespace PL.Cart
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            
             CatalogWindow cw = new CatalogWindow(MyCart);//create new ProductListWindow
+            Close();
             cw.ShowDialog();
         }
 

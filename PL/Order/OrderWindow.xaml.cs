@@ -90,6 +90,7 @@ namespace PL.Order
             if (orderItem != null)
             {
                 ProductWindow pw = new ProductWindow(orderItem.ProductID);//create new ProductWindow of the selected product
+                Close(); 
                 pw.ShowDialog();
             }
         }

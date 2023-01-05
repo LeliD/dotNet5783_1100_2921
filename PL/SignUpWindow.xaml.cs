@@ -19,17 +19,17 @@ using System.Xml.Linq;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for SignInWindow.xaml
+    /// Interaction logic for SignUpWindow.xaml
     /// </summary>
-    public partial class SignInWindow : Window
+    public partial class SignUpWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        public SignInWindow()
+        public SignUpWindow()
         {
             InitializeComponent();
         }
 
-        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        private void btnSignUp_Click(object sender, RoutedEventArgs e)
         {
             string wrongInput="";
             string name = tbName.Text;
@@ -94,7 +94,7 @@ namespace PL
             {
                 BO.User user = new BO.User() { Name = name,UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = false };
                 bl.User.Add(user);
-                MessageBox.Show("Signing in has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Signing up has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
                 BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() };
                 CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
                 cw.ShowDialog();
