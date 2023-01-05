@@ -24,7 +24,7 @@
             <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="statusTextBox" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Grid.Column="0" Content="Tracking:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <DataGrid x:Name="trackingDataGrid"  AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding Tracking, Mode=TwoWay}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,10,-102,-45" Grid.Row="2" Grid.Column="1" >
+            <DataGrid x:Name="trackingDataGrid" IsReadOnly="True" AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding Tracking, Mode=TwoWay}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,10,-102,-45" Grid.Row="2" Grid.Column="1" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="item1Column" Header="Date" IsReadOnly="True" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
@@ -38,5 +38,8 @@
             </DataGrid>
         </Grid>
         <Button x:Name="btnOrderDetails" Content="Order Details" HorizontalAlignment="Left" Margin="616,360,0,0" VerticalAlignment="Top" Height="33" Width="103" Click="btnOrderDetails_Click"/>
+        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
+            <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Button>
     </Grid>
 </Window>

@@ -53,7 +53,7 @@
             <Label x:Name="lblTotalPrice" Grid.Column="0" Content="Total Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
             <TextBox x:Name="tbTotalPrice" IsEnabled = "false" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="8" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <DataGrid x:Name="orderItemDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="330,34,55,217" MouseDoubleClick="orderItemDataGrid_MouseDoubleClick">
+        <DataGrid x:Name="orderItemDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Items}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="351,123,23,203" MouseDoubleClick="orderItemDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="50"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="110"/>
@@ -66,5 +66,11 @@
         </DataGrid>
         <Button x:Name="btnUpdateShipDateOrder" Content="Update Ship date" HorizontalAlignment="Left" Margin="296,258,0,0" VerticalAlignment="Top" Height="25" Width="132" Click="btnUpdateShipDateOrder_Click"/>
         <Button x:Name="btnUpdateDeliveryDateOrder" Content="Update delivery date" HorizontalAlignment="Left" Margin="296,288,0,0" VerticalAlignment="Top" Width="132" Height="26" Click="btnUpdateDeliveryDateOrder_Click"/>
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="673,19,0,381" Width="104" Click="btnBack_Click">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                <TextBlock Text="← Back" VerticalAlignment="Center" Margin="15 0 0 0"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>
