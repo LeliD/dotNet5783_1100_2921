@@ -22,6 +22,9 @@ namespace PL.Cart
     /// </summary>
     public partial class CatalogWindow : Window
     {
+        /// <summary>
+        /// bl is an instance of IBl
+        /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
 
         //private ObservableCollection<BO.ProductItem?> productItems;
@@ -42,10 +45,14 @@ namespace PL.Cart
             listViewProducts.ItemsSource = bl.Product.GetListedProductsForCustomer();
             MyCart = cart;
         }
-
+        /// <summary>
+        /// Opens ProductItem Window of the selected product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listViewProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductItem? productItem = listViewProducts.SelectedItem as BO.ProductItem;
+            BO.ProductItem? productItem = listViewProducts.SelectedItem as BO.ProductItem;//the selected product
             if (productItem != null)
             {
                 ProductItemWindow pw = new ProductItemWindow(productItem.ID,MyCart);//create new ProductWindow of the selected product
@@ -53,17 +60,25 @@ namespace PL.Cart
                 pw.ShowDialog();
             }
         }
-
+        /// <summary>
+        /// Opens Cart Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGoToCart_Click(object sender, RoutedEventArgs e)
         {
-           CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
+           CartWindow cw = new CartWindow(MyCart);//create new CartWindow
            Close(); 
            cw.ShowDialog();
         }
-
+        /// <summary>
+        /// Opens Main Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow plw = new MainWindow();//create new ProductListWindow
+            MainWindow plw = new MainWindow();//create new MainWindow
             Close(); 
             plw.ShowDialog();
         }

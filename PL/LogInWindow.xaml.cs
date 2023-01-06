@@ -20,6 +20,9 @@ namespace PL
     /// </summary>
     public partial class LogInWindow : Window
     {
+        /// <summary>
+        /// bl is an instance of IBl
+        /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
         public LogInWindow()
         {
