@@ -132,12 +132,42 @@ namespace PL
 
         private void tbName_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (tbName.BorderBrush == Brushes.Red)
+            {
+                tbName.BorderBrush = Brushes.DimGray;
+            }
         }
 
         private void tbUserEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (tbUserEmail.BorderBrush == Brushes.Red)
+            {
+                tbUserEmail.BorderBrush = Brushes.DimGray;
+            }
+        }
 
+        private void tbUserAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbUserAddress.BorderBrush == Brushes.Red)
+            {
+                tbUserAddress.BorderBrush = Brushes.DimGray;
+            }
+        }
+
+        private void tbUserName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbUserName.BorderBrush == Brushes.Red)
+            {
+                tbUserName.BorderBrush = Brushes.DimGray;
+            }
+        }
+
+        private void tbPasscode_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (tbPasscode.BorderBrush == Brushes.Red)
+            {
+                tbPasscode.BorderBrush = Brushes.DimGray;
+            }
         }
     }
 }

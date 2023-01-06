@@ -36,13 +36,13 @@
             <TextBox x:Name="tbUserEmail" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120" TextChanged="tbUserEmail_TextChanged"/>
 
             <Label Grid.Column="0" Content="User Address:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="tbUserAddress" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="2" Text="" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="tbUserAddress" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="2" Text="" VerticalAlignment="Center" Width="120" TextChanged="tbUserAddress_TextChanged"/>
 
             <Label Grid.Column="0" Content="User Name:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="tbUserName" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="3" Text="" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="tbUserName" Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="3" Text="" VerticalAlignment="Center" Width="120" TextChanged="tbUserName_TextChanged"/>
 
             <Label Grid.Column="0" Content="Passcode:" HorizontalAlignment="Stretch" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="tbPasscode"  Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120"/>
+            <PasswordBox x:Name="tbPasscode"  Grid.Column="1" HorizontalAlignment="Stretch" Height="NaN" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120" PasswordChanged="tbPasscode_PasswordChanged"/>
 
 
         </Grid>

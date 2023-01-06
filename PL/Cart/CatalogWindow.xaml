@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Cart"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        DataContext="{Binding RelativeSource={RelativeSource Self} }"
+        DataContext="{Binding MyCart ,RelativeSource={RelativeSource Self} }"
         Title="CatalogWindow" Height="450" Width="800">
     <Window.Resources>
         <DataTemplate x:Key="ProductItemTemplate" DataType="local:ProductItem">
@@ -49,7 +49,7 @@
         <ScrollViewer Background="#FFF1F1F1" Margin="0,1,0,0" Grid.Row="1"  Grid.Column="1" >
             <!--<TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>-->
 
-            <ListView x:Name="listViewProducts" ItemsSource="{Binding}" ItemTemplate="{StaticResource ProductItemTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  HorizontalContentAlignment="Stretch" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="listViewProducts_MouseDoubleClick">
+            <ListView x:Name="listViewProducts" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ProductItemTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  HorizontalContentAlignment="Stretch" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="listViewProducts_MouseDoubleClick">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
