@@ -20,7 +20,9 @@ namespace PL.Product
     /// </summary>
     public partial class ProductItemWindow : Window
     {
-
+        /// <summary>
+        /// bl is an instance of IBl
+        /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
 
         private BO.Cart MyCart { get; set; }

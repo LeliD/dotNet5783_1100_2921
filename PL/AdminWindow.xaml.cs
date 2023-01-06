@@ -21,7 +21,9 @@ namespace PL
     /// </summary>
     public partial class AdminWindow : Window
     {
-
+        /// <summary>
+        /// bl is an instance of IBl
+        /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
         public AdminWindow()
         {

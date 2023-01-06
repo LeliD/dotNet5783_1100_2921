@@ -23,6 +23,9 @@ namespace PL.Cart
     /// </summary>
     public partial class CartWindow : Window
     {
+        /// <summary>
+        /// bl is an instance of IBl
+        /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
 
         /// <summary>

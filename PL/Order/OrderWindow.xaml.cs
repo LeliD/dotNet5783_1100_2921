@@ -21,6 +21,9 @@ namespace PL.Order
     /// </summary>
     public partial class OrderWindow : Window
     {
+        /// <summary>
+        /// bl is an instance of IBl
+        /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
         GeneralMode generalMode;
         public BO.Order? boOrder
