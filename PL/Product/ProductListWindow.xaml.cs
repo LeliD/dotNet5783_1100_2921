@@ -99,7 +99,7 @@ namespace PL.Product
             BO.ProductForList? productForList = productForListDataGrid.SelectedItem as BO.ProductForList;
             if (productForList != null)
             {
-                ProductWindow pw = new ProductWindow(productForList.ID);//create new ProductWindow of the selected product
+                ProductWindow pw = new ProductWindow(productForList.ID, GeneralMode.Editing);//create new ProductWindow of the selected product
                 Close(); 
                 pw.ShowDialog();
             }

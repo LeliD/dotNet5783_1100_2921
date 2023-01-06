@@ -92,7 +92,7 @@ namespace PL.Order
             BO.OrderItem? orderItem = orderItemDataGrid.SelectedItem as BO.OrderItem;
             if (orderItem != null)
             {
-                ProductWindow pw = new ProductWindow(orderItem.ProductID);//create new ProductWindow of the selected product
+                ProductWindow pw = new ProductWindow(orderItem.ProductID, GeneralMode.Display);//create new ProductWindow of the selected product
                 Close(); 
                 pw.ShowDialog();
             }

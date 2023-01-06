@@ -17,12 +17,14 @@ using BO;
 using Microsoft.Win32;
 using System.IO;
 using System.Net.Security;
+using PL.Order;
+
 namespace PL.Product
 {
     /// <summary>
     /// Interaction logic for ProductWindow.xaml
     /// </summary>
-    enum Mode {ADD,UPDATE}
+    enum Mode { ADD, UPDATE, NON }
     public partial class ProductWindow : Window
     {
         /// <summary>
@@ -30,7 +32,7 @@ namespace PL.Product
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
         Mode mode;
-
+        GeneralMode generalMode; //?
 
         public BO.Product? boProduct
         {
@@ -50,33 +52,45 @@ namespace PL.Product
         public ProductWindow()
         {
             InitializeComponent();
+            generalMode = PL.GeneralMode.Editing;
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             btnAdd_UpdateProduct.Content = "Add";//Content of the botton is "Add" for adding a product
             btnAddImage.Content = "Add picture";
             mode = Mode.ADD;
-            boProduct=new BO.Product();
+            boProduct = new BO.Product();
             btnRemove.Visibility = Visibility.Hidden;
         }
         /// <summary>
         /// Building an instance of ProductWindow 
         /// </summary>
         /// <param name="id">Id of product to initialize the ProductWindow</param>
-        public ProductWindow(int id)
+        public ProductWindow(int id, GeneralMode modeG)
         {
 
-          InitializeComponent();
-          CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
-          boProduct=bl.Product.ProductDetailsForManager(id);
-          btnRemove.Visibility = Visibility.Visible;
-            //    BO.Product p = bl.Product.ProductDetailsForManager(id);//Getting the product by its id
-            //    tbId.Text = p.ID.ToString();
-            //    CategorySelector.SelectedItem = p.Category;
-            //    tbName.Text = p.Name;
-            //    tbPrice.Text = p.Price.ToString();
-            //    tbInStock.Text = p.InStock.ToString();
-           tbId.IsEnabled = false; //Id isn't allowed to be changed
-           btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
-           mode = Mode.UPDATE;
+            InitializeComponent();
+            generalMode = modeG;
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            boProduct = bl.Product.ProductDetailsForManager(id);//Getting the product by its id
+            tbId.IsEnabled = false; //Id isn't allowed to be changed
+            if (generalMode == PL.GeneralMode.Editing)
+            {
+                btnRemove.Visibility = Visibility.Visible;
+                btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
+                mode = Mode.UPDATE;
+            }
+            else //generalMode is for display only
+            {
+                mode = Mode.NON;
+                btnRemove.Visibility = Visibility.Hidden;
+                btnBack.Content = "← Back to order list"; //????????
+                btnAdd_UpdateProduct.Visibility = Visibility.Hidden;
+                btnAddImage.Visibility = Visibility.Hidden;
+                tbName.IsEnabled = false;
+                CategorySelector.IsEnabled = false;
+                tbPrice.IsEnabled = false;
+                tbInStock.IsEnabled = false;
+            }
+
         }
         /// <summary>
         /// Click event. The function adds or updates product according to the window's openning
@@ -87,8 +101,8 @@ namespace PL.Product
         {
             bool check; //A variable for checking try parsing functions
             int id = 0; //id of product
-            int i=0; // inStock of product
-            BO.Category c=BO.Category.BATHROOM;
+            int i = 0; // inStock of product
+            BO.Category c = BO.Category.BATHROOM;
             double p = 0;
             bool isDataCorrect = true; //A variable for data check
             BO.Category.TryParse(CategorySelector.Text, out c);
@@ -102,7 +116,7 @@ namespace PL.Product
             lblWrongName.Visibility = Visibility.Visible;
             //lblMissingCategory.Content = ""; //Initializes the content of lblMissingCategory to be empty
             lblMissingCategory.Visibility = Visibility.Visible;
-            if (tbId.Text=="") //If tbId is empty
+            if (tbId.Text == "") //If tbId is empty
             {
                 tbId.BorderBrush = Brushes.Red;
                 lblWrongId.Content = "Missing Id";
@@ -150,7 +164,7 @@ namespace PL.Product
                     isDataCorrect = false;
                 }
             }
-            if(tbName.Text=="")//If tbName is empty
+            if (tbName.Text == "")//If tbName is empty
             {
                 tbName.BorderBrush = Brushes.Red;
                 lblWrongName.Content = "Missing Name";
@@ -159,7 +173,7 @@ namespace PL.Product
             if (!isDataCorrect)//If one of the arguments is wrong
                 return;
             //The all arguments are correct:
-            if (mode== Mode.ADD) //In case there is a need to add a product
+            if (mode == Mode.ADD) //In case there is a need to add a product
             {
                 try
                 {
@@ -167,11 +181,11 @@ namespace PL.Product
                     if (boProduct!.ImageRelativeName != null)
                     {
                         string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                        FileInfo file= new FileInfo(@"\Images\" + imageName);
-                        if(file.Exists.Equals(true))
-                          {
+                        FileInfo file = new FileInfo(@"\Images\" + imageName);
+                        if (file.Exists.Equals(true))
+                        {
                             File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
-                          }
+                        }
                         boProduct.ImageRelativeName = @"\Images\" + imageName;
                     }
 
@@ -206,7 +220,7 @@ namespace PL.Product
             }
             else
             {
-                if (mode==Mode.UPDATE) //In case there is a need to update a product
+                if (mode == Mode.UPDATE) //In case there is a need to update a product
                 {
                     try
                     {
@@ -317,13 +331,13 @@ namespace PL.Product
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lblMissingCategory.Content = "";
-            lblMissingCategory.Visibility = Visibility.Hidden; 
+            lblMissingCategory.Visibility = Visibility.Hidden;
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the product?", "ProductRemove",MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if(result == MessageBoxResult.Yes)
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the product?", "ProductRemove", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
             {
                 try
                 {
@@ -335,14 +349,14 @@ namespace PL.Product
                     MessageBox.Show(ex.Message, "AlreadyExistEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-           
-            
+
+
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow plw = new MainWindow();//create new ProductListWindow
-            Close(); 
+            Close();
             plw.ShowDialog();
         }
 
@@ -356,19 +370,34 @@ namespace PL.Product
             //    NewImage.Source = new BitmapImage(new Uri(o.FileName));
             //}
             //tbpath.Text=o.FileName.Substring(54);
-            if(o.ShowDialog()==true)
+            if (o.ShowDialog() == true)
             {
                 NewImage.Source = new BitmapImage(new Uri(o.FileName));
-                boProduct.ImageRelativeName= o.FileName;    
+                boProduct.ImageRelativeName = o.FileName;
             }
-           
+
         }
 
         private void btnBackToProductsList_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow productListWindow = new ProductListWindow();
-            Close(); 
-            productListWindow.ShowDialog();
+            if (generalMode == PL.GeneralMode.Editing)
+            {
+                ProductListWindow productListWindow = new ProductListWindow();
+                Close();
+                productListWindow.ShowDialog();
+            }
+            else
+            {
+
+                //OrderListWindow olw = new OrderListWindow();
+                //Close();
+                //olw.ShowDialog();
+                //OrderWindow ow = new OrderWindow(orderForList.ID, PL.GeneralMode.Display);//create new OrderWindow of the selected order
+                //    Close();
+                //    ow.ShowDialog();
+
+            }
+
         }
 
         private void tbId_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -397,3 +426,4 @@ namespace PL.Product
         }
     }
 }
+
