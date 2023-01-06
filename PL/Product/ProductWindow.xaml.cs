@@ -181,8 +181,12 @@ namespace PL.Product
                     if (boProduct!.ImageRelativeName != null)
                     {
                         string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                        FileInfo file = new FileInfo(@"\Images\" + imageName);
-                        if (file.Exists.Equals(true))
+                        //FileInfo file = new FileInfo(@"\Images\" + imageName);
+                        //if (file.Exists.Equals(true))
+                        //{
+                        //    File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                        //}
+                        if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\pics\" + imageName))
                         {
                             File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
                         }
@@ -227,8 +231,12 @@ namespace PL.Product
                         if (boProduct!.ImageRelativeName != null)
                         {
                             string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                            FileInfo file = new FileInfo(@"\Images\" + imageName);
-                            if (file.Exists.Equals(true))
+                            //FileInfo file = new FileInfo(@"\Images\" + imageName);
+                            //if (file.Exists.Equals(true))
+                            //{
+                            //    File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                            //}
+                            if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\pics\" + imageName))
                             {
                                 File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
                             }
@@ -237,7 +245,7 @@ namespace PL.Product
 
                         bl.Product.UpdateProduct(boProduct!);
                         MessageBox.Show("The Product was updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Close();
+                        
                     }
                     catch (BO.BlMissingEntityException ex)
                     {
