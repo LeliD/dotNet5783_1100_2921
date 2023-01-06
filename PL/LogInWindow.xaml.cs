@@ -60,5 +60,12 @@ namespace PL
             }
 
         }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow plw = new MainWindow();//create new MainWindow
+            Close();
+            plw.ShowDialog();
+        }
     }
 }

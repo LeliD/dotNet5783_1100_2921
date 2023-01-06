@@ -26,6 +26,8 @@
 
         </Grid>
         <Button x:Name="btnLogIn" Content="Log in" HorizontalAlignment="Left" Margin="400,253,0,0" VerticalAlignment="Top" Click="btnLogIn_Click" Height="24" Width="56"/>
-
+        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="729,0,10,0" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
+            <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Button>
     </Grid>
 </Window>
