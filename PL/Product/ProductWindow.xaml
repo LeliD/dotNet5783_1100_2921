@@ -50,7 +50,7 @@
 
 
             <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbInStock_TextChanged"/>
+            <TextBox x:Name="tbInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbInStock_TextChanged" PreviewKeyDown="tbInStock_PreviewKeyDown"/>
             <Label x:Name="lblWrongInStock" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="4" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
 
@@ -64,10 +64,10 @@
         </Button>
         <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="193" Margin="369,106,0,0" VerticalAlignment="Top" Width="183"/>
         <Button x:Name="btnAddImage" Content="Change picture" HorizontalAlignment="Left" Margin="385,320,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="39" Width="130"/>
-        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="460,29,0,353" Width="239" Click="btnBackToProductsList_Click">
+        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="460,29,0,353" Width="239" Click="btnBackToProductsListOrOrder_Click">
             <StackPanel Orientation="Horizontal" Width="215">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
-                <TextBlock Text="← Back To List Of Products" VerticalAlignment="Center" Margin="15 0 0 0" Width="201"/>
+                <TextBlock Text="← Back To Products' List" VerticalAlignment="Center" Margin="15 0 0 0" Width="201"/>
             </StackPanel>
         </Button>
     </Grid>

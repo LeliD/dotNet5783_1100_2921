@@ -53,13 +53,13 @@ namespace PL
                 isValidEmail = mail.Host.Contains(".");
                 if (!isValidEmail)
                 {
-                    //wrongInput += "UserEmail is invalid\n";
+                    wrongInput += "UserEmail is invalid\n";
                     tbUserEmail.BorderBrush = Brushes.Red;
                 }
             }
             catch (Exception)
             {
-                //wrongInput += "UserEmail is invalid\n";
+                wrongInput += "UserEmail is invalid\n";
                 tbUserEmail.BorderBrush = Brushes.Red;
             }
             if (userEmail == "")
@@ -127,6 +127,16 @@ namespace PL
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+
+        }
+
+        private void tbName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbUserEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }

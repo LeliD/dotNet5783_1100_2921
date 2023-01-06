@@ -33,7 +33,7 @@ namespace PL.Product
         BlApi.IBl bl = BlApi.Factory.Get();
         Mode mode;
         GeneralMode generalMode; //?
-
+        int? orderId;
         public BO.Product? boProduct
         {
             get { return (BO.Product?)GetValue(boProductProperty); }
@@ -49,26 +49,27 @@ namespace PL.Product
         /// <summary>
         /// Building an instance of ProductWindow 
         /// </summary>
-        public ProductWindow()
+        public ProductWindow()//GeneralMode.Editing and Mode.ADD
         {
             InitializeComponent();
             generalMode = PL.GeneralMode.Editing;
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             btnAdd_UpdateProduct.Content = "Add";//Content of the botton is "Add" for adding a product
-            btnAddImage.Content = "Add picture";
+            btnAddImage.Content = "Add picture";//Content of the botton is  for adding an image
             mode = Mode.ADD;
             boProduct = new BO.Product();
-            btnRemove.Visibility = Visibility.Hidden;
+            btnRemove.Visibility = Visibility.Hidden;//In adding there is no need of removing button
+            orderId = null;
         }
         /// <summary>
         /// Building an instance of ProductWindow 
         /// </summary>
         /// <param name="id">Id of product to initialize the ProductWindow</param>
-        public ProductWindow(int id, GeneralMode modeG)
+        public ProductWindow(int id, GeneralMode modeG, int? oid=null)//Mode.UPDATE and GeneralMode is Editing for updating or displaying a product
         {
-
             InitializeComponent();
             generalMode = modeG;
+            orderId = oid;
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             boProduct = bl.Product.ProductDetailsForManager(id);//Getting the product by its id
             tbId.IsEnabled = false; //Id isn't allowed to be changed
@@ -82,7 +83,7 @@ namespace PL.Product
             {
                 mode = Mode.NON;
                 btnRemove.Visibility = Visibility.Hidden;
-                btnBack.Content = "← Back to order list"; //????????
+                btnBack.Content = "← Back to Order"; //????????
                 btnAdd_UpdateProduct.Visibility = Visibility.Hidden;
                 btnAddImage.Visibility = Visibility.Hidden;
                 tbName.IsEnabled = false;
@@ -186,7 +187,7 @@ namespace PL.Product
                         //{
                         //    File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
                         //}
-                        if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\pics\" + imageName))
+                        if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images\" + imageName))
                         {
                             File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
                         }
@@ -201,7 +202,9 @@ namespace PL.Product
 
                     bl.Product.AddProduct(boProduct!);
                     MessageBox.Show("New Product was added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ProductWindow pw = new ProductWindow(boProduct.ID, GeneralMode.Editing);//create new ProductWindow of the selected product
                     Close();
+                    pw.ShowDialog();
                 }
                 catch (BO.BlAlreadyExistEntityException ex)
                 {
@@ -236,7 +239,7 @@ namespace PL.Product
                             //{
                             //    File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
                             //}
-                            if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\pics\" + imageName))
+                            if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images\" + imageName))
                             {
                                 File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
                             }
@@ -386,7 +389,7 @@ namespace PL.Product
 
         }
 
-        private void btnBackToProductsList_Click(object sender, RoutedEventArgs e)
+        private void btnBackToProductsListOrOrder_Click(object sender, RoutedEventArgs e)
         {
             if (generalMode == PL.GeneralMode.Editing)
             {
@@ -400,9 +403,13 @@ namespace PL.Product
                 //OrderListWindow olw = new OrderListWindow();
                 //Close();
                 //olw.ShowDialog();
-                //OrderWindow ow = new OrderWindow(orderForList.ID, PL.GeneralMode.Display);//create new OrderWindow of the selected order
-                //    Close();
-                //    ow.ShowDialog();
+                if(orderId!=null)
+                {
+                    OrderWindow ow = new OrderWindow((int)orderId, PL.GeneralMode.Editing);//create new OrderWindow of the selected order
+                    Close();
+                    ow.ShowDialog();                                                    
+                }
+
 
             }
 
@@ -410,7 +417,32 @@ namespace PL.Product
 
         private void tbId_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            TextBox text = sender as TextBox;
+            TextBox? text = sender as TextBox;
+            if (text == null) return;
+            if (e == null) return;
+            //allow get out of the text box
+            if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Tab)
+                return;
+            //allow list of system keys (add other key here if you want to allow)
+            if (e.Key == Key.Escape || e.Key == Key.Back || e.Key == Key.Delete ||
+            e.Key == Key.CapsLock || e.Key == Key.LeftShift || e.Key == Key.Home
+            || e.Key == Key.End || e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right || e.Key == Key.NumPad0 || e.Key == Key.NumPad1 || e.Key == Key.NumPad2 || e.Key == Key.NumPad3 || e.Key == Key.NumPad4 || e.Key == Key.NumPad5 || e.Key == Key.NumPad6 || e.Key == Key.NumPad7 || e.Key == Key.NumPad8 || e.Key == Key.NumPad9)
+                return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            //allow control system keys
+            if (Char.IsControl(c)) return;
+            //allow digits (without Shift or Alt)
+            if (Char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return; //let this key be written inside the textbox
+                            //forbid letters and signs (#,$, %, ...)
+            e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
+            return;
+        }
+
+        private void tbInStock_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox? text = sender as TextBox;
             if (text == null) return;
             if (e == null) return;
             //allow get out of the text box

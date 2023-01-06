@@ -89,10 +89,12 @@ namespace PL.Order
 
         private void orderItemDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (generalMode == PL.GeneralMode.Display)//from customer tracking there is no option to press
+                return;
             BO.OrderItem? orderItem = orderItemDataGrid.SelectedItem as BO.OrderItem;
             if (orderItem != null)
             {
-                ProductWindow pw = new ProductWindow(orderItem.ProductID, GeneralMode.Display);//create new ProductWindow of the selected product
+                ProductWindow pw = new ProductWindow(orderItem.ProductID, GeneralMode.Display,boOrder.ID);//create new ProductWindow of the selected product
                 Close(); 
                 pw.ShowDialog();
             }
