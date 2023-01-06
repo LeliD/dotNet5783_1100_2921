@@ -27,7 +27,7 @@ namespace PL.Cart
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
 
-        //private ObservableCollection<BO.ProductItem?> productItems;
+        private ObservableCollection<BO.ProductItem?> productItems;
         private BO.Cart MyCart { get; set; }
         //public BO.Cart MyCart
         //{
@@ -41,8 +41,9 @@ namespace PL.Cart
         public CatalogWindow(BO.Cart cart)
         {
             InitializeComponent();
-            //productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
-            listViewProducts.ItemsSource = bl.Product.GetListedProductsForCustomer();
+            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
+            listViewProducts.ItemsSource = productItems;
+            //listViewProducts.ItemsSource = bl.Product.GetListedProductsForCustomer();
             MyCart = cart;
         }
         /// <summary>
