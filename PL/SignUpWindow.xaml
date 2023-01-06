@@ -47,5 +47,8 @@
 
         </Grid>
         <Button x:Name="btnSignUp" Content="Sign up" HorizontalAlignment="Left" Margin="330,346,0,0" VerticalAlignment="Top" Click="btnSignUp_Click" Height="34" Width="104"/>
+        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="729,0,10,0" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
+            <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Button>
     </Grid>
 </Window>
