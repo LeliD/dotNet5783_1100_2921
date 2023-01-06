@@ -29,44 +29,41 @@ namespace PL
         ///bl is an instance of IBl
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
-
+        /// <summary>
+        /// empty Constructor,,Building an instance of MainWindow 
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             //Call to WindowActivitate event
         }
+        /// <summary>
+        /// Constructor,Building an instance of MainWindow 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Activated(object sender, EventArgs e)
         {
             tbIDOrderTrack.Visibility = Visibility.Hidden;
             lblTracking.Visibility = Visibility.Hidden;
             tbIDOrderTrack.Text = "";
         }
+
         /// <summary>
-        /// Click event. The function button of openning the window's list of products
+        /// Button for tracking order
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private void BtnProduftList_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AdminWindow aw = new AdminWindow();//create new ProductListWindow
-        //    Close();
-        //    aw.ShowDialog();
-        //}
-
         private void btnTracking_Click(object sender, RoutedEventArgs e)
         {
-            tbIDOrderTrack.Visibility=Visibility.Visible;
+            tbIDOrderTrack.Visibility = Visibility.Visible;
             lblTracking.Visibility = Visibility.Visible;
-            //int id;
-            //bool check = int.TryParse(tbIDOrderTrack.Text, out id);
-            //if(check)
-            //{
-            //    OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
-            //    otw.ShowDialog();
-            //}
-
         }
-
+        /// <summary>
+        /// enable to key down only numbers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbIDOrderTrack_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox? text = sender as TextBox;
@@ -92,17 +89,14 @@ namespace PL
             return;
         }
 
-        //private void btnNewOrder_Click(object sender, RoutedEventArgs e)
-        //{
-        //    BO.Cart cart=new BO.Cart(); 
-        //    CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
-        //    Close(); 
-        //    cw.ShowDialog();
-        //}
-
+        /// <summary>
+        /// Opens OrderTrackingWindow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbIDOrderTrack_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Return)
+            if (e.Key == Key.Return) //if press enter
             {
                 int id;
                 bool check = int.TryParse(tbIDOrderTrack.Text, out id);
@@ -110,7 +104,7 @@ namespace PL
                 {
                     try
                     {
-                      OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new ProductListWindow
+                      OrderTrackingWindow otw = new OrderTrackingWindow(id);//create new OrderTrackingWindow
                       Close();
                       otw.ShowDialog();
                     }
@@ -128,19 +122,27 @@ namespace PL
                     MessageBox.Show("Only Numbers allowed", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        /// <summary>
+        /// Button to sign up as a registered user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btSignUp_Click(object sender, RoutedEventArgs e)
         {
-            SignUpWindow plw = new SignUpWindow(AdminAccess.No);//create new ProductListWindow
+            SignUpWindow suw = new SignUpWindow(AdminAccess.No);//create new SignUpWindow
             Close(); 
-            plw.ShowDialog();
+            suw.ShowDialog();
         }
-
+        /// <summary>
+        /// Button to Log In
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            LogInWindow plw = new LogInWindow();//create new ProductListWindow
+            LogInWindow liw = new LogInWindow();//create new LogInWindow
             Close(); 
-            plw.ShowDialog();
+            liw.ShowDialog();
         }
     }
 }

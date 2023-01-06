@@ -38,21 +38,25 @@ namespace PL.Order
 
 
 
-
+        /// <summary>
+        /// empty Constructor
+        /// </summary>
         public OrderWindow()
         {
             InitializeComponent();
         }
-
-        public OrderWindow(int id, GeneralMode mode )
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="mode"></param>
+        public OrderWindow(int id, GeneralMode mode)
         {
 
             InitializeComponent();
             generalMode = mode;
-            //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             boOrder = bl.Order.GetOrderByID(id);
-            //orderItemDataGrid.ItemsSource = boOrder.Items;
-            if (generalMode == PL.GeneralMode.Editing)
+            if (generalMode == PL.GeneralMode.Editing)//window fo admin
                 if (boOrder.ShipDate == null)
                     btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
                 else
@@ -61,16 +65,17 @@ namespace PL.Order
                     if (boOrder.DeliveryDate != null)
                         btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
                 }
-            else
+            else //window of customer
             {
                 btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
                 btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
             }
-                
-            //tbID.IsEnabled = false; //Id isn't allowed to be changed
-            //btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
         }
-
+        /// <summary>
+        /// Button to update ship date of Order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdateShipDateOrder_Click(object sender, RoutedEventArgs e)
         {
             if(boOrder != null)
@@ -80,7 +85,11 @@ namespace PL.Order
             btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
             btnUpdateDeliveryDateOrder.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// Button to update Delivery date of Order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdateDeliveryDateOrder_Click(object sender, RoutedEventArgs e)
         {
             if (boOrder != null)
@@ -89,7 +98,11 @@ namespace PL.Order
             }
             btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        /// Mouse Double Click of orderItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void orderItemDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (generalMode == PL.GeneralMode.Display)//from customer tracking there is no option to press
@@ -102,12 +115,16 @@ namespace PL.Order
                 pw.ShowDialog();
             }
         }
-
+        /// <summary>
+        /// Back to OrderListWindow if it is an admin or to OrderTrackingWindow if it is a customer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             if(generalMode== PL.GeneralMode.Editing)
             {
-                OrderListWindow ol=new OrderListWindow();
+                OrderListWindow ol=new OrderListWindow();//create new OrderListWindow
                 Close();    
                 ol.ShowDialog();    
             }
@@ -115,7 +132,7 @@ namespace PL.Order
             {
                 if(boOrder != null)
                 {
-                    OrderTrackingWindow ot = new OrderTrackingWindow(boOrder.ID);
+                    OrderTrackingWindow ot = new OrderTrackingWindow(boOrder.ID);//create new OrderListWindow
                     Close();
                     ot.ShowDialog();
                 }

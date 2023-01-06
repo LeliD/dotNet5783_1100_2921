@@ -21,17 +21,26 @@ namespace PL
     /// <summary>
     /// Interaction logic for SignUpWindow.xaml
     /// </summary>
+   
     public enum AdminAccess { Yes, No }
     public partial class SignUpWindow : Window
     {
         BlApi.IBl bl = BlApi.Factory.Get();
-        AdminAccess adminAccess;
+        AdminAccess adminAccess; //for admin access or customer
+        /// <summary>
+        /// Constructor,Building an instance of SignUpWindow
+        /// </summary>
+        /// <param name="adA"></param>
         public SignUpWindow(AdminAccess adA)
         {
             InitializeComponent();
             adminAccess=adA;    
         }
-
+        /// <summary>
+        /// Button to Sign Up as an Admin or a customer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
         {
             string wrongInput="";
@@ -51,7 +60,7 @@ namespace PL
             {
                 var mail = new MailAddress(userEmail);
                 isValidEmail = mail.Host.Contains(".");
-                if (!isValidEmail)
+                if (!isValidEmail)//checks if the mail is valid
                 {
                     wrongInput += "UserEmail is invalid\n";
                     tbUserEmail.BorderBrush = Brushes.Red;
@@ -96,7 +105,7 @@ namespace PL
             try
             {
                 BO.User user;
-                if (adminAccess == AdminAccess.No)
+                if (adminAccess == AdminAccess.No) //if itsn't an admin
                 {
                     user = new BO.User() { Name = name, UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = false };
                     bl.User.Add(user);
@@ -104,14 +113,15 @@ namespace PL
 
                     BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() };
                     CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
+                    Close(); 
                     cw.ShowDialog();
                 }
-                else
+                else //if it is an admin
                 {
                     user = new BO.User() { Name = name, UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = true };
                     bl.User.Add(user);
                     MessageBox.Show("Signing up has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
-                    AdminWindow aw= new AdminWindow();
+                    AdminWindow aw= new AdminWindow(); //create new Admin Window
                     Close(); 
                     aw.ShowDialog();
                     
@@ -129,7 +139,11 @@ namespace PL
 
 
         }
-
+        /// <summary>
+        /// Name's Text box Changed 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbName_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbName.BorderBrush == Brushes.Red)
@@ -137,7 +151,11 @@ namespace PL
                 tbName.BorderBrush = Brushes.DimGray;
             }
         }
-
+        /// <summary>
+        /// User Email's Text box Changed 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbUserEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbUserEmail.BorderBrush == Brushes.Red)
@@ -145,7 +163,11 @@ namespace PL
                 tbUserEmail.BorderBrush = Brushes.DimGray;
             }
         }
-
+        /// <summary>
+        /// User Address's Text box Changed 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbUserAddress_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbUserAddress.BorderBrush == Brushes.Red)
@@ -153,7 +175,11 @@ namespace PL
                 tbUserAddress.BorderBrush = Brushes.DimGray;
             }
         }
-
+        /// <summary>
+        /// User Name's Text box Changed 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbUserName_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbUserName.BorderBrush == Brushes.Red)
@@ -161,7 +187,11 @@ namespace PL
                 tbUserName.BorderBrush = Brushes.DimGray;
             }
         }
-
+        /// <summary>
+        /// Passcode's Text box Changed 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbPasscode_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (tbPasscode.BorderBrush == Brushes.Red)
@@ -169,7 +199,11 @@ namespace PL
                 tbPasscode.BorderBrush = Brushes.DimGray;
             }
         }
-
+        /// <summary>
+        /// Opens Main Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow plw = new MainWindow();//create new MainWindow

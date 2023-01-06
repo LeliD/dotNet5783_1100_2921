@@ -23,22 +23,35 @@ namespace PL.Order
         /// bl is an instance of IBl
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public OrderListWindow()
         {
             InitializeComponent();
             ShowListOfOrders();
         }
+        /// <summary>
+        /// function to show the orders list
+        /// </summary>
         private void ShowListOfOrders()
         {
             orderForListDataGrid.ItemsSource = bl.Order.GetOrdersForManager();
         }
-
+        /// <summary>
+        /// show orders list every time when return to this window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Activated(object sender, EventArgs e)
         {
             ShowListOfOrders();
         }
-
+        /// <summary>
+        /// Opens Order Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void orderForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.OrderForList? orderForList = orderForListDataGrid.SelectedItem as BO.OrderForList;
@@ -49,17 +62,25 @@ namespace PL.Order
                 ow.ShowDialog();
             }
         }
-
+        /// <summary>
+        /// Opens Admin Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            AdminWindow plw = new AdminWindow();//create new ProductListWindow
+            AdminWindow aw = new AdminWindow();//create new AdminWindow
             Close(); 
-            plw.ShowDialog();
+            aw.ShowDialog();
         }
-
+        /// <summary>
+        /// Opens Main Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow plw = new MainWindow();//create new ProductListWindow
+            MainWindow plw = new MainWindow();//create new MainWindow
             Close();
             plw.ShowDialog();
         }

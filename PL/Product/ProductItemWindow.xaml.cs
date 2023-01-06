@@ -26,16 +26,6 @@ namespace PL.Product
         BlApi.IBl bl = BlApi.Factory.Get();
 
         private BO.Cart MyCart { get; set; }
-        //public BO.Cart MyCart
-        //{
-        //    get { return (BO.Cart)GetValue(cartProperty); }
-        //    set { SetValue(cartProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty cartProperty =
-        //    DependencyProperty.Register("cart", typeof(BO.Cart), typeof(ProductItemWindow), new PropertyMetadata(null));
-
 
         public BO.ProductItem? boProductItem
         {
@@ -47,20 +37,30 @@ namespace PL.Product
         public static readonly DependencyProperty boProductItemProperty =
             DependencyProperty.Register("boProductItem", typeof(BO.ProductItem), typeof(ProductItemWindow), new PropertyMetadata(null));
 
-
+        /// <summary>
+        /// empty Constructor
+        /// </summary>
         public ProductItemWindow()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cart"></param>
         public ProductItemWindow(int id,BO.Cart cart)
         {
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));//Initializes CategorySelector in Categories 
             boProductItem = bl.Product.ProductDetailsForCustomer(id,cart);
-            
             MyCart = cart;
         }
-
+        /// <summary>
+        /// Button to add product item to cart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddToCart_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -81,17 +81,25 @@ namespace PL.Product
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        /// <summary>
+        /// Back to Catalog Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            CatalogWindow cw = new CatalogWindow(MyCart);
+            CatalogWindow cw = new CatalogWindow(MyCart);//create new CatalogWindow
             cw.ShowDialog();
             Close();
         }
-
+        /// <summary>
+        /// Opens CartWindow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCart_Click(object sender, RoutedEventArgs e)
         {
-            CartWindow cw = new CartWindow(MyCart);//create new ProductWindow of the selected product
+            CartWindow cw = new CartWindow(MyCart);//create new CartWindow
             Close();
             cw.ShowDialog();
         }

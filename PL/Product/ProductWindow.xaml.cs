@@ -32,7 +32,7 @@ namespace PL.Product
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
         Mode mode;
-        GeneralMode generalMode; //?
+        GeneralMode generalMode; //for display or editing mode 
         int? orderId;
         public BO.Product? boProduct
         {
@@ -47,7 +47,7 @@ namespace PL.Product
 
 
         /// <summary>
-        /// Building an instance of ProductWindow 
+        /// Constructor, Building an instance of ProductWindow 
         /// </summary>
         public ProductWindow()//GeneralMode.Editing and Mode.ADD
         {
@@ -62,7 +62,7 @@ namespace PL.Product
             orderId = null;
         }
         /// <summary>
-        /// Building an instance of ProductWindow 
+        /// Constructor, Building an instance of ProductWindow 
         /// </summary>
         /// <param name="id">Id of product to initialize the ProductWindow</param>
         public ProductWindow(int id, GeneralMode modeG, int? oid=null)//Mode.UPDATE and GeneralMode is Editing for updating or displaying a product
@@ -83,7 +83,7 @@ namespace PL.Product
             {
                 mode = Mode.NON;
                 btnRemove.Visibility = Visibility.Hidden;
-                btnBack.Content = "← Back to Order"; //????????
+                btnBack.Content = "← Back to Order";
                 btnAdd_UpdateProduct.Visibility = Visibility.Hidden;
                 btnAddImage.Visibility = Visibility.Hidden;
                 tbName.IsEnabled = false;
@@ -107,15 +107,10 @@ namespace PL.Product
             double p = 0;
             bool isDataCorrect = true; //A variable for data check
             BO.Category.TryParse(CategorySelector.Text, out c);
-            //lblWrongId.Content = ""; //Initializes the content of lblWrongId to be empty
             lblWrongId.Visibility = Visibility.Visible;
-            //lblWrongPrice.Content = ""; //Initializes the content of lblWrongPrice to be empty
             lblWrongPrice.Visibility = Visibility.Visible;
-            //lblWrongInStock.Content = ""; //Initializes the content of lblWrongInStock to be empty
             lblWrongInStock.Visibility = Visibility.Visible;
-            //lblWrongName.Content = ""; //Initializes the content of lblWrongName to be empty
             lblWrongName.Visibility = Visibility.Visible;
-            //lblMissingCategory.Content = ""; //Initializes the content of lblMissingCategory to be empty
             lblMissingCategory.Visibility = Visibility.Visible;
             if (tbId.Text == "") //If tbId is empty
             {
@@ -178,28 +173,15 @@ namespace PL.Product
             {
                 try
                 {
-
                     if (boProduct!.ImageRelativeName != null)
                     {
-                        string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                        //FileInfo file = new FileInfo(@"\Images\" + imageName);
-                        //if (file.Exists.Equals(true))
-                        //{
-                        //    File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
-                        //}
-                        if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images\" + imageName))
+                        string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\")); //image path
+                        if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images\" + imageName)) //if image doesn't exist in images' file
                         {
-                            File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                            File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);//copy the image to images' file
                         }
                         boProduct.ImageRelativeName = @"\Images\" + imageName;
                     }
-
-
-                    //boProduct!.ImageRelativeName = tbpath.Text;
-
-                    //boProduct!.ImageRelativeName = tbpath.Text;
-
-
                     bl.Product.AddProduct(boProduct!);
                     MessageBox.Show("New Product was added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     ProductWindow pw = new ProductWindow(boProduct.ID, GeneralMode.Editing);//create new ProductWindow of the selected product
@@ -233,15 +215,10 @@ namespace PL.Product
                     {
                         if (boProduct!.ImageRelativeName != null)
                         {
-                            string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\"));
-                            //FileInfo file = new FileInfo(@"\Images\" + imageName);
-                            //if (file.Exists.Equals(true))
-                            //{
-                            //    File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
-                            //}
-                            if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images\" + imageName))
+                            string imageName = boProduct.ImageRelativeName.Substring(boProduct.ImageRelativeName.LastIndexOf("\\")); //image path
+                            if (!File.Exists(Environment.CurrentDirectory[..^4] + @"\Images\" + imageName)) //if image doesn't exist in images' file
                             {
-                                File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);
+                                File.Copy(boProduct.ImageRelativeName, Environment.CurrentDirectory[..^4] + @"\Images\" + imageName);//copy the image to images' file
                             }
                             boProduct.ImageRelativeName = @"\Images\" + imageName;
                         }
@@ -274,7 +251,7 @@ namespace PL.Product
 
 
         /// <summary>
-        /// TextChanged event of tbId textBow
+        /// TextChanged event of tbId textBox
         /// The function turns off the tbId.BorderBrush and makes its suitable label hidden
         /// </summary>
         /// <param name="sender"></param>
@@ -289,7 +266,7 @@ namespace PL.Product
             }
         }
         /// <summary>
-        /// TextChanged event of tbName textBow 
+        /// TextChanged event of tbName textBox 
         /// The function turns off the tbName.BorderBrush and makes its suitable label hidden
         /// </summary>
         /// <param name="sender"></param>
@@ -304,7 +281,7 @@ namespace PL.Product
             }
         }
         /// <summary>
-        /// TextChanged event of tbPrice textBow 
+        /// TextChanged event of tbPrice textBox 
         /// The function turns off the tbPrice.BorderBrush and makes its suitable label hidden
         /// </summary>
         /// <param name="sender"></param>
@@ -344,7 +321,11 @@ namespace PL.Product
             lblMissingCategory.Content = "";
             lblMissingCategory.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        /// Button to remove product 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the product?", "ProductRemove", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -363,46 +344,50 @@ namespace PL.Product
 
 
         }
-
+        /// <summary>
+        /// Opens Main Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow plw = new MainWindow();//create new ProductListWindow
+            MainWindow plw = new MainWindow();//create new MainWindow
             Close();
             plw.ShowDialog();
         }
-
+        /// <summary>
+        /// Button to add image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog o = new OpenFileDialog();
-            //o.Filter = "Image files|*.png;*.jpg";
+            o.Filter = "Image files|*.png;*.jpg";//enables only files that end with pbj or jpg
             //o.FilterIndex = 1;
-            //if (o.ShowDialog()!.Value)
-            //{
-            //    NewImage.Source = new BitmapImage(new Uri(o.FileName));
-            //}
-            //tbpath.Text=o.FileName.Substring(54);
             if (o.ShowDialog() == true)
             {
-                NewImage.Source = new BitmapImage(new Uri(o.FileName));
-                boProduct.ImageRelativeName = o.FileName;
+                NewImage.Source = new BitmapImage(new Uri(o.FileName));//take an image from the computer
+                boProduct!.ImageRelativeName = o.FileName;
             }
 
         }
-
+        /// <summary>
+        /// Opens Product List or Order Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBackToProductsListOrOrder_Click(object sender, RoutedEventArgs e)
         {
             if (generalMode == PL.GeneralMode.Editing)
             {
-                ProductListWindow productListWindow = new ProductListWindow();
+                ProductListWindow productListWindow = new ProductListWindow();//create new ProductListWindow
                 Close();
                 productListWindow.ShowDialog();
             }
             else
             {
 
-                //OrderListWindow olw = new OrderListWindow();
-                //Close();
-                //olw.ShowDialog();
                 if(orderId!=null)
                 {
                     OrderWindow ow = new OrderWindow((int)orderId, PL.GeneralMode.Editing);//create new OrderWindow of the selected order
@@ -414,7 +399,11 @@ namespace PL.Product
             }
 
         }
-
+        /// <summary>
+        /// enable to key down only numbers to id
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbId_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox? text = sender as TextBox;
@@ -439,7 +428,11 @@ namespace PL.Product
             e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
             return;
         }
-
+        /// <summary>
+        /// enable to key down only numbers to amount in stock
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbInStock_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox? text = sender as TextBox;

@@ -11,6 +11,14 @@ namespace PL
 {
     public class ConvertImagePathToBitmap : IValueConverter
     {
+        /// <summary>
+        /// convert from Image to string
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -30,16 +38,19 @@ namespace PL
                 return bitmapImage;
             }
         }
-
+        /// <summary>
+        /// convert from string to Image
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
 
-        //public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        //{
-        //    string ImageRelativeName=(string)value;
-        //    return ImageRelativeName;
-        //}
     }
 }

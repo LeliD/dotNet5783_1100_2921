@@ -35,33 +35,47 @@ namespace PL.Order
         public static readonly DependencyProperty boOrderTrackingProperty =
             DependencyProperty.Register("boOrderTracking", typeof(BO.OrderTracking), typeof(OrderTrackingWindow), new PropertyMetadata(null));
 
-
+        /// <summary>
+        /// empty Constructor
+        /// </summary>
         public OrderTrackingWindow()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
         public OrderTrackingWindow(int id)
         {
             InitializeComponent();
             boOrderTracking=bl.Order.OrderTrack(id);
         }
-
+        /// <summary>
+        /// Opens Order Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOrderDetails_Click(object sender, RoutedEventArgs e)
         {
             if(boOrderTracking!=null)
             {
-                OrderWindow ow = new OrderWindow(boOrderTracking.ID, GeneralMode.Display);//create new ProductListWindow
+                OrderWindow ow = new OrderWindow(boOrderTracking.ID, GeneralMode.Display);//create new OrderWindow
                 Close(); 
                 ow.ShowDialog();
             }
            
         }
-
+        /// <summary>
+        /// Opens Main Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow plw = new MainWindow();//create new ProductListWindow
+            MainWindow mw = new MainWindow();//create new MainWindow
             Close();
-            plw.ShowDialog();
+            mw.ShowDialog();
         }
     }
 }

@@ -38,6 +38,10 @@ namespace PL.Cart
         //// Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
         //public static readonly DependencyProperty cartProperty =
         //    DependencyProperty.Register("cart", typeof(BO.Cart), typeof(ProductItemWindow), new PropertyMetadata(null));
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="cart"></param>
         public CatalogWindow(BO.Cart cart)
         {
             InitializeComponent();

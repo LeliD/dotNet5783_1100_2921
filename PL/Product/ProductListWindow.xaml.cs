@@ -41,7 +41,7 @@ namespace PL.Product
             CategorySelector.SelectedItem = "All";
         }
         /// <summary>
-        /// 
+        /// Category selection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -63,37 +63,34 @@ namespace PL.Product
             pw.ShowDialog();
         }
         /// <summary>
-        /// Click event. The function open the window of updating new product 
+        /// function to show the products list of the selected catefory
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    BO.ProductForList p= (BO.ProductForList)ProductListView.SelectedItem;//the product that was selected
-        //    ProductWindow pw = new ProductWindow(p.ID);//create new ProductWindow of the selected product
-        //    pw.Show();
-        //}
-
-      
-        
         private void ShowListOfProducts()
         {
             BO.Category? category = CategorySelector.SelectedItem as BO.Category?;
-            if (category==null)
+            if (category == null)
             {
-                productForListDataGrid.ItemsSource=bl.Product.GetListedProductsForManager();
+                productForListDataGrid.ItemsSource = bl.Product.GetListedProductsForManager();
             }
             else
             {
                 productForListDataGrid.ItemsSource = bl.Product.GetListedProductsForManager(x => (BO.Category)(x?.Category)! == category);
             }
         }
-
+        /// <summary>
+        /// show products list every time when return to this window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Activated(object sender, EventArgs e)
         {
             ShowListOfProducts();
         }
-
+        /// <summary>
+        /// Open Product Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDetails_Click(object sender, RoutedEventArgs e)
         {
             BO.ProductForList? productForList = productForListDataGrid.SelectedItem as BO.ProductForList;
@@ -104,10 +101,14 @@ namespace PL.Product
                 pw.ShowDialog();
             }
         }
-
+        /// <summary>
+        /// Opens MainWindow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow plw = new MainWindow();//create new ProductListWindow
+            MainWindow plw = new MainWindow();//create new MainWindow
             Close();
             plw.ShowDialog();
         }

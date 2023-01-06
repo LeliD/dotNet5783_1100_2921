@@ -24,10 +24,18 @@ namespace PL
         /// bl is an instance of IBl
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
+        /// <summary>
+        /// Constructor,Building an instance of LogInWindow
+        /// </summary>
         public LogInWindow()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// button to Log In as a new user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -35,16 +43,16 @@ namespace PL
                 string userName = tbUserName.Text;
                 string passcode = pbPasscode.Password;
                 BO.User user = bl.User.GetByUserName(userName);
-                if (user.AdminAccess)
+                if (user.AdminAccess)//if it's an admin
                 {
-                    AdminWindow aw = new AdminWindow();//create new ProductListWindow
+                    AdminWindow aw = new AdminWindow();//create new AdminWindow
                     Close(); 
                     aw.ShowDialog();
                 }
-                else
+                else //if it isn't an admin
                 {
-                    BO.Cart cart = new BO.Cart() { CustomerAddress=user.UserAddress, CustomerEmail=user.UserEmail, CustomerName=user.Name , Items= new List<BO.OrderItem>() };
-                    CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
+                    BO.Cart cart = new BO.Cart() { CustomerAddress=user.UserAddress, CustomerEmail=user.UserEmail, CustomerName=user.Name , Items= new List<BO.OrderItem>() }; //initialization cart to this user
+                    CatalogWindow cw = new CatalogWindow(cart);//create new CatalogWindow
                     Close(); 
                     cw.ShowDialog();
                 }
@@ -60,7 +68,11 @@ namespace PL
             }
 
         }
-
+        /// <summary>
+        /// Opens Main Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow plw = new MainWindow();//create new MainWindow
