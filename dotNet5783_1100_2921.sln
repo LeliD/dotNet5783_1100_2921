@@ -30,15 +30,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{092381A0-7DF2-4B34-BC77-C07F330FBB24}"
 	ProjectSection(SolutionItems) = preProject
 		PL\Images\HOME.png = PL\Images\HOME.png
-		Images\IMG100003.png = Images\IMG100003.png
 		Images\IMG.png = Images\IMG.png
 		Images\IMG100000.png = Images\IMG100000.png
 		Images\IMG100001.png = Images\IMG100001.png
 		Images\IMG100002.png = Images\IMG100002.png
-		Images\IMG100005.png = Images\IMG100005.png
+		Images\IMG100003.png = Images\IMG100003.png
 		Images\IMG100004.png = Images\IMG100004.png
+		Images\IMG100005.png = Images\IMG100005.png
 		Images\IMG100006.png = Images\IMG100006.png
-		Images\IMG100016.png = Images\IMG100016.png
 		Images\IMG100007.png = Images\IMG100007.png
 		Images\IMG100008.png = Images\IMG100008.png
 		Images\IMG100009.png = Images\IMG100009.png
@@ -48,9 +47,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{092381
 		Images\IMG100013.png = Images\IMG100013.png
 		Images\IMG100014.png = Images\IMG100014.png
 		Images\IMG100015.png = Images\IMG100015.png
-		Images\IMG100018.png = Images\IMG100018.png
+		Images\IMG100016.png = Images\IMG100016.png
 		Images\IMG100017.png = Images\IMG100017.png
+		Images\IMG100018.png = Images\IMG100018.png
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{9560510D-C2D9-4B25-BE9A-DD1632DA7BC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +88,10 @@ Global
 		{56C5A4C6-4F2D-4DDF-860D-00080D4932D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C5A4C6-4F2D-4DDF-860D-00080D4932D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C5A4C6-4F2D-4DDF-860D-00080D4932D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9560510D-C2D9-4B25-BE9A-DD1632DA7BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9560510D-C2D9-4B25-BE9A-DD1632DA7BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9560510D-C2D9-4B25-BE9A-DD1632DA7BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9560510D-C2D9-4B25-BE9A-DD1632DA7BC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

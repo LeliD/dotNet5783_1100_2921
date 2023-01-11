@@ -24,6 +24,7 @@
 		 <PrivateAssets>all</PrivateAssets>
 	 </ProjectReference>
     <ProjectReference Include="..\DalList\DalList.csproj" />
+    <ProjectReference Include="..\DalXml\DalXml.csproj" />
   </ItemGroup>
 
 </Project>
