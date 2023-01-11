@@ -11,9 +11,14 @@ namespace Dal
     internal class DalProduct : IProduct
     {
         readonly string s_Products = "Products";
-        public int Add(Product item)
+        public int Add(Product product)
         {
-            throw new NotImplementedException();
+            List<DO.Product?> listProducts = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_Products);
+            if (listProducts.Exists(x => x?.ID == product.ID))
+                throw new DalAlreadyExistIdException(product.ID, "Product");
+            listProducts.Add(product);
+            XMLTools.SaveListToXMLSerializer(listProducts, s_Products);
+            return product.ID;
         }
 
         public void Delete(int id)

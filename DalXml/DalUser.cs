@@ -13,7 +13,10 @@ namespace Dal
         readonly string s_Users = "users";
         public int Add(User item)
         {
-            throw new NotImplementedException();
+            if (DataSource.UsersList.Exists(x => x?.UserName == user.UserName))
+                throw new DO.DalAlreadyExistUserNameException(user.UserName!, $"Username: {user.UserName} already exist");
+            DataSource.UsersList.Add(user);
+            return 0;
         }
 
         public void Delete(int id)
