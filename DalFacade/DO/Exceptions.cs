@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO;
 [Serializable]
+///exception
 public class DalMissingIdException : Exception
 {
     public int EntityID;
