@@ -30,7 +30,6 @@ namespace Dal
             }
             productsList.RemoveAll(x => x?.ID == id);
             XMLTools.SaveListToXMLSerializer(productsList, s_products);
-
         }
 
         public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
@@ -48,7 +47,7 @@ namespace Dal
 
         public Product GetById(int id)
         {
-            List<DO.Product?> listProducts = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_Products);
+            List<DO.Product?> listProducts = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_products);
             Product product = listProducts.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "Product");
             return product;
         }
@@ -63,7 +62,6 @@ namespace Dal
             productsList.RemoveAll(x => x?.ID == product.ID);
             productsList.Add(product);
             XMLTools.SaveListToXMLSerializer(productsList, s_products);
-
         }
     }
 }
