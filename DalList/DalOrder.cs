@@ -17,14 +17,12 @@ internal class DalOrder : IOrder
         DataSource.OrdersList.Add(order);
         return order.ID;
     }
-
     /// <summary>
     /// Gets order by its Id
     /// </summary>
-    /// <param name="id of order"></param>
+    /// <param name="id">id of order</param>
     /// <returns>returns the order</returns>
-    /// <exception cref="Exception">Throw exception if id of order doesn't exists</exception>
-
+    /// <exception cref="DalMissingIdException">Throw exception if id of order doesn't exists</exception>
     public Order GetById(int id)
     {
         Order order = DataSource.OrdersList.Find(x => x?.ID == id)?? throw new DalMissingIdException(id, "Order");
@@ -33,8 +31,8 @@ internal class DalOrder : IOrder
     /// <summary>
     /// Update order that exsist in the list
     /// </summary>
-    /// <param name="orderis the object which being updated"></param>
-    /// <exception cref="Exception">Throw exception if order doesn't exist</exception>
+    /// <param name="order">order is the object which being updated</param>
+    /// <exception cref="DalMissingIdException">Throw exception if order doesn't exist</exception>
     public void Update(Order order)
     {
         if (!DataSource.OrdersList.Exists(x => x?.ID == order.ID))
@@ -47,6 +45,7 @@ internal class DalOrder : IOrder
     /// <summary>
     /// Gets all the orders in the list in case no function was transfered. Otherwize, returns the filter list. 
     /// </summary>
+    /// <param name="filter">filter of category</param>
     /// <returns>return IEnumerable<Order?></returns>
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
@@ -62,8 +61,8 @@ internal class DalOrder : IOrder
     /// <summary>
     /// Deletes order from OrderItemsList
     /// </summary>
-    /// <param name="id of order to delete"></param>
-    /// <exception cref="Exception">Throw exception if order doesn't exist</exception>
+    /// <param name="id">id of order to delete</param>
+    /// <exception cref="DalMissingIdException">Throw exception if order doesn't exist</exception>
     public void Delete(int id)
     {
         if (!DataSource.OrdersList.Exists(x => x?.ID == id))

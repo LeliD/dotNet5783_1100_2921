@@ -10,7 +10,15 @@ namespace Dal
 {
     internal class DalUser : IUser
     {
+        /// <summary>
+        /// name of users xml file
+        /// </summary>
         readonly string s_Users = "users";
+        /// <summary>
+        /// Adds user to users xml file by its userName
+        /// </summary>
+        /// <param name="user"></param>
+        /// <exception cref="DO.DalAlreadyExistUserNameException"></exception>
         public int Add(User user)
         {
             List<DO.User?> usersList = XMLTools.LoadListFromXMLSerializer<DO.User>(s_Users);
@@ -20,7 +28,12 @@ namespace Dal
             XMLTools.SaveListToXMLSerializer(usersList, s_Users);
             return 0;
         }
-
+        /// <summary>
+        /// Gets User from users xml file by its userName
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns>DO.User of the userName</returns>
+        /// <exception cref="DO.DalMissingUserNameException">If userName isn't found</exception>
         public User GetByUserName(string userName)
         {
             List<DO.User?> usersList = XMLTools.LoadListFromXMLSerializer<DO.User>(s_Users);

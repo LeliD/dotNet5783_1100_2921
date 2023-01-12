@@ -10,9 +10,9 @@ internal class DalProduct : IProduct
     /// <summary>
     /// Adds product to ProductsList
     /// </summary>
-    /// <param name="product is the object which being added "></param>
+    /// <param name="product">product is the object which being added</param>
     /// <returns>returns Id of profuct</returns>
-    /// <exception cref="Exception">Throw exception if id of product already exists</exception>
+    /// <exception cref="DalAlreadyExistIdException">Throw exception if id of product already exists</exception>
     public int Add(Product product)
     {
         if (DataSource.ProductsList.Exists(x => x?.ID == product.ID))
@@ -23,9 +23,9 @@ internal class DalProduct : IProduct
     /// <summary>
     /// Gets product by its Id
     /// </summary>
-    /// <param name="id of product"></param>
+    /// <param name="id">id of product</param>
     /// <returns>returns the product</returns>
-    /// <exception cref="Exception">Throw exception if id of product doesn't exists</exception>
+    /// <exception cref="DalMissingIdException">Throw exception if id of product doesn't exists</exception>
     public Product GetById(int id)
     {
         Product product = DataSource.ProductsList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "Product");
@@ -34,9 +34,8 @@ internal class DalProduct : IProduct
     /// <summary>
     /// Update product that exsist in the list
     /// </summary>
-    /// <param name="product is the object which being updated"></param>
-    /// <exception cref="Exception">Throw exception if product doesn't exist</exception>
-
+    /// <param name="product">product is the object which being updated</param>
+    /// <exception cref="DalMissingIdException">Throw exception if product doesn't exist</exception>
     public void Update(Product product)
     {
         if (!DataSource.ProductsList.Exists(x => x?.ID == product.ID))
@@ -64,8 +63,8 @@ internal class DalProduct : IProduct
     /// <summary>
     /// Deletes product from ProductsList
     /// </summary>
-    /// <param name="id of product to delete"></param>
-    /// <exception cref="Exception">Throw exception if product doesn't exist</exception>
+    /// <param name="id">id of product to delete</param>
+    /// <exception cref="DalMissingIdException">Throw exception if product doesn't exist</exception>
     public void Delete(int id)
     {
         if (!DataSource.ProductsList.Exists(x => x?.ID == id))

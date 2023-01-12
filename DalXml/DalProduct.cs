@@ -9,9 +9,19 @@ using DO;
 
 namespace Dal
 {
+  
     internal class DalProduct : IProduct
     {
-        readonly string s_products = "Products";
+        /// <summary>
+        /// name of products xml file
+        /// </summary>
+        readonly string s_products = "products";
+        /// <summary>
+        /// create DO.Product from XElement
+        /// </summary>
+        /// <param name="s">XElement</param>
+        /// <returns>DO.Product?</returns>
+        /// <exception cref="DO.DalNullPropertyException">Throw exception if property is null</exception>
         static DO.Product? createProductfromXElement(XElement s)
         {
             return new DO.Product()
@@ -24,6 +34,13 @@ namespace Dal
                 ImageRelativeName = (string?)s.Element("ImageRelativeName")
              };
         }
+
+        /// <summary>
+        /// Adds product to products xml file
+        /// </summary>
+        /// <param name="product">product is the object which being added</param>
+        /// <returns>returns Id of profuct</returns>
+        /// <exception cref="DalAlreadyExistIdException">Throw exception if id of product already exists</exception>
         public int Add(Product product)
         {
             XElement? productsRootElem = XMLTools.LoadListFromXMLElement(s_products);
@@ -44,7 +61,11 @@ namespace Dal
             XMLTools.SaveListToXMLElement(productsRootElem, s_products);
             return product.ID;
         }
-
+        /// <summary>
+        /// Deletes product from products xml file
+        /// </summary>
+        /// <param name="id ">id of product to delete</param>
+        /// <exception cref="DalMissingIdException">Throw exception if product doesn't exist</exception>
         public void Delete(int id)
         {
             XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_products);
@@ -53,7 +74,10 @@ namespace Dal
 
             XMLTools.SaveListToXMLElement(productsRootElem, s_products);
         }
-
+        /// <summary>
+        /// Gets all the products in products xml file in case no function was transfered. Otherwize, returns the filter products xml file. 
+        /// </summary>
+        /// <returns>return IEnumerable<Product?></returns>
         public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
         {
             XElement? productsRootElem = XMLTools.LoadListFromXMLElement(s_products);
@@ -63,7 +87,12 @@ namespace Dal
             }
             return productsRootElem.Elements().Select(s => createProductfromXElement(s));
         }
-
+        /// <summary>
+        /// Gets product by its Id
+        /// </summary>
+        /// <param name="id">id of product</param>
+        /// <returns>returns the product</returns>
+        /// <exception cref="DalMissingIdException">Throw exception if id of product doesn't exists</exception>
         public Product GetById(int id)
         {
             XElement? productsRootElem = XMLTools.LoadListFromXMLElement(s_products);
@@ -72,7 +101,11 @@ namespace Dal
                     select createProductfromXElement(s)).FirstOrDefault()
                     ?? throw new DO.DalMissingIdException(id, "Product");
         }
-
+        /// <summary>
+        /// Update product that exsist in products xml file
+        /// </summary>
+        /// <param name="product">product is the object which being updated</param>
+        /// <exception cref="DalMissingIdException">Throw exception if product doesn't exist</exception>
         public void Update(Product product)
         {
             Delete(product.ID);
