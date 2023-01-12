@@ -16,43 +16,51 @@ namespace Dal
             List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
             orderItem.ID = DataSource.Config.NextOrderItemNumber;
             orderItemsList.Add(orderItem);
+            XMLTools.SaveListToXMLSerializer(orderItemsList, s_orderItems);
             return orderItem.ID;
         }
 
         public void Delete(int id)
         {
-            if (!DataSource.OrderItemsList.Exists(x => x?.ID == id))
+            List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
+            if (!orderItemsList.Exists(x => x?.ID == id))
                 throw new DalMissingIdException(id, "OrderItem");
-            DataSource.OrderItemsList.RemoveAll(x => x?.ID == id);
+            orderItemsList.RemoveAll(x => x?.ID == id);
+            XMLTools.SaveListToXMLSerializer(orderItemsList, s_orderItems);
+
         }
 
         public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
         {
+            List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
             if (filter != null)
             {
-                return from item in DataSource.OrderItemsList
+                return from item in orderItemsList
                        where filter(item)
                        select item;
             }
-            return from item in DataSource.OrderItemsList
+            return from item in orderItemsList
                    select item;
         }
 
         public OrderItem GetBy2Identifiers(int productID, int orderID)
         {
-            OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID) ?? throw new DalMissingIdException(-1, "OrderItem");
+            List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
+            OrderItem orderItem = orderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID) ?? throw new DalMissingIdException(-1, "OrderItem");
             return orderItem;
         }
 
         public OrderItem GetById(int id)
         {
-            OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "OrderItem");
+            List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
+            OrderItem orderItem = orderItemsList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "OrderItem");
             return orderItem;
         }
 
         public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)
         {
-            return DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
+            List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
+            return orderItemsList.FindAll(x => x?.OrderID == orderId);
 
         }
 
