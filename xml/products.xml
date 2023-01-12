@@ -17,14 +17,6 @@
     <ImageRelativeName>\Images\IMG100001.png</ImageRelativeName>
   </Product>
   <Product>
-    <ID>100002</ID>
-    <Name>MARBLE BOARD</Name>
-    <Price>112</Price>
-    <Category>KITCHEN</Category>
-    <InStock>28</InStock>
-    <ImageRelativeName>\Images\IMG100002.png</ImageRelativeName>
-  </Product>
-  <Product>
     <ID>100004</ID>
     <Name>SET OF ACACIA WOOD KITCHEN UTENSILS</Name>
     <Price>172</Price>
@@ -151,5 +143,13 @@
     <Category>KITCHEN</Category>
     <InStock>32</InStock>
     <ImageRelativeName>\Images\IMG100003.png</ImageRelativeName>
+  </Product>
+  <Product>
+    <ID>100002</ID>
+    <Name>MARBLE BOARD</Name>
+    <Price>112</Price>
+    <Category>KITCHEN</Category>
+    <InStock>27</InStock>
+    <ImageRelativeName>\Images\IMG100002.png</ImageRelativeName>
   </Product>
 </ArrayOfProduct>

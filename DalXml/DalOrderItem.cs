@@ -15,7 +15,9 @@ namespace Dal
         {
             List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
             //orderItem.ID = DataSource.Config.NextOrderItemNumber;
+            orderItem.ID = Config.GetNextOrderItemID();
             orderItemsList.Add(orderItem);
+            Config.SaveNextOrderItemID(orderItem.ID + 1);
             XMLTools.SaveListToXMLSerializer(orderItemsList, s_orderItems);
             return orderItem.ID;
         }
