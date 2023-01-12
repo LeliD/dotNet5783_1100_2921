@@ -5,8 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DO;
-[Serializable]
 ///exception
+[Serializable]
+public class DalNullPropertyException : Exception
+{
+    public DalNullPropertyException(string message) : base(message) { }
+}
+[Serializable]
+
 public class DalMissingIdException : Exception
 {
     public int EntityID;

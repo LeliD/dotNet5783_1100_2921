@@ -11,12 +11,21 @@ namespace Dal
     internal class DalUser : IUser
     {
         readonly string s_Users = "users";
-        public int Add(User item)
+        public int Add(User user)
         {
-            if (DataSource.UsersList.Exists(x => x?.UserName == user.UserName))
+            List<DO.User?> usersList = XMLTools.LoadListFromXMLSerializer<DO.User>(s_Users);
+            if (usersList.Exists(x => x?.UserName == user.UserName))
                 throw new DO.DalAlreadyExistUserNameException(user.UserName!, $"Username: {user.UserName} already exist");
-            DataSource.UsersList.Add(user);
+            usersList.Add(user);
+            XMLTools.SaveListToXMLSerializer(usersList, s_Users);
             return 0;
+        }
+
+        public User GetByUserName(string userName)
+        {
+            List<DO.User?> usersList = XMLTools.LoadListFromXMLSerializer<DO.User>(s_Users);
+            User user = usersList.Find(x => x?.UserName == userName) ?? throw new DO.DalMissingUserNameException(userName, "User name does not exist");
+            return user;
         }
 
         public void Delete(int id)
@@ -30,11 +39,6 @@ namespace Dal
         }
 
         public User GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetByUserName(string userName)
         {
             throw new NotImplementedException();
         }
