@@ -11,39 +11,57 @@ namespace Dal
     internal class DalOrderItem : IOrderItem
     {
         readonly string s_orderItems = "orderItems";
-        public int Add(OrderItem item)
+        public int Add(OrderItem orderItem)
         {
-            throw new NotImplementedException();
+            List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
+            orderItem.ID = DataSource.Config.NextOrderItemNumber;
+            orderItemsList.Add(orderItem);
+            return orderItem.ID;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            if (!DataSource.OrderItemsList.Exists(x => x?.ID == id))
+                throw new DalMissingIdException(id, "OrderItem");
+            DataSource.OrderItemsList.RemoveAll(x => x?.ID == id);
         }
 
         public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
         {
-            throw new NotImplementedException();
+            if (filter != null)
+            {
+                return from item in DataSource.OrderItemsList
+                       where filter(item)
+                       select item;
+            }
+            return from item in DataSource.OrderItemsList
+                   select item;
         }
 
         public OrderItem GetBy2Identifiers(int productID, int orderID)
         {
-            throw new NotImplementedException();
+            OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ProductID == productID && x?.OrderID == orderID) ?? throw new DalMissingIdException(-1, "OrderItem");
+            return orderItem;
         }
 
         public OrderItem GetById(int id)
         {
-            throw new NotImplementedException();
+            OrderItem orderItem = DataSource.OrderItemsList.Find(x => x?.ID == id) ?? throw new DalMissingIdException(id, "OrderItem");
+            return orderItem;
         }
 
         public IEnumerable<OrderItem?> GetItemsInOrder(int orderId)
         {
-            throw new NotImplementedException();
+            return DataSource.OrderItemsList.FindAll(x => x?.OrderID == orderId);
+
         }
 
         public void Update(OrderItem item)
         {
-            throw new NotImplementedException();
+            if (!DataSource.OrderItemsList.Exists(x => x?.ID == orderItem.ID))
+                throw new DalMissingIdException(orderItem.ID, "OrderItem");
+            DataSource.OrderItemsList.RemoveAll(x => x?.ID == orderItem.ID);
+            DataSource.OrderItemsList.Add(orderItem);
         }
     }
 }
