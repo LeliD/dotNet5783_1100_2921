@@ -112,5 +112,12 @@ namespace PL.Product
             Close();
             plw.ShowDialog();
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            AdminWindow aw = new AdminWindow();//create new AdminWindow
+            Close();
+            aw.ShowDialog();
+        }
     }
 }

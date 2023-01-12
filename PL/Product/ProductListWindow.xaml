@@ -34,7 +34,7 @@
                 </Label.Foreground>
             </Label>
         </Grid>
-        
+
         <DataGrid x:Name="productForListDataGrid" AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC" Grid.ColumnSpan="2" Margin="0,43,0,0" Grid.RowSpan="2" FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="100"/>
@@ -55,5 +55,13 @@
         <Button x:Name="btnHome" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click"  >
             <Image Source="/Cart/HOME.png" Height="30" Width="36"/>
         </Button>
+        <Button x:Name="btnBack" Grid.Row="2" Style="{StaticResource buttonBack}"  Margin="488,8,0,2" Width="104" Click="btnBack_Click" >
+            <StackPanel Orientation="Horizontal">
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                <TextBlock Text="← Back"/>
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+            </StackPanel>
+        </Button>
+
     </Grid>
 </Window>
