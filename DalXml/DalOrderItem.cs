@@ -14,7 +14,7 @@ namespace Dal
         public int Add(OrderItem orderItem)
         {
             List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
-            orderItem.ID = DataSource.Config.NextOrderItemNumber;
+            //orderItem.ID = DataSource.Config.NextOrderItemNumber;
             orderItemsList.Add(orderItem);
             XMLTools.SaveListToXMLSerializer(orderItemsList, s_orderItems);
             return orderItem.ID;
@@ -64,12 +64,13 @@ namespace Dal
 
         }
 
-        public void Update(OrderItem item)
+        public void Update(OrderItem orderItem)
         {
-            if (!DataSource.OrderItemsList.Exists(x => x?.ID == orderItem.ID))
+            List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_orderItems);
+            if (!orderItemsList.Exists(x => x?.ID == orderItem.ID))
                 throw new DalMissingIdException(orderItem.ID, "OrderItem");
-            DataSource.OrderItemsList.RemoveAll(x => x?.ID == orderItem.ID);
-            DataSource.OrderItemsList.Add(orderItem);
+            orderItemsList.RemoveAll(x => x?.ID == orderItem.ID);
+            orderItemsList.Add(orderItem);
         }
     }
 }

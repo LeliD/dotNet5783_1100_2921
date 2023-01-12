@@ -15,7 +15,7 @@ namespace Dal
         public int Add(Order order)
         {
             List<DO.Order?> ordersList = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_orders);
-            order.ID = DataSource.Config.NextOrderNumber;
+            //order.ID = DataSource.Config.NextOrderNumber;
             ordersList.Add(order);
             XMLTools.SaveListToXMLSerializer(ordersList, s_orders);
             return order.ID;

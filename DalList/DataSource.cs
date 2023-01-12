@@ -69,6 +69,10 @@ internal static class DataSource
         createAndInitOrders();
         createAndInitOrderItems();
         createAndInitUsers();
+        //XMLTools.SaveListToXMLSerializer(ProductsList, "products");
+        //XMLTools.SaveListToXMLSerializer(OrdersList, "orders");
+        //XMLTools.SaveListToXMLSerializer(OrderItemsList, "orderItems");
+        //XMLTools.SaveListToXMLSerializer(UsersList, "users");
     }
     /// <summary>
     /// Initializing ProductsList in 10 products
