@@ -46,7 +46,7 @@
 
             <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3,0,0,3" Grid.Row="3" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold" />
             <TextBox x:Name="tbPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbPrice_TextChanged"/>
-            <Label x:Name="lblWrongPrice" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <Label x:Name="lblWrongPrice" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="3" Width="150" Foreground="#FFD42D2D" Height="32" VerticalAlignment="Top"/>
 
 
             <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>

@@ -50,16 +50,16 @@
               
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnHome" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click"  >
+        <!--<Button x:Name="btnHome" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click"  >
             <Image Source="/Cart/HOME.png" Height="30" Width="36"/>
-        </Button>
-        <Button x:Name="btnBack" Grid.Row="2" Style="{StaticResource buttonBack}"  Margin="488,8,0,2" Width="104" Click="btnBack_Click" >
+        </Button>-->
+        <!--<Button x:Name="btnBack" Grid.Row="2" Style="{StaticResource buttonBack}"  Margin="488,8,0,2" Width="104" Click="btnBack_Click" >
             <StackPanel Orientation="Horizontal">
-                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                --><!--<Image Source="/Images/left.png" Width="20"/>--><!--
                 <TextBlock Text="← Back"/>
-                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                --><!--<Image Source="/Images/left.png" Width="20"/>--><!--
             </StackPanel>
-        </Button>
+        </Button>-->
 
     </Grid>
 </Window>

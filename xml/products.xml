@@ -17,14 +17,6 @@
     <ImageRelativeName>\Images\IMG100001.png</ImageRelativeName>
   </Product>
   <Product>
-    <ID>100004</ID>
-    <Name>SET OF ACACIA WOOD KITCHEN UTENSILS</Name>
-    <Price>172</Price>
-    <Category>KITCHEN</Category>
-    <InStock>19</InStock>
-    <ImageRelativeName>\Images\IMG100004.png</ImageRelativeName>
-  </Product>
-  <Product>
     <ID>100005</ID>
     <Name>COTTON BATHROBE WITH HOOD</Name>
     <Price>108</Price>
@@ -151,5 +143,13 @@
     <Category>KITCHEN</Category>
     <InStock>27</InStock>
     <ImageRelativeName>\Images\IMG100002.png</ImageRelativeName>
+  </Product>
+  <Product>
+    <ID>100004</ID>
+    <Name>SET OF ACACIA WOOD KITCHEN UTENSILS</Name>
+    <Price>172</Price>
+    <Category>KITCHEN</Category>
+    <InStock>17</InStock>
+    <ImageRelativeName>\Images\IMG100004.png</ImageRelativeName>
   </Product>
 </ArrayOfProduct>
