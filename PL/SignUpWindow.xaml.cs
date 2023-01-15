@@ -34,7 +34,7 @@ namespace PL
         public SignUpWindow(AdminAccess adA)
         {
             InitializeComponent();
-            adminAccess=adA;    
+            adminAccess = adA;
         }
         /// <summary>
         /// Button to Sign Up as an Admin or a customer
@@ -43,12 +43,12 @@ namespace PL
         /// <param name="e"></param>
         private void btnSignUp_Click(object sender, RoutedEventArgs e)
         {
-            string wrongInput="";
+            string wrongInput = "";
             string name = tbName.Text;
             string userEmail = tbUserEmail.Text;
-            string userAddress= tbUserAddress.Text;
+            string userAddress = tbUserAddress.Text;
             string userName = tbUserName.Text;
-            string passcode= tbPasscode.Password;
+            string passcode = tbPasscode.Password;
             if (name == "")
             {
                 wrongInput += "Name is missing\n";
@@ -78,7 +78,7 @@ namespace PL
                 //MessageBox.Show("Username is Missing", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-           
+
             if (userAddress == "")
             {
                 wrongInput += "UserAddress is Missing\n";
@@ -97,7 +97,7 @@ namespace PL
                 tbPasscode.BorderBrush = Brushes.Red;
                 //MessageBox.Show("Passcode was not entered", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            if(wrongInput!="")
+            if (wrongInput != "")
             {
                 MessageBox.Show(wrongInput, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -113,7 +113,7 @@ namespace PL
 
                     BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() };
                     CatalogWindow cw = new CatalogWindow(cart);//create new ProductListWindow
-                    Close(); 
+                    Close();
                     cw.ShowDialog();
                 }
                 else //if it is an admin
@@ -121,10 +121,10 @@ namespace PL
                     user = new BO.User() { Name = name, UserName = userName, UserEmail = userEmail, UserAddress = userAddress, Passcode = passcode, AdminAccess = true };
                     bl.User.Add(user);
                     MessageBox.Show("Signing up has ended successfully👌", "Good Luck", MessageBoxButton.OK, MessageBoxImage.Information);
-                    AdminWindow aw= new AdminWindow(); //create new Admin Window
-                    Close(); 
+                    AdminWindow aw = new AdminWindow(); //create new Admin Window
+                    Close();
                     aw.ShowDialog();
-                    
+
                 }
 
             }
@@ -210,5 +210,23 @@ namespace PL
             Close();
             plw.ShowDialog();
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();//create new OrderTrackingWindow
+            Close();
+            mw.ShowDialog();
+        }
     }
-}
+    }

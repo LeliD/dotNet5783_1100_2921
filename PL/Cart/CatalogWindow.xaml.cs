@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Printing.IndexedProperties;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,18 +28,23 @@ namespace PL.Cart
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
 
-        private ObservableCollection<BO.ProductItem?> productItems;
-        private BO.Cart MyCart { get; set; }
-        //public BO.Cart MyCart
-        //{
-        //    get { return (BO.Cart)GetValue(cartProperty); }
-        //    set { SetValue(cartProperty, value); }
-        //}
+        //private ObservableCollection<BO.ProductItem?> productItems;
 
-        //// Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty cartProperty =
-        //    DependencyProperty.Register("cart", typeof(BO.Cart), typeof(ProductItemWindow), new PropertyMetadata(null));
-        /// <summary>
+
+        public ObservableCollection<BO.ProductItem?> productItems
+        {
+            get { return (ObservableCollection<BO.ProductItem?>)GetValue(productItemsProperty); }
+            set { SetValue(productItemsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for productItems.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty productItemsProperty =
+            DependencyProperty.Register("productItems", typeof(ObservableCollection<BO.ProductItem?>), typeof(CatalogWindow), new PropertyMetadata(null));
+
+
+        private BO.Cart MyCart { get; set; }
+
+         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="cart"></param>
@@ -46,7 +52,7 @@ namespace PL.Cart
         {
             InitializeComponent();
             productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
-            listViewProducts.ItemsSource = productItems;
+           // listViewProducts.ItemsSource = productItems;
             //listViewProducts.ItemsSource = bl.Product.GetListedProductsForCustomer();
             MyCart = cart;
         }
