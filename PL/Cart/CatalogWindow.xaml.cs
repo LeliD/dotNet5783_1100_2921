@@ -41,7 +41,6 @@ namespace PL.Cart
         public static readonly DependencyProperty productItemsProperty =
             DependencyProperty.Register("productItems", typeof(ObservableCollection<BO.ProductItem?>), typeof(CatalogWindow), new PropertyMetadata(null));
 
-
         private BO.Cart MyCart { get; set; }
 
          /// <summary>
