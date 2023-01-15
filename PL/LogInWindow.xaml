@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="LogIn" Height="550" Width="800"
+        Title="LogIn" Height="550" Width="400"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -151,7 +151,7 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
-                             Padding="20,0,0,0">
+                             Padding="20,0,0,0" TextChanged="txtUser_TextChanged">
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user-icon.png"
                                         Stretch="None"
@@ -172,6 +172,7 @@
                              CaretBrush="LightGray"
                              BorderBrush="DarkGray"
                              BorderThickness="0,0,0,2"
+                             PasswordChanged="tbPasscode_PasswordChanged"
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"

@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace PL
 {
@@ -57,25 +58,45 @@ namespace PL
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            string userName = txtUser.Text;
+            string wrongInput = "";
+            if (userName == "")
+            {
+                wrongInput += "UserName is Missing\n";
+                txtUser.BorderBrush = Brushes.Red;
+            }
+            string passcode = txtPass.Password;
+            if (passcode == "")
+            {
+                wrongInput += "Password is Missing\n";
+                txtPass.BorderBrush = Brushes.Red;
+            }
+            if (wrongInput != "")
+            {
+                MessageBox.Show(wrongInput, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
-                string userName = txtUser.Text;
-                string passcode = txtPass.Password;
-                BO.User user = bl.User.GetByUserName(userName);
-                if (user.AdminAccess)//if it's an admin
+               BO.User user = bl.User.GetByUserName(userName);
+                if (user.Passcode != txtPass.Password)
+                    MessageBox.Show("Passcode is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
                 {
-                    AdminWindow aw = new AdminWindow();//create new AdminWindow
-                    Close();
-                    aw.ShowDialog();
+                    if (user.AdminAccess)//if it's an admin
+                    {
+                        AdminWindow aw = new AdminWindow();//create new AdminWindow
+                        Close();
+                        aw.ShowDialog();
+                    }
+                    else //if it isn't an admin
+                    {
+                        BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() }; //initialization cart to this user
+                        CatalogWindow cw = new CatalogWindow(cart);//create new CatalogWindow
+                        Close();
+                        cw.ShowDialog();
+                    }
                 }
-                else //if it isn't an admin
-                {
-                    BO.Cart cart = new BO.Cart() { CustomerAddress = user.UserAddress, CustomerEmail = user.UserEmail, CustomerName = user.Name, Items = new List<BO.OrderItem>() }; //initialization cart to this user
-                    CatalogWindow cw = new CatalogWindow(cart);//create new CatalogWindow
-                    Close();
-                    cw.ShowDialog();
-                }
-
             }
             catch (BO.BlMissingEntityException)
             {
@@ -88,39 +109,53 @@ namespace PL
 
         }
 
-        
-            //        private void btnLogIn_Click(object sender, RoutedEventArgs e)
-            //        {
-            //            try
-            //            {
-            //                string userName = tbUserName.Text;
-            //                string passcode = pbPasscode.Password;
-            //                BO.User user = bl.User.GetByUserName(userName);
-            //                if (user.AdminAccess)//if it's an admin
-            //                {
-            //                    AdminWindow aw = new AdminWindow();//create new AdminWindow
-            //                    Close(); 
-            //                    aw.ShowDialog();
-            //                }
-            //                else //if it isn't an admin
-            //                {
-            //                    BO.Cart cart = new BO.Cart() { CustomerAddress=user.UserAddress, CustomerEmail=user.UserEmail, CustomerName=user.Name , Items= new List<BO.OrderItem>() }; //initialization cart to this user
-            //                    CatalogWindow cw = new CatalogWindow(cart);//create new CatalogWindow
-            //                    Close(); 
-            //                    cw.ShowDialog();
-            //                }
+        private void txtUser_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtUser.BorderBrush == Brushes.Red)
+            {
+                txtUser.BorderBrush = Brushes.DimGray;
+            }
+        }
+        private void tbPasscode_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (txtPass.BorderBrush == Brushes.Red)
+            {
+                txtPass.BorderBrush = Brushes.DimGray;
+            }
+        }
 
-            //            }
-            //            catch (BO.BlMissingEntityException)
-            //            {
-            //                MessageBox.Show("User name is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //            }
+        //        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        //        {
+        //            try
+        //            {
+        //                string userName = tbUserName.Text;
+        //                string passcode = pbPasscode.Password;
+        //                BO.User user = bl.User.GetByUserName(userName);
+        //                if (user.AdminAccess)//if it's an admin
+        //                {
+        //                    AdminWindow aw = new AdminWindow();//create new AdminWindow
+        //                    Close(); 
+        //                    aw.ShowDialog();
+        //                }
+        //                else //if it isn't an admin
+        //                {
+        //                    BO.Cart cart = new BO.Cart() { CustomerAddress=user.UserAddress, CustomerEmail=user.UserEmail, CustomerName=user.Name , Items= new List<BO.OrderItem>() }; //initialization cart to this user
+        //                    CatalogWindow cw = new CatalogWindow(cart);//create new CatalogWindow
+        //                    Close(); 
+        //                    cw.ShowDialog();
+        //                }
 
-            //        }
+        //            }
+        //            catch (BO.BlMissingEntityException)
+        //            {
+        //                MessageBox.Show("User name is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            }
+
+        //        }
 
 
     }

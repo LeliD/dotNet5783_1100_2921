@@ -87,7 +87,7 @@ namespace PL
             }
             if (userName == "")
             {
-                wrongInput += "Username is Missing\n";
+                wrongInput += "UserName is Missing\n";
                 tbUserName.BorderBrush = Brushes.Red;
                 //MessageBox.Show("Username was not entered", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -228,5 +228,7 @@ namespace PL
             Close();
             mw.ShowDialog();
         }
+
+       
     }
     }

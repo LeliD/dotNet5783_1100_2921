@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="SignUpWindow" Height="550" Width="800"
+        Title="SignUpWindow" Height="550" Width="400"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -151,7 +151,7 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,0,0,0"
-                             Padding="20,0,0,0">
+                             Padding="20,0,0,0" TextChanged="tbName_TextChanged">
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user-icon.png"
                                         Stretch="None"
@@ -176,7 +176,7 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,0,0,0"
-                             Padding="20,0,0,0">
+                             Padding="20,0,0,0" TextChanged="tbUserEmail_TextChanged">
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user-icon.png"
                                         Stretch="None"
@@ -200,7 +200,7 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,0,0,0"
-                             Padding="20,0,0,0">
+                             Padding="20,0,0,0" TextChanged="tbUserAddress_TextChanged">
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user-icon.png"
                                         Stretch="None"
@@ -224,7 +224,7 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,0,0,0"
-                             Padding="20,0,0,0">
+                             Padding="20,0,0,0" TextChanged="tbUserName_TextChanged">
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user-icon.png"
                                         Stretch="None"
@@ -248,6 +248,7 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,0,0,0"
+                             PasswordChanged="tbPasscode_PasswordChanged"
                              Padding="20,0,0,0">
                         <PasswordBox.Background>
                             <ImageBrush ImageSource="/Images/key-icon.png"
