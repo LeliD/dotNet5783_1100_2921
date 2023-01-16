@@ -199,18 +199,7 @@ namespace PL
                 tbPasscode.BorderBrush = Brushes.DimGray;
             }
         }
-        /// <summary>
-        /// Opens Main Window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnHome_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow plw = new MainWindow();//create new MainWindow
-            Close();
-            plw.ShowDialog();
-        }
-
+      
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

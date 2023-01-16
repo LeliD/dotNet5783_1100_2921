@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         DataContext="{Binding MyCart ,RelativeSource={RelativeSource Self} }"
         WindowStartupLocation="CenterScreen"
-        Title="CartWindow" Height="600" Width="800">
+        Title="CartWindow" Height="620" Width="800">
     <Window.Resources>
         <DataTemplate x:Key="OrderItemTemplate" DataType="local:OrderItem">
 
@@ -32,7 +32,7 @@
                 <TextBlock Grid.Column="1" Text="{Binding ProductID}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
 
                 <!--<TextBlock Grid.Column="2" Text="{Binding Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>-->
-                <Label x:Name="lblPrice"  Grid.Column="2" Content="{Binding Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" ContentStringFormat=" {0} ₪"/>
+                <Label x:Name="lblPrice"  Grid.Column="2" Content="{Binding Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" ContentStringFormat=" ₪ {0} "/>
 
                 <TextBlock Grid.Column="3" Text="{Binding Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
@@ -47,7 +47,7 @@
                 </StackPanel>
 
                 <!--<TextBlock Grid.Column="5" Text="{Binding Path=TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>-->
-                <Label x:Name="lblTotalPrice"  Grid.Column="5" Content="{Binding TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" ContentStringFormat=" {0} ₪"/>
+                <Label x:Name="lblTotalPrice"  Grid.Column="5" Content="{Binding TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" ContentStringFormat=" ₪ {0}"/>
 
                 <Button x:Name="btnRemove" Style="{StaticResource buttonDelete}" Content="❌" Grid.Column="6" Click="btnRemove_Click">
                     <!--<Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>-->
@@ -96,9 +96,10 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="Subtotal :" FontSize="16"/>
-                    <Label x:Name="lblTotalPrice"  Content="{Binding TotalPrice}"  FontWeight="SemiBold" FontSize="16" Width="100" ContentStringFormat=" {0} ₪" />
                     <!--<TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0" Width="100"/>-->
                 </StackPanel>
+                <Label x:Name="lblTotalPrice"  Content="{Binding TotalPrice}"  FontWeight="SemiBold" FontSize="16" Width="100" ContentStringFormat=" ₪ {0} " RenderTransformOrigin="0.511,0.278" Margin="427,0,273,0" />
+
                 <Button x:Name="btnMakeAnOrder" Content="Make an Order" HorizontalAlignment="Right" Margin="656,0,10,0" Grid.Row="2" VerticalAlignment="Center" Height="35" Width="112" Click="btnMakeAnOrder_Click"/>
             </Grid>
             <!--<Button Content="Make an Order" HorizontalAlignment="Left" Margin="656,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="35" Width="112"/>-->

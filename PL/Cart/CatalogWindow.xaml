@@ -26,13 +26,13 @@
                 </Border>
                 <!--<Image Grid.Row= "0" Height="60" Width="180" HorizontalAlignment="Center" Source="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />-->
                 <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="10" Height="auto" Width="auto"/>
-                <Label x:Name="lblPrice"  Content="{Binding Price}" Height="auto"  Grid.Row= "2" Width="auto" HorizontalAlignment="Center" Margin="5,0,0,0" ContentStringFormat=" {0} ₪"/>
+                <Label x:Name="lblPrice"  Content="{Binding Price}" Height="auto"  Grid.Row= "2" Width="auto" HorizontalAlignment="Center" Margin="5,0,0,0" ContentStringFormat=" ₪ {0} "/>
                 <!--<TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />-->
             </Grid>
         </DataTemplate>
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="#FFFCF2F0">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
@@ -50,7 +50,7 @@
         <ScrollViewer Background="#FFF1F1F1" Margin="0,1,0,0" Grid.Row="1"  Grid.Column="1" >
             <!--<TextBlock Text="Items" Margin="10" FontSize="22" FontWeight="Medium"/>-->
 
-            <ListView x:Name="listViewProducts" ItemsSource="{Binding productItems}" ItemTemplate="{StaticResource ProductItemTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  HorizontalContentAlignment="Stretch" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="listViewProducts_MouseDoubleClick">
+            <ListView x:Name="listViewProducts" Background="#FFFCF2F0" ItemsSource="{Binding productItems}" ItemTemplate="{StaticResource ProductItemTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  HorizontalContentAlignment="Stretch" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="listViewProducts_MouseDoubleClick">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -58,18 +58,22 @@
                 </ItemsControl.ItemsPanel>
             </ListView>
         </ScrollViewer>
-        <Image HorizontalAlignment="Left" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" Width="261" Source="/Cart/zara-home.png"/>
-        <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="587,10,0,0" Width="83" Click="btnGoToCart_Click" Height="40" VerticalAlignment="Top"/>
+        <Border CornerRadius="15" Grid.Row="0" BorderThickness="1" Margin="10,5,628,5" BorderBrush="#FF6B6866">
+            <Border.Background>
+                <ImageBrush ImageSource="/zarahome.png"/>
+            </Border.Background>
+        </Border>
+        <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="633,0,0,0" Width="85" Click="btnGoToCart_Click" Height="40" VerticalAlignment="Center"/>
         <!--<Button HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="50" Width="71" Foreground="#FFF6F0EC" BorderBrush="#FFF7F0ED">
             <Button.Background>
                 <ImageBrush ImageSource="../Images/HOME.png"/>
             </Button.Background>
         </Button>-->
-        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="729,0,10,0" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
-            <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="729,0,10,0" VerticalAlignment="Center" Height="40" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
+            <Image Source="/Cart/HOME.png" Height="40" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
-        <Label x:Name="lblWelcome" Content="Welcome" FontFamily="Montserrat" HorizontalAlignment="Left" FontSize="14" Foreground="#FF934326" Margin="330,11,0,0" VerticalAlignment="Center" Height="auto" FontWeight="Bold"/>
-        <TextBlock x:Name="tbCustomerName" DataContext="{Binding MyCart}" HorizontalAlignment="Left" FontSize="14" Margin="425,11,0,0" FontFamily="Montserrat" TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay}" VerticalAlignment="Center" Width="81" FontWeight="Bold" Foreground="#FF934326"/>
+        <Label x:Name="lblWelcome" Content="Welcome" FontFamily="Narkisim" HorizontalAlignment="Left" FontSize="16" Foreground="#FF934326" Margin="330,26,0,0" VerticalAlignment="Top" Height="auto" FontWeight="Bold"/>
+        <TextBlock x:Name="tbCustomerName" DataContext="{Binding MyCart}" HorizontalAlignment="Left" FontSize="16" Margin="407,31,0,0" FontFamily="Narkisim" TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay}" VerticalAlignment="Top" Width="81" FontWeight="Bold" Foreground="#FF934326"/>
         <!--<Button Name="btn5" Width="50" Height="30" Click="OnClick5">
             <Image Source="../Images/HOME.png"></Image>
         </Button>-->

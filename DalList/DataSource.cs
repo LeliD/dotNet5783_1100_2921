@@ -81,7 +81,7 @@ internal static class DataSource
     {
         int id;
         //Arrays of products' names
-        string[] kitchenProducts = new string[] {"SCREW TOP GLASS JAR","WOODEN SUGAR BOWL", "MARBLE BOARD","COPPER AND BRASS POT WITH LID","SET OF ACACIA WOOD KITCHEN UTENSILS"};//An array of products' names
+        string[] kitchenProducts = new string[] {"SCREW TOP GLASS JAR","WOODEN SUGAR BOWL", "MARBLE BOARD","COPPER AND BRASS POT WITH LID","SET OF WOOD KITCHEN UTENSILS"};//An array of products' names
         string[] bathroomProducts = new string[] { "COTTON BATHROBE WITH HOOD", "HIGH QUALITY COTTON TOWEL", "FOLDABLE LAUNDRY BASKET" };//An array of products' names
         string[] livingRoomProducts = new string[] { "SQUARE RATTAN BASKET", "VINTAGE RUG","SMALL STOOL" };//An array of products' names
         string[] bedRoomProducts = new string[] { "WOOL BLANKET", "CHENILLE BLANKET", "LINEN CURTAIN", "COTTON TERRY CUSHION COVER", "COTTON PERCALE DUVET COVER" };//An array of products' names
