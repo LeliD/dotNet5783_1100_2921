@@ -14,8 +14,8 @@
             <Grid Background="#FFFCEFEC" Margin="0,0,0,0" HorizontalAlignment="Left"  >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="280"/>
-                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="27"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="110"/>
@@ -31,7 +31,8 @@
                 <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Text="{Binding ProductID}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
 
-                <TextBlock Grid.Column="2" Text="{Binding Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+                <!--<TextBlock Grid.Column="2" Text="{Binding Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>-->
+                <Label x:Name="lblPrice"  Grid.Column="2" Content="{Binding Price}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" ContentStringFormat=" {0} ₪"/>
 
                 <TextBlock Grid.Column="3" Text="{Binding Amount}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
@@ -45,7 +46,8 @@
                     </Button>
                 </StackPanel>
 
-                <TextBlock Grid.Column="5" Text="{Binding Path=TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+                <!--<TextBlock Grid.Column="5" Text="{Binding Path=TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>-->
+                <Label x:Name="lblTotalPrice"  Grid.Column="5" Content="{Binding TotalPrice}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" ContentStringFormat=" {0} ₪"/>
 
                 <Button x:Name="btnRemove" Style="{StaticResource buttonDelete}" Content="❌" Grid.Column="6" Click="btnRemove_Click">
                     <!--<Image Source="../Images/remove.png" Width="18" Style="{StaticResource icon}"/>-->
@@ -65,7 +67,7 @@
 
 
         <!--Products Section-->
-        <Grid Background="#ECF0F1" Grid.Row="1">
+        <Grid Background="#ECF0F1" Grid.Row="1" Height="564" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -94,7 +96,8 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="Subtotal :" FontSize="16"/>
-                    <TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0" Width="100"/>
+                    <Label x:Name="lblTotalPrice"  Content="{Binding TotalPrice}"  FontWeight="SemiBold" FontSize="16" Width="100" ContentStringFormat=" {0} ₪" Margin="30 0 0 0"/>
+                    <!--<TextBlock x:Name="tbTotalPrice" Text="{Binding TotalPrice, Mode=TwoWay}" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0" Width="100"/>-->
                 </StackPanel>
                 <Button x:Name="btnMakeAnOrder" Content="Make an Order" HorizontalAlignment="Right" Margin="656,0,10,0" Grid.Row="2" VerticalAlignment="Center" Height="35" Width="112" Click="btnMakeAnOrder_Click"/>
             </Grid>

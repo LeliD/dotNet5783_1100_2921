@@ -6,9 +6,48 @@
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="OrderListWindow" Height="450" Width="800" Activated="Window_Activated">
-    <Grid>
-        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
+        Title="OrderListWindow" Height="550" Width="800" Activated="Window_Activated">
+    <Grid Name="MainGrid" Background="#FFFCEFEC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="145*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="15" Grid.Row="0" BorderThickness="1" Margin="10,5,628,5" BorderBrush="#FF6B6866">
+            <Border.Background>
+                <ImageBrush ImageSource="/zarahome.png"/>
+            </Border.Background>
+        </Border>
+        <Button x:Name="btnHome"  Background="#FFFAF6F4" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click" Margin="729,0,0,0"  >
+            <Image Source="/Cart/HOME.png" Height="30" Width="36"/>
+        </Button>
+        <DataGrid x:Name="orderForListDataGrid" AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC" Grid.ColumnSpan="2" Margin="0,4,0,45" Grid.RowSpan="2" FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" Grid.Row="1" >
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="iDColumn"  Binding="{Binding ID}" Header="ID" Width="120"/>
+                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="200"/>
+                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="130"/>
+                <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="115"/>
+                <DataGridTemplateColumn Header="More" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnDetails" Content="..." FontWeight="Bold" Click="btnDetails_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="btnBack" Grid.Row="2" Style="{StaticResource buttonBack}"  Margin="11,5,0,5" Width="104" Click="btnBack_Click" >
+            <StackPanel Orientation="Horizontal">
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                <TextBlock Text="← Back"/>
+                <!--<Image Source="/Images/left.png" Width="20"/>-->
+            </StackPanel>
+        </Button>
+
+        <!--<Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
             <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
         <DataGrid x:Name="orderForListDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="110,54,110,96" MouseDoubleClick="orderForListDataGrid_MouseDoubleClick" >
@@ -22,10 +61,14 @@
         </DataGrid>
         <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="10,362,0,20" Width="104" Click="btnBack_Click">
             <StackPanel Orientation="Horizontal">
-                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                -->
+        <!--<Image Source="/Images/left.png" Width="20"/>-->
+        <!--
                 <TextBlock Text="← Back"/>
-                <!--<Image Source="/Images/left.png" Width="20"/>-->
+                -->
+        <!--<Image Source="/Images/left.png" Width="20"/>-->
+        <!--
             </StackPanel>
-        </Button>
+        </Button>-->
     </Grid>
 </Window>

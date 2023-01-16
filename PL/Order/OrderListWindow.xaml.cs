@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,16 +53,8 @@ namespace PL.Order
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void orderForListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            BO.OrderForList? orderForList = orderForListDataGrid.SelectedItem as BO.OrderForList;
-            if (orderForList != null)
-            {
-                OrderWindow ow = new OrderWindow(orderForList.ID,PL.GeneralMode.Editing);//create new OrderWindow of the selected order
-                Close(); 
-                ow.ShowDialog();
-            }
-        }
+     
+      
         /// <summary>
         /// Opens Admin Window
         /// </summary>
@@ -83,6 +76,21 @@ namespace PL.Order
             MainWindow plw = new MainWindow();//create new MainWindow
             Close();
             plw.ShowDialog();
+        }
+        /// <summary>
+        /// Opens Order Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDetails_Click(object sender, RoutedEventArgs e)
+        {
+            BO.OrderForList? orderForList = orderForListDataGrid.SelectedItem as BO.OrderForList;
+            if (orderForList != null)
+            {
+                OrderWindow ow = new OrderWindow(orderForList.ID, PL.GeneralMode.Editing);//create new OrderWindow of the selected order
+                Close();
+                ow.ShowDialog();
+            }
         }
     }
 }

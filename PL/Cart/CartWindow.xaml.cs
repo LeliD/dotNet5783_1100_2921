@@ -77,7 +77,7 @@ namespace PL.Cart
                 }
                 MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount + 1);
                 lvCart.Items.Refresh();
-                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+                lblTotalPrice.Content = MyCart.TotalPrice.ToString();
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace PL.Cart
                 MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, orderItem.Amount - 1);
                 lvCart.Items.Refresh();
                 lvCart.ItemsSource = MyCart.Items;//In case of removing there is a need to reload the itemsSource since the product may be removed
-                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+                lblTotalPrice.Content = MyCart.TotalPrice.ToString();
                 if (MyCart.Items != null && MyCart.Items.Count() == 0)//If cart is empty
                 {
                     tbEmptyCart.Visibility = Visibility.Visible;
@@ -122,7 +122,7 @@ namespace PL.Cart
                 MyCart = bl.Cart.UpdateAmountOfProductInCart(MyCart, orderItem.ProductID, 0);
                 lvCart.Items.Refresh();
                 lvCart.ItemsSource = MyCart.Items;
-                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+                lblTotalPrice.Content = MyCart.TotalPrice.ToString();
                 if (MyCart.Items != null && MyCart.Items.Count() == 0)//If cart is empty
                 {
                     tbEmptyCart.Visibility = Visibility.Visible;
@@ -164,7 +164,7 @@ namespace PL.Cart
                 btnMakeAnOrder.Visibility = Visibility.Hidden;
                 lvCart.Items.Refresh();
                 lvCart.ItemsSource = MyCart.Items;
-                tbTotalPrice.Text = MyCart.TotalPrice.ToString();
+                lblTotalPrice.Content = MyCart.TotalPrice.ToString();
             }
             
             catch (Exception ex)
