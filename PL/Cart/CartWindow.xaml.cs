@@ -156,7 +156,7 @@ namespace PL.Cart
             try
             {
                 orderId=bl.Cart.MakeOrder(MyCart);
-                MessageBox.Show("Your purchase was ended successfully!\n Thanks for buying at our store\n Your order id for tracking is:"+ orderId, "👍", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Your purchase was ended successfully!\n Thanks for buying at our store\n Your order id for tracking is: "+ orderId, "👍", MessageBoxButton.OK, MessageBoxImage.Information);
                 MyCart.Items=new List<BO.OrderItem>();
                 MyCart.TotalPrice=0;    
                 //cart is empty
