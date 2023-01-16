@@ -8,28 +8,41 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="550" Width="800" Activated="Window_Activated">
 
-    <Grid Background="#ECF0F1">
+    <Grid Background="#FFFCEFEC">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="211"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" CornerRadius="30" BorderThickness="4" Margin="19,18,526,51" BorderBrush="#FF6B6866">
+        <Border CornerRadius="30" BorderThickness="4" Margin="19,26,264,10" BorderBrush="#FF6B6866">
             <Border.Background>
                 <ImageBrush ImageSource="/zarahome.png"/>
             </Border.Background>
         </Border>
-        <Button x:Name="btnLogIn"  FontFamily="Segoe UI Black" Content="LOG IN" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="38" Width="109" FontSize="20" Click="btnLogIn_Click" Margin="658,26,0,0" FontWeight="Bold"  />
-        <Image HorizontalAlignment="Left" Height="30" Margin="621,32,0,0" VerticalAlignment="Top" Width="30" Source="/user-icon.png" RenderTransformOrigin="0.253,0.601"/>
-        <Button x:Name="btSignUp" Grid.Row="0" Style="{StaticResource buttonBack}" Click="btSignUp_Click" Margin="634,75,0,27" Width="147" >
+        <Button x:Name="btnLogIn"  FontFamily="Segoe UI Black" Content="LOG IN" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="38" Width="109" FontSize="20" Click="btnLogIn_Click" Margin="658,35,0,0" FontWeight="Bold"  />
+        <Image HorizontalAlignment="Left" Height="30" Margin="621,41,0,0" VerticalAlignment="Top" Width="30" Source="/user-icon.png" RenderTransformOrigin="0.253,0.601"/>
+        <Button x:Name="btSignUp" Grid.Row="0" Style="{StaticResource buttonBack}" Click="btSignUp_Click" Margin="636,76,0,96" Width="147" >
             <StackPanel Orientation="Horizontal" >
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
                 <TextBlock Text="SIGN UP" VerticalAlignment="Center" Margin="0 0 0 0"/>
             </StackPanel>
         </Button>
-        <Button x:Name="btnTracking" Grid.Row="1" Content="Track" HorizontalAlignment="Left" Margin="618,276,0,0" VerticalAlignment="Top" Height="50" Width="129" FontSize="20" Click="btnTracking_Click"/>
+        <Button x:Name="btnTracking" Grid.Row="1" Content="Track" HorizontalAlignment="Left" Margin="43,228,0,0" VerticalAlignment="Top" Height="44" Width="152" FontSize="25" Click="btnTracking_Click"/>
 
-        <TextBox x:Name="tbIDOrderTrack"  Grid.Row="1" Visibility="Visible" HorizontalAlignment="Left" Margin="620,343,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown" KeyDown="tbIDOrderTrack_KeyDown" Height="17"/>
-        <Label x:Name="lblTracking" Grid.Row="1" Content="Enter number of order&#10;and press enter" Visibility="Visible" HorizontalAlignment="Left" Margin="618,226,0,0" VerticalAlignment="Top" Width="144" Height="43"/>
+        <TextBox x:Name="tbIDOrderTrack"  FontSize="18" FontFamily="Montserrat" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Left" Margin="43,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown" KeyDown="tbIDOrderTrack_KeyDown" Height="33"/>
+        <Label x:Name="lblTracking" Grid.Row="1" FontFamily="Montserrat" Content="Enter number of order&#10;and press enter" Foreground="#FF6B6866" Visibility="Visible" HorizontalAlignment="Left" Margin="39,132,0,0" VerticalAlignment="Top" Width="168" Height="43" FontSize="13" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="188" Margin="622,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="147" Source="/4623049637_2_7_6.jpg"/>
+        <Image HorizontalAlignment="Left" Height="184" Margin="462,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148" Source="/6566724251_2_7_2.jpg"/>
+        <Image HorizontalAlignment="Left" Height="183" Margin="302,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="156" Source="/1358046406_2_7_2.jpg"/>
+        <Label Content="Sale" FontSize="38" HorizontalAlignment="Left" Margin="462,98,0,0" VerticalAlignment="Top" Grid.Row="1" Height="56" Width="101" RenderTransformOrigin="0.5,0.5" FontWeight="Bold">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-23.184"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
 
     </Grid>
 </Window>

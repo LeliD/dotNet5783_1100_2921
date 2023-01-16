@@ -13,6 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="1358046406_2_7_2.jpg" />
+    <None Remove="4623049637_2_7_6.jpg" />
+    <None Remove="6566724251_2_7_2.jpg" />
+    <None Remove="back-image.jpg" />
     <None Remove="Cart\HOME.png" />
     <None Remove="Cart\zara-home.png" />
     <None Remove="Images\back-image.jpg" />
@@ -28,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="1358046406_2_7_2.jpg" />
+    <Resource Include="4623049637_2_7_6.jpg" />
+    <Resource Include="6566724251_2_7_2.jpg" />
+    <Resource Include="back-image.jpg" />
     <Resource Include="Cart\HOME.png" />
     <Resource Include="Cart\zara-home.png" />
     <Resource Include="Images\back-image.jpg" />

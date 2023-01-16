@@ -124,7 +124,7 @@
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
-                               FontFamily="Montserrat"
+                               FontFamily="MontserratMontserrat"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="We will ask you for the necessary information to speed up the process."
                                Foreground="LightGray"

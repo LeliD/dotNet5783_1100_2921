@@ -10,8 +10,13 @@
             <Setter Property="Background" Value="#FFD8BCB2" />
             <Setter Property="BorderBrush" Value="#FF934326" />
             <Setter Property="Foreground" Value="#FF6B6866" />
-         <Setter Property="FontWeight" Value="Bold" />
-         <Setter Property="FontFamily" Value="Segoe UI Black" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="Segoe UI Black" />
+            <!--<Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF934326"/>
+                </Trigger>
+            </Style.Triggers>-->
         </Style>
 
 
