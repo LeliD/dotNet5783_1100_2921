@@ -19,6 +19,7 @@
     <None Remove="Images\key-icon.png" />
     <None Remove="Images\user-icon.png" />
     <None Remove="Images\zara-home.png" />
+    <None Remove="user-icon.png" />
     <None Remove="zarahome.png" />
   </ItemGroup>
 
@@ -33,6 +34,7 @@
     <Resource Include="Images\key-icon.png" />
     <Resource Include="Images\user-icon.png" />
     <Resource Include="Images\zara-home.png" />
+    <Resource Include="user-icon.png" />
     <Resource Include="zarahome.png" />
   </ItemGroup>
 
