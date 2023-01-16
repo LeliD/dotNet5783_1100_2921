@@ -26,7 +26,8 @@
                 </Border>
                 <!--<Image Grid.Row= "0" Height="60" Width="180" HorizontalAlignment="Center" Source="C:\Users\Shilat Sharon\source\repos\ShilatSharon\dotNet5783_1100_2921\PL\zarahome.png" />-->
                 <Label  Content="{Binding Name}" Grid.Row= "1" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="10" Height="auto" Width="auto"/>
-                <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />
+                <Label x:Name="lblPrice"  Content="{Binding Price}" Height="auto"  Grid.Row= "2" Width="auto" HorizontalAlignment="Center" Margin="5,0,0,0" ContentStringFormat=" {0} ₪"/>
+                <!--<TextBlock Text="{Binding Price, StringFormat={}{0:C}}"  Grid.Row= "2" HorizontalAlignment="Center" Margin="5,0,0,0" />-->
             </Grid>
         </DataTemplate>
     </Window.Resources>

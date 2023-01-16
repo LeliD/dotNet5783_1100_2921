@@ -13,7 +13,7 @@
             <RowDefinition Height="211"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border CornerRadius="30" BorderThickness="4" Margin="19,26,264,10" BorderBrush="#FF6B6866">
+        <Border CornerRadius="30" Grid.Row="0" BorderThickness="4" Margin="19,26,264,10" BorderBrush="#FF6B6866">
             <Border.Background>
                 <ImageBrush ImageSource="/zarahome.png"/>
             </Border.Background>
