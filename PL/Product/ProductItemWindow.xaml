@@ -55,7 +55,11 @@
 
         </Grid>
         <Button x:Name="btnAddToCart" Content="Add to cart" HorizontalAlignment="Left" Margin="631,343,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click" IsEnabled="{Binding InStock,Mode=OneWay}" Height="52" FontSize="15" Width="104"/>
-        <Image x:Name="ImImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="218" Margin="373,91,0,0" VerticalAlignment="Top" Width="228" />
+        <Border CornerRadius="10"  BorderThickness="1" Margin="385,100,246,118" BorderBrush="#FF6B6866">
+            <Border.Background>
+                <ImageBrush x:Name="ImImage" ImageSource="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" />
+            </Border.Background>
+        </Border>
         <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="602,18,0,364" Width="173" Click="btnBack_Click">
             <StackPanel Orientation="Horizontal">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
