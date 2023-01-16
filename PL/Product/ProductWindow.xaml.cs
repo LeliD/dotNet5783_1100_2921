@@ -367,7 +367,7 @@ namespace PL.Product
             //o.FilterIndex = 1;
             if (o.ShowDialog() == true)
             {
-                NewImage.Source = new BitmapImage(new Uri(o.FileName));//take an image from the computer
+                NewImage.ImageSource = new BitmapImage(new Uri(o.FileName));//take an image from the computer
                 boProduct!.ImageRelativeName = o.FileName;
             }
 

@@ -62,7 +62,11 @@
         <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
             <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
-        <Image x:Name="NewImage" Source="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" HorizontalAlignment="Left" Height="193" Margin="369,106,0,0" VerticalAlignment="Top" Width="183"/>
+        <Border CornerRadius="10"  BorderThickness="1" Margin="385,111,273,131" BorderBrush="#FF6B6866">
+            <Border.Background>
+                <ImageBrush x:Name="NewImage" ImageSource="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" />
+            </Border.Background>
+        </Border>
         <Button x:Name="btnAddImage" Content="Change picture" HorizontalAlignment="Left" Margin="385,320,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="39" Width="130"/>
         <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="460,29,0,353" Width="239" Click="btnBackToProductsListOrOrder_Click">
             <StackPanel Orientation="Horizontal" Width="215">
