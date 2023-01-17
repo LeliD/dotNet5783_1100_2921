@@ -72,5 +72,6 @@
                 <TextBlock Text="Go to Cart →" VerticalAlignment="Center" Margin="15 0 0 0"/>
             </StackPanel>
         </Button>
+        <TextBlock x:Name="tbHout" Text="{Binding InStock, Converter={StaticResource BooleanToTexts} }" HorizontalAlignment="Left" Margin="619,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="71"/>
     </Grid>
 </Window>

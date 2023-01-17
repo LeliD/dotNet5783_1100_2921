@@ -53,4 +53,24 @@ namespace PL
         }
 
     }
+    public class ConvertBooleanToTexts : IValueConverter //According to the quantity of the product, we will update the catalog if it is in stock or not
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool boolValue = (bool)value;
+            if (boolValue)
+            {
+                return " ";
+            }
+            else
+            {
+                return "Out Of Stock";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
