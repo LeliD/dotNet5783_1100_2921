@@ -72,10 +72,15 @@ namespace PL
         /// <param name="e"></param>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow plw = new MainWindow();//create new ProductListWindow
+            MainWindow mw = new MainWindow();//create new ProductListWindow
             Close();
-            plw.ShowDialog();
+            mw.ShowDialog();
         }
 
+        private void btnSimulation_Click(object sender, RoutedEventArgs e)
+        {
+            SimulatorWindow plw = new SimulatorWindow();//create new SimulatorWindow
+            plw.Show();
+        }
     }
 }
