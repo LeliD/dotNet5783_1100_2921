@@ -73,4 +73,26 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+    public class ConvertStatusToProgressBar : IValueConverter
+    {
+        private static readonly Random s_rand = new();
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            BO.OrderStatus orderStatus = (BO.OrderStatus)value;
+            if(orderStatus== BO.OrderStatus.Delivered)
+            {
+                return s_rand.Next(71, 101);
+            }
+            if (orderStatus == BO.OrderStatus.Shipped)
+            {
+                return s_rand.Next(31, 70);
+            }
+            return s_rand.Next(0, 31);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

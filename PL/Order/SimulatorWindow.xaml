@@ -5,42 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
-        Title="SimulatorWindow" Height="550" Width="800">
+        Title="SimulatorWindow" Height="550" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self} }" Closing="Window_Closing">
     <Grid Name="MainGrid" Background="#FFFCEFEC">
-     
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
 
-       <DataGrid x:Name="orderListDataGrid" Grid.Row="1"  AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding orderForList}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC"    FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" >
+        <DataGrid x:Name="orderListDataGrid" Grid.Row="1"  AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding orderForList}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC"    FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="100"/>
                 <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="SizeToHeader"/>
 
                 <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" Width="100"/>
+                <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="100"/>
 
-                <DataGridTemplateColumn x:Name="statusColumn" Header="Tracking" Width="90">
+                <DataGridTemplateColumn x:Name="statusColumn" Header="Tracking" Width="120">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ProgressBar Value="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            <ProgressBar x:Name="progressBar" Value="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, Converter={StaticResource StatusToProgressBar}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-              
+
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btnStart" Content="Start Tracking" HorizontalAlignment="Left" Margin="655,5,0,0" Grid.Row="2" VerticalAlignment="Top" Height="41" Width="126" Click="btnStart_Click" />
+        <Button x:Name="btnStop" Content="Stop Tracking" HorizontalAlignment="Left" Margin="26,5,0,0" Grid.Row="2" VerticalAlignment="Top" Height="41" Width="126" Click="btnStop_Click" />
+
         <!--<Button x:Name="btnHome" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click"  >
             <Image Source="/Cart/HOME.png" Height="30" Width="36"/>
         </Button>-->
         <!--<Button x:Name="btnBack" Grid.Row="2" Style="{StaticResource buttonBack}"  Margin="488,8,0,2" Width="104" Click="btnBack_Click" >
             <StackPanel Orientation="Horizontal">
-                --><!--<Image Source="/Images/left.png" Width="20"/>--><!--
+                -->
+        <!--<Image Source="/Images/left.png" Width="20"/>-->
+        <!--
                 <TextBlock Text="← Back"/>
-                --><!--<Image Source="/Images/left.png" Width="20"/>--><!--
+                -->
+        <!--<Image Source="/Images/left.png" Width="20"/>-->
+        <!--
             </StackPanel>
         </Button>-->
 
