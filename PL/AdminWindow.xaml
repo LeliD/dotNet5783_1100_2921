@@ -22,10 +22,10 @@
             <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
         <Label x:Name="lblWelcome" Content="Welcome Manager" FontFamily="Narkisim" HorizontalAlignment="Left" FontSize="33" Foreground="#FF934326" Margin="285,0,0,0" VerticalAlignment="Center" Height="41" FontWeight="Bold" Width="273"/>
-        <Button x:Name="BtnOrderList" Grid.Row="1" Content="List Of Orders" HorizontalAlignment="Left" Margin="48,342,0,0" Height="64" Width="196" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
-        <Button x:Name="BtnProductList" Grid.Row="1" Content="List Of Products" HorizontalAlignment="Left" Margin="567,342,0,0" VerticalAlignment="Top" Click="BtnProductList_Click" FontFamily="Segoe UI Black" Height="64" Width="196" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866"/>
-        <Button x:Name="BtnAddManager" Grid.Row="1" Content="Add Admin Access" HorizontalAlignment="Center" Margin="0,341,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" Height="64" Width="196" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866" Click="BtnAddManager_Click"/>
-        <Button x:Name="btnSimulation" Content="Orders Progress"  Grid.Row="1" HorizontalAlignment="Left" Margin="567,272,0,0" VerticalAlignment="Top" Height="64" Width="196" FontSize="20" Click="btnSimulation_Click"/>
+        <Button x:Name="BtnOrderList" Grid.Row="1" Content="List Of Orders" HorizontalAlignment="Left" Margin="21,351,0,0" Height="64" Width="196" FontSize="20" VerticalAlignment="Top" Click="BtnOrderList_Click"/>
+        <Button x:Name="BtnProductList" Grid.Row="1" Content="List Of Products" HorizontalAlignment="Left" Margin="585,343,0,0" VerticalAlignment="Top" Click="BtnProductList_Click" FontFamily="Segoe UI Black" Height="64" Width="196" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866"/>
+        <Button x:Name="BtnAddManager" Grid.Row="1" Content="Add Admin Access" HorizontalAlignment="Left" Margin="21,264,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" Height="64" Width="196" FontSize="20" Background="#FFD8BCB2" BorderBrush="#FF934326" Foreground="#FF6B6866" Click="BtnAddManager_Click"/>
+        <Button x:Name="btnSimulation" Content="Orders Progress"  Grid.Row="1" HorizontalAlignment="Left" Margin="585,264,0,0" VerticalAlignment="Top" Height="64" Width="196" FontSize="20" Click="btnSimulation_Click"/>
 
     </Grid>
 </Window>

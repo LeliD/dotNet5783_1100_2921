@@ -9,9 +9,18 @@
         WindowStyle="ToolWindow"
         DataContext="{Binding boProduct, RelativeSource={RelativeSource Self} }"
         Title="ProductWindow" Height="450" Width="800">
-    <Grid Background="#FFFCEFEC">
 
-        <Grid x:Name="ProductGrid" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="89,0,0,0" Height="324" Width="280">
+    <Grid Background="#FFFCEFEC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="30" Grid.Row="0" BorderThickness="2" Margin="10,6,604,6" BorderBrush="#FF6B6866">
+            <Border.Background>
+                <ImageBrush ImageSource="/zarahome.png"/>
+            </Border.Background>
+        </Border>
+        <Grid x:Name="ProductGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="89,0,0,0" Height="324" Width="280">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -32,8 +41,6 @@
             <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbName_TextChanged"/>
             <Label x:Name="lblWrongName" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
-
-
             <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
             <ComboBox x:Name="CategorySelector" Grid.Column="1"  SelectedItem="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="NaN"  Margin="3,-20,0,0" Grid.Row="2" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
@@ -44,32 +51,27 @@
             </ComboBox>
             <Label x:Name="lblMissingCategory" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
 
-
             <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3,0,0,3" Grid.Row="3" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold" />
             <TextBox x:Name="tbPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbPrice_TextChanged"/>
             <Label x:Name="lblWrongPrice" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="3" Width="150" Foreground="#FFD42D2D" Height="32" VerticalAlignment="Top"/>
 
-
             <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
             <TextBox x:Name="tbInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbInStock_TextChanged" PreviewKeyDown="tbInStock_PreviewKeyDown"/>
             <Label x:Name="lblWrongInStock" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="4" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
-
-
-
         </Grid>
 
-        <Button x:Name="btnAdd_UpdateProduct" Content="Add" HorizontalAlignment="Left" Margin="663,340,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="46" Width="110"/>
-        <Button x:Name="btnRemove" Content="Remove product" HorizontalAlignment="Left" Margin="663,280,0,0" VerticalAlignment="Top" Height="46" Click="btnRemove_Click" FontSize="13" Width="110"/>
-        <Button x:Name="btnHome" HorizontalAlignment="Right" Margin="0,26,27,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
+        <Button x:Name="btnAdd_UpdateProduct" Grid.Row="1" Content="Add" HorizontalAlignment="Left" Margin="663,284,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="46" Width="110"/>
+        <Button x:Name="btnRemove" Grid.Row="1" Content="Remove product" HorizontalAlignment="Left" Margin="663,224,0,0" VerticalAlignment="Top" Height="46" Click="btnRemove_Click" FontSize="13" Width="110"/>
+        <Button x:Name="btnHome" Grid.Row="0"  HorizontalAlignment="Left" Margin="742,0,0,0" VerticalAlignment="Center" Height="42" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
             <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
-        <Border CornerRadius="10"  BorderThickness="1" Margin="385,111,273,131" BorderBrush="#FF6B6866">
+        <Border CornerRadius="10"  Grid.Row="1"  BorderThickness="1" Margin="385,111,273,131" BorderBrush="#FF6B6866">
             <Border.Background>
                 <ImageBrush x:Name="NewImage" ImageSource="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" />
             </Border.Background>
         </Border>
-        <Button x:Name="btnAddImage" Content="Change picture" HorizontalAlignment="Left" Margin="385,320,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="39" Width="130"/>
-        <Button x:Name="btnBack" Style="{StaticResource buttonBack}" Margin="460,29,0,353" Width="239" Click="btnBackToProductsListOrOrder_Click">
+        <Button x:Name="btnAddImage" Grid.Row="1" Content="Change picture" HorizontalAlignment="Left" Margin="391,247,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="39" Width="130"/>
+        <Button x:Name="btnBack" Grid.Row="0" Style="{StaticResource buttonBack}" Margin="470,14,0,6" Width="223" Click="btnBackToProductsListOrOrder_Click">
             <StackPanel Orientation="Horizontal" Width="215">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
                 <TextBlock Text="← Back To Products' List" VerticalAlignment="Center" Margin="15 0 0 0" Width="201"/>

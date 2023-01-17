@@ -9,28 +9,12 @@
     <ImageRelativeName>\Images\IMG100000.png</ImageRelativeName>
   </Product>
   <Product>
-    <ID>100001</ID>
-    <Name>WOODEN SUGAR BOWL</Name>
-    <Price>120</Price>
-    <Category>KITCHEN</Category>
-    <InStock>9</InStock>
-    <ImageRelativeName>\Images\IMG100001.png</ImageRelativeName>
-  </Product>
-  <Product>
     <ID>100005</ID>
     <Name>COTTON BATHROBE WITH HOOD</Name>
     <Price>108</Price>
     <Category>BATHROOM</Category>
     <InStock>38</InStock>
     <ImageRelativeName>\Images\IMG100005.png</ImageRelativeName>
-  </Product>
-  <Product>
-    <ID>100006</ID>
-    <Name>HIGH QUALITY COTTON TOWEL</Name>
-    <Price>109</Price>
-    <Category>BATHROOM</Category>
-    <InStock>33</InStock>
-    <ImageRelativeName>\Images\IMG100006.png</ImageRelativeName>
   </Product>
   <Product>
     <ID>100007</ID>
@@ -57,14 +41,6 @@
     <ImageRelativeName>\Images\IMG100009.png</ImageRelativeName>
   </Product>
   <Product>
-    <ID>100010</ID>
-    <Name>SMALL STOOL</Name>
-    <Price>122</Price>
-    <Category>LIVING_ROOM</Category>
-    <InStock>49</InStock>
-    <ImageRelativeName>\Images\IMG100010.png</ImageRelativeName>
-  </Product>
-  <Product>
     <ID>100011</ID>
     <Name>WOOL BLANKET</Name>
     <Price>126</Price>
@@ -79,14 +55,6 @@
     <Category>BEDROOM</Category>
     <InStock>23</InStock>
     <ImageRelativeName>\Images\IMG100012.png</ImageRelativeName>
-  </Product>
-  <Product>
-    <ID>100013</ID>
-    <Name>LINEN CURTAIN</Name>
-    <Price>153</Price>
-    <Category>BEDROOM</Category>
-    <InStock>23</InStock>
-    <ImageRelativeName>\Images\IMG100013.png</ImageRelativeName>
   </Product>
   <Product>
     <ID>100014</ID>
@@ -129,14 +97,6 @@
     <ImageRelativeName>\Images\IMG100018.png</ImageRelativeName>
   </Product>
   <Product>
-    <ID>100003</ID>
-    <Name>COPPER AND BRASS POT WITH LID</Name>
-    <Price>103</Price>
-    <Category>KITCHEN</Category>
-    <InStock>32</InStock>
-    <ImageRelativeName>\Images\IMG100003.png</ImageRelativeName>
-  </Product>
-  <Product>
     <ID>100002</ID>
     <Name>MARBLE BOARD</Name>
     <Price>112</Price>
@@ -145,11 +105,51 @@
     <ImageRelativeName>\Images\IMG100002.png</ImageRelativeName>
   </Product>
   <Product>
+    <ID>100006</ID>
+    <Name>HIGH QUALITY COTTON TOWEL</Name>
+    <Price>109</Price>
+    <Category>BATHROOM</Category>
+    <InStock>32</InStock>
+    <ImageRelativeName>\Images\IMG100006.png</ImageRelativeName>
+  </Product>
+  <Product>
+    <ID>100001</ID>
+    <Name>WOODEN SUGAR BOWL</Name>
+    <Price>120</Price>
+    <Category>KITCHEN</Category>
+    <InStock>7</InStock>
+    <ImageRelativeName>\Images\IMG100001.png</ImageRelativeName>
+  </Product>
+  <Product>
+    <ID>100013</ID>
+    <Name>LINEN CURTAIN</Name>
+    <Price>153</Price>
+    <Category>BEDROOM</Category>
+    <InStock>22</InStock>
+    <ImageRelativeName>\Images\IMG100013.png</ImageRelativeName>
+  </Product>
+  <Product>
+    <ID>100003</ID>
+    <Name>COPPER AND BRASS POT WITH LID</Name>
+    <Price>103</Price>
+    <Category>KITCHEN</Category>
+    <InStock>31</InStock>
+    <ImageRelativeName>\Images\IMG100003.png</ImageRelativeName>
+  </Product>
+  <Product>
+    <ID>100010</ID>
+    <Name>SMALL STOOL</Name>
+    <Price>122</Price>
+    <Category>LIVING_ROOM</Category>
+    <InStock>47</InStock>
+    <ImageRelativeName>\Images\IMG100010.png</ImageRelativeName>
+  </Product>
+  <Product>
     <ID>100004</ID>
     <Name>SET OF ACACIA WOOD KITCHEN UTENSILS</Name>
     <Price>172</Price>
     <Category>KITCHEN</Category>
-    <InStock>17</InStock>
+    <InStock>15</InStock>
     <ImageRelativeName>\Images\IMG100004.png</ImageRelativeName>
   </Product>
 </ArrayOfProduct>

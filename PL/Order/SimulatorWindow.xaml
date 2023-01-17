@@ -10,21 +10,25 @@
     <Grid Name="MainGrid" Background="#FFFCEFEC">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
-
+        <Border CornerRadius="30" Grid.Row="0" BorderThickness="2" Margin="10,6,604,6" BorderBrush="#FF6B6866">
+            <Border.Background>
+                <ImageBrush ImageSource="/zarahome.png"/>
+            </Border.Background>
+        </Border>
         <DataGrid x:Name="orderListDataGrid" Grid.Row="1"  AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding orderForList}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC"    FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="100"/>
-                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="200"/>
 
-                <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="135"/>
                 <DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" Width="100"/>
                 <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="100"/>
 
-                <DataGridTemplateColumn x:Name="statusColumn" Header="Tracking" Width="120">
+                <DataGridTemplateColumn x:Name="statusColumn" Header="Tracking" Width="163">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ProgressBar x:Name="progressBar" Value="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, Converter={StaticResource StatusToProgressBar}}"/>

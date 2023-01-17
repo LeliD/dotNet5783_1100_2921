@@ -29,11 +29,22 @@ namespace PL.Order
         /// bl is an instance of IBl
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
+        /// <summary>
+        /// A Thread
+        /// </summary>
         BackgroundWorker worker;
-        private bool isTimerRun=true;
+        /// <summary>
+        /// isTimerRun for thread running
+        /// </summary>
+        private bool isTimerRun;
+        /// <summary>
+        /// time of the thread
+        /// </summary>
         public DateTime time;
 
-
+        /// <summary>
+        /// Orders for Manager
+        /// </summary>
         public ObservableCollection<BO.OrderForList?> orderForList
         {
             get { return (ObservableCollection<BO.OrderForList?>)GetValue(orderForListProperty); }
@@ -49,60 +60,69 @@ namespace PL.Order
         public SimulatorWindow()
         {
             InitializeComponent();
-            orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());
+            orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());//Orders For Manager
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged; ;
-            worker.WorkerReportsProgress = true; 
-            worker.WorkerSupportsCancellation = true;
-
+            worker.WorkerReportsProgress = true; //Progress
+            worker.WorkerSupportsCancellation = true;//Cancellation
         }
-
+        /// <summary>
+        /// Worker_ProgressChanged for the worker thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Worker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
-            
-            var orders=bl.Order.GetOrdersForManager();
-            BO.Order boOrder;
-            TimeSpan shipTime = new TimeSpan(3, 0, 0, 0);//3 days
-            TimeSpan deliveryTime = new TimeSpan(7, 0, 0, 0);//3 days
-            foreach (var order in orders.ToList())
+            var orders = bl.Order.GetOrdersForManager();//Orders For Manager
+            BO.Order boOrder;//A single order
+            TimeSpan shipTime = new TimeSpan(3, 0, 0, 0);//3 days for shipping time range
+            TimeSpan deliveryTime = new TimeSpan(7, 0, 0, 0);//7 days for delivering time range
+            foreach (var order in orders.ToList())//Passes over the orders
             {
-                boOrder = bl.Order.GetOrderByID(order!.ID);
+                boOrder = bl.Order.GetOrderByID(order!.ID); //get order from dal
                 if (boOrder.ShipDate == null)
                 {
-                    if (boOrder.OrderDate + shipTime <= time)
+                    if (boOrder.OrderDate + shipTime <= time)//time of shipping has come
                     {
-                        bl.Order.UpdateShipDate(boOrder.ID);
-                        orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());
+                        bl.Order.UpdateShipDate(boOrder.ID);//Update its ShipDate
+                        //orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());//bring the list again from dal
                     }
                 }
                 else
                     if (boOrder.DeliveryDate == null)
                 {
-                    if (boOrder.ShipDate + deliveryTime <= time)
+                    if (boOrder.ShipDate + deliveryTime <= time)//time of delivering has come
                     {
-                        bl.Order.UpdateDeliveryDate(boOrder.ID);
-                        orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());
+                        bl.Order.UpdateDeliveryDate(boOrder.ID);//Update its DeliveryDate
+                        //orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());//bring the list again from dal
                     }
                 }
-                //Thread.Sleep(1000);
-                
-            }
-           
-        }
+                orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());//bring the list again from dal
 
+                //Thread.Sleep(1000);
+            }
+        }
+        /// <summary>
+        /// Worker_DoWork for the worker thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Worker_DoWork(object? sender, DoWorkEventArgs e)
         {
-            time = DateTime.Now;
+            time = DateTime.Now; //time initializes in DateTime.Now
             while (isTimerRun)
             {
                 worker.ReportProgress(1);
                 Thread.Sleep(2000);
-                time = time.AddDays(2);
+                time = time.AddHours(17);//Promoting time in t
             }
-           
         }
-
+        /// <summary>
+        /// Starting the thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             if (worker.IsBusy != true)
@@ -113,25 +133,30 @@ namespace PL.Order
             }
            
         }
-
+        /// <summary>
+        /// Stoping the thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             if (worker.WorkerSupportsCancellation == true)
-            // Cancel the asynchronous operation.
-            {
+                // Raising the flag to stop the asynchronous operation.
                 isTimerRun = false;
-                //worker.CancelAsync();
-            }
-                
         }
 
+        /// <summary>
+        /// Stoping the thread by window closing event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (worker.WorkerSupportsCancellation == true)
+            {
+                // Raising the flag to stop the asynchronous operation.
                 isTimerRun = false;
-            // Cancel the asynchronous operation.
-            //worker.CancelAsync();
-
+            }
         }
     }
 }
