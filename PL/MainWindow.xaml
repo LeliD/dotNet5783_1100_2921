@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
         Title="MainWindow" Height="550" Width="800" Activated="Window_Activated">
 
     <Grid Background="#FFFCEFEC">

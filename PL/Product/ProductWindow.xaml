@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PL.Product"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
         DataContext="{Binding boProduct, RelativeSource={RelativeSource Self} }"
         Title="ProductWindow" Height="450" Width="800">
     <Grid Background="#FFFCEFEC">

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
         Title="OrderListWindow" Height="550" Width="800" Activated="Window_Activated">
     <Grid Name="MainGrid" Background="#FFFCEFEC">
         <Grid.RowDefinitions>

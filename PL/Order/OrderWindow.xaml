@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
         DataContext="{Binding boOrder, RelativeSource={RelativeSource Self} }"
         Title="OrderWindow" Height="450" Width="800" >
     <Grid Background="#FFFCEFEC">
