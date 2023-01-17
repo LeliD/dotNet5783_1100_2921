@@ -26,6 +26,7 @@
 
                 <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="135"/>
                 <DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" Width="100"/>
+                
                 <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="100"/>
 
                 <DataGridTemplateColumn x:Name="statusColumn" Header="Tracking" Width="163">

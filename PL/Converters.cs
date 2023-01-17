@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Collections;
+
 namespace PL
 {
     public class ConvertImagePathToBitmap : IValueConverter
@@ -88,6 +90,28 @@ namespace PL
                 return s_rand.Next(31, 70);
             }
             return s_rand.Next(0, 31);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class ConvertStatusToBackgroundColor : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var status = (BO.OrderStatus)value;
+            if (status==BO.OrderStatus.Ordered)
+            {
+                return "Pink";
+            }
+            if (status == BO.OrderStatus.Shipped)
+            {
+                return "DarkPink";
+            }
+            else
+                return "Red";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

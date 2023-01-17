@@ -7,6 +7,7 @@
         <local:ConvertImagePathToBitmap x:Key="ImagePathToBitmap"/>
         <local:ConvertBooleanToText x:Key="BooleanToText"/>
         <local:ConvertStatusToProgressBar x:Key="StatusToProgressBar"/>
+        <local:ConvertStatusToBackgroundColor x:Key="StatusToBackgroundColor"/>
         
         <Style TargetType="Button">
             <Setter Property="Background" Value="#FFD8BCB2" />

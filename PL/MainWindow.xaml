@@ -39,11 +39,21 @@
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="-23.184"/>
+                    <RotateTransform Angle="35.314"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <Image HorizontalAlignment="Left" Height="52" Margin="431,140,0,0" Grid.Row="1" VerticalAlignment="Top" Width="80" Source="/Zara-Logo-1975.png" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="14.027"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
     </Grid>
 </Window>
