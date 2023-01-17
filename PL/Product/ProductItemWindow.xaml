@@ -72,6 +72,15 @@
                 <TextBlock Text="Go to Cart →" VerticalAlignment="Center" Margin="15 0 0 0"/>
             </StackPanel>
         </Button>
-        <TextBlock x:Name="tbHout" Text="{Binding InStock, Converter={StaticResource BooleanToTexts} }" HorizontalAlignment="Left" Margin="619,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="71"/>
+        <TextBlock x:Name="tbHout" Text="{Binding InStock, Converter={StaticResource BooleanToText} }" HorizontalAlignment="Left" Margin="106,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="154" Width="594" FontSize="90" Foreground="#FFF32B2B" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="29.46"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Window>

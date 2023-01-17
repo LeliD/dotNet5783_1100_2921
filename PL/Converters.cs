@@ -53,7 +53,7 @@ namespace PL
         }
 
     }
-    public class ConvertBooleanToTexts : IValueConverter //According to the quantity of the product, we will update the catalog if it is in stock or not
+    public class ConvertBooleanToText : IValueConverter //According to the quantity of the product, we will update the catalog if it is in stock or not
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -64,7 +64,7 @@ namespace PL
             }
             else
             {
-                return "Out Of Stock";
+                return "Out Of Stock!";
             }
         }
 

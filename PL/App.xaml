@@ -5,7 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <local:ConvertImagePathToBitmap x:Key="ImagePathToBitmap"/>
-        <local:ConvertConvertBooleanToTexts x:Key="BooleanToText"/>
+        <local:ConvertBooleanToText x:Key="BooleanToText"/>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#FFD8BCB2" />
             <Setter Property="BorderBrush" Value="#FF934326" />
