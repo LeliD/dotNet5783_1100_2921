@@ -81,7 +81,7 @@ namespace PL
             BO.OrderStatus orderStatus = (BO.OrderStatus)value;
             if(orderStatus== BO.OrderStatus.Delivered)
             {
-                return s_rand.Next(71, 101);
+                return 100;
             }
             if (orderStatus == BO.OrderStatus.Shipped)
             {

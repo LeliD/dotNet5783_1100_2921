@@ -30,7 +30,7 @@ namespace PL.Order
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
         BackgroundWorker worker;
-        private bool isTimerRun;
+        private bool isTimerRun=true;
         public DateTime time;
 
 
@@ -60,7 +60,7 @@ namespace PL.Order
 
         private void Worker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
-            int hours = e.ProgressPercentage;
+            
             var orders=bl.Order.GetOrdersForManager();
             BO.Order boOrder;
             TimeSpan shipTime = new TimeSpan(3, 0, 0, 0);//3 days
@@ -85,9 +85,10 @@ namespace PL.Order
                         orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());
                     }
                 }
-                Thread.Sleep(2000);
+                //Thread.Sleep(1000);
+                
             }
-            time.AddHours(hours);
+           
         }
 
         private void Worker_DoWork(object? sender, DoWorkEventArgs e)
@@ -95,10 +96,11 @@ namespace PL.Order
             time = DateTime.Now;
             while (isTimerRun)
             {
-                worker.ReportProgress(5);
-                Thread.Sleep(1000);
+                worker.ReportProgress(1);
+                Thread.Sleep(2000);
+                time = time.AddDays(2);
             }
-
+           
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
