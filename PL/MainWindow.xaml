@@ -31,25 +31,25 @@
 
         <TextBox x:Name="tbIDOrderTrack"  FontSize="18" FontFamily="Montserrat" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Left" Margin="43,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" PreviewKeyDown="tbIDOrderTrack_PreviewKeyDown" KeyDown="tbIDOrderTrack_KeyDown" Height="33"/>
         <Label x:Name="lblTracking" Grid.Row="1" FontFamily="Montserrat" Content="Enter number of order&#10;and press enter" Foreground="#FF6B6866" Visibility="Visible" HorizontalAlignment="Left" Margin="39,132,0,0" VerticalAlignment="Top" Width="168" Height="43" FontSize="13" FontWeight="Bold"/>
-        <Image HorizontalAlignment="Left" Height="188" Margin="622,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="147" Source="/4623049637_2_7_6.jpg"/>
+        <Image HorizontalAlignment="Left" Height="188" Margin="302,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="147" Source="/4623049637_2_7_6.jpg"/>
         <Image HorizontalAlignment="Left" Height="184" Margin="462,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148" Source="/6566724251_2_7_2.jpg"/>
-        <Image HorizontalAlignment="Left" Height="183" Margin="302,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="156" Source="/1358046406_2_7_2.jpg"/>
+        <Image HorizontalAlignment="Left" Height="183" Margin="622,90,0,0" Grid.Row="1" VerticalAlignment="Top" Width="156" Source="/1358046406_2_7_2.jpg"/>
         <Label Content="Sale" FontSize="38" HorizontalAlignment="Left" Margin="462,98,0,0" VerticalAlignment="Top" Grid.Row="1" Height="56" Width="101" RenderTransformOrigin="0.5,0.5" FontWeight="Bold">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="35.314"/>
+                    <RotateTransform Angle="-28.871"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Image HorizontalAlignment="Left" Height="52" Margin="431,140,0,0" Grid.Row="1" VerticalAlignment="Top" Width="80" Source="/Zara-Logo-1975.png" RenderTransformOrigin="0.5,0.5">
+        <Image HorizontalAlignment="Left" Height="52" Margin="407,98,0,0" Grid.Row="1" VerticalAlignment="Top" Width="80" Source="/Zara-Logo-1975.png" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="14.027"/>
+                    <RotateTransform Angle="22.947"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Image.RenderTransform>
