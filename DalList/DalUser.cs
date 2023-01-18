@@ -31,7 +31,7 @@ internal class DalUser : IUser
     public int Add(DO.User user)
     {
         if (DataSource.UsersList.Exists(x => x?.UserName == user.UserName))
-            throw new DO.DalAlreadyExistUserNameException(user.UserName!, $"Username: {user.UserName} already exist");
+            throw new DO.DalAlreadyExistUserNameException(user.UserName ?? " ", $"Username: {user.UserName} already exist");
         DataSource.UsersList.Add(user);
         return 0;
     }

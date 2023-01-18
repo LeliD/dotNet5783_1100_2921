@@ -15,7 +15,7 @@ namespace Dal
         public IOrderItem OrderItem { get; } = new DalOrderItem();
         public IProduct Product { get; } = new DalProduct();
         public IUser User { get; } = new DalUser();
-        public static IDal Instance { get; } = new DalList();
-        private DalList(){ }
+        public static IDal Instance { get; } = new DalList(); //singelton
+        private DalList() { }
     }
 }

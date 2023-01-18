@@ -191,7 +191,7 @@ internal static class DataSource
                ID = Config.NextOrderItemNumber,
                OrderID = r.ID,
                ProductID= idOfProduct1,
-               Price=ProductsList.Find(x=>x?.ID== idOfProduct1).Value.Price,
+               Price=ProductsList.Find(x=>x?.ID== idOfProduct1)?.Price??throw new DO.DalNullPropertyException("orderItem"),
                Amount= s_rand.Next(1,6)
             }) ;
             int idOfProduct2 = s_rand.Next(100000, 100010);//Second random product's id
@@ -204,7 +204,7 @@ internal static class DataSource
                 ID = Config.NextOrderItemNumber,
                 OrderID = r.ID,
                 ProductID = idOfProduct2,
-                Price = ProductsList.Find(x => x?.ID == idOfProduct2).Value.Price,
+                Price = ProductsList.Find(x => x?.ID == idOfProduct2)?.Price?? throw new DO.DalNullPropertyException("orderItem"),
                 Amount = s_rand.Next(1, 6)
             });
 

@@ -22,17 +22,25 @@
         <DataGrid x:Name="orderListDataGrid" Grid.Row="1"  AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding orderForList}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC"    FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="100"/>
-                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="200"/>
+                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="180"/>
 
                 <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="135"/>
-                <DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" Width="100"/>
-                
+                <!--<DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" Width="100"/>-->
+                <DataGridTemplateColumn Header="Status" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Status}" Background="{Binding Path=Status, Converter={StaticResource StatusToBackgroundColor}}"/>
+                         </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
                 <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="100"/>
 
                 <DataGridTemplateColumn x:Name="statusColumn" Header="Tracking" Width="163">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ProgressBar x:Name="progressBar" Value="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, Converter={StaticResource StatusToProgressBar}}"/>
+                            <ProgressBar x:Name="progressBar" Value="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, Converter={StaticResource StatusToProgressBar}}" Foreground="#FFC96C6C"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

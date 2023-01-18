@@ -104,14 +104,14 @@ namespace PL
             var status = (BO.OrderStatus)value;
             if (status==BO.OrderStatus.Ordered)
             {
-                return "Pink";
+                return "PaleVioletRed";
             }
             if (status == BO.OrderStatus.Shipped)
             {
-                return "DarkPink";
+                return "HotPink";
             }
             else
-                return "Red";
+                return "Pink";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
