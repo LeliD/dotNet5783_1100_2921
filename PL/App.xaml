@@ -60,7 +60,18 @@
             </Style.Triggers>
         </Style>
 
+        <Style  x:Key="textOfItem" TargetType="TextBlock" >
+            <Setter Property="TextElement.FontFamily" Value="Cascadia Mono SemiBold"/>
+            <Setter Property="TextElement.FontStyle" Value="Italic"/>
+            <Setter Property="TextBlock.Foreground" Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="FontWeight" Value="ExtraBold" />
+                    <Setter Property="TextDecorations" Value="Underline" />
+                </Trigger>
+            </Style.Triggers>
 
+        </Style>
         <!--<Style x:Key="icon" TargetType="Image">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
