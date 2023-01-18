@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BlApi;
 
@@ -67,6 +68,30 @@ internal class Product : IProduct
                    //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
 
                };
+        if (filter == null)
+            return x;
+
+        return from productItem in x
+               where filter(productItem)
+               select productItem;
+
+    }
+    public IEnumerable<BO.ProductItem?> GetGroupedListedProductsForCustomer(Func<BO.ProductItem?, bool>? filter = null)
+    {
+        var x = from DO.Product? doProduct in dal.Product.GetAll()
+                select new BO.ProductItem()
+                {
+                    ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
+                    Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
+                    Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
+                    Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
+                    InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
+                    Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product"),
+                    ImageRelativeName = doProduct?.ImageRelativeName
+                    //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
+
+                } into products
+                group products by products.Category;
         if (filter == null)
             return x;
 
