@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
         DataContext="{Binding boOrderTracking, RelativeSource={RelativeSource Self} }"
-        Title="OrderTrackingWindow" Height="450" Width="800">
+        Title="OrderTrackingWindow" Height="550" Width="800">
     <Grid Background="#FFFCEFEC">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
@@ -19,7 +19,7 @@
                 <ImageBrush ImageSource="/zarahome.png"/>
             </Border.Background>
         </Border>
-        <Grid x:Name="orderTrackingGrid" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="39,34,0,0" Height="254" Width="365">
+        <Grid x:Name="orderTrackingGrid" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="51,115,0,0" Height="252" Width="377">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="500"/>
@@ -47,7 +47,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Button x:Name="btnOrderDetails" FontSize="18" Content="Order Details" HorizontalAlignment="Left" Margin="615,238,0,0" VerticalAlignment="Top" Height="47" Width="127" Click="btnOrderDetails_Click" Grid.Row="1"/>
+        <Button x:Name="btnOrderDetails" FontSize="18" Content="Order Details" HorizontalAlignment="Left" Margin="635,320,0,0" VerticalAlignment="Top" Height="47" Width="127" Click="btnOrderDetails_Click" Grid.Row="1"/>
         <Button x:Name="btnHome" Grid.Row="0" HorizontalAlignment="Right" Margin="0,15,18,0" VerticalAlignment="Top" Height="41" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
             <Image Source="/Cart/HOME.png" Height="41" Width="40"/>
         </Button>

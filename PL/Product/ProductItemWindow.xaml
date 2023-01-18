@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
         DataContext="{Binding boProductItem, RelativeSource={RelativeSource Self} }"
-        Title="ProductItemWindow" Height="450" Width="800">
+        Title="ProductItemWindow" Height="550" Width="800">
     <Grid Background="#FFFCEFEC">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -19,7 +19,7 @@
                 <ImageBrush ImageSource="/zarahome.png"/>
             </Border.Background>
         </Border>
-        <Grid x:Name="ProductGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="34,0,0,0" Height="328" Width="276">
+        <Grid x:Name="ProductGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,44,0,0" Height="322" Width="274">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -63,8 +63,8 @@
 
 
         </Grid>
-        <Button x:Name="btnAddToCart" Grid.Row="1" Content="Add to cart" HorizontalAlignment="Left" Margin="652,229,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click" IsEnabled="{Binding InStock,Mode=OneWay}" Height="52" FontSize="15" Width="104"/>
-        <Border CornerRadius="10"  Grid.Row="1" BorderThickness="1" Margin="357,36,250,53" BorderBrush="#FF6B6866">
+        <Button x:Name="btnAddToCart" Grid.Row="1" Content="Add to cart" HorizontalAlignment="Left" Margin="658,331,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click" IsEnabled="{Binding InStock,Mode=OneWay}" Height="52" FontSize="15" Width="104"/>
+        <Border CornerRadius="10"  Grid.Row="1" BorderThickness="1" Margin="352,74,231,90" BorderBrush="#FF6B6866">
             <Border.Background>
                 <ImageBrush x:Name="ImImage" ImageSource="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" />
             </Border.Background>
@@ -81,7 +81,7 @@
                 <TextBlock Text="Go to Cart →" VerticalAlignment="Center" Margin="15 0 0 0"/>
             </StackPanel>
         </Button>
-        <!--<TextBlock x:Name="tbHout" Text="{Binding InStock, Converter={StaticResource BooleanToText} }" HorizontalAlignment="Left" Margin="106,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="154" Width="594" FontSize="90" Foreground="#FFF32B2B" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="tbHout" Text="{Binding InStock, Converter={StaticResource BooleanToText} }" HorizontalAlignment="Left" Margin="106,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="154" Width="594" FontSize="90" Foreground="#FFF32B2B" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -90,6 +90,6 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </TextBlock.RenderTransform>
-        </TextBlock>-->
+        </TextBlock>
     </Grid>
 </Window>

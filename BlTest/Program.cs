@@ -252,14 +252,7 @@ g: Exit");
                             throw new FormatException("The value must be numeric");
                         Console.WriteLine(bl.Order.OrderTrack(ID));
                         break;
-                    case 'f':
-                        Console.WriteLine("Enter ID of order to update");
-                        input = Console.ReadLine();
-                        check = int.TryParse(input, out ID);
-                        if (!check)
-                            throw new FormatException("The value must be numeric");
-                        bl.Order.UpdateOrder(ID);//to print? void..?????????????????////
-                        break;
+
                     default:
                         break;
                 }

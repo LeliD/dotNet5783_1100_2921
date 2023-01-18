@@ -106,37 +106,50 @@ namespace PL.Cart
             Close(); 
             plw.ShowDialog();
         }
-
-        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// pring products from dal filtered by category 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblCategoryFilter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x =>  (BO.Category)(x?.Category)! == BO.Category.KITCHEN ));
+            try
+            {
+                TextBlock? textBox = sender as TextBlock;
+                if (textBox != null)
+                    productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == Enum.Parse<BO.Category>(textBox.Text.ToString())));
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ConverterError", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
-
-        private void lblBathRoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.BATHROOM));
-
-        }
-
-        private void lblLivingRoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.LIVING_ROOM));
-        }
-
-        private void lblBedRoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.BEDROOM));
-        }
-
-        private void lblKids_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.KIDS));
-        }
-
+        /// <summary>
+        /// bring all products from dal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblAll_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
         }
+        /// <summary>
+        /// grouping products
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbGrouped_CheckedOrUnchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox? checkBox = sender as CheckBox;
+            if (checkBox != null)
+                if (checkBox.IsChecked == true)
+                    productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetGroupedListedProductsForCustomer());
+                else
+                    productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
+        }
+
+      
     }
 }

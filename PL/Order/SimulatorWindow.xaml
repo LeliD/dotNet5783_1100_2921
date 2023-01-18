@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="SimulatorWindow" Height="550" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Self} }" Closing="Window_Closing">
     <Grid Name="MainGrid" Background="#FFFCEFEC">

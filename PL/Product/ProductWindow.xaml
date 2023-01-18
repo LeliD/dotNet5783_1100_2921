@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
         DataContext="{Binding boProduct, RelativeSource={RelativeSource Self} }"
-        Title="ProductWindow" Height="450" Width="800">
+        Title="ProductWindow" Height="550" Width="800">
 
     <Grid Background="#FFFCEFEC">
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
                 <ImageBrush ImageSource="/zarahome.png"/>
             </Border.Background>
         </Border>
-        <Grid x:Name="ProductGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="89,0,0,0" Height="324" Width="280">
+        <Grid x:Name="ProductGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="46,0,0,0" Height="324" Width="280">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -33,44 +33,44 @@
                 <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbId" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbId_TextChanged" PreviewKeyDown="tbId_PreviewKeyDown"/>
-            <Label x:Name="lblWrongId" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="0" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <Label Grid.Column="0" Content="ID:" Style="{StaticResource MyLabel}" VerticalAlignment="Top" Grid.Row="0" Margin="0,4,0,0"/>
+            <TextBox x:Name="tbId" Grid.Column="1"   HorizontalAlignment="Stretch"  Margin="0,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="180" TextChanged="tbId_TextChanged" PreviewKeyDown="tbId_PreviewKeyDown"/>
+            <Label x:Name="lblWrongId" Grid.Column="1" Content="" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,35,0,0" Height="24" Width="150" Grid.Row="0"   Foreground="#FFD42D2D"/>
 
-            <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbName_TextChanged"/>
-            <Label x:Name="lblWrongName" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <Label Grid.Column="0" Content="Name:"  Style="{StaticResource MyLabel}" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,4,180,0" VerticalAlignment="Top" />
+            <TextBox x:Name="tbName" Grid.Column="1" VerticalAlignment="Center" Height="24" Width="180" HorizontalAlignment="Stretch" Margin="0,-20,0,0"  Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" TextChanged="tbName_TextChanged"/>
+            <Label x:Name="lblWrongName" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,35,0,0" Height="24" Width="150"  Grid.Row="1" VerticalAlignment="Bottom"  Foreground="#FFD42D2D"/>
 
-            <Label Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <ComboBox x:Name="CategorySelector" Grid.Column="1"  SelectedItem="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="NaN"  Margin="3,-20,0,0" Grid.Row="2" VerticalAlignment="Center" Width="120">
+            <Label Grid.Column="0" Content="Category:" Style="{StaticResource MyLabel}" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,4,180,0" VerticalAlignment="Top" />
+            <ComboBox x:Name="CategorySelector" Grid.Column="1"  VerticalAlignment="Center" SelectedItem="{Binding Category, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Height="24" Width="180"  Margin="0,-20,0,0" Grid.Row="2"  >
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label x:Name="lblMissingCategory" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <Label x:Name="lblMissingCategory" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,35,0,0"  Grid.Row="2" VerticalAlignment="Bottom" Height="24" Width="150" Foreground="#FFD42D2D"/>
 
-            <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3,0,0,3" Grid.Row="3" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold" />
-            <TextBox x:Name="tbPrice" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbPrice_TextChanged"/>
-            <Label x:Name="lblWrongPrice" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="3" Width="150" Foreground="#FFD42D2D" Height="32" VerticalAlignment="Top"/>
+            <Label Grid.Column="0" Content="Price:" Style="{StaticResource MyLabel}"  Grid.Row="3" Grid.ColumnSpan="2" Margin="0,4,184,0" VerticalAlignment="Top"  />
+            <TextBox x:Name="tbPrice" Grid.Column="1" VerticalAlignment="Center" Height="24" Width="180" HorizontalAlignment="Stretch" Margin="0,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  TextChanged="tbPrice_TextChanged"/>
+            <Label x:Name="lblWrongPrice" Grid.Column="1" Content=""  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,35,0,0" Height="24" Width="150"  Grid.Row="3" Foreground="#FFD42D2D"/>
 
-            <Label Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFA86A68" FontSize="16" FontFamily="Gill Sans Ultra Bold"/>
-            <TextBox x:Name="tbInStock" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3,-20,0,0" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="tbInStock_TextChanged" PreviewKeyDown="tbInStock_PreviewKeyDown"/>
-            <Label x:Name="lblWrongInStock" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,30,0,0" Grid.Row="4" VerticalAlignment="Top" Height="32" Width="150" Foreground="#FFD42D2D"/>
+            <Label Grid.Column="0" Content="In Stock:" Style="{StaticResource MyLabel}"  Grid.Row="4" />
+            <TextBox x:Name="tbInStock" Grid.Column="1" VerticalAlignment="Center" Height="24" Width="180" HorizontalAlignment="Stretch" Margin="0,-1,0,0"  Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  TextChanged="tbInStock_TextChanged" PreviewKeyDown="tbInStock_PreviewKeyDown"/>
+            <Label x:Name="lblWrongInStock" Grid.Column="1" Content="" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,35,0,0" Height="24" Width="150" Grid.Row="4" Foreground="#FFD42D2D"/>
         </Grid>
 
-        <Button x:Name="btnAdd_UpdateProduct" Grid.Row="1" Content="Add" HorizontalAlignment="Left" Margin="663,284,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="46" Width="110"/>
-        <Button x:Name="btnRemove" Grid.Row="1" Content="Remove product" HorizontalAlignment="Left" Margin="663,224,0,0" VerticalAlignment="Top" Height="46" Click="btnRemove_Click" FontSize="13" Width="110"/>
+        <Button x:Name="btnAdd_UpdateProduct" Grid.Row="1" Content="Add" HorizontalAlignment="Left" Margin="642,366,0,0" VerticalAlignment="Top" Click="btnAdd_UpdateProduct_Click" FontSize="20" Height="52" Width="130"/>
+        <Button x:Name="btnRemove" Grid.Row="1" Content="Remove product" HorizontalAlignment="Left" Margin="642,304,0,0" VerticalAlignment="Top" Height="53" Click="btnRemove_Click" FontSize="13" Width="130"/>
         <Button x:Name="btnHome" Grid.Row="0"  HorizontalAlignment="Left" Margin="742,0,0,0" VerticalAlignment="Center" Height="42" Width="40" Background="#FFFAF6F4" Click="btnHome_Click" >
             <Image Source="/Cart/HOME.png" Height="41" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Button>
-        <Border CornerRadius="10"  Grid.Row="1"  BorderThickness="1" Margin="385,34,279,131" BorderBrush="#FF6B6866">
+        <Border CornerRadius="10"  Grid.Row="1"  BorderThickness="1" Margin="362,109,206,107" BorderBrush="#FF6B6866">
             <Border.Background>
                 <ImageBrush x:Name="NewImage" ImageSource="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" />
             </Border.Background>
         </Border>
-        <Button x:Name="btnAddImage" Grid.Row="1" Content="Change picture" HorizontalAlignment="Left" Margin="391,247,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="39" Width="130"/>
+        <Button x:Name="btnAddImage" Grid.Row="1" Content="Change picture" HorizontalAlignment="Left" Margin="413,381,0,0" VerticalAlignment="Top" Click="btnAddImage_Click" Height="39" Width="130"/>
         <Button x:Name="btnBack" Grid.Row="0" Style="{StaticResource buttonBack}" Margin="470,14,0,6" Width="223" Click="btnBackToProductsListOrOrder_Click">
             <StackPanel Orientation="Horizontal" Width="215">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->

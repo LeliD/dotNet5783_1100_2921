@@ -25,7 +25,6 @@
     <None Remove="Images\key-icon.png" />
     <None Remove="Images\user-icon.png" />
     <None Remove="Images\zara-home.png" />
-    <None Remove="Product\Zara-Logo-1975.png" />
     <None Remove="user-icon.png" />
     <None Remove="welcome.jpg" />
     <None Remove="Zara-Logo-1975.png" />
@@ -52,7 +51,6 @@
     <Resource Include="Images\key-icon.png" />
     <Resource Include="Images\user-icon.png" />
     <Resource Include="Images\zara-home.png" />
-    <Resource Include="Product\Zara-Logo-1975.png" />
     <Resource Include="user-icon.png" />
     <Resource Include="welcome.jpg" />
     <Resource Include="Zara-Logo-1975.png" />

@@ -31,7 +31,7 @@ namespace PL.Cart
         /// <summary>
         /// Cart of customer
         /// </summary>
-        public BO.Cart MyCart//הורדתי סימן שאלה
+        public BO.Cart MyCart
         {
             get { return (BO.Cart)GetValue(cartProperty); }
             set { SetValue(cartProperty, value); }

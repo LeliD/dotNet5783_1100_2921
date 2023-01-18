@@ -130,7 +130,7 @@ namespace PL
         private void btSignUp_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow suw = new SignUpWindow(AdminAccess.No);//create new SignUpWindow
-            Close(); 
+            //Close(); 
             suw.ShowDialog();
         }
         /// <summary>

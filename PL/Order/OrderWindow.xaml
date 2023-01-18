@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
         DataContext="{Binding boOrder, RelativeSource={RelativeSource Self} }"
-        Title="OrderWindow" Height="450" Width="800" >
+        Title="OrderWindow" Height="550" Width="800" >
     <Grid Background="#FFFCEFEC">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -19,7 +19,7 @@
                 <ImageBrush ImageSource="/zarahome.png"/>
             </Border.Background>
         </Border>
-        <Grid x:Name="OrderGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,20,0,0">
+        <Grid x:Name="OrderGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,59,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -63,7 +63,7 @@
             <Label x:Name="lblTotalPrice" Grid.Column="0" Content="Total Price:" FontFamily="Segoe UI Black" Style="{StaticResource MyLabel}"  Grid.Row="8" FontWeight="Normal" />
             <TextBox x:Name="tbTotalPrice" IsEnabled = "false" FontSize="15" FontFamily="Montserrat" Grid.Column="1" Height="29" HorizontalAlignment="Stretch"  Margin="0,0,0,0" Grid.Row="8" Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <DataGrid x:Name="orderItemDataGrid" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Items}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="348,32,10,159" MouseDoubleClick="orderItemDataGrid_MouseDoubleClick" Background="#FFFCEFEC" FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565">
+        <DataGrid x:Name="orderItemDataGrid" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Items}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="331,40,10,248" MouseDoubleClick="orderItemDataGrid_MouseDoubleClick" Background="#FFFCEFEC" FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="50"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="150"/>
@@ -74,8 +74,8 @@
                 <DataGridTextColumn x:Name="totalPriceColumn1" Binding="{Binding TotalPrice}" Header="Total Price" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnUpdateShipDateOrder" Grid.Row="1" Content="Update Ship date" HorizontalAlignment="Left" Margin="331,235,0,0" VerticalAlignment="Top" Height="26" Width="135" Click="btnUpdateShipDateOrder_Click"/>
-        <Button x:Name="btnUpdateDeliveryDateOrder" Grid.Row="1" Content="Update delivery date" HorizontalAlignment="Center" Margin="0,270,0,0" VerticalAlignment="Top" Width="135" Height="26" Click="btnUpdateDeliveryDateOrder_Click"/>
+        <Button x:Name="btnUpdateShipDateOrder" Grid.Row="1" Content="Update Ship date" HorizontalAlignment="Left" Margin="331,274,0,0" VerticalAlignment="Top" Height="26" Width="135" Click="btnUpdateShipDateOrder_Click"/>
+        <Button x:Name="btnUpdateDeliveryDateOrder" Grid.Row="1" Content="Update delivery date" HorizontalAlignment="Left" Margin="331,310,0,0" VerticalAlignment="Top" Width="135" Height="26" Click="btnUpdateDeliveryDateOrder_Click"/>
         <Button x:Name="btnBack" Grid.Row="0" Style="{StaticResource buttonBack}" Margin="628,18,0,10" Width="147" Click="btnBack_Click">
             <StackPanel Orientation="Horizontal">
                 <!--<Image Source="/Images/left.png" Width="20"/>-->
