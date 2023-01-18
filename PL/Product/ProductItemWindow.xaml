@@ -63,8 +63,8 @@
 
 
         </Grid>
-        <Button x:Name="btnAddToCart" Grid.Row="1" Content="Add to cart" HorizontalAlignment="Left" Margin="636,263,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click" IsEnabled="{Binding InStock,Mode=OneWay}" Height="52" FontSize="15" Width="104"/>
-        <Border CornerRadius="10"  Grid.Row="1" BorderThickness="1" Margin="355,73,254,143" BorderBrush="#FF6B6866">
+        <Button x:Name="btnAddToCart" Grid.Row="1" Content="Add to cart" HorizontalAlignment="Left" Margin="652,229,0,0" VerticalAlignment="Top" Click="btnAddToCart_Click" IsEnabled="{Binding InStock,Mode=OneWay}" Height="52" FontSize="15" Width="104"/>
+        <Border CornerRadius="10"  Grid.Row="1" BorderThickness="1" Margin="357,36,250,53" BorderBrush="#FF6B6866">
             <Border.Background>
                 <ImageBrush x:Name="ImImage" ImageSource="{Binding ImageRelativeName, Converter={StaticResource ImagePathToBitmap} }" />
             </Border.Background>
