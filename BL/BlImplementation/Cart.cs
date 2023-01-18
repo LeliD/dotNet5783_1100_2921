@@ -37,10 +37,10 @@ internal class Cart : ICart
         }
 
         if (doProduct.InStock == 0) //If product is out of Stock
-            throw new BO.BlOutOfStockException(doProduct.ID, doProduct.Name, "Product is out of Stock");
+            throw new BO.BlOutOfStockException(doProduct.ID, doProduct.Name!, "Product is out of Stock");
         if (cart.Items == null)//If items isn't initialized
             cart.Items = new List<BO.OrderItem>();
-        BO.OrderItem orderItemInCart = cart.Items.FirstOrDefault(x => x.ProductID == productID);//BO.OrderItems in cart which includes the product
+        BO.OrderItem? orderItemInCart = cart.Items.FirstOrDefault(x => x.ProductID == productID);//BO.OrderItems in cart which includes the product
         if (orderItemInCart == null)//product still doesn't exist in cart
         {
             var orderItemsList = cart.Items.ToList();//Convert cart.Items to List
@@ -67,14 +67,17 @@ internal class Cart : ICart
         }
         return cart;
     }
+    
     /// <summary>
-    /// The function closes an order by getting its cart and transfers  its data to dal
+    /// The function closes an order by getting its cart and transfers its data to dal 
     /// </summary>
     /// <param name="cart">the cart of order to close</param>
+    /// <returns>Order ID</returns>
     /// <exception cref="BO.BlNullPropertyException">Throw exceptions in case fields of cart are null</exception>
     /// <exception cref="BO.BlDetailInvalidException">Throw exceptions if details of cart are invalid</exception>
     /// <exception cref="BO.BlMissingEntityException">Catches and Throws exception of DO.GetById in case cart's products don't exist</exception>
     /// <exception cref="BO.BlOutOfStockException">Throws exception if demanded amount of product to add to the cart is out of stock</exception>
+
     public int MakeOrder(BO.Cart cart)
     {
         if ((cart.CustomerName ?? throw new BO.BlNullPropertyException("CustomerName is null")) == "")
@@ -89,8 +92,8 @@ internal class Cart : ICart
         {
             DO.Product doProduct;
             try { doProduct = dal.Product.GetById(x.ProductID); } catch (DO.DalMissingIdException ex) { throw new BO.BlMissingEntityException("product doen't exist", ex); }//Check if products exist
-            if (x.Amount <= 0) throw new BO.BlDetailInvalidException("Amount", "Unvalid Amount of orderItem");//chech if demanded amount is a positive number
-            if (x.Amount>doProduct.InStock) throw new BO.BlOutOfStockException(doProduct.ID, doProduct.Name, "Product is out of Stock in the demanded amount");//chech if demanded amount is in stock
+            if (x.Amount <= 0) throw new BO.BlDetailInvalidException("Amount", "Unvalid Amount of orderItem");//check if demanded amount is a positive number
+            if (x.Amount>doProduct.InStock) throw new BO.BlOutOfStockException(doProduct.ID, doProduct.Name!, "Product is out of Stock in the demanded amount");//chech if demanded amount is in stock
         });
         DO.Order doOrder = new DO.Order()//Create DO.Order
         {
@@ -132,7 +135,7 @@ internal class Cart : ICart
         {
             throw new BO.BlNullPropertyException("There is no items in cart to update since its null");
         }
-        BO.OrderItem boOrderItem = cart.Items.FirstOrDefault(x => x?.ProductID == productID); //find the product to update its amount
+        BO.OrderItem? boOrderItem = cart.Items.FirstOrDefault(x => x?.ProductID == productID); //find the product to update its amount
         if(boOrderItem == null)//product wasn't found
             throw new BO.BlMissingEntityException("OrderItem of product to update in cart wasn't found");
         if (boOrderItem.Amount== newAmount)//If there is no need to update
@@ -156,7 +159,7 @@ internal class Cart : ICart
             
             if(doProduct.InStock < newAmount) //if there isn't enough in stock
             {
-                throw new BO.BlOutOfStockException(doProduct.ID, doProduct.Name, "Product is out of Stock in the demanded amount");
+                throw new BO.BlOutOfStockException(doProduct.ID, doProduct.Name!, "Product is out of Stock in the demanded amount");
             }
         }
         else //if demanded amount decreased

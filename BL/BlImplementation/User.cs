@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,22 @@ internal class User : IUser
     public void Add(BO.User user)
     {
         if (user.Name == null || user.Name == "")
-            throw new BO.BlDetailInvalidException("Name", "Name is empty");
+            throw new BO.BlDetailInvalidException("Name", "Name is Missing");
         
         if (user.UserName == null || user.UserName == "")
-            throw new BO.BlDetailInvalidException("UserName", "UserName is empty");
+            throw new BO.BlDetailInvalidException("UserName", "UserName is Missing");
         
         if (user.UserEmail == null || user.UserEmail == "")
-            throw new BO.BlDetailInvalidException("UserEmail", "UserEmail is empty");
+            throw new BO.BlDetailInvalidException("UserEmail", "UserEmail is Missing");
         
+        if (!new EmailAddressAttribute().IsValid(user.UserEmail ?? throw new BO.BlNullPropertyException("UserEmail is invalid")))
+            throw new BO.BlDetailInvalidException("CustomerEmail", "Unvalid CustomerEmail");
+
         if (user.UserAddress == null || user.UserAddress == "")
-            throw new BO.BlDetailInvalidException("UserAddress", "UserAddress is empty");
+            throw new BO.BlDetailInvalidException("UserAddress", "UserAddress is Missing");
         
         if (user.Passcode == null || user.Passcode == "")
-            throw new BO.BlDetailInvalidException("Passcode", "Name is empty");
+            throw new BO.BlDetailInvalidException("Passcode", "Passcode is Missing");
 
 
         try
@@ -62,7 +66,7 @@ internal class User : IUser
     public BO.User GetByUserName(string userName)
     {
         if (userName == null)
-            throw new BO.BlNullPropertyException("UserName is empty");
+            throw new BO.BlNullPropertyException("UserName is Missing");
         try
         {
             DO.User doUser = dal.User.GetByUserName(userName);

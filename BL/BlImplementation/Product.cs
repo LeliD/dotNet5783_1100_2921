@@ -33,8 +33,7 @@ internal class Product : IProduct
                     Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
                     Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
                     Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
-                    ImageRelativeName = doProduct?.ImageRelativeName
-                    //ImageRelativeName = @"\Images\IMG" + doProduct?.ID + ".png" //jpg?
+                    ImageRelativeName = doProduct?.ImageRelativeName ?? throw new BO.BlNullPropertyException("Null Product")
                 };
 
         if (filter == null)
@@ -49,7 +48,7 @@ internal class Product : IProduct
     
 
     /// <summary>
-    /// The function brings the list of products from dal and returns it in form of BO.ProductItem? (For Customer) 
+    /// The function brings the list of products from dal and returns it filtered in form of BO.ProductItem? (For Customer) 
     /// </summary>
     /// <returns>list of products in form of BO.ProductItem?</returns>
     /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
@@ -65,8 +64,6 @@ internal class Product : IProduct
                    InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
                    Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product"),
                    ImageRelativeName = doProduct?.ImageRelativeName
-                   //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
-
                };
         if (filter == null)
             return x;
@@ -76,6 +73,11 @@ internal class Product : IProduct
                select productItem;
 
     }
+    /// <summary>
+    /// The function brings the list of products from dal and returns it grouped in form of BO.ProductItem? (For Customer) 
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
     public IEnumerable<BO.ProductItem?> GetGroupedListedProductsForCustomer()
     {
         var groups = from DO.Product? doProduct in dal.Product.GetAll()
@@ -88,12 +90,10 @@ internal class Product : IProduct
                          InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
                          Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product"),
                          ImageRelativeName = doProduct?.ImageRelativeName
-                         //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
+                     } into productItem
+                     group productItem by productItem.Category;
 
-                     } into products
-                     group products by products.Category;
-
-        List<BO.ProductItem> lst = new List<BO.ProductItem>();
+        List<BO.ProductItem?> lst = new List<BO.ProductItem?>();
         foreach (var productGroup in groups)
         {
             foreach (var productItem in productGroup)
@@ -121,8 +121,6 @@ internal class Product : IProduct
                 Price = doProduct.Price,
                 InStock = doProduct.InStock,
                 ImageRelativeName = doProduct.ImageRelativeName
-                //ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
-
             };
         }
         catch (DO.DalMissingIdException ex)
@@ -147,11 +145,9 @@ internal class Product : IProduct
                 amount = 0;
             else
             {
-                BO.OrderItem boProductItem = c.Items.FirstOrDefault(x => x?.ProductID == productID);//Finds the BO.OrderItem which includes "doProduct"
+                BO.OrderItem? boProductItem = c.Items.FirstOrDefault(x => x?.ProductID == productID);//Finds the BO.OrderItem which includes "doProduct"
                 if (boProductItem == null)//If "doProduct" isn't in c
-                {
                     amount = 0;
-                }
                 else //"doProduct" exist in c
                     amount = boProductItem.Amount;
             }
@@ -163,9 +159,8 @@ internal class Product : IProduct
                 Price = doProduct.Price,
                 InStock = doProduct.InStock > 0,
                 Amount = amount,
-                ImageRelativeName=doProduct.ImageRelativeName ?? @"\Images\IMG.png"
-                //ImageRelativeName = @"\Images\IMG" + doProduct.ID + ".png" //jpg?
-
+                ImageRelativeName=doProduct.ImageRelativeName
+               
             };
         }
         catch (DO.DalMissingIdException ex)
@@ -203,7 +198,7 @@ internal class Product : IProduct
                 Price = boProduct.Price,
                 Category = (DO.Category)boProduct.Category,
                 InStock = boProduct.InStock,
-                ImageRelativeName = boProduct.ImageRelativeName ?? @"\Images\IMG.png"
+                ImageRelativeName = boProduct.ImageRelativeName ?? @"\Images\IMG.png"//default image
             });
         }
         catch(DO.DalAlreadyExistIdException ex)
@@ -258,7 +253,7 @@ internal class Product : IProduct
                 Price = boProduct.Price,
                 Category = (DO.Category)boProduct.Category,
                 InStock = boProduct.InStock,
-                ImageRelativeName=boProduct.ImageRelativeName ?? @"\Images\IMG.png"
+                ImageRelativeName=boProduct.ImageRelativeName ?? @"\Images\IMG.png" //default image
             });
         }
         catch (DO.DalMissingIdException ex)

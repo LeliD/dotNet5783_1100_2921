@@ -27,7 +27,6 @@ internal class Order: IOrder
     {
         try
         {
-
             if (orderID < 0) //if orderID is negative-invalid 
                 throw new BO.BlDetailInvalidException("ID", "Negative Order ID");
             DO.Order doOrder = dal.Order.GetById(orderID); //gets the order from dal
@@ -36,7 +35,7 @@ internal class Order: IOrder
                                select new BO.OrderItem()
                                {
                                    ID = item?.ID ?? throw new BO.BlNullPropertyException("Null order"),
-                                   Name = dal.Product.GetById(item?.ProductID ?? throw new BO.BlNullPropertyException("Null order")).Name,//jjijiijjjjjjjjjjjj
+                                   Name = dal.Product.GetById(item?.ProductID ?? throw new BO.BlNullPropertyException("Null order")).Name,
                                    ProductID = item?.ProductID ?? throw new BO.BlNullPropertyException("Null order"),
                                    Price = item?.Price ?? throw new BO.BlNullPropertyException("Null order"),
                                    Amount = item?.Amount ?? throw new BO.BlNullPropertyException("Null order"),
@@ -79,7 +78,7 @@ internal class Order: IOrder
                                CustomerName = item?.CustomerName,
                                Status = orderStatus(item),
                                AmountOfItems = orderItems.Count(),
-                               TotalPrice= dal.OrderItem.GetItemsInOrder(item?.ID ?? throw new BO.BlNullPropertyException("Null order")).Sum(x=>x?.Price * x?.Amount)?? throw new BO.BlNullPropertyException("Null Price")
+                               TotalPrice= orderItems.Sum(x=>x?.Price * x?.Amount) ?? throw new BO.BlNullPropertyException("Null Price")
                            };
         return listOfOrders;
     }
@@ -154,11 +153,6 @@ internal class Order: IOrder
         }
     }
 
-    public void UpdateOrder(int orderID)//Bonus
-    {
-        throw new NotImplementedException();
-    }
-
     /// <summary>
     /// The function updates an order ship date
     /// </summary>
@@ -197,17 +191,17 @@ internal class Order: IOrder
     {
         if (doOrder == null)
             throw new BO.BlNullPropertyException("Null order");
-        if (doOrder?.DeliveryDate == null && doOrder?.OrderDate == null && doOrder?.ShipDate == null)
-            return BO.OrderStatus.Initiated;
-        if(doOrder?.OrderDate != null)//If OrderDate exists
-        {
-            if (doOrder?.ShipDate == null && doOrder?.DeliveryDate == null )
-                return BO.OrderStatus.Ordered;
-            if (doOrder?.ShipDate != null && doOrder?.DeliveryDate == null)
-                return BO.OrderStatus.Shipped;
-            if (doOrder?.DeliveryDate != null)
-                return BO.OrderStatus.Delivered;
-        }
-        return BO.OrderStatus.Initiated;
+
+        if (doOrder?.OrderDate == null)//If OrderDate doesn't exist
+            throw new BO.BlNullPropertyException("Null date");
+
+        if (doOrder?.ShipDate == null && doOrder?.DeliveryDate == null)
+            return BO.OrderStatus.Ordered;
+        
+        if (doOrder?.ShipDate != null && doOrder?.DeliveryDate == null)
+            return BO.OrderStatus.Shipped;
+
+        return BO.OrderStatus.Delivered; //dalivered
+
     }
 }

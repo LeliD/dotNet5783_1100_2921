@@ -14,7 +14,5 @@ public interface IOrder
     Order UpdateShipDate(int orderID);
     Order UpdateDeliveryDate(int orderID);
     OrderTracking OrderTrack(int orderID);
-    void UpdateOrder(int orderID);//bonus
    
-
 }
