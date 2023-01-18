@@ -25,7 +25,7 @@
         <Style TargetType="Label" x:Key="MyLabel">
             <Setter Property="Foreground" Value="#FFA86A68" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontFamily" Value="MontserratMontserrat" />
+            <Setter Property="FontFamily" Value="Segoe UI Black" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="FontSize" Value="18"/>
@@ -36,7 +36,24 @@
                 </Trigger>
             </Style.Triggers>-->
         </Style>
+         <!--FontFamily="Montserrat" Height="29"  Margin="0,0,0,0"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch"-->
+        <Style TargetType="TextBox" x:Key="MyTextBox">
+            <Setter Property="Height" Value="29" />
+            <Setter Property="Width" Value="155" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="FontFamily" Value="Montserrat" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="FontSize" Value="15"/>
 
+            <!--<Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF934326"/>
+                </Trigger>
+            </Style.Triggers>-->
+        </Style>
         <Style x:Key="buttonCounter" TargetType="Button">
             <Setter Property="Background" Value="#878382" />
             <Setter Property="Width" Value="20" />

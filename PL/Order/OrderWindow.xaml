@@ -37,9 +37,9 @@
             </Grid.RowDefinitions>
 
             <Label x:Name="lblID" Grid.Column="0" FontFamily="Segoe UI Black" Content="ID:" Style="{StaticResource MyLabel}" Grid.Row="0" FontWeight="Normal"/>
-            <TextBox x:Name="tbID" IsEnabled = "false" Grid.Column="1" FontSize="15" FontFamily="Montserrat" Height="29"  Margin="0,0,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+            <TextBox x:Name="tbID" IsEnabled = "false" Grid.Column="1" FontSize="15" FontFamily="Montserrat" Height="29"  Margin="0,0,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
 
-            <Label x:Name="lblCName" Grid.Column="0" FontFamily="Segoe UI Black" Content="Customer Name:" Style="{StaticResource MyLabel}" Grid.Row="1" FontWeight="Normal" />
+            <Label x:Name="lblCName" Grid.Column="0" Content="Customer Name:" Style="{StaticResource MyLabel}" Grid.Row="1" FontWeight="Normal" />
             <TextBox x:Name="tbCName" IsEnabled = "false" Grid.Column="1" FontSize="15" FontFamily="Montserrat" Height="29" HorizontalAlignment="Stretch"  Margin="0,0,0,0" Grid.Row="1" Text="{Binding CustomerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
 
             <Label x:Name="lblCEmail" Grid.Column="0" FontFamily="Segoe UI Black" Content="Customer Email:" Style="{StaticResource MyLabel}"  Grid.Row="2" FontWeight="Normal" />
