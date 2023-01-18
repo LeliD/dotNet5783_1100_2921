@@ -52,9 +52,9 @@ internal class Product : IProduct
     /// </summary>
     /// <returns>list of products in form of BO.ProductItem?</returns>
     /// <exception cref="BO.BlNullPropertyException">Throws exception if one of the products is null</exception>
-    public IEnumerable<BO.ProductItem?> GetListedProductsForCustomer()
+    public IEnumerable<BO.ProductItem?> GetListedProductsForCustomer(Func<BO.ProductItem?, bool>? filter = null)
     {
-        return from DO.Product? doProduct in dal.Product.GetAll()
+        var x= from DO.Product? doProduct in dal.Product.GetAll()
                select new BO.ProductItem()
                {
                    ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
@@ -67,6 +67,13 @@ internal class Product : IProduct
                    //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
 
                };
+        if (filter == null)
+            return x;
+
+        return from productItem in x
+               where filter(productItem)
+               select productItem;
+
     }
     /// <summary>
     /// The function gets productID and returns the details of product in form of BO.Product (For Manager)

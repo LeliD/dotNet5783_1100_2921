@@ -107,6 +107,36 @@ namespace PL.Cart
             plw.ShowDialog();
         }
 
-      
+        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+           productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x =>  (BO.Category)(x?.Category)! == BO.Category.KITCHEN ));
+
+        }
+
+        private void lblBathRoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.BATHROOM));
+
+        }
+
+        private void lblLivingRoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.LIVING_ROOM));
+        }
+
+        private void lblBedRoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.BEDROOM));
+        }
+
+        private void lblKids_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == BO.Category.KIDS));
+        }
+
+        private void lblAll_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
+        }
     }
 }
