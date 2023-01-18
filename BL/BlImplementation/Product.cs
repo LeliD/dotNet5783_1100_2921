@@ -76,29 +76,31 @@ internal class Product : IProduct
                select productItem;
 
     }
-    public IEnumerable<BO.ProductItem?> GetGroupedListedProductsForCustomer(Func<BO.ProductItem?, bool>? filter = null)
+    public IEnumerable<BO.ProductItem?> GetGroupedListedProductsForCustomer()
     {
-        var x = from DO.Product? doProduct in dal.Product.GetAll()
-                select new BO.ProductItem()
-                {
-                    ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
-                    Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
-                    Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
-                    Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
-                    InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
-                    Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product"),
-                    ImageRelativeName = doProduct?.ImageRelativeName
-                    //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
+        var groups = from DO.Product? doProduct in dal.Product.GetAll()
+                     select new BO.ProductItem()
+                     {
+                         ID = doProduct?.ID ?? throw new BO.BlNullPropertyException("Null Product"),
+                         Name = doProduct?.Name ?? throw new BO.BlNullPropertyException("Null Product"),
+                         Category = (BO.Category?)doProduct?.Category ?? throw new BO.BlNullPropertyException("Null Product"),
+                         Price = doProduct?.Price ?? throw new BO.BlNullPropertyException("Null Product"),
+                         InStock = doProduct?.InStock != null ? doProduct?.InStock > 0 : throw new BO.BlNullPropertyException("Null Product"),
+                         Amount = doProduct?.InStock ?? throw new BO.BlNullPropertyException("Null Product"),
+                         ImageRelativeName = doProduct?.ImageRelativeName
+                         //ImageRelativeName =@"\Images\IMG" + doProduct?.ID + ".png" //jpg?
 
-                } into products
-                group products by products.Category;
-        if (filter == null)
-            return x;
+                     } into products
+                     group products by products.Category;
 
-        return from productItem in x
-               where filter(productItem)
-               select productItem;
+        List<BO.ProductItem> lst = new List<BO.ProductItem>();
+        foreach (var productGroup in groups)
+        {
+            foreach (var productItem in productGroup)
+                lst.Add(productItem);
+        }
 
+        return lst;
     }
     /// <summary>
     /// The function gets productID and returns the details of product in form of BO.Product (For Manager)
