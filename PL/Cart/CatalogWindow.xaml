@@ -58,12 +58,12 @@
                 </ItemsControl.ItemsPanel>
             </ListView>
         </ScrollViewer>
-        <Border CornerRadius="15" Grid.Row="0" BorderThickness="1" Margin="10,5,628,41" BorderBrush="#FF6B6866">
+        <Border CornerRadius="15" Grid.Row="0" BorderThickness="1" Margin="10,15,628,31" BorderBrush="#FF6B6866">
             <Border.Background>
                 <ImageBrush ImageSource="/zarahome.png"/>
             </Border.Background>
         </Border>
-        <Image HorizontalAlignment="Left" Height="46" Margin="569,1,0,0" VerticalAlignment="Top" Width="73" Source="/Zara-Logo-1975.png" RenderTransformOrigin="0.5,0.5">
+        <Image HorizontalAlignment="Left" Height="46" Margin="569,5,0,0" VerticalAlignment="Top" Width="73" Source="/Zara-Logo-1975.png" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -73,23 +73,23 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="633,6,0,0" Width="85" Click="btnGoToCart_Click" Height="40" VerticalAlignment="Top"/>
+        <Button x:Name="btnGoToCart" Content="goToCart" HorizontalAlignment="Left" Margin="633,15,0,0" Width="85" Click="btnGoToCart_Click" Height="40" VerticalAlignment="Top"/>
         <!--<Button HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="50" Width="71" Foreground="#FFF6F0EC" BorderBrush="#FFF7F0ED">
             <Button.Background>
                 <ImageBrush ImageSource="../Images/HOME.png"/>
             </Button.Background>
         </Button>-->
-        <Button x:Name="btnHome" HorizontalAlignment="Left" Margin="730,-45,0,0" VerticalAlignment="Center" Height="40" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
+        <Button x:Name="btnHome" HorizontalAlignment="Left" Margin="730,-28,0,0" VerticalAlignment="Center" Height="40" Width="40" Click="btnHome_Click" Background="#FFFAF6F4" >
             <Image Source="/Cart/HOME.png" Height="40" Width="40"/>
         </Button>
-        <Label x:Name="lblWelcome" Content="Welcome" FontFamily="Narkisim" HorizontalAlignment="Left" FontSize="16" Foreground="#FF934326" Margin="330,-35,0,0" VerticalAlignment="Center" Height="26" FontWeight="Bold" Width="70"/>
-        <TextBlock x:Name="tbCustomerName" DataContext="{Binding MyCart}" HorizontalAlignment="Left" FontSize="16" Margin="407,-35,0,0" FontFamily="Narkisim" TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay}" VerticalAlignment="Center" Width="81" FontWeight="Bold" Foreground="#FF934326" Height="16"/>
-        <Label x:Name="lblKitchen" Content="KITCHEN" HorizontalAlignment="Left" Margin="539,63,0,0" VerticalAlignment="Top" MouseLeftButtonDown="Label_MouseLeftButtonDown" Height="26" Width="59"/>
-        <Label x:Name="lblBathRoom" Content="BATHROOM" HorizontalAlignment="Left" Margin="448,63,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblBathRoom_MouseLeftButtonDown"/>
-        <Label x:Name="lblLivingRoom" Content="LIVING_ROOM" HorizontalAlignment="Center" Margin="0,66,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblLivingRoom_MouseLeftButtonDown"/>
-        <Label x:Name="lblBedRoom" Content="BEDROOM" HorizontalAlignment="Left" Margin="273,66,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblBedRoom_MouseLeftButtonDown"/>
-        <Label x:Name="lblKids" Content="KIDS" HorizontalAlignment="Left" Margin="217,66,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblKids_MouseLeftButtonDown"/>
-        <Label x:Name="lblAll" Content="ALL" HorizontalAlignment="Left" Margin="170,66,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblAll_MouseLeftButtonDown"/>
+        <Label x:Name="lblWelcome" Content="Welcome" FontFamily="Narkisim" HorizontalAlignment="Left" FontSize="28" Foreground="#FF934326" Margin="262,19,0,0" VerticalAlignment="Top" Height="37" FontWeight="Bold" Width="123"/>
+        <TextBlock x:Name="tbCustomerName" DataContext="{Binding MyCart}" HorizontalAlignment="Left" FontSize="28" Margin="385,25,0,0" FontFamily="Narkisim" TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay}" VerticalAlignment="Top" Width="114" FontWeight="Bold" Foreground="#FF934326" Height="33"/>
+        <TextBlock x:Name="lblKitchen" Text="KITCHEN" Style="{StaticResource textOfItem}" HorizontalAlignment="Left" Margin="562,72,0,0" VerticalAlignment="Top" MouseLeftButtonDown="Label_MouseLeftButtonDown" Height="26" Width="59"/>
+        <TextBlock x:Name="lblBathRoom" Text="BATH ROOM" Style="{StaticResource textOfItem}" HorizontalAlignment="Left" Margin="467,72,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblBathRoom_MouseLeftButtonDown"/>
+        <TextBlock x:Name="lblLivingRoom" Text="LIVING ROOM" Style="{StaticResource textOfItem}" HorizontalAlignment="Center" Margin="0,72,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblLivingRoom_MouseLeftButtonDown"/>
+        <TextBlock x:Name="lblBedRoom" Text="BED ROOM" Style="{StaticResource textOfItem}" HorizontalAlignment="Left" Margin="273,72,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblBedRoom_MouseLeftButtonDown"/>
+        <TextBlock x:Name="lblKids" Text="KIDS" Style="{StaticResource textOfItem}" HorizontalAlignment="Left" Margin="217,72,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblKids_MouseLeftButtonDown"/>
+        <TextBlock x:Name="lblAll" Text="ALL" Style="{StaticResource textOfItem}" HorizontalAlignment="Left" Margin="170,72,0,0" VerticalAlignment="Top" MouseLeftButtonDown="lblAll_MouseLeftButtonDown"/>
         <!--<Button Name="btn5" Width="50" Height="30" Click="OnClick5">
             <Image Source="../Images/HOME.png"></Image>
         </Button>-->
