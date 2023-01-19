@@ -34,7 +34,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Content="ID:" Style="{StaticResource MyLabel}" VerticalAlignment="Top" Grid.Row="0" Margin="0,4,0,0"/>
-            <TextBox x:Name="tbId" Grid.Column="1"   HorizontalAlignment="Stretch"  Margin="0,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="180" TextChanged="tbId_TextChanged" PreviewKeyDown="tbId_PreviewKeyDown"/>
+            <TextBox x:Name="tbId" Grid.Column="1"   HorizontalAlignment="Stretch"  Margin="0,-20,0,0" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="180" TextChanged="tbId_TextChanged" PreviewKeyDown="tb_PreviewKeyDown"/>
             <Label x:Name="lblWrongId" Grid.Column="1" Content="" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,35,0,0" Height="24" Width="150" Grid.Row="0"   Foreground="#FFD42D2D"/>
 
             <Label Grid.Column="0" Content="Name:"  Style="{StaticResource MyLabel}" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,4,180,0" VerticalAlignment="Top" />
@@ -52,11 +52,11 @@
             <Label x:Name="lblMissingCategory" Grid.Column="1" Content="" HorizontalAlignment="Center" Margin="0,35,0,0"  Grid.Row="2" VerticalAlignment="Bottom" Height="24" Width="150" Foreground="#FFD42D2D"/>
 
             <Label Grid.Column="0" Content="Price:" Style="{StaticResource MyLabel}"  Grid.Row="3" Grid.ColumnSpan="2" Margin="0,4,184,0" VerticalAlignment="Top"  />
-            <TextBox x:Name="tbPrice" Grid.Column="1" VerticalAlignment="Center" Height="24" Width="180" HorizontalAlignment="Stretch" Margin="0,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  TextChanged="tbPrice_TextChanged"/>
+            <TextBox x:Name="tbPrice" Grid.Column="1" VerticalAlignment="Center" Height="24" Width="180" HorizontalAlignment="Stretch" Margin="0,-20,0,0" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  TextChanged="tbPrice_TextChanged" PreviewKeyDown="tb_PreviewKeyDown"/>
             <Label x:Name="lblWrongPrice" Grid.Column="1" Content=""  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,35,0,0" Height="24" Width="150"  Grid.Row="3" Foreground="#FFD42D2D"/>
 
             <Label Grid.Column="0" Content="In Stock:" Style="{StaticResource MyLabel}"  Grid.Row="4" />
-            <TextBox x:Name="tbInStock" Grid.Column="1" VerticalAlignment="Center" Height="24" Width="180" HorizontalAlignment="Stretch" Margin="0,-1,0,0"  Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  TextChanged="tbInStock_TextChanged" PreviewKeyDown="tbInStock_PreviewKeyDown"/>
+            <TextBox x:Name="tbInStock" Grid.Column="1" VerticalAlignment="Center" Height="24" Width="180" HorizontalAlignment="Stretch" Margin="0,-1,0,0"  Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  TextChanged="tbInStock_TextChanged" PreviewKeyDown="tb_PreviewKeyDown"/>
             <Label x:Name="lblWrongInStock" Grid.Column="1" Content="" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,35,0,0" Height="24" Width="150" Grid.Row="4" Foreground="#FFD42D2D"/>
         </Grid>
 

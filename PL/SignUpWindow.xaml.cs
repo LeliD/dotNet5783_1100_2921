@@ -75,7 +75,6 @@ namespace PL
             {
                 wrongInput += "UserEmail is Missing\n";
                 tbUserEmail.BorderBrush = Brushes.Red;
-                //MessageBox.Show("Username is Missing", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
 
@@ -83,19 +82,16 @@ namespace PL
             {
                 wrongInput += "UserAddress is Missing\n";
                 tbUserAddress.BorderBrush = Brushes.Red;
-                //MessageBox.Show("Username was not entered", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (userName == "")
             {
                 wrongInput += "UserName is Missing\n";
                 tbUserName.BorderBrush = Brushes.Red;
-                //MessageBox.Show("Username was not entered", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (passcode == "")
             {
                 wrongInput += "Password is Missing\n";
                 tbPasscode.BorderBrush = Brushes.Red;
-                //MessageBox.Show("Passcode was not entered", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (wrongInput != "")
             {

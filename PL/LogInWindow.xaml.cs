@@ -42,7 +42,7 @@ namespace PL
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            WindowState=WindowState.Minimized;  
+            WindowState = WindowState.Minimized;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -78,7 +78,7 @@ namespace PL
             }
             try
             {
-               BO.User user = bl.User.GetByUserName(userName);
+                BO.User user = bl.User.GetByUserName(userName);
                 if (user.Passcode != txtPass.Password)
                     MessageBox.Show("Passcode is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
@@ -123,40 +123,5 @@ namespace PL
                 txtPass.BorderBrush = Brushes.DimGray;
             }
         }
-
-        //        private void btnLogIn_Click(object sender, RoutedEventArgs e)
-        //        {
-        //            try
-        //            {
-        //                string userName = tbUserName.Text;
-        //                string passcode = pbPasscode.Password;
-        //                BO.User user = bl.User.GetByUserName(userName);
-        //                if (user.AdminAccess)//if it's an admin
-        //                {
-        //                    AdminWindow aw = new AdminWindow();//create new AdminWindow
-        //                    Close(); 
-        //                    aw.ShowDialog();
-        //                }
-        //                else //if it isn't an admin
-        //                {
-        //                    BO.Cart cart = new BO.Cart() { CustomerAddress=user.UserAddress, CustomerEmail=user.UserEmail, CustomerName=user.Name , Items= new List<BO.OrderItem>() }; //initialization cart to this user
-        //                    CatalogWindow cw = new CatalogWindow(cart);//create new CatalogWindow
-        //                    Close(); 
-        //                    cw.ShowDialog();
-        //                }
-
-        //            }
-        //            catch (BO.BlMissingEntityException)
-        //            {
-        //                MessageBox.Show("User name is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-        //            }
-
-        //        }
-
-
     }
 }

@@ -62,7 +62,6 @@ namespace PL
         private void BtnAddManager_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow signUpWindow = new SignUpWindow(AdminAccess.Yes);//create new SignUpWindow
-            //Close(); ?
             signUpWindow.ShowDialog();
         }
         /// <summary>
@@ -76,11 +75,15 @@ namespace PL
             Close();
             mw.ShowDialog();
         }
-
+        /// <summary>
+        /// Opens Simulator Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSimulation_Click(object sender, RoutedEventArgs e)
         {
-            SimulatorWindow plw = new SimulatorWindow();//create new SimulatorWindow
-            plw.Show();
+            SimulatorWindow sw = new SimulatorWindow();//create new SimulatorWindow
+            sw.Show();
         }
     }
 }

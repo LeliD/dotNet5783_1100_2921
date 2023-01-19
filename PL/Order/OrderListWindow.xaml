@@ -26,7 +26,7 @@
         <DataGrid x:Name="orderForListDataGrid"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding ordersList}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC" Grid.ColumnSpan="2"   FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn"  Binding="{Binding ID}" Header="ID" Width="120"/>
-                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="220"/>
+                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="205"/>
                 <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="130"/>
                 <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="115"/>

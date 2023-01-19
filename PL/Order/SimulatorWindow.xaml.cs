@@ -107,8 +107,8 @@ namespace PL.Order
             time = DateTime.Now; //time initializes in DateTime.Now
             while (isTimerRun)
             {
-                worker.ReportProgress(1);
                 Thread.Sleep(2000);
+                worker.ReportProgress(1);
                 time = time.AddHours(20);//Promoting time in 20 hours
             }
         }
