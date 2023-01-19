@@ -56,7 +56,7 @@ namespace PL.Order
             InitializeComponent();
             generalMode = mode;
             boOrder = bl.Order.GetOrderByID(id);
-            if (generalMode == PL.GeneralMode.Editing)//window fo admin
+            if (generalMode == PL.GeneralMode.Editing)//window for admin
                 if (boOrder.ShipDate == null)
                     btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
                 else
@@ -78,12 +78,21 @@ namespace PL.Order
         /// <param name="e"></param>
         private void btnUpdateShipDateOrder_Click(object sender, RoutedEventArgs e)
         {
-            if(boOrder != null)
+            try
             {
-                boOrder = bl.Order.UpdateShipDate(boOrder.ID);
+                if (boOrder != null)
+                {
+                    boOrder = bl.Order.UpdateShipDate(boOrder.ID);
+                }
+                btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
+                btnUpdateDeliveryDateOrder.Visibility = Visibility.Visible;
             }
-            btnUpdateShipDateOrder.Visibility = Visibility.Hidden;
-            btnUpdateDeliveryDateOrder.Visibility = Visibility.Visible;
+            catch(Exception)
+            {
+                MessageBox.Show("Not Found", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+
         }
         /// <summary>
         /// Button to update Delivery date of Order
@@ -92,11 +101,19 @@ namespace PL.Order
         /// <param name="e"></param>
         private void btnUpdateDeliveryDateOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (boOrder != null)
+            try
             {
-                boOrder = bl.Order.UpdateDeliveryDate(boOrder.ID);
+                if (boOrder != null)
+                {
+                    boOrder = bl.Order.UpdateDeliveryDate(boOrder.ID);
+                }
+                btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
             }
-            btnUpdateDeliveryDateOrder.Visibility = Visibility.Hidden;
+            catch (Exception)
+            {
+                MessageBox.Show("Not Found", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
         /// <summary>
         /// Mouse Double Click of orderItem
@@ -110,7 +127,7 @@ namespace PL.Order
             BO.OrderItem? orderItem = orderItemDataGrid.SelectedItem as BO.OrderItem;
             if (orderItem != null)
             {
-                ProductWindow pw = new ProductWindow(orderItem.ProductID, GeneralMode.Display,boOrder.ID);//create new ProductWindow of the selected product
+                ProductWindow pw = new ProductWindow(orderItem.ProductID, GeneralMode.Display,boOrder!.ID);//create new ProductWindow of the selected product in display mode for manager
                 Close(); 
                 pw.ShowDialog();
             }

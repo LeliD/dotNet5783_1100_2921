@@ -24,7 +24,9 @@ namespace PL.Product
         /// bl is an instance of IBl
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
-
+        /// <summary>
+        /// customer cart
+        /// </summary>
         private BO.Cart MyCart { get; set; }
 
         public BO.ProductItem? boProductItem
@@ -37,13 +39,6 @@ namespace PL.Product
         public static readonly DependencyProperty boProductItemProperty =
             DependencyProperty.Register("boProductItem", typeof(BO.ProductItem), typeof(ProductItemWindow), new PropertyMetadata(null));
 
-        /// <summary>
-        /// empty Constructor
-        /// </summary>
-        public ProductItemWindow()
-        {
-            InitializeComponent();
-        }
         /// <summary>
         /// Constructor
         /// </summary>
@@ -68,9 +63,7 @@ namespace PL.Product
                 MyCart = bl.Cart.AddProductToCart(MyCart, boProductItem!.ID);
                 boProductItem = bl.Product.ProductDetailsForCustomer(boProductItem.ID, MyCart);// חייב להביא אותו שוב בשביל שדה כמות שיתעדכן
                 if (!boProductItem.InStock)
-                {
                     btnAddToCart.IsEnabled = false;
-                }
             }
             catch (BO.BlOutOfStockException)
             {
@@ -89,8 +82,8 @@ namespace PL.Product
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             CatalogWindow cw = new CatalogWindow(MyCart);//create new CatalogWindow
-            cw.ShowDialog();
             Close();
+            cw.ShowDialog();
         }
         /// <summary>
         /// Opens CartWindow

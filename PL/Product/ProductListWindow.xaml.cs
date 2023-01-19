@@ -30,8 +30,8 @@ namespace PL.Product
         /// </summary>
         public ProductListWindow()
         {
+            //For enabling "All" option which isn't a formal category
             InitializeComponent();
-           // ProductListView.ItemsSource = bl.Product.GetListedProductsForManager();//
             CategorySelector.Items.Add(BO.Category.BATHROOM);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.KITCHEN);//Add cateroty to comboBox
             CategorySelector.Items.Add(BO.Category.BEDROOM);//Add cateroty to comboBox

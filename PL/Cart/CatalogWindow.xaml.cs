@@ -41,9 +41,6 @@ namespace PL.Cart
         public static readonly DependencyProperty productItemsProperty =
             DependencyProperty.Register("productItems", typeof(ObservableCollection<BO.ProductItem?>), typeof(CatalogWindow), new PropertyMetadata(null));
 
-        //private BO.Cart MyCart { get; set; }
-
-
         public BO.Cart MyCart
         {
             get { return (BO.Cart)GetValue(MyCartProperty); }
@@ -54,8 +51,6 @@ namespace PL.Cart
         public static readonly DependencyProperty MyCartProperty =
             DependencyProperty.Register("MyCart", typeof(BO.Cart), typeof(CatalogWindow), new PropertyMetadata(null));
 
-
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -65,9 +60,6 @@ namespace PL.Cart
             MyCart = cart;
             InitializeComponent();
             productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer());
-           // listViewProducts.ItemsSource = productItems;
-            //listViewProducts.ItemsSource = bl.Product.GetListedProductsForCustomer();
-           
         }
         /// <summary>
         /// Opens ProductItem Window of the selected product
@@ -115,10 +107,9 @@ namespace PL.Cart
         {
             try
             {
-                TextBlock? textBox = sender as TextBlock;
-                if (textBox != null)
-                    productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == Enum.Parse<BO.Category>(textBox.Text.ToString())));
-
+                TextBlock? textBlock = sender as TextBlock;
+                if (textBlock != null)
+                    productItems = new ObservableCollection<BO.ProductItem?>(bl.Product.GetListedProductsForCustomer(x => (BO.Category)(x?.Category)! == Enum.Parse<BO.Category>(textBlock.Text.ToString())));
             }
             catch (Exception)
             {

@@ -55,7 +55,6 @@ namespace PL.Cart
                 tbEmptyCart.Visibility = Visibility.Visible;
                 btnMakeAnOrder.Visibility = Visibility.Hidden;
             }
-            //lvCart.ItemsSource=cart.Items;
         }
         /// <summary>
         /// Adds the amount of a clicked orderitem in cart in one
@@ -98,7 +97,7 @@ namespace PL.Cart
                 lvCart.Items.Refresh();
                 lvCart.ItemsSource = MyCart.Items;//In case of removing there is a need to reload the itemsSource since the product may be removed
                 lblTotalPrice.Content = MyCart.TotalPrice.ToString();
-                if (MyCart.Items != null && MyCart.Items.Count() == 0)//If cart is empty
+                if (MyCart.Items == null || MyCart.Items.Count() == 0)//If cart is empty
                 {
                     tbEmptyCart.Visibility = Visibility.Visible;
                     btnMakeAnOrder.Visibility = Visibility.Hidden;
@@ -123,7 +122,7 @@ namespace PL.Cart
                 lvCart.Items.Refresh();
                 lvCart.ItemsSource = MyCart.Items;
                 lblTotalPrice.Content = MyCart.TotalPrice.ToString();
-                if (MyCart.Items != null && MyCart.Items.Count() == 0)//If cart is empty
+                if (MyCart.Items == null || MyCart.Items.Count() == 0)//If cart is empty
                 {
                     tbEmptyCart.Visibility = Visibility.Visible;
                     btnMakeAnOrder.Visibility = Visibility.Hidden;

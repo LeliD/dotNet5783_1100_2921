@@ -24,20 +24,33 @@ namespace PL.Order
         /// bl is an instance of IBl
         /// </summary>
         BlApi.IBl bl = BlApi.Factory.Get();
+
+
+        public List<BO.OrderForList?> ordersList
+        {
+            get { return (List<BO.OrderForList?>)GetValue(ordersListProperty); }
+            set { SetValue(ordersListProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ordersList.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ordersListProperty =
+            DependencyProperty.Register("ordersList", typeof(List<BO.OrderForList?>), typeof(OrderListWindow), new PropertyMetadata(null));
+
+
         /// <summary>
         /// Constructor
         /// </summary>
         public OrderListWindow()
         {
             InitializeComponent();
-            ShowListOfOrders();
+            //window activited
         }
         /// <summary>
         /// function to show the orders list
         /// </summary>
         private void ShowListOfOrders()
         {
-            orderForListDataGrid.ItemsSource = bl.Order.GetOrdersForManager();
+            ordersList= bl.Order.GetOrdersForManager().ToList();
         }
         /// <summary>
         /// show orders list every time when return to this window
@@ -48,13 +61,7 @@ namespace PL.Order
         {
             ShowListOfOrders();
         }
-        /// <summary>
-        /// Opens Order Window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
      
-      
         /// <summary>
         /// Opens Admin Window
         /// </summary>

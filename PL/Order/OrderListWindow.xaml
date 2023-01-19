@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
+        DataContext="{Binding RelativeSource={RelativeSource Self} }"
         Title="OrderListWindow" Height="550" Width="800" Activated="Window_Activated">
     <Grid Name="MainGrid" Background="#FFFCEFEC">
         <Grid.RowDefinitions>
@@ -22,10 +23,10 @@
         <Button x:Name="btnHome"  Background="#FFFAF6F4" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="40" Click="btnHome_Click" Margin="729,0,0,0"  >
             <Image Source="/Cart/HOME.png" Height="30" Width="36"/>
         </Button>
-        <DataGrid x:Name="orderForListDataGrid" AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC" Grid.ColumnSpan="2" Margin="0,4,0,45" Grid.RowSpan="2" FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" Grid.Row="1" >
+        <DataGrid x:Name="orderForListDataGrid"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="False" Width="auto" Height="auto" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding ordersList}" RowDetailsVisibilityMode="VisibleWhenSelected" Background="#FFFCEFEC" Grid.ColumnSpan="2"   FontFamily="Guttman-CourMir" FontSize="16" FontStyle="Italic" BorderBrush="#FFFCEFEC" Foreground="#FFBD6565" Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn"  Binding="{Binding ID}" Header="ID" Width="120"/>
-                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="200"/>
+                <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="220"/>
                 <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Status" Width="130"/>
                 <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="totalPriceColumn" Binding="{Binding TotalPrice}" Header="Total Price" Width="115"/>

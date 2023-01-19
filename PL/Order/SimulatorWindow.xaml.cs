@@ -84,10 +84,7 @@ namespace PL.Order
                 if (boOrder.ShipDate == null)
                 {
                     if (boOrder.OrderDate + shipTime <= time)//time of shipping has come
-                    {
                         bl.Order.UpdateShipDate(boOrder.ID);//Update its ShipDate
-                        //orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());//bring the list again from dal
-                    }
                 }
                 else
                     if (boOrder.DeliveryDate == null)
@@ -95,12 +92,9 @@ namespace PL.Order
                     if (boOrder.ShipDate + deliveryTime <= time)//time of delivering has come
                     {
                         bl.Order.UpdateDeliveryDate(boOrder.ID);//Update its DeliveryDate
-                        //orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());//bring the list again from dal
                     }
                 }
                 orderForList = new ObservableCollection<BO.OrderForList?>(bl.Order.GetOrdersForManager());//bring the list again from dal
-
-                //Thread.Sleep(1000);
             }
         }
         /// <summary>
@@ -115,7 +109,7 @@ namespace PL.Order
             {
                 worker.ReportProgress(1);
                 Thread.Sleep(2000);
-                time = time.AddHours(17);//Promoting time in t
+                time = time.AddHours(20);//Promoting time in 20 hours
             }
         }
         /// <summary>
@@ -125,13 +119,12 @@ namespace PL.Order
         /// <param name="e"></param>
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (worker.IsBusy != true)
+            if (!worker.IsBusy)
             // Start the asynchronous operation.
             {
                 isTimerRun = true;
                 worker.RunWorkerAsync();
             }
-           
         }
         /// <summary>
         /// Stoping the thread

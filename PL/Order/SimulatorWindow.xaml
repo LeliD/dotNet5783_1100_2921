@@ -26,7 +26,6 @@
                 <DataGridTextColumn x:Name="customerNameColumn" Binding="{Binding CustomerName}" Header="Customer Name" Width="180"/>
 
                 <DataGridTextColumn x:Name="amountOfItemsColumn" Binding="{Binding AmountOfItems}" Header="Amount Of Items" Width="135"/>
-                <!--<DataGridTextColumn x:Name="Status" Binding="{Binding Status}" Header="Status" Width="100"/>-->
                 <DataGridTemplateColumn Header="Status" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

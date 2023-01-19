@@ -24,7 +24,7 @@ namespace PL.Product
     /// <summary>
     /// Interaction logic for ProductWindow.xaml
     /// </summary>
-    enum Mode { ADD, UPDATE, NON }
+    enum Mode { ADD, UPDATE, CustomerDisplay } //3 states to open the window
     public partial class ProductWindow : Window
     {
         /// <summary>
@@ -79,9 +79,9 @@ namespace PL.Product
                 btnAdd_UpdateProduct.Content = "Update";//Content of the botton is "Update" for Updating a product
                 mode = Mode.UPDATE;
             }
-            else //generalMode is for display only
+            else //generalMode is for display only (showing profuct details for manager from dataGrid of orderItem)
             {
-                mode = Mode.NON;
+                mode = Mode.CustomerDisplay;
                 btnRemove.Visibility = Visibility.Hidden;
                 btnBack.Content = "← Back to Order";
                 btnAdd_UpdateProduct.Visibility = Visibility.Hidden;
@@ -310,17 +310,7 @@ namespace PL.Product
                 lblWrongInStock.Visibility = Visibility.Hidden;
             }
         }
-        /// <summary>
-        /// SelectionChanged event of CategorySelector
-        /// The function makes lblMissingCategory label hidden
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lblMissingCategory.Content = "";
-            lblMissingCategory.Visibility = Visibility.Hidden;
-        }
+       
         /// <summary>
         /// Button to remove product 
         /// </summary>
@@ -341,8 +331,6 @@ namespace PL.Product
                     MessageBox.Show(ex.Message, "AlreadyExistEntityException", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
-
         }
         /// <summary>
         /// Opens Main Window
@@ -363,14 +351,12 @@ namespace PL.Product
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog o = new OpenFileDialog();
-            o.Filter = "Image files|*.png;*.jpg";//enables only files that end with pbj or jpg
-            //o.FilterIndex = 1;
+            o.Filter = "Image files|*.png;*.jpg";//enables only files that end with pbj or jp
             if (o.ShowDialog() == true)
             {
                 NewImage.ImageSource = new BitmapImage(new Uri(o.FileName));//take an image from the computer
                 boProduct!.ImageRelativeName = o.FileName;
             }
-
         }
         /// <summary>
         /// Opens Product List or Order Window
@@ -387,15 +373,12 @@ namespace PL.Product
             }
             else
             {
-
                 if(orderId!=null)
                 {
                     OrderWindow ow = new OrderWindow((int)orderId, PL.GeneralMode.Editing);//create new OrderWindow of the selected order
                     Close();
                     ow.ShowDialog();                                                    
                 }
-
-
             }
 
         }
